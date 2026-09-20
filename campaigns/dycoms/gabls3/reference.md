@@ -34,7 +34,7 @@ A separate SurfaceLayerDiffusivity study is also authorized: at 12.5 m, a matche
 
 ## Persistent evaluation repository
 
-Created as a private repository: [glwagner/BreezeEvaluation.jl](https://github.com/glwagner/BreezeEvaluation.jl). Migration, GABLS3 preparation and scientific completion are tracked separately. The combined report and all plots use Julia.
+The public [glwagner/BreezeEvaluation.jl](https://github.com/glwagner/BreezeEvaluation.jl) repository preserves redistributable evaluation inputs and artifacts. Migration, GABLS3 preparation and scientific completion are tracked separately; third-party materials without redistribution clearance are cited and checksummed rather than versioned. The combined report and all plots use Julia.
 
 The repository now retains the 15 completed DYCOMS and 12 completed GABLS1 cases as audited compact comparison data, alongside case/source snapshots, reference data, Julia plotting/report code, figures and this report. Compact profile subsets are explicitly distinguished from full scientific exports. A hash-verifying restoration workflow recovered all 27 complete profile histories in a separate pcluster analysis copy; the original GABLS1 admission checks accepted all 12 restored cases. Frozen production, failed attempts and raw fields remain on pcluster with checksummed manifests. Original simulation identities and hashes are preserved. Third-party papers are linked.
 

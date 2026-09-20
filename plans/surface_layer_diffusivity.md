@@ -1,6 +1,6 @@
 # SurfaceLayerDiffusivity: implementation and evaluation plan
 
-Date: 2026-09-20. Status: implementation and bounded evaluation authorized; no results yet.
+Date: 2026-09-20. Status: CPU implementation validated; bounded scientific evaluation pending.
 
 Tracking issue: https://github.com/NumericalEarth/Breeze.jl/issues/534
 
@@ -102,9 +102,9 @@ Persist the plan, experiment drivers, pinned dependency revisions, manifests, re
 
 TKEBasedTurbulenceClosure supplies patterns for vertical face diffusivities and their host-model integration. FilteredSurfaceVelocities supplies a temporal-filtering pattern. Read the actual current update lifecycle rather than copying stage handling without tests. Follow applicable repository AGENTS.md guidance and GPU kernel conventions.
 
-Requested roles: pane47 implements the isolated Breeze closure/tests; pane48 handles independent scientific review, evaluation setup, exports and report integration. Pane47 is currently provider-spend-limited: pane48 must own progress while it is unavailable, rather than waiting indefinitely or claiming both are active. Publish an acknowledgment with actual owners and paths in /shared/home/greg/review-coordination/surface-layer-status.md.
+Current roles: pane48 owns the isolated Breeze closure/tests, scientific review, evaluation setup, exports, and report integration while pane47 is provider-spend-limited. Do not wait indefinitely or claim both are active. Publish the actual owner, revision, evidence, and paths in `/shared/home/greg/review-coordination/surface-layer-status.md`.
 
-The user explicitly authorizes implementation, the bounded evaluations below, and substantive progress comments on issue534. Do not open a PR or merge the feature: the user will decide after reviewing results. Push focused commits for reviewability when ready.
+The user explicitly authorizes implementation and the bounded evaluations below. Do not open a PR or merge the feature: the user will decide after reviewing results. Push focused commits for reviewability when ready. BreezeEvaluation.jl is public; keep detailed implementation, test, validation, and job evidence in this repository and the coordination status files.
 
 ## Required validation before scientific runs
 
@@ -161,9 +161,9 @@ Publish only completed, provenance-checked scientific cases. Keep partial runs l
 
 ## Progress and completion
 
-Update issue534 at substantive milestones: branch and implementation started; meaningful validation results; submitted runs with expected next results; first admitted comparisons; final assessment or actionable failure. One reporting owner should prevent duplicate comments. Include commit links and evidence; never claim tests/runs completed from job submission alone. Do not post every unchanged heartbeat or expose unrelated logs/credentials.
+Issue 534 comments are reserved for major scientific or design conclusions. Detailed implementation, test, validation, and job-submission updates belong in BreezeEvaluation.jl and the coordination status files, not in issue comments. Desktop is the sole issue-posting owner; other agents provide evidence and draft conclusions without posting duplicates. Preserve the already approved [20 September 2026 comment](https://github.com/NumericalEarth/Breeze.jl/issues/534#issuecomment-5751844915). Never infer completed validation from a submission alone.
 
-The desktop monitor should collect new completed results, rebuild and inspect the master report with existing Julia tools, persist them to BreezeEvaluation.jl, and post concise issue updates. Remain quiet while healthy state is unchanged. Finish by presenting the report, scientific limitations, and a clean feature diff for the user's PR decision.
+The desktop monitor should collect new completed results, rebuild and inspect the master report with existing Julia tools, and persist them to BreezeEvaluation.jl. It may post only major conclusions under the policy above and should remain quiet while healthy state is unchanged. Finish by presenting the report, scientific limitations, and a clean feature diff for the user's PR decision.
 
 ## Future work
 

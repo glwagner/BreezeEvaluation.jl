@@ -4,9 +4,9 @@ Reproducible Julia workflows, compact audited data, figures, and reports for Bre
 LES evaluations. The repository currently preserves DYCOMS-II RF01 and GABLS1 and is preparing
 GABLS3.
 
-The repository is private while the GABLS3 setup and third-party redistribution permissions are
-audited. Large JLD2 fields, external archives, and paper PDFs are deliberately not versioned.
-Their original locations, hashes, and provenance are recorded under `provenance/`.
+The repository is public. Large JLD2 fields, external archives, third-party paper PDFs, and other
+materials without redistribution clearance are deliberately not versioned. Their original
+locations, hashes, and provenance are recorded under `provenance/`.
 
 ## Layout
 
