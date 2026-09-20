@@ -1,0 +1,16 @@
+*.jld2
+*.nc
+*.npz
+*.tar
+*.tar.gz
+*.zip
+*.pdf
+*.ps
+*.mp4
+._*
+.DS_Store
+/raw/
+/scratch/
+/data/gabls1/reference/values.csv
+/data/gabls3/reference/source_files/
+

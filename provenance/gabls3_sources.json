@@ -1,0 +1,38 @@
+{
+  "case": "GABLS3 LES, 00:00-09:00 UTC 2006-07-02",
+  "authoritative_instructions": {
+    "title": "GABLS3 LES INTERCOMPARISON Case Description (Revised: October 6, 2008)",
+    "container_url": "https://github.com/Sukantabasu/jax-alfa/tree/aa7baebf99282711416dadbde7dfdfcba8940524/examples/SBL_GABLS3",
+    "file": "GABLS3_LES_Revised.docx",
+    "sha256": "c1f815de95c22b413ca5d1728d90ae470a5e1b8b86b2c96e29880818ee07c6ee",
+    "redistributed": false
+  },
+  "paper": {
+    "title": "GABLS3-LES Intercomparison Study",
+    "url": "https://www.ecmwf.int/sites/default/files/elibrary/2012/7965-gabls3-les-intercomparison-study.pdf",
+    "sha256": "dc9f4cb7c21d5bf6d306fe598c846934eb7953ef46a587999e30cd6dce3733a3",
+    "redistributed": false
+  },
+  "jax_alfa": {
+    "url": "https://github.com/Sukantabasu/jax-alfa.git",
+    "commit": "aa7baebf99282711416dadbde7dfdfcba8940524",
+    "license": "GPL-3.0",
+    "reference_run": "examples/SBL_GABLS3/runs/128x128x128_LASDD_SM_SP",
+    "files": {
+      "Config.py": "7e598629a6f5870207c3ca1b30a32194fca5862ca04db0dc1405eb4e1a854492",
+      "CreateInputs_GABLS3.py": "394d3fa4158c87be652d023f745ee9383ba8404880dc0fff107f8d346e60eab2",
+      "CreateGeoWind_GABLS3.py": "9a959d4fdb878951650bad83bca3515f1fec7cb5a2e0f9b5efcfc979b3ec59d7",
+      "CreateAdvForcing_GABLS3.py": "58c73bcb5034984577fd2ea902e2554c89053a0adf349248907d2a88f52af690",
+      "CreateSurfaceBC_GABLS3.py": "0b85696f9e535a5533aee458922e68fd4cd0385080a7fcc929fed2f9a253f15e",
+      "src/surface/SurfaceFlux.py": "b88c53c15185b59d68befa350861b05712fb5bc070b0070938abee5555477768"
+    },
+    "redistributed": false,
+    "role": "independent transcription cross-check, not the original 2008 implementation"
+  },
+  "unresolved": [
+    "The revised instructions name signed U/V components but do not explicitly define the horizontal axis orientation in text.",
+    "The instructions prescribe only the stable MOST functions; the unstable morning branch is model-dependent and must be declared.",
+    "Authoritative public observation and eleven-member LES profile files for GABLS3 have not yet been located.",
+    "The JAX-ALFA perturbation transcription cites an initialization MATLAB file that is not present in its repository."
+  ]
+}

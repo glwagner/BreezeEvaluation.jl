@@ -1,0 +1,6 @@
+[paths]
+dycoms_raw = "/path/to/dycoms-production-root"
+gabls1_raw = "/path/to/gabls1-production-root"
+gabls3_raw = "/path/to/gabls3-production-root"
+reference_cache = "/path/to/non-versioned-reference-cache"
+
