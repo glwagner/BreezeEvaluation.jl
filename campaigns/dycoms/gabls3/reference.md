@@ -24,10 +24,18 @@ Planned output includes mean u/v/potential temperature/humidity, velocity varian
 
 Preparation checks cover forcing interpolation and jumps, units, profile shapes, surface fluxes and time stepping. GPU smoke tests retain the two-job limit and GABLS1 priority. Scientific admission requires source/input hashes, completion evidence and audited exports.
 
+## Implementation and validation status: 20 September 2026
+
+The [GABLS3 runner and diagnostics](https://github.com/glwagner/BreezeEvaluation.jl/commit/d21e4a8) are committed. One-second CPU checks passed for the 64 cubed WENO9/no-closure, WENO5/no-closure, and WENO9/Smagorinsky configurations. The WENO9 checks exercised diagnostic writers; the Smagorinsky check produced nonzero explicit heat and moisture fluxes. Native-face vertical-velocity moments retain 65 levels, and centered moisture retains 64. Moist Obukhov length has an explicit validity flag; its zero fallback must be masked when invalid.
+
+Separate CPU fixtures passed six writer checks at exactly 300 s and six morning-event checks, including a callback at exactly 21600 s and the contemporaneous surface humidity. These fixtures initialize the clock just before the event to test scheduling; their states are deliberately nonphysical and are excluded from scientific comparisons. They establish output and callback behavior, not nine-hour stability. The case-local environment still uses a mutable Breeze path during development; an immutable dependency snapshot and bounded GPU validation remain required before scientific runs.
+
+A separate SurfaceLayerDiffusivity study is also authorized: at 12.5 m, a matched WENO9/no-closure control and three treatments (one interior face with 100 s or 300 s filtering, and two faces with 300 s filtering). The same four-case comparison is planned for GABLS1 at 32 cubed and GABLS3 at 64 cubed. This adds a coarse-grid study while retaining the original campaigns. No results from this new closure are available yet. [Implementation and evaluation plan](https://github.com/glwagner/BreezeEvaluation.jl/blob/9ef92a834e62ae8e952757e8c510ae46870f2c95/plans/surface_layer_diffusivity.md).
+
 ## Persistent evaluation repository
 
 Created as a private repository: [glwagner/BreezeEvaluation.jl](https://github.com/glwagner/BreezeEvaluation.jl). Migration, GABLS3 preparation and scientific completion are tracked separately. The combined report and all plots use Julia.
 
-The repository will retain DYCOMS and GABLS1 case definitions, pinned dependencies, provenance, audited results, reference data, plotting/report code, figures and this report. Frozen production, failed attempts and raw fields remain on pcluster with checksummed manifests. Original simulation identities and hashes are preserved. Third-party papers are linked.
+The repository now retains the 15 completed DYCOMS and 12 completed GABLS1 cases as audited compact comparison data, alongside case/source snapshots, reference data, Julia plotting/report code, figures and this report. Compact profile subsets are explicitly distinguished from full scientific exports. A hash-verifying restoration workflow recovered all 27 complete profile histories in a separate pcluster analysis copy; the original GABLS1 admission checks accepted all 12 restored cases. Frozen production, failed attempts and raw fields remain on pcluster with checksummed manifests. Original simulation identities and hashes are preserved. Third-party papers are linked.
 
 All analysis and plots use Julia. Existing completed experiments and running GABLS1 jobs continue unchanged during migration. Future evaluations will live in BreezeEvaluation.jl, with their Breeze dependency revision pinned explicitly.
