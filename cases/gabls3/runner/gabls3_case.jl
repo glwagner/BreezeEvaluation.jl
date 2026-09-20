@@ -124,6 +124,8 @@ function capture_provenance(directory, case_id, settings)
     for source in (joinpath(@__DIR__, "gabls3_case.jl"),
                    joinpath(EVALUATION_REPO, "cases", "gabls3", "forcing", "GABLS3ModelForcing.jl"),
                    joinpath(EVALUATION_REPO, "cases", "gabls3", "diagnostics", "GABLS3Diagnostics.jl"),
+                   joinpath(EVALUATION_REPO, "cases", "surface_layer", "diagnostics", "SurfaceLayerDiagnostics.jl"),
+                   joinpath(EVALUATION_REPO, "cases", "surface_layer", "diagnostics", "LegacyGABLSDiagnosticsAdaptation.jl"),
                    joinpath(EVALUATION_REPO, "cases", "gabls3", "preparation", "GABLS3Forcing.jl"),
                    joinpath(EVALUATION_REPO, "cases", "gabls3", "preparation", "inputs.toml"))
         cp(source, joinpath(provenance, basename(source)); force=true)
@@ -138,9 +140,18 @@ function build_simulation(; run_directory=pwd())
     nx = parse(Int, get(ENV, "GABLS3_NX", "64"))
     nx in (64, 128, 256) || error("GABLS3_NX must be 64, 128, or 256")
     scheme_name = environment_choice("GABLS3_SCHEME", ("weno9", "weno5"), "weno9")
-    closure_name = environment_choice("GABLS3_CLOSURE", ("none", "smagorinsky"), "none")
+    closure_name = environment_choice(
+        "GABLS3_CLOSURE", ("none", "smagorinsky", "surface_layer"), "none")
     closure_name == "smagorinsky" && scheme_name != "weno9" &&
         error("the authorized matrix has Smagorinsky only with WENO9")
+    closure_name == "surface_layer" && scheme_name != "weno9" &&
+        error("the authorized SurfaceLayerDiffusivity matrix uses WENO9 only")
+    surface_layer_filter_seconds = parse(Float64,
+        get(ENV, "GABLS3_SLD_FILTER_SECONDS", "300"))
+    surface_layer_support = parse(Int, get(ENV, "GABLS3_SLD_SUPPORT", "1"))
+    surface_layer_filter_seconds > 0 ||
+        error("GABLS3_SLD_FILTER_SECONDS must be positive")
+    surface_layer_support in (1, 2) || error("GABLS3_SLD_SUPPORT must be 1 or 2")
     stop_time = parse(Float64, get(ENV, "GABLS3_STOP_SECONDS", "32400"))
     seed = parse(Int, get(ENV, "GABLS3_SEED", "20260702"))
     diagnostics_enabled = get(ENV, "GABLS3_DIAGNOSTICS", "1") == "1"
@@ -213,8 +224,16 @@ function build_simulation(; run_directory=pwd())
         qᵗ=q_advection)
 
     scheme = advection_scheme(scheme_name)
-    closure = closure_name == "smagorinsky" ?
-        SmagorinskyLilly(C=FT(0.16), Cb=FT(1), Pr=FT(1)) : nothing
+    closure = if closure_name == "smagorinsky"
+        SmagorinskyLilly(C=FT(0.16), Cb=FT(1), Pr=FT(1))
+    elseif closure_name == "surface_layer"
+        SurfaceLayerDiffusivity(FT;
+            filter_timescale=surface_layer_filter_seconds,
+            support=surface_layer_support,
+            minimum_scalar_fluxes=(ρθ=FT(1e-8), ρqᵉ=FT(1e-12)))
+    else
+        nothing
+    end
     microphysics = SaturationAdjustment(equilibrium=WarmPhaseEquilibrium())
     model = AtmosphereModel(grid; dynamics, coriolis, microphysics,
         momentum_advection=scheme, scalar_advection=scheme, closure,
@@ -233,9 +252,13 @@ function build_simulation(; run_directory=pwd())
     add_callback!(simulation, event_callback, SpecifiedTimes(collect(forcing_events()));
                   callsite=UpdateStateCallsite())
 
-    case_id = @sprintf("n%03d_%s_%s", nx, scheme_name, closure_name)
+    closure_id = closure_name == "surface_layer" ?
+        @sprintf("surface_layer_t%03d_s%d",
+                 round(Int, surface_layer_filter_seconds), surface_layer_support) : closure_name
+    case_id = @sprintf("n%03d_%s_%s", nx, scheme_name, closure_id)
     mkpath(run_directory)
-    settings = (; nx, spacing, scheme_name, closure_name, stop_time, seed,
+    settings = (; nx, spacing, scheme_name, closure_name,
+        surface_layer_filter_seconds, surface_layer_support, stop_time, seed,
         initial_dt, wizard_cfl=0.7, latitude, coriolis_parameter,
         diagnostics_enabled, architecture=summary(architecture))
     capture_provenance(run_directory, case_id, settings)

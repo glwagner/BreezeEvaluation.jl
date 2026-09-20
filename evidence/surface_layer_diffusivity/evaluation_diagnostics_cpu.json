@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-09-20T20:30:56Z",
+  "validation_scope": "cpu_evaluation_runner_and_diagnostic_contract",
+  "scientific_admission": false,
+  "gpu_validated": false,
+  "evaluation_parent_commit": "69ec4a405210c4094b84cbff1f33522950db9269",
+  "breeze_feature_commit": "d73c82b326c7d3715034c7254c982d25548df5ae",
+  "julia_version": "1.12.6",
+  "julia_executable": "/shared/home/greg/.juliaup/bin/julia",
+  "environment": {
+    "active_project": "/shared/home/greg/Projects/Breeze-surface-layer-diffusivity/examples/Project.toml",
+    "active_project_manifest_present": false,
+    "breeze_root_manifest_sha256": "ea06afffc14487956976a78f9a5fdfca8d4806313cdccb84722d07ceb587aef9",
+    "immutable_gpu_freeze": false
+  },
+  "gabls3_diagnostic_adaptation": {
+    "test_script": "cases/surface_layer/test_diagnostic_adaptation.jl",
+    "passed": 345,
+    "failed": 0,
+    "variants": [
+      "n064_weno9_none",
+      "n064_weno9_smagorinsky",
+      "n064_weno9_surface_layer_t300_s1"
+    ],
+    "stop_time_seconds": 10,
+    "validated_behaviors": [
+      "control retains its explicit zero SGS-dissipation profile with availability false",
+      "Smagorinsky retains a diagnosed SGS-dissipation profile with availability true",
+      "active SurfaceLayerDiffusivity omits unavailable SGS dissipation with availability false",
+      "all raw profiles are finite and have exactly 64 center or 65 face levels",
+      "six TKE production terms are horizontally reduced profiles rather than three-dimensional fields",
+      "filtered local means, filtered products, local mean transports, centered covariances, face coordinates, support weights, scalar guards, and units are present"
+    ]
+  },
+  "gabls1_surface_layer_smoke": {
+    "case_id": "gabls1_n032_weno9_surface_layer_t300_s1",
+    "stop_time_seconds": 1,
+    "case_done": true,
+    "profile_variables": 46,
+    "all_profiles_finite": true,
+    "valid_vertical_lengths": [32, 33],
+    "initial_profile_times_seconds": [0.0],
+    "averaged_profile_times_seconds": [0.0],
+    "series_times_seconds": [0.0],
+    "sgs_dissipation_present": false,
+    "sgs_dissipation_available": false,
+    "surface_layer_diffusivity_available": true,
+    "supported_face_heights_m": [12.5, 25.0],
+    "theta_initial_sha256": "1f5db33f2971ee607ac46b1a014b038a09fc876cc1669394dce023a9aa2f198b",
+    "initialization_definition": "exact frozen GABLS1 seeded-default-RNG Float64 host array, converted by set! onto the Float32 model"
+  },
+  "source_sha256": {
+    "cases/gabls3/diagnostics/GABLS3Diagnostics.jl": "9847514c3316b72cad4457c56338f653b85580df02e22aa641a1252d7ab70278",
+    "cases/gabls3/runner/gabls3_case.jl": "84c8face91fece26617bdee2e1e480aa9743756aad14d1b971e48c784bb99c05",
+    "cases/surface_layer/diagnostics/LegacyGABLSDiagnosticsAdaptation.jl": "4e23e097db00ec5fd16784683d87ee1ee3aacdaa04a6baee37e4fa9468c506b3",
+    "cases/surface_layer/diagnostics/SurfaceLayerDiagnostics.jl": "12fe338fa4d7eaecda8f340e0b681386921a11cf0e9405c68bc68b802e31cb98",
+    "cases/surface_layer/diagnostics/GABLS1SurfaceLayerDiagnostics.jl": "657ac53384274ed8b79cee815da4d31a6e7420ed05641ba7c7c00adacec9691d",
+    "cases/surface_layer/gabls1/gabls1_case.jl": "fc3a275d226ed96877a15e7ec922906116df0d4a79116ad7749d8e1b53e32fe6",
+    "cases/surface_layer/test_diagnostic_adaptation.jl": "e9b634a60a21d8fda5afd5d71a62f321e25a175d6b93de1d29a7b0d94dfe2997"
+  },
+  "preparation_sha256": {
+    "cases/surface_layer/neutral/preparation.md": "6e659059844b692f579005d9ae7d116397c7784dbf4a4033bd813e53305adced"
+  },
+  "remaining_gates": [
+    "seal and verify an immutable dependency/source snapshot",
+    "bounded GPU kernel, writer, Float32, and restart validation when GABLS1 releases capacity",
+    "run and audit the authorized small-grid comparisons",
+    "export and plot admitted results in Julia",
+    "integrate only major scientific conclusions into the master report"
+  ],
+  "interpretation": "These checks validate CPU runner and writer plumbing. They are not evolved LES evidence, do not establish fidelity, and do not admit scientific results."
+}

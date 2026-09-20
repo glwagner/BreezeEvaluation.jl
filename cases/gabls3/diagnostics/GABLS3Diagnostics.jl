@@ -18,9 +18,35 @@ using Oceananigans.Grids: Center, Face
 using Oceananigans.Models: BoundaryConditionOperation
 using Oceananigans.Units: minute
 
-include(joinpath(@__DIR__, "..", "..", "..", "source_snapshots", "gabls1", "original",
-                 "source", "examples", "gabls_diagnostics.jl"))
+# The historical GABLS1 diagnostic snapshot imported this helper from an uncommitted campaign
+# surface-law overlay. Preserve the frozen file and supply its exact closed-form relation only in
+# the loaded evaluation process when the Breeze revision does not contain that overlay.
+if !isdefined(Breeze.BoundaryConditions, :gabls_stability_parameter)
+    @eval Breeze.BoundaryConditions begin
+        @inline function gabls_stability_parameter(Rᵇ, a, b, βᴰ, βᵀ, ζmax)
+            A = βᵀ - Rᵇ * βᴰ^2
+            B = b - 2 * Rᵇ * a * βᴰ
+            C = -Rᵇ * a^2
+            discriminant = B^2 - 4 * A * C
+            root = (-B + sqrt(max(0, discriminant))) / A / 2
+            solvable = (A > 0) & (discriminant > 0) & (Rᵇ > 0)
+            return ifelse(solvable, min(root, ζmax),
+                          ifelse(Rᵇ > 0, ζmax, zero(Rᵇ)))
+        end
+    end
+end
+
+include(joinpath(@__DIR__, "..", "..", "surface_layer", "diagnostics",
+                 "LegacyGABLSDiagnosticsAdaptation.jl"))
+const FROZEN_GABLS_DIAGNOSTICS = joinpath(
+    @__DIR__, "..", "..", "..", "source_snapshots", "gabls1", "original",
+    "source", "examples", "gabls_diagnostics.jl")
+LegacyGABLSDiagnosticsAdaptation.load_adapted_gabls_diagnostics!(
+    @__MODULE__, FROZEN_GABLS_DIAGNOSTICS)
 using .GABLSDiagnostics
+
+include(joinpath(@__DIR__, "..", "..", "surface_layer", "diagnostics",
+                 "SurfaceLayerDiagnostics.jl"))
 
 using ..GABLS3ModelForcing: most_diagnostics, surface_state
 
@@ -186,12 +212,14 @@ function build_gabls3_diagnostics(model, coefficient, surface_temperature, input
         :surface_temperature)
     base_series = without_keys(base.series_outputs, legacy_surface_keys)
 
+    surface_layer = SurfaceLayerDiagnostics.surface_layer_diagnostic_outputs(model)
+
     profile_outputs = merge(base.profile_outputs, (;
         q_mean,
         q_variance,
         resolved_w_q_flux,
         sgs_w_q_flux,
-        total_w_q_flux))
+        total_w_q_flux), surface_layer.profiles)
 
     series_outputs = merge(base_series, (;
         surface_q_dynamic_flux=dynamic_q_flux_mean,
@@ -210,7 +238,7 @@ function build_gabls3_diagnostics(model, coefficient, surface_temperature, input
         prescribed_surface_theta=surface_theta_output,
         prescribed_surface_q=surface_q_output,
         q_minimum,
-        q_maximum))
+        q_maximum), surface_layer.series)
 
     diagnostic_fields = merge(base.diagnostic_fields, (;
         surface_bulk_richardson=richardson_field,
@@ -228,7 +256,8 @@ function build_gabls3_diagnostics(model, coefficient, surface_temperature, input
         moisture_definition="specific humidity per mass moist air; Breeze total-water prognostic",
         surface_obukhov_definition="moist virtual-potential-temperature flux approximation including heat and moisture surface fluxes; zero fallback is invalid unless obukhov_length_moist_valid=1",
         surface_cap_definition="fraction at zeta=10 stable cap; unstable fraction is RiB<0",
-        required_paper_window="instantaneous records 11100:300:14400 seconds (12 records)"))
+        required_paper_window="instantaneous records 11100:300:14400 seconds (12 records)"),
+        surface_layer.metadata)
 
     return (; profile_outputs, series_outputs, diagnostic_fields, metadata)
 end
