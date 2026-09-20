@@ -1,0 +1,49 @@
+schema_version = 1
+campaign = "gabls3_surface_layer_bounded_4case"
+case_family = "GABLS3"
+submission_state = "UNSUBMITTED"
+expected_case_count = 4
+runner = "cases/gabls3/runner/gabls3_case.jl"
+immutable_snapshot = "REQUIRED_AT_SUBMISSION"
+grid = [64, 64, 64]
+domain_m = [800.0, 800.0, 800.0]
+duration_s = 32400.0
+seed = 20260702
+required_completion_sentinel = "CASE_DONE"
+required_export_sentinel = "EXPORT_VERIFIED"
+required_admission = ["source_hashes", "finite", "coordinates", "scheduled_times", "initial_digests", "surface_guards", "case_done"]
+
+[paired_initial_state_sha256]
+u_sha256 = "f0b01718f516f6c71870f753f619696528638f7319788c0b51ebd9d1c3ec6fd5"
+v_sha256 = "a0d7729f3cab5f52b5deae41a2fd7011a7b570392488f664da8ffea2ee86f28e"
+theta_sha256 = "7fbad0eb9fc24b28c3c621cb4e6b8cc2943c75611e187e5a0f8b30e87d4e872d"
+q_sha256 = "1318165d6db8db964bfba2cdd9135aaf9c46a32b6744df4e1a9da4b91cbeaeb1"
+w_sha256 = "1c096f259c652e157a8633719844341da5c0a583d1362afa404cc83762066ac5"
+
+[[cases]]
+case_id = "n064_weno9_none"
+closure = "none"
+filter_seconds = 300.0
+support = 1
+submission_state = "UNSUBMITTED"
+
+[[cases]]
+case_id = "n064_weno9_surface_layer_t100_s1"
+closure = "surface_layer"
+filter_seconds = 100.0
+support = 1
+submission_state = "UNSUBMITTED"
+
+[[cases]]
+case_id = "n064_weno9_surface_layer_t300_s1"
+closure = "surface_layer"
+filter_seconds = 300.0
+support = 1
+submission_state = "UNSUBMITTED"
+
+[[cases]]
+case_id = "n064_weno9_surface_layer_t300_s2"
+closure = "surface_layer"
+filter_seconds = 300.0
+support = 2
+submission_state = "UNSUBMITTED"

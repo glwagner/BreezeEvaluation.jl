@@ -41,29 +41,45 @@ function advection_scheme(name)
     error("unsupported advection scheme $name")
 end
 
-function initialize_perturbed_state!(model, inputs, seed)
-    grid = model.grid
-    FT = eltype(grid)
-    Nx, Ny, Nz = size(grid)
-    z = collect(znodes(grid, Center(), Center(), Center()))
+function perturbed_initial_arrays(inputs, seed, Nx, Ny, z, FT)
+    Nz = length(z)
     rng = MersenneTwister(seed)
 
-    function initialize_component!(name, base, standard_deviation)
+    function initialize_component(base, standard_deviation)
         values = Array{FT}(undef, Nx, Ny, Nz)
         for k in 1:Nz, j in 1:Ny, i in 1:Nx
             values[i, j, k] = FT(base(z[k]) + standard_deviation(z[k]) * randn(rng))
         end
-        set!(model; NamedTuple{(name,)}((values,))...)
-        return nothing
+        return values
     end
 
     velocity_deviation(z) = z < 200 ? sqrt(0.2) * (1 - z / 200) : 0.0
     theta_deviation(z) = z < 200 ? sqrt(0.1) : 0.0
-    initialize_component!(:u, z -> initial_u(inputs, z), velocity_deviation)
-    initialize_component!(:v, z -> initial_v(inputs, z), velocity_deviation)
-    initialize_component!(:θ, z -> initial_theta(inputs, z), theta_deviation)
-    set!(model, qᵗ=(x, y, z) -> initial_q(inputs, z), w=0)
-    return nothing
+    u = initialize_component(z -> initial_u(inputs, z), velocity_deviation)
+    v = initialize_component(z -> initial_v(inputs, z), velocity_deviation)
+    theta = initialize_component(z -> initial_theta(inputs, z), theta_deviation)
+    q = Array{FT}(undef, Nx, Ny, Nz)
+    w = zeros(FT, Nx, Ny, Nz + 1)
+    for k in 1:Nz, j in 1:Ny, i in 1:Nx
+        q[i, j, k] = FT(initial_q(inputs, z[k]))
+    end
+    return (; u, v, theta, q, w)
+end
+
+function initialize_perturbed_state!(model, inputs, seed)
+    grid = model.grid
+    FT = eltype(grid)
+    Nx, Ny, _ = size(grid)
+    z = collect(znodes(grid, Center(), Center(), Center()))
+    initial = perturbed_initial_arrays(inputs, seed, Nx, Ny, z, FT)
+    set!(model, u=initial.u, v=initial.v, θ=initial.theta, qᵗ=initial.q, w=0)
+    array_digest(values) = bytes2hex(sha256(reinterpret(UInt8, vec(values))))
+    return (;
+        u_sha256=array_digest(initial.u),
+        v_sha256=array_digest(initial.v),
+        theta_sha256=array_digest(initial.theta),
+        q_sha256=array_digest(initial.q),
+        w_sha256=array_digest(initial.w))
 end
 
 function materialized_surface_coefficient(model)
@@ -239,7 +255,7 @@ function build_simulation(; run_directory=pwd())
         momentum_advection=scheme, scalar_advection=scheme, closure,
         thermodynamic_constants=constants, forcing, boundary_conditions)
 
-    initialize_perturbed_state!(model, inputs, seed)
+    initial_state_sha256 = initialize_perturbed_state!(model, inputs, seed)
     maximum_initial_speed = FT(15)
     initial_dt = min(FT(0.5), FT(0.5) * spacing / maximum_initial_speed)
     simulation = Simulation(model; Δt=initial_dt, stop_time)
@@ -257,10 +273,14 @@ function build_simulation(; run_directory=pwd())
                  round(Int, surface_layer_filter_seconds), surface_layer_support) : closure_name
     case_id = @sprintf("n%03d_%s_%s", nx, scheme_name, closure_id)
     mkpath(run_directory)
+    checkpoint_interval = parse(Float64,
+        get(ENV, "GABLS3_CHECKPOINT_SECONDS", "3600"))
+    checkpoint_interval > 0 || error("GABLS3_CHECKPOINT_SECONDS must be positive")
     settings = (; nx, spacing, scheme_name, closure_name,
         surface_layer_filter_seconds, surface_layer_support, stop_time, seed,
         initial_dt, wizard_cfl=0.7, latitude, coriolis_parameter,
-        diagnostics_enabled, architecture=summary(architecture))
+        diagnostics_enabled, architecture=summary(architecture), initial_state_sha256,
+        checkpoint_interval)
     capture_provenance(run_directory, case_id, settings)
 
     materialized_coefficient = materialized_surface_coefficient(model)
@@ -268,6 +288,10 @@ function build_simulation(; run_directory=pwd())
         install_gabls3_diagnostics!(simulation, materialized_coefficient,
             surface_temperature, inputs; dir=run_directory, prefix="$(case_id)_diag")
     end
+
+    simulation.output_writers[:checkpoint] = Checkpointer(model;
+        prefix="$(case_id)_checkpoint", schedule=TimeInterval(checkpoint_interval),
+        dir=run_directory, overwrite_files=true)
 
     theta = liquid_ice_potential_temperature(model)
     q = Breeze.AtmosphereModels.specific_prognostic_moisture(model)
