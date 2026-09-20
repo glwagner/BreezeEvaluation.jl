@@ -1,16 +1,21 @@
 {
-  "checked_utc": "2026-09-20T15:04:10Z",
+  "checked_utc": "2026-09-20T19:22:54Z",
   "verified_cases": 12,
   "expected_cases": 15,
-  "running_jobs": ["7103_2", "7120_1"],
-  "pending_jobs": ["7120_2"],
+  "running_jobs": [
+    "7103_2",
+    "7120_1"
+  ],
+  "pending_jobs": [
+    "7120_2"
+  ],
   "pending_reason": "JobArrayTaskLimit",
   "latest_series_write_utc": {
-    "n400_weno5_none": "2026-09-20T15:03:29Z",
-    "n400_weno9_none": "2026-09-20T15:00:56Z"
+    "n400_weno5_none": "2026-09-20T19:22:52Z",
+    "n400_weno9_none": "2026-09-20T19:23:12Z"
   },
-  "watcher_heartbeat_utc": "2026-09-20T14:56:11.570Z",
+  "watcher_heartbeat_utc": "2026-09-20T19:16:36.050Z",
   "new_failure_or_completion_sentinels": false,
   "report_rebuilt": false,
-  "note": "Unchanged healthy production. Both active simulations have fresh output; no new completed exports to admit. Monitoring remains active."
+  "note": "GABLS1 healthy12/15, no failure/completion sentinels. Pane48 actively compiling GABLS3 SLD diagnostic smoke and wiring matched GABLS1 driver. Requested filtered-mean vertical transport, supported face coordinates/weights and scalar-guard metadata now present in code. GABLS1 control/treatment driver preserves400m32cubed,9h,WENO9,seed123 and frozen surface-law/diagnostic overlays; scheduled averages checked in source. Eval changes not yet committed; no GPU/report/issue mutation. GABLS3 SLD smoke subsequently exposed missing optional dissipation NamedTuple field in legacy diagnostics; exact source cause verified and preservation-safe shared evaluation adaptation requested. Original GABLS1 unaffected."
 }

@@ -8,7 +8,7 @@ From a checkout of BreezeEvaluation.jl on a machine with the `pcluster` SSH alia
 julia --project=. scripts/restore_full_profiles.jl --destination /absolute/path/new-analysis --host pcluster
 ```
 
-On pcluster, omit `--host`. Override the original source location with `--source-root /path/to/reference-bundle` if it has moved. `--case n032_weno9_none` restores only that case; other cases remain compact and are not admissible as full histories. The default restores all 27 cases available in the committed migration manifest (15 DYCOMS, 12 GABLS1). Later cases require a new audited migration manifest.
+On pcluster, omit `--host`. Override the original source location with `--source-root /path/to/reference-bundle` if it has moved. `--case n032_weno9_none` restores only that case; other cases remain compact and are not admissible as full histories. The default restores all 28 cases available in the committed migration manifest (15 DYCOMS, 13 GABLS1). Later cases require a new audited migration manifest.
 
 The output `restored_profiles.json` records the input migration hash, recovered profile and original-manifest hashes, and whether all migrated cases were restored. Continue to apply the original scientific admission checks. Retrieval establishes file identity, not scientific accuracy.
 

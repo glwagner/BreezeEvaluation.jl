@@ -1,39 +1,39 @@
 {
   "budget_caveat": "Any later closure residual is a budget residual, not numerical dissipation.",
-  "case_id": "n128_weno5_none",
+  "case_id": "n400_weno5_none",
   "completion": {
     "both_sentinels": true,
-    "log_path": "/shared/home/greg/review-coordination/gabls-production-v2-20260919/gabls-7101_2.log",
+    "log_path": "/shared/home/greg/review-coordination/gabls-production-v2-20260919/gabls-7103_2.log",
     "queue_absent": true
   },
   "export_verified": false,
-  "generated_utc": "2026-09-19T16:48:00.976",
+  "generated_utc": "2026-09-20T19:29:01.660",
   "grid": {
     "Lx_m": 400.0,
     "Ly_m": 400.0,
     "Lz_m": 400.0,
-    "Nx": 128,
-    "Ny": 128,
-    "Nz": 128,
+    "Nx": 400,
+    "Ny": 400,
+    "Nz": 400,
     "center_z_definition": "(k-0.5)*dz_m, k=1:Nz",
-    "dx_m": 3.125,
-    "dy_m": 3.125,
-    "dz_m": 3.125,
+    "dx_m": 1.0,
+    "dy_m": 1.0,
+    "dz_m": 1.0,
     "face_z_definition": "(k-1)*dz_m, k=1:Nz+1"
   },
   "output_sha256": {
-    "profiles.csv": "9178554c8bea5b73cf50bd9d0d7f018a8302d705856b36e21ad3df83e6e63167",
-    "profiles_final_hour_long.csv": "f101be925a18c776e7fae61e9a6222112ce30b39b15aede28cf8ed887aa6ff40",
-    "profiles_penultimate_hour_long.csv": "35d79722ebca7c5a5a403ce81a4d2d4fbed568f8434d58de78f2e1006bb7abcd",
-    "series.csv": "b85fc86240fead0183a700cc12e4c427d46d2b753b07ba7c20bc0532129f4421"
+    "profiles.csv": "84ae87cbd28a66d3eb32391aa787b22e6b1fa619853b634e9ed49c6203988348",
+    "profiles_final_hour_long.csv": "2852531b23e712308f5ef91bd507ef8cbc574750495f16c780eec596d3ea2fc5",
+    "profiles_penultimate_hour_long.csv": "3be82f06063942eba8ad8a968496fb66561b601d6ec7ad315ff96f9d8793c4e9",
+    "series.csv": "6fa3c770358411f72e2a4042faf527c90d277bc4041c97256db08c5a976807dd"
   },
   "physics_audit": {
     "final_surface_theta_kinematic_flux_negative": true,
-    "maximum_speed_observed_m_s": 12.168280601501465,
-    "maximum_surface_cap_fraction": 0.0009765625,
-    "maximum_surface_neutral_fallback_fraction": 0.48614501953125,
-    "theta_maximum_observed_K": 267.98443603515625,
-    "theta_minimum_observed_K": 262.4502868652344
+    "maximum_speed_observed_m_s": 11.067489624023438,
+    "maximum_surface_cap_fraction": 0.00024374999338760972,
+    "maximum_surface_neutral_fallback_fraction": 0.9169437289237976,
+    "theta_maximum_observed_K": 268.8276062011719,
+    "theta_minimum_observed_K": 262.3859558105469
   },
   "profile_record_semantics": {
     "final_hour_source_times_s": [
@@ -57,7 +57,7 @@
       "source_shape": [
         1,
         1,
-        128
+        400
       ],
       "units": "m s^-2"
     },
@@ -70,7 +70,7 @@
       "source_shape": [
         1,
         1,
-        129
+        401
       ],
       "units": "kg m^-3"
     },
@@ -83,7 +83,7 @@
       "source_shape": [
         1,
         1,
-        128
+        400
       ],
       "units": "kg m^-3"
     },
@@ -96,7 +96,7 @@
       "source_shape": [
         1,
         1,
-        129
+        401
       ],
       "units": "kg s^-3"
     },
@@ -109,7 +109,7 @@
       "source_shape": [
         1,
         1,
-        129
+        401
       ],
       "units": "kg s^-3"
     },
@@ -122,7 +122,7 @@
       "source_shape": [
         1,
         1,
-        129
+        401
       ],
       "units": "m^3 s^-3"
     },
@@ -135,7 +135,7 @@
       "source_shape": [
         1,
         1,
-        129
+        401
       ],
       "units": "m^2 s^-3"
     },
@@ -148,7 +148,7 @@
       "source_shape": [
         1,
         1,
-        128
+        400
       ],
       "units": "m^2 s^-2"
     },
@@ -159,9 +159,9 @@
       "maximum_source_xy_spread": 0.0,
       "records": 19,
       "source_shape": [
-        128,
-        128,
-        128
+        400,
+        400,
+        400
       ],
       "units": "m^2 s^-3"
     },
@@ -174,7 +174,7 @@
       "source_shape": [
         1,
         1,
-        128
+        400
       ],
       "units": "m^2 s^-3"
     },
@@ -185,9 +185,9 @@
       "maximum_source_xy_spread": 0.0,
       "records": 19,
       "source_shape": [
-        128,
-        128,
-        128
+        400,
+        400,
+        400
       ],
       "units": "m^2 s^-3"
     },
@@ -200,7 +200,7 @@
       "source_shape": [
         1,
         1,
-        128
+        400
       ],
       "units": "m^2 s^-3"
     },
@@ -213,7 +213,7 @@
       "source_shape": [
         1,
         1,
-        128
+        400
       ],
       "units": "m^2 s^-3"
     },
@@ -226,7 +226,7 @@
       "source_shape": [
         1,
         1,
-        129
+        401
       ],
       "units": "m^2 s^-2"
     },
@@ -239,7 +239,7 @@
       "source_shape": [
         1,
         1,
-        129
+        401
       ],
       "units": "m^2 s^-2"
     },
@@ -252,7 +252,7 @@
       "source_shape": [
         1,
         1,
-        129
+        401
       ],
       "units": "K m s^-1"
     },
@@ -265,7 +265,7 @@
       "source_shape": [
         1,
         1,
-        129
+        401
       ],
       "units": "m^2 s^-3"
     },
@@ -278,7 +278,7 @@
       "source_shape": [
         1,
         1,
-        128
+        400
       ],
       "units": "m^2 s^-3"
     },
@@ -289,9 +289,9 @@
       "maximum_source_xy_spread": 0.0,
       "records": 19,
       "source_shape": [
-        128,
-        128,
-        128
+        400,
+        400,
+        400
       ],
       "units": "m^2 s^-3"
     },
@@ -302,9 +302,9 @@
       "maximum_source_xy_spread": 0.0,
       "records": 19,
       "source_shape": [
-        128,
-        128,
-        128
+        400,
+        400,
+        400
       ],
       "units": "m^2 s^-3"
     },
@@ -317,7 +317,7 @@
       "source_shape": [
         1,
         1,
-        129
+        401
       ],
       "units": "m^2 s^-2"
     },
@@ -330,7 +330,7 @@
       "source_shape": [
         1,
         1,
-        129
+        401
       ],
       "units": "m^2 s^-2"
     },
@@ -343,7 +343,7 @@
       "source_shape": [
         1,
         1,
-        129
+        401
       ],
       "units": "K m s^-1"
     },
@@ -356,7 +356,7 @@
       "source_shape": [
         1,
         1,
-        128
+        400
       ],
       "units": "K"
     },
@@ -369,7 +369,7 @@
       "source_shape": [
         1,
         1,
-        128
+        400
       ],
       "units": "K^2"
     },
@@ -382,7 +382,7 @@
       "source_shape": [
         1,
         1,
-        129
+        401
       ],
       "units": "m^2 s^-3"
     },
@@ -395,7 +395,7 @@
       "source_shape": [
         1,
         1,
-        129
+        401
       ],
       "units": "m^2 s^-2"
     },
@@ -406,9 +406,9 @@
       "maximum_source_xy_spread": 0.0,
       "records": 19,
       "source_shape": [
-        128,
-        128,
-        128
+        400,
+        400,
+        400
       ],
       "units": "m^2 s^-3"
     },
@@ -419,9 +419,9 @@
       "maximum_source_xy_spread": 0.0,
       "records": 19,
       "source_shape": [
-        128,
-        128,
-        128
+        400,
+        400,
+        400
       ],
       "units": "m^2 s^-3"
     },
@@ -434,7 +434,7 @@
       "source_shape": [
         1,
         1,
-        129
+        401
       ],
       "units": "m^2 s^-2"
     },
@@ -447,7 +447,7 @@
       "source_shape": [
         1,
         1,
-        129
+        401
       ],
       "units": "m^2 s^-2"
     },
@@ -460,7 +460,7 @@
       "source_shape": [
         1,
         1,
-        129
+        401
       ],
       "units": "K m s^-1"
     },
@@ -473,7 +473,7 @@
       "source_shape": [
         1,
         1,
-        129
+        401
       ],
       "units": "m^3 s^-3"
     },
@@ -486,7 +486,7 @@
       "source_shape": [
         1,
         1,
-        128
+        400
       ],
       "units": "m s^-1"
     },
@@ -499,7 +499,7 @@
       "source_shape": [
         1,
         1,
-        128
+        400
       ],
       "units": "m^2 s^-2"
     },
@@ -512,7 +512,7 @@
       "source_shape": [
         1,
         1,
-        128
+        400
       ],
       "units": "m s^-1"
     },
@@ -525,7 +525,7 @@
       "source_shape": [
         1,
         1,
-        128
+        400
       ],
       "units": "m^2 s^-2"
     },
@@ -538,7 +538,7 @@
       "source_shape": [
         1,
         1,
-        128
+        400
       ],
       "units": "m s^-1"
     },
@@ -551,7 +551,7 @@
       "source_shape": [
         1,
         1,
-        128
+        400
       ],
       "units": "m^3 s^-3"
     },
@@ -564,7 +564,7 @@
       "source_shape": [
         1,
         1,
-        128
+        400
       ],
       "units": "m^2 s^-2"
     },
@@ -577,7 +577,7 @@
       "source_shape": [
         1,
         1,
-        129
+        401
       ],
       "units": "m s^-1"
     },
@@ -590,7 +590,7 @@
       "source_shape": [
         1,
         1,
-        129
+        401
       ],
       "units": "1"
     },
@@ -603,7 +603,7 @@
       "source_shape": [
         1,
         1,
-        129
+        401
       ],
       "units": "m^3 s^-3"
     },
@@ -616,14 +616,14 @@
       "source_shape": [
         1,
         1,
-        129
+        401
       ],
       "units": "m^2 s^-2"
     }
   },
   "reader": {
-    "exporter": "/shared/home/greg/review-coordination/gabls-production-v2-20260919/export_gabls_case.jl",
-    "exporter_sha256": "c60c423b62212be8d65df375dda4e3ed40b31ae874695152c329d72e2e63e007",
+    "exporter": "/shared/home/greg/review-coordination/gabls-production-v2-20260919/revisions/startup_dt_v1/export_gabls_case_revision.jl",
+    "exporter_sha256": "6cdac09ba2d25cfb369c8a5bbb2d0822cbccc4945c4ce0954b9ce9526c47920a",
     "julia_version": "1.12.6",
     "method": "plain numeric JLD2 leaves; no serialized GPU grids loaded"
   },
@@ -1191,6 +1191,7 @@
       "variables": 34
     }
   },
+  "registry_source_hashes_checked": true,
   "schema_version": 1,
   "series_metadata": {
     "averaging_definition": "time average of instantaneous horizontally reduced diagnostics",
@@ -1398,40 +1399,42 @@
       "units": "m^2 s^-2"
     }
   },
-  "slurm_job_spec": "7101_2",
+  "slurm_job_spec": "7103_2",
+  "source_directory": "source",
   "source_files": {
-    "series": "runs/n128_weno5_none/n128_weno5_none_diag_series.jld2",
-    "series_sha256": "be3c975fb87c5a5285831c9577457cf4ed778ae0f6e2eb65d4a2123d594e990d",
-    "statistics": "runs/n128_weno5_none/n128_weno5_none_diag_statistics.jld2",
-    "statistics_sha256": "ef911114824e16171a222d69d0151f5aae4f642faa78d9a3aefe48df0279102a"
+    "series": "runs/n400_weno5_none/n400_weno5_none_diag_series.jld2",
+    "series_sha256": "4fafcdf5288e1a6abf2b9f8dae302979c6d65d615cf663b607525654dca96419",
+    "statistics": "runs/n400_weno5_none/n400_weno5_none_diag_statistics.jld2",
+    "statistics_sha256": "b8d0316005e4f03a32bde80b20ef5796e3954e8e56ba4924215494bfb24e2df9"
   },
   "source_hashes": {
     "diagnostics": {
       "checked": true,
       "frozen_path": "source/examples/gabls_diagnostics.jl",
-      "run_path": "runs/n128_weno5_none/provenance/gabls_diagnostics.jl",
+      "run_path": "runs/n400_weno5_none/provenance/gabls_diagnostics.jl",
       "sha256": "6486c8ccd94f45df1c204fc57d1f3c0a79b8c4f3c27b3412c1b2bb81573e0c24"
     },
     "manifest": {
       "checked": true,
       "frozen_path": "source/Manifest.toml",
-      "run_path": "runs/n128_weno5_none/provenance/Manifest.toml",
+      "run_path": "runs/n400_weno5_none/provenance/Manifest.toml",
       "sha256": "9a410126b4340c4e2c17838e4c920df94d376e3852815b9db09033c01cd8a9fc"
     },
     "runner": {
       "checked": true,
       "frozen_path": "source/validation_output/gabls/gabls_case.jl",
-      "run_path": "runs/n128_weno5_none/provenance/gabls_case.jl",
+      "run_path": "runs/n400_weno5_none/provenance/gabls_case.jl",
       "sha256": "66f4c3351ecfdcfe19164ce2146ade842824d7c95b700c668e7a25e9c791be01"
     },
     "surface": {
       "checked": true,
       "frozen_path": "source/src/BoundaryConditions/gabls_rough_wall_coefficient.jl",
-      "run_path": "runs/n128_weno5_none/provenance/gabls_rough_wall_coefficient.jl",
+      "run_path": "runs/n400_weno5_none/provenance/gabls_rough_wall_coefficient.jl",
       "sha256": "5af7df039cf665817cd5ca0a9d48dca6d28bbae3bc300f3c5e79bd982aee20c3"
     }
   },
   "source_hashes_checked": true,
+  "source_revision": "v2_original",
   "statistics_metadata": {
     "averaging_definition": "time average of instantaneous horizontally reduced diagnostics",
     "averaging_window_seconds": 1800.0,
@@ -2051,7 +2054,7 @@
   "compact_migration": {
     "admission_note": "Derived subset for fixed comparison windows; retrieve the full profiles.csv and use source_manifest.json for campaign admission and complete plot regeneration.",
     "full_profile_history_versioned": false,
-    "generated_utc": "2026-09-20T19:43:29.342",
+    "generated_utc": "2026-09-20T19:43:31.349",
     "retained_profile_times_s": [
       27000.0,
       28800.0,
@@ -2059,6 +2062,6 @@
       32400.0
     ],
     "source_manifest": "source_manifest.json",
-    "source_profiles_sha256": "fc5c4ac3e73eb362a82b7fe571d78d9f10e9735d6de92b993114e0c897c58761"
+    "source_profiles_sha256": "a6de08aa43af2834dde7f09b6b31929705523bfd4fb6b78ab6b1053ecb586741"
   }
 }

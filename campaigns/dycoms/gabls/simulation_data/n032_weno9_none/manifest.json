@@ -2051,7 +2051,7 @@
   "compact_migration": {
     "admission_note": "Derived subset for fixed comparison windows; retrieve the full profiles.csv and use source_manifest.json for campaign admission and complete plot regeneration.",
     "full_profile_history_versioned": false,
-    "generated_utc": "2026-09-20T15:39:28.079",
+    "generated_utc": "2026-09-20T19:43:28.697",
     "retained_profile_times_s": [
       27000.0,
       28800.0,

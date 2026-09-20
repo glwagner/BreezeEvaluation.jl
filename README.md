@@ -44,7 +44,7 @@ DYCOMS; 27000, 28800, 30600, and 32400 s for GABLS1. Each compact manifest prese
 source audit, marks itself as a non-admissible derived subset, and records this transformation
 explicitly. The original plotting admission checks still require all 9 DYCOMS or 19 GABLS1
 profile records. `scripts/restore_full_profiles.jl` provides a transactional, hash-verifying
-local or SSH retrieval path for all 27 migrated full histories into a new analysis tree; see
+local or SSH retrieval path for all 28 migrated full histories into a new analysis tree; see
 `scripts/restore_full_profiles.md`. The versioned PDFs, HTML, Markdown, figures, and plot
 provenance remain the truthful stored snapshot. Run
 `scripts/migrate_legacy_data.jl` with `BREEZE_EVALUATION_LEGACY_REFERENCE` to rebuild the compact

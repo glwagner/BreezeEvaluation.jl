@@ -1,8 +1,8 @@
 # Breeze LES master report
 
-DYCOMS: 15 completed cases. GABLS1: 12 of 15 planned cases have completed, audited local results.
+DYCOMS: 15 completed cases. GABLS1: 13 of 15 planned cases have completed, audited local results.
 
-Checked 2026-09-20T01:47:54.123Z.
+Checked 2026-09-20T19:37:25.224Z.
 
 This document combines the completed DYCOMS RF01 experiment (including the Pressel comparison) with the developing GABLS1 experiment. The GABLS run order is smallest grids first; incomplete runs contribute status information only, never scientific curves.
 
@@ -261,7 +261,7 @@ Stevens et al. (2005), Monthly Weather Review 133, 1443–1462. DOI: https://doi
 
 Part II: GABLS1
 
-12/15 completed exports admitted to the scientific comparison. Checked 2026-09-20T01:47:54.123Z.
+13/15 completed exports admitted to the scientific comparison. Checked 2026-09-20T19:37:25.224Z.
 
 Grids: 12.5, 6.25, 3.125, 2, and 1 m isotropic; 32³, 64³, 128³, 200³, and 400³ cells, all in the same 400 m cube. Small grids run first.
 
@@ -301,7 +301,7 @@ n128_weno9_none: peak final-hour resolved w2 (0.1008 m²/s²) exceeds the larges
 
 Resolution comparison for WENO9/none: reducing spacing from 12.5 to 2 m changes final-hour h from 195.6 to 178.5 m and peak resolved w2 from 0.0927 to 0.0993 m²/s². Surface heat flux changes from -15.52 to -11.87 W/m². These compare the coarsest and finest completed grids for this configuration; similarity of selected quantities alone is not a convergence or fidelity test.
 
-Resolution comparison for WENO5/none: reducing spacing from 12.5 to 2 m changes final-hour h from 136.1 to 159.2 m and peak resolved w2 from 0.05744 to 0.06902 m²/s². Surface heat flux changes from -11.79 to -10.04 W/m². These compare the coarsest and finest completed grids for this configuration; similarity of selected quantities alone is not a convergence or fidelity test.
+Resolution comparison for WENO5/none: reducing spacing from 12.5 to 1 m changes final-hour h from 136.1 to 159.4 m and peak resolved w2 from 0.05744 to 0.06807 m²/s². Surface heat flux changes from -11.79 to -7.47 W/m². These compare the coarsest and finest completed grids for this configuration; similarity of selected quantities alone is not a convergence or fidelity test.
 
 Resolution comparison for WENO9/smagorinsky: reducing spacing from 12.5 to 2 m changes final-hour h from 140.6 to 188.9 m and peak resolved w2 from 1.12e-06 to 0.09298 m²/s². Surface heat flux changes from -9.17 to -12.22 W/m². These compare the coarsest and finest completed grids for this configuration; similarity of selected quantities alone is not a convergence or fidelity test.
 
@@ -343,10 +343,11 @@ n200_weno5_none: final-hour h = 159.2 m; ustar = 0.240 m/s; surface heat flux = 
 
 n200_weno9_smagorinsky: final-hour h = 188.9 m; ustar = 0.274 m/s; surface heat flux = -12.22 W/m²; peak mean w2 = 0.09298 m²/s². Between 7–8 and 8–9 h, h changed by 3.3 m and the w2 profile changed by 0.00138 m²/s² RMS. Simulation wall time 10660.3 s (252948 iterations), excluding preceding compilation/startup.
 
+n400_weno5_none: final-hour h = 159.4 m; ustar = 0.229 m/s; surface heat flux = -7.47 W/m²; peak mean w2 = 0.06807 m²/s². Between 7–8 and 8–9 h, h changed by 4.7 m and the w2 profile changed by 0.000682 m²/s² RMS. Simulation wall time 71341.1 s (506162 iterations), excluding preceding compilation/startup.
+
 Current queue snapshot (job|state|elapsed|start|node or pending reason):
-7120_2|PENDING|0:00|N/A|(JobArrayTaskLimit)
-7120_1|RUNNING|3:13|2026-09-20T01:44:41|gpu-prod-st-gpu-prod-1
-7103_2|RUNNING|2:16:48|2026-09-19T23:31:06|gpu-prod-st-gpu-prod-2
+7120_2|RUNNING|1:14|2026-09-20T19:37:43|gpu-prod-st-gpu-prod-2
+7120_1|RUNNING|17:54:16|2026-09-20T01:44:41|gpu-prod-st-gpu-prod-1
 
 [Setup and reference](gabls/reference.md) · [Workflow](gabls/workflow.md) · [Case matrix](gabls/experiment_matrix.json) · [Implementation status](gabls/cluster/pane47-status.md) · [Export status](gabls/cluster/pane48-status.md)
 
@@ -443,7 +444,7 @@ A separate SurfaceLayerDiffusivity study is also authorized: at 12.5 m, a matche
 
 ## Persistent evaluation repository
 
-Created as a private repository: [glwagner/BreezeEvaluation.jl](https://github.com/glwagner/BreezeEvaluation.jl). Migration, GABLS3 preparation and scientific completion are tracked separately. The combined report and all plots use Julia.
+Public evaluation repository: [glwagner/BreezeEvaluation.jl](https://github.com/glwagner/BreezeEvaluation.jl). Migration, GABLS3 preparation and scientific completion are tracked separately. The combined report and all plots use Julia.
 
 The repository now retains the 15 completed DYCOMS and 12 completed GABLS1 cases as audited compact comparison data, alongside case/source snapshots, reference data, Julia plotting/report code, figures and this report. Compact profile subsets are explicitly distinguished from full scientific exports. A hash-verifying restoration workflow recovered all 27 complete profile histories in a separate pcluster analysis copy; the original GABLS1 admission checks accepted all 12 restored cases. Frozen production, failed attempts and raw fields remain on pcluster with checksummed manifests. Original simulation identities and hashes are preserved. Third-party papers are linked.
 
