@@ -43,9 +43,10 @@ profile records needed by the published comparison windows: 9000, 10800, 12600, 
 DYCOMS; 27000, 28800, 30600, and 32400 s for GABLS1. Each compact manifest preserves the full
 source audit, marks itself as a non-admissible derived subset, and records this transformation
 explicitly. The original plotting admission checks still require all 9 DYCOMS or 19 GABLS1
-profile records. Until a portable full-history fetch/decompression command is added, the
-versioned PDFs, HTML, Markdown, figures, and plot provenance are the truthful reproducible
-snapshot; complete plot regeneration remains explicitly pending. Run
+profile records. `scripts/restore_full_profiles.jl` provides a transactional, hash-verifying
+local or SSH retrieval path for all 27 migrated full histories into a new analysis tree; see
+`scripts/restore_full_profiles.md`. The versioned PDFs, HTML, Markdown, figures, and plot
+provenance remain the truthful stored snapshot. Run
 `scripts/migrate_legacy_data.jl` with `BREEZE_EVALUATION_LEGACY_REFERENCE` to rebuild the compact
 snapshot from the external legacy bundle.
 
@@ -56,9 +57,11 @@ The commands above verify compact simulation data, source hashes, and both indep
 input transcriptions. `source_snapshots/README.md` explains how to reconstruct the exact DYCOMS
 or GABLS1 Breeze source overlay from the pinned upstream commit; it does not submit work.
 
-Full plot regeneration is pending a portable, hash-verifying retrieval mechanism for the complete
-profile histories. GABLS3 currently has a tested forcing/preflight implementation and case matrix,
-not a complete Breeze model runner. No README command claims either missing capability.
+Full simulation histories can now be restored reproducibly, but complete plot/report regeneration
+may still require original reference archives, auxiliary source assets, Poppler, and the pinned
+Julia environment. The restoration helper establishes artifact identity and does not weaken the
+original scientific admission checks. GABLS3 runner integration is under CPU validation and is
+not production-authorized. No README command claims either missing capability.
 
 ## Data policy
 
