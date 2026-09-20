@@ -1,0 +1,8 @@
+model,cloud_top_dz_m,free_tropospheric_qt_g_kg,LWP_g_m2,delta_qt_g_kg,entrainment_mm_s,alpha
+UCLA-0,5,1.5,59,0.02,4.16,1.04
+UCLA-1,5,1.5,26,0.29,5.89,1.74
+UCLA-0,10,1.5,42,0.08,5.03,1.25
+UCLA-0,2,1.5,70,0.0,4.26,0.91
+UCLA-0,1,1.5,74,0.0,3.75,0.86
+UCLA-0,5,5.5,99,0.01,4.59,
+UCLA-1,5,5.5,82,0.05,5.82,

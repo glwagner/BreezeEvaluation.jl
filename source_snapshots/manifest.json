@@ -1,0 +1,271 @@
+{
+  "base_commit": "548e6fb7b6aecc62b7e05ddcf3e422b8dadd9504",
+  "base_repository": "https://github.com/NumericalEarth/Breeze.jl.git",
+  "contract": "Clone base_commit, then overlay the selected source/ paths from the applicable snapshot. Project and Manifest files pin the resolved Julia environment; scheduler/export files preserve the exact campaign execution contract.",
+  "generated_utc": "2026-09-20T15:37:55.859",
+  "schema_version": 1,
+  "scope_note": "These snapshots preserve executable case definitions and every known campaign-specific source delta. They do not include raw JLD2 output, checkpoints, logs, or the complete unchanged Breeze tree.",
+  "snapshots": [
+    {
+      "files": [
+        {
+          "bytes": 39774,
+          "sha256": "8aed4256dd2feecc0993872b159e1d2188e7771fbd365aa8de10c353bcf325d5",
+          "snapshot_relative_path": "source/SOURCE_ORIGIN.json",
+          "source_relative_path": "source/SOURCE_ORIGIN.json"
+        },
+        {
+          "bytes": 1852,
+          "sha256": "d84b533af033eafdcdc91ed699b2e4c5174c711964698d91796833fcd8a64fbe",
+          "snapshot_relative_path": "source/Project.toml",
+          "source_relative_path": "source/Project.toml"
+        },
+        {
+          "bytes": 103638,
+          "sha256": "9a410126b4340c4e2c17838e4c920df94d376e3852815b9db09033c01cd8a9fc",
+          "snapshot_relative_path": "source/Manifest.toml",
+          "source_relative_path": "source/Manifest.toml"
+        },
+        {
+          "bytes": 716,
+          "sha256": "59003386d6f37773a36484723523e935a4f7cb255725de705003e5d399d62507",
+          "snapshot_relative_path": "source/examples/Project.toml",
+          "source_relative_path": "source/examples/Project.toml"
+        },
+        {
+          "bytes": 17652,
+          "sha256": "81533d68fb8f7eefbda0b095b4ba578c86f57c64cffbed759225a0446dfd81c6",
+          "snapshot_relative_path": "source/examples/dycoms.jl",
+          "source_relative_path": "source/examples/dycoms.jl"
+        },
+        {
+          "bytes": 33600,
+          "sha256": "9096c9c980b8ca89a6e54446a14edd8227d7b158f970840ecbcd8fecdee41cf4",
+          "snapshot_relative_path": "source/examples/dycoms_diagnostics.jl",
+          "source_relative_path": "source/examples/dycoms_diagnostics.jl"
+        },
+        {
+          "bytes": 9561,
+          "sha256": "a2121f53fc5a6499adb1ad0b90fcfb3113347ef3b2d77fe32ee4908d9ffef240",
+          "snapshot_relative_path": "source/src/AtmosphereModels/dycoms_radiation.jl",
+          "source_relative_path": "source/src/AtmosphereModels/dycoms_radiation.jl"
+        },
+        {
+          "bytes": 10693,
+          "sha256": "3e955fe94f416d3972a87ecaf51e5a83dbf022d532c0c461ea132a913e9ebc49",
+          "snapshot_relative_path": "source/validation_output/dycoms/factorial/dycoms_case.jl",
+          "source_relative_path": "source/validation_output/dycoms/factorial/dycoms_case.jl"
+        },
+        {
+          "bytes": 3038,
+          "sha256": "430c6b89267594ba500dc952f5d67fb06b2c44dd951c0d55b15072cbe4ed2db2",
+          "snapshot_relative_path": "production_cases.json",
+          "source_relative_path": "production_cases.json"
+        },
+        {
+          "bytes": 1679,
+          "sha256": "df8b7f120762626c548f614f6c8bfb7e843be483a62578cd7e2e678b5db6d642",
+          "snapshot_relative_path": "production.batch",
+          "source_relative_path": "production.batch"
+        },
+        {
+          "bytes": 24936,
+          "sha256": "6d4a90873ecb67291741eb412514876f020f7cbfb7a283c1ffd1e3c0bd88a6b2",
+          "snapshot_relative_path": "analysis_export/export_completed_cases.jl",
+          "source_relative_path": "analysis_export/export_completed_cases.jl"
+        },
+        {
+          "bytes": 9169,
+          "sha256": "69d5deb8d08917aaca16f09f3c60967939b45f19f1ec41ae4e8db017f31fb428",
+          "snapshot_relative_path": "analysis_export/verify_export.jl",
+          "source_relative_path": "analysis_export/verify_export.jl"
+        },
+        {
+          "bytes": 39774,
+          "sha256": "8aed4256dd2feecc0993872b159e1d2188e7771fbd365aa8de10c353bcf325d5",
+          "snapshot_relative_path": "source_provenance.json",
+          "source_relative_path": "source_provenance.json"
+        },
+        {
+          "bytes": 847,
+          "sha256": "d55022991dc3ab8f0ff2c2778a078987874517678c3cac55ea3425a87b317ee0",
+          "snapshot_relative_path": "submission.json",
+          "source_relative_path": "submission.json"
+        }
+      ],
+      "frozen_source_root_at_capture": "/shared/home/greg/review-coordination/dycoms-production-20260919",
+      "name": "dycoms",
+      "source_revision": "original"
+    },
+    {
+      "files": [
+        {
+          "bytes": 345,
+          "sha256": "0eb9b6ffd90987b32de6032288489363ce9321d7b5f2d2c4e33295fd76a2ba46",
+          "snapshot_relative_path": "source/SOURCE_ORIGIN.json",
+          "source_relative_path": "source/SOURCE_ORIGIN.json"
+        },
+        {
+          "bytes": 1852,
+          "sha256": "d84b533af033eafdcdc91ed699b2e4c5174c711964698d91796833fcd8a64fbe",
+          "snapshot_relative_path": "source/Project.toml",
+          "source_relative_path": "source/Project.toml"
+        },
+        {
+          "bytes": 103638,
+          "sha256": "9a410126b4340c4e2c17838e4c920df94d376e3852815b9db09033c01cd8a9fc",
+          "snapshot_relative_path": "source/Manifest.toml",
+          "source_relative_path": "source/Manifest.toml"
+        },
+        {
+          "bytes": 716,
+          "sha256": "59003386d6f37773a36484723523e935a4f7cb255725de705003e5d399d62507",
+          "snapshot_relative_path": "source/examples/Project.toml",
+          "source_relative_path": "source/examples/Project.toml"
+        },
+        {
+          "bytes": 32794,
+          "sha256": "6486c8ccd94f45df1c204fc57d1f3c0a79b8c4f3c27b3412c1b2bb81573e0c24",
+          "snapshot_relative_path": "source/examples/gabls_diagnostics.jl",
+          "source_relative_path": "source/examples/gabls_diagnostics.jl"
+        },
+        {
+          "bytes": 11761,
+          "sha256": "5af7df039cf665817cd5ca0a9d48dca6d28bbae3bc300f3c5e79bd982aee20c3",
+          "snapshot_relative_path": "source/src/BoundaryConditions/gabls_rough_wall_coefficient.jl",
+          "source_relative_path": "source/src/BoundaryConditions/gabls_rough_wall_coefficient.jl"
+        },
+        {
+          "bytes": 12063,
+          "sha256": "66f4c3351ecfdcfe19164ce2146ade842824d7c95b700c668e7a25e9c791be01",
+          "snapshot_relative_path": "source/validation_output/gabls/gabls_case.jl",
+          "source_relative_path": "source/validation_output/gabls/gabls_case.jl"
+        },
+        {
+          "bytes": 29558,
+          "sha256": "0b3edcd6da4c4a090a749792932b49c53a8f18eee8b9e5bcaefb7bde5a6a83c9",
+          "snapshot_relative_path": "cases.json",
+          "source_relative_path": "cases.json"
+        },
+        {
+          "bytes": 2628,
+          "sha256": "b02008bfe019bc043f24fbb55fe18507726190189c7dcba547d4613e26af4179",
+          "snapshot_relative_path": "gabls-production.batch",
+          "source_relative_path": "gabls-production.batch"
+        },
+        {
+          "bytes": 2090,
+          "sha256": "fc751d4943b1e84d57584a393dddb4b65652dfcc34bdab041a659d3a21653b58",
+          "snapshot_relative_path": "submit_gabls_production_v2.sh",
+          "source_relative_path": "submit_gabls_production_v2.sh"
+        },
+        {
+          "bytes": 20283,
+          "sha256": "c60c423b62212be8d65df375dda4e3ed40b31ae874695152c329d72e2e63e007",
+          "snapshot_relative_path": "export_gabls_case.jl",
+          "source_relative_path": "export_gabls_case.jl"
+        },
+        {
+          "bytes": 10455,
+          "sha256": "cb72bb277bfc6d4aba3cc9f6e7c096e4e24a7b94ac3231eed6ccdf43815dfaa2",
+          "snapshot_relative_path": "watch_gabls_exports.jl",
+          "source_relative_path": "watch_gabls_exports.jl"
+        }
+      ],
+      "frozen_source_root_at_capture": "/shared/home/greg/review-coordination/gabls-production-v2-20260919",
+      "name": "gabls1/original",
+      "source_revision": "v2_original"
+    },
+    {
+      "files": [
+        {
+          "bytes": 345,
+          "sha256": "0eb9b6ffd90987b32de6032288489363ce9321d7b5f2d2c4e33295fd76a2ba46",
+          "snapshot_relative_path": "source/SOURCE_ORIGIN.json",
+          "source_relative_path": "source/SOURCE_ORIGIN.json"
+        },
+        {
+          "bytes": 1852,
+          "sha256": "d84b533af033eafdcdc91ed699b2e4c5174c711964698d91796833fcd8a64fbe",
+          "snapshot_relative_path": "source/Project.toml",
+          "source_relative_path": "source/Project.toml"
+        },
+        {
+          "bytes": 103638,
+          "sha256": "9a410126b4340c4e2c17838e4c920df94d376e3852815b9db09033c01cd8a9fc",
+          "snapshot_relative_path": "source/Manifest.toml",
+          "source_relative_path": "source/Manifest.toml"
+        },
+        {
+          "bytes": 716,
+          "sha256": "59003386d6f37773a36484723523e935a4f7cb255725de705003e5d399d62507",
+          "snapshot_relative_path": "source/examples/Project.toml",
+          "source_relative_path": "source/examples/Project.toml"
+        },
+        {
+          "bytes": 32794,
+          "sha256": "6486c8ccd94f45df1c204fc57d1f3c0a79b8c4f3c27b3412c1b2bb81573e0c24",
+          "snapshot_relative_path": "source/examples/gabls_diagnostics.jl",
+          "source_relative_path": "source/examples/gabls_diagnostics.jl"
+        },
+        {
+          "bytes": 11761,
+          "sha256": "5af7df039cf665817cd5ca0a9d48dca6d28bbae3bc300f3c5e79bd982aee20c3",
+          "snapshot_relative_path": "source/src/BoundaryConditions/gabls_rough_wall_coefficient.jl",
+          "source_relative_path": "source/src/BoundaryConditions/gabls_rough_wall_coefficient.jl"
+        },
+        {
+          "bytes": 12082,
+          "sha256": "8d408477905868429fcd3a7defba2428984cb2efcf461450ace5bbb2b2f4140a",
+          "snapshot_relative_path": "source/validation_output/gabls/gabls_case.jl",
+          "source_relative_path": "source/validation_output/gabls/gabls_case.jl"
+        },
+        {
+          "bytes": 913,
+          "sha256": "92a00bc37bdd3f090f0b7beb6020f5593de2c4c1e659fa3b1fafcb5cb1b64ec1",
+          "snapshot_relative_path": "source_revision.json",
+          "source_relative_path": "source_revision.json"
+        },
+        {
+          "bytes": 26809,
+          "sha256": "abefa764e8645a2c29196cd085967020bd938a55ba87e175baff0fc73f802aad",
+          "snapshot_relative_path": "cases.before-startup_dt_v1.json",
+          "source_relative_path": "cases.before-startup_dt_v1.json"
+        },
+        {
+          "bytes": 1833,
+          "sha256": "a4ea92861be4aa094b232176212c7931c5b7d98c17fd53cb00408fe7a620f81c",
+          "snapshot_relative_path": "replacement_production.batch",
+          "source_relative_path": "replacement_production.batch"
+        },
+        {
+          "bytes": 3618,
+          "sha256": "4aa8ce8b5fd207310ea3438c595e6d9a20721e2a34bf6bcbbd9254b493d5a362",
+          "snapshot_relative_path": "activate_replacement_registry.sh",
+          "source_relative_path": "activate_replacement_registry.sh"
+        },
+        {
+          "bytes": 20902,
+          "sha256": "6cdac09ba2d25cfb369c8a5bbb2d0822cbccc4945c4ce0954b9ce9526c47920a",
+          "snapshot_relative_path": "export_gabls_case_revision.jl",
+          "source_relative_path": "export_gabls_case_revision.jl"
+        },
+        {
+          "bytes": 12394,
+          "sha256": "db269a0e1538f06b15d52857488e264824e2661be1e82903a42db473af669d41",
+          "snapshot_relative_path": "watch_gabls_exports_revision.jl",
+          "source_relative_path": "watch_gabls_exports_revision.jl"
+        },
+        {
+          "bytes": 3829,
+          "sha256": "7dd70070e338b637642757659479425eea79e424cd2bc99cbe0a37e12c258cc6",
+          "snapshot_relative_path": "test_watcher_registry_parser.jl",
+          "source_relative_path": "test_watcher_registry_parser.jl"
+        }
+      ],
+      "frozen_source_root_at_capture": "/shared/home/greg/review-coordination/gabls-production-v2-20260919/revisions/startup_dt_v1",
+      "name": "gabls1/startup_dt_v1",
+      "source_revision": "startup_dt_v1"
+    }
+  ]
+}

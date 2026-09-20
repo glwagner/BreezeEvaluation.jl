@@ -1,0 +1,45 @@
+{
+  "x_axis": {
+    "pixel1": 134,
+    "value1": 0,
+    "pixel2": 915,
+    "value2": 4,
+    "units": "h"
+  },
+  "panels": {
+    "LWP": {
+      "y1": 78.5,
+      "v1": 60,
+      "y2": 286.5,
+      "v2": 20,
+      "lo": 50,
+      "hi": 301,
+      "units": "g m-2"
+    },
+    "cloud_fraction": {
+      "y1": 440.5,
+      "v1": 1,
+      "y2": 724.5,
+      "v2": 0.2,
+      "lo": 439,
+      "hi": 521,
+      "units": "1"
+    },
+    "vertically_integrated_TKE": {
+      "y1": 844.5,
+      "v1": 1000,
+      "y2": 1115.5,
+      "v2": 200,
+      "lo": 1000,
+      "hi": 1187,
+      "units": "m3 s-2"
+    }
+  },
+  "threshold": {
+    "cloud_fraction": 110,
+    "other": 90
+  },
+  "method": "column dark-pixel center within visually selected windows; reject dark candidates spanning more than8 pixels",
+  "source": "Stevens et al. 2005 Fig2 p1448",
+  "note": "Ensemble means only, no observations. Estimated 3px digitization tolerance is not ensemble or observational uncertainty."
+}

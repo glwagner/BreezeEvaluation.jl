@@ -1,0 +1,36 @@
+{
+  "cases": [
+    "coarse_none_weno9",
+    "coarse_none_weno5",
+    "coarse_smagorinsky_weno9",
+    "coarse_smagorinsky_weno5",
+    "coarse_smagorinsky_centered2",
+    "canonical_none_weno9",
+    "canonical_none_weno5",
+    "canonical_smagorinsky_weno9",
+    "canonical_smagorinsky_weno5",
+    "canonical_smagorinsky_centered2",
+    "fine_none_weno9",
+    "fine_none_weno5",
+    "fine_smagorinsky_weno9",
+    "fine_smagorinsky_weno5",
+    "fine_smagorinsky_centered2"
+  ],
+  "definition": "mean_t(w_third_central_moment) / mean_t(w_variance)^1.5",
+  "half_hour_record_end_times_s": [
+    9000.0,
+    10800.0,
+    12600.0,
+    14400.0
+  ],
+  "instantaneous_skewness_time_average_available": false,
+  "normalization_sensitivity": "Mean of four half-hour ratios is retained as a sensitivity check, not an exact instantaneous-skewness average",
+  "paper_curves": "Figure 7 model curves from PDF vector extraction, not observations",
+  "paper_time_normalization_order": "Not unambiguously specified in paper; raw 60 s output unavailable",
+  "variance_floor_m2_s2": 1.0e-6,
+  "vertical_location": "native w faces",
+  "window_s": [
+    7200,
+    14400
+  ]
+}

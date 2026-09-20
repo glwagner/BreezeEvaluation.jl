@@ -1,0 +1,51 @@
+#!/bin/bash
+# Replacement production for exactly two failed 400^3 WENO9 logical cases.
+# Submit as --array=1-2%1 so, together with the original WENO5 task, no more than two GPUs run.
+#SBATCH --job-name=gabls-dt-repl
+#SBATCH --output=/shared/home/greg/review-coordination/gabls-production-v2-20260919/revisions/startup_dt_v1/logs/replacement-%A_%a.log
+#SBATCH --nodes=1
+#SBATCH --partition=gpu-prod
+#SBATCH --gres=gpu:h100:1
+#SBATCH --mem=64G
+#SBATCH --time=144:00:00
+
+set -uo pipefail
+
+JULIA=/shared/home/greg/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/julia
+REVISION_ROOT=/shared/home/greg/review-coordination/gabls-production-v2-20260919/revisions/startup_dt_v1
+SOURCE_ROOT=$REVISION_ROOT/source
+export GABLS_REPO=$SOURCE_ROOT
+export GABLS_NX=400
+export GABLS_SCHEME=weno9
+export GABLS_STOP=9
+export GABLS_DIAGNOSTICS=1
+
+CLOSURES=(none smagorinsky)
+CLOSURE=${CLOSURES[$((SLURM_ARRAY_TASK_ID - 1))]}
+export GABLS_CLOSURE=$CLOSURE
+CASE=n400_weno9_$CLOSURE
+CASE_DIR=$REVISION_ROOT/runs/$CASE
+
+if [[ -e "$CASE_DIR/provenance/git.txt" ]]; then
+  echo "REFUSING to overwrite replacement attempt: $CASE_DIR" >&2
+  exit 2
+fi
+mkdir -p "$CASE_DIR"
+cd "$CASE_DIR"
+
+echo "GABLS_REPLACEMENT_CASE $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID $CASE source_revision=startup_dt_v1"
+echo "GABLS_STARTUP_REQUESTED_DT nx=400 dx_m=1.0 dt_s=0.0625 formula=min(0.5,0.5*dx/8) wizard_cfl=0.7 wizard_max_dt_s=5"
+echo "=== node $(hostname) ==="
+nvidia-smi --query-gpu=name,memory.total --format=csv
+
+"$JULIA" --startup-file=no --project=$SOURCE_ROOT/examples \
+  "$SOURCE_ROOT/validation_output/gabls/gabls_case.jl"
+RC=$?
+
+if [[ $RC -eq 0 ]]; then
+  echo "GABLS_REPLACEMENT_EXIT_SUCCESS case=$CASE source_revision=startup_dt_v1"
+else
+  echo "GABLS_REPLACEMENT_FAILED case=$CASE source_revision=startup_dt_v1 rc=$RC"
+  ls -la "$CASE_DIR" || true
+fi
+exit $RC

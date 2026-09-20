@@ -1,0 +1,17 @@
+variable,series,point_id,height_m,value,units,pixel_x,pixel_y,digitization_x_3px,digitization_z_3px_m,method,figure,printed_page
+q_t,observed,1,1054.98,1.10928,g kg-1,180,72,0.04948,8.25,manual_marker_center,4,1449
+q_t,observed,2,923.02,1.88454,g kg-1,227,120,0.04948,8.25,manual_marker_center,4,1449
+q_t,observed,3,637.11,8.86186,g kg-1,650,224,0.04948,8.25,manual_marker_center,4,1449
+q_t,observed,4,620.62,8.94433,g kg-1,655,230,0.04948,8.25,manual_marker_center,4,1449
+q_t,observed,5,150.52,9.10928,g kg-1,665,401,0.04948,8.25,manual_marker_center,4,1449
+q_t,observed,6,95.53,8.94433,g kg-1,655,421,0.04948,8.25,manual_marker_center,4,1449
+theta_l,observed,1,1054.98,303.56075,K,1323,72,0.08411,8.25,manual_marker_center,4,1449
+theta_l,observed,2,923.02,300.33645,K,1208,120,0.08411,8.25,manual_marker_center,4,1449
+theta_l,observed,3,637.11,288.75701,K,795,224,0.08411,8.25,manual_marker_center,4,1449
+theta_l,observed,4,620.62,288.50467,K,786,230,0.08411,8.25,manual_marker_center,4,1449
+theta_l,observed,5,150.52,288.81308,K,797,401,0.08411,8.25,manual_marker_center,4,1449
+theta_l,observed,6,95.53,288.78505,K,796,421,0.08411,8.25,manual_marker_center,4,1449
+q_l,observed,1,758.08,0.28218,g kg-1,1689,180,0.00297,8.25,manual_marker_center,4,1449
+q_l,observed,2,749.83,0.29208,g kg-1,1699,183,0.00297,8.25,manual_marker_center,4,1449
+q_l,observed,3,637.11,0.13762,g kg-1,1543,224,0.00297,8.25,manual_marker_center,4,1449
+q_l,observed,4,620.62,0.08911,g kg-1,1494,230,0.00297,8.25,manual_marker_center,4,1449

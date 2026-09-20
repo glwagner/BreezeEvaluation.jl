@@ -1,0 +1,43 @@
+#!/bin/bash
+#SBATCH --job-name=dycoms-rf01
+#SBATCH --output=/shared/home/greg/review-coordination/dycoms-production-20260919/dycoms-%A_%a.log
+#SBATCH --time=08:00:00
+#SBATCH --nodes=1
+#SBATCH --partition=gpu-prod
+#SBATCH --gres=gpu:h100:1
+#SBATCH --mem=64G
+set -euo pipefail
+JULIA=/shared/home/greg/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/julia
+export DYCOMS_REPO=/shared/home/greg/review-coordination/dycoms-production-20260919/source
+export DYCOMS_DIAGNOSTICS=1
+CASES=(
+  "coarse none 9"
+  "coarse none 5"
+  "coarse smagorinsky 9"
+  "coarse smagorinsky 5"
+  "canonical none 9"
+  "canonical none 5"
+  "canonical smagorinsky 9"
+  "canonical smagorinsky 5"
+  "fine none 9"
+  "fine none 5"
+  "fine smagorinsky 9"
+  "fine smagorinsky 5"
+)
+read -r DYCOMS_GRID DYCOMS_CLOSURE DYCOMS_WENO <<< "${CASES[$((SLURM_ARRAY_TASK_ID-1))]}"
+export DYCOMS_GRID DYCOMS_CLOSURE DYCOMS_WENO
+export DYCOMS_STOP=4
+CASE_DIR=/shared/home/greg/review-coordination/dycoms-production-20260919/runs/${DYCOMS_GRID}_${DYCOMS_CLOSURE}_weno${DYCOMS_WENO}
+if [[ -e "$CASE_DIR/source_provenance.json" ]]; then
+  echo "Refusing to overwrite an existing case: $CASE_DIR" >&2
+  exit 2
+fi
+mkdir -p "$CASE_DIR"
+cd "$CASE_DIR"
+mkdir -p provenance
+cp "$DYCOMS_REPO/Manifest.toml" provenance/root-Manifest.toml
+cp "$DYCOMS_REPO/Project.toml" provenance/root-Project.toml
+cp /shared/home/greg/review-coordination/dycoms-production-20260919/source_provenance.json .
+echo "DYCOMS_ARRAY_CASE $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID $DYCOMS_GRID $DYCOMS_CLOSURE $DYCOMS_WENO"
+"$JULIA" --project="$DYCOMS_REPO/examples" "$DYCOMS_REPO/validation_output/dycoms/factorial/dycoms_case.jl"
+echo "DYCOMS_CASE_EXIT_SUCCESS"

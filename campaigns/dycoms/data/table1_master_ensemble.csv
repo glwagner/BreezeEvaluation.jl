@@ -1,0 +1,17 @@
+model,LWP_g_m2,SGS_theta_l_flux_W_m2,SGS_model,scalar_advection_as_printed
+UCLA-0,59,0,None for scalar,M
+DHARMA-0,56,-0.8,Dynamic,M
+COAMPS-0,50,-2.1,Deardorff,C
+NCAR-1,46,-1.3,Deardorff,PS-Horiz M-Vert
+MPI-1,47,-1,Deardorff dry stability at cloud top,C
+WVU-0,42,-10.4,Deardorff dry stability at cloud top,M
+DHARMA-1,41,-17.9,Smagorinsky,C
+RAMS,37,0.2,Deardorff,C
+SAM,35,-10.4,Deardorff,M
+COAMPS-1,33,-14.1,Smagorinsky MacVean-Mason,M
+UCLA-1,26,-21.5,Smagorinsky,M
+NCAR-0,25,-3.7,Deardorff,M
+WVU-1,21,-16.7,Deardorff,M
+METO,21,-24.6,Smagorinsky MacVean-Mason,M
+MPI-0,9,-7.6,Deardorff,M
+IMAU,5,-22.1,Deardorff,M

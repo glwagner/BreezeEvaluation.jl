@@ -1,0 +1,115 @@
+variable,series,time_h,value,units,pixel_x,pixel_y,digitization_time_3px_h,digitization_value_3px
+LWP,model_ensemble_mean,0.1997,62.21154,g m-2,173,67.0,0.0154,0.57692
+LWP,model_ensemble_mean,0.3022,60.0,g m-2,193,78.5,0.0154,0.57692
+LWP,model_ensemble_mean,0.3995,53.65385,g m-2,212,111.5,0.0154,0.57692
+LWP,model_ensemble_mean,0.5019,46.63462,g m-2,232,148.0,0.0154,0.57692
+LWP,model_ensemble_mean,0.5992,42.21154,g m-2,251,171.0,0.0154,0.57692
+LWP,model_ensemble_mean,0.7017,40.57692,g m-2,271,179.5,0.0154,0.57692
+LWP,model_ensemble_mean,0.799,39.51923,g m-2,290,185.0,0.0154,0.57692
+LWP,model_ensemble_mean,0.9014,38.46154,g m-2,310,190.5,0.0154,0.57692
+LWP,model_ensemble_mean,0.9987,37.11538,g m-2,329,197.5,0.0154,0.57692
+LWP,model_ensemble_mean,1.1012,36.25,g m-2,349,202.0,0.0154,0.57692
+LWP,model_ensemble_mean,1.1985,35.67308,g m-2,368,205.0,0.0154,0.57692
+LWP,model_ensemble_mean,1.3009,35.09615,g m-2,388,208.0,0.0154,0.57692
+LWP,model_ensemble_mean,1.3982,35.0,g m-2,407,208.5,0.0154,0.57692
+LWP,model_ensemble_mean,1.5006,35.28846,g m-2,427,207.0,0.0154,0.57692
+LWP,model_ensemble_mean,1.598,35.48077,g m-2,446,206.0,0.0154,0.57692
+LWP,model_ensemble_mean,1.7004,35.76923,g m-2,466,204.5,0.0154,0.57692
+LWP,model_ensemble_mean,1.7977,35.96154,g m-2,485,203.5,0.0154,0.57692
+LWP,model_ensemble_mean,1.9001,36.25,g m-2,505,202.0,0.0154,0.57692
+LWP,model_ensemble_mean,2.0026,35.86538,g m-2,525,204.0,0.0154,0.57692
+LWP,model_ensemble_mean,2.0999,35.67308,g m-2,544,205.0,0.0154,0.57692
+LWP,model_ensemble_mean,2.2023,35.57692,g m-2,564,205.5,0.0154,0.57692
+LWP,model_ensemble_mean,2.2996,35.67308,g m-2,583,205.0,0.0154,0.57692
+LWP,model_ensemble_mean,2.402,35.67308,g m-2,603,205.0,0.0154,0.57692
+LWP,model_ensemble_mean,2.4994,35.48077,g m-2,622,206.0,0.0154,0.57692
+LWP,model_ensemble_mean,2.6018,35.28846,g m-2,642,207.0,0.0154,0.57692
+LWP,model_ensemble_mean,2.6991,34.80769,g m-2,661,209.5,0.0154,0.57692
+LWP,model_ensemble_mean,2.8015,34.61538,g m-2,681,210.5,0.0154,0.57692
+LWP,model_ensemble_mean,2.8988,34.51923,g m-2,700,211.0,0.0154,0.57692
+LWP,model_ensemble_mean,3.0013,34.23077,g m-2,720,212.5,0.0154,0.57692
+LWP,model_ensemble_mean,3.0986,34.03846,g m-2,739,213.5,0.0154,0.57692
+LWP,model_ensemble_mean,3.201,34.13462,g m-2,759,213.0,0.0154,0.57692
+LWP,model_ensemble_mean,3.2983,34.71154,g m-2,778,210.0,0.0154,0.57692
+LWP,model_ensemble_mean,3.4008,34.90385,g m-2,798,209.0,0.0154,0.57692
+LWP,model_ensemble_mean,3.4981,35.28846,g m-2,817,207.0,0.0154,0.57692
+LWP,model_ensemble_mean,3.6005,35.09615,g m-2,837,208.0,0.0154,0.57692
+LWP,model_ensemble_mean,3.6978,35.09615,g m-2,856,208.0,0.0154,0.57692
+LWP,model_ensemble_mean,3.8003,34.51923,g m-2,876,211.0,0.0154,0.57692
+LWP,model_ensemble_mean,3.8976,34.80769,g m-2,895,209.5,0.0154,0.57692
+cloud_fraction,model_ensemble_mean,0.1997,1.0,1,173,440.5,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,0.3022,1.0,1,193,440.5,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,0.3995,0.99859,1,212,441.0,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,0.5019,0.99859,1,232,441.0,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,0.5992,0.99577,1,251,442.0,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,0.7017,0.98592,1,271,445.5,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,0.799,0.96338,1,290,453.5,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,0.9014,0.95352,1,310,457.0,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,0.9987,0.94507,1,329,460.0,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,1.1012,0.93944,1,349,462.0,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,1.1985,0.93662,1,368,463.0,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,1.3009,0.93099,1,388,465.0,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,1.3982,0.92535,1,407,467.0,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,1.5006,0.91972,1,427,469.0,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,1.598,0.9169,1,446,470.0,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,1.7004,0.91549,1,466,470.5,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,1.7977,0.90986,1,485,472.5,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,1.9001,0.90282,1,505,475.0,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,2.0026,0.90141,1,525,475.5,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,2.0999,0.9,1,544,476.0,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,2.2023,0.89859,1,564,476.5,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,2.2996,0.90141,1,583,475.5,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,2.402,0.9,1,603,476.0,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,2.4994,0.89437,1,622,478.0,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,2.6018,0.89155,1,642,479.0,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,2.6991,0.89155,1,661,479.0,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,2.8015,0.89155,1,681,479.0,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,2.8988,0.88873,1,700,480.0,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,3.0013,0.8831,1,720,482.0,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,3.0986,0.87887,1,739,483.5,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,3.201,0.87934,1,759,483.3333333333333,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,3.2983,0.87042,1,778,486.5,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,3.4008,0.87324,1,798,485.5,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,3.4981,0.87746,1,817,484.0,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,3.6005,0.87887,1,837,483.5,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,3.6978,0.87324,1,856,485.5,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,3.8003,0.8662,1,876,488.0,0.0154,0.00845
+cloud_fraction,model_ensemble_mean,3.8976,0.87465,1,895,485.0,0.0154,0.00845
+vertically_integrated_TKE,model_ensemble_mean,0.1997,19.9262,m3 s-2,173,1176.5,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,0.3022,58.30258,m3 s-2,193,1163.5,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,0.3995,171.95572,m3 s-2,212,1125.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,0.5019,318.08118,m3 s-2,232,1075.5,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,0.5992,434.68635,m3 s-2,251,1036.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,0.7017,490.77491,m3 s-2,271,1017.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,0.799,452.39852,m3 s-2,290,1030.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,0.9014,378.59779,m3 s-2,310,1055.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,0.9987,329.8893,m3 s-2,329,1071.5,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,1.1012,307.74908,m3 s-2,349,1079.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,1.1985,316.60517,m3 s-2,368,1076.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,1.3009,331.36531,m3 s-2,388,1071.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,1.3982,346.12546,m3 s-2,407,1066.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,1.5006,357.93358,m3 s-2,427,1062.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,1.598,366.78967,m3 s-2,446,1059.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,1.7004,371.21771,m3 s-2,466,1057.5,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,1.7977,378.59779,m3 s-2,485,1055.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,1.9001,387.45387,m3 s-2,505,1052.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,2.0026,391.88192,m3 s-2,525,1050.5,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,2.0999,396.30996,m3 s-2,544,1049.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,2.2023,399.26199,m3 s-2,564,1048.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,2.2996,402.21402,m3 s-2,583,1047.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,2.402,408.11808,m3 s-2,603,1045.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,2.4994,411.07011,m3 s-2,622,1044.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,2.6018,412.54613,m3 s-2,642,1043.5,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,2.6991,414.02214,m3 s-2,661,1043.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,2.8015,419.9262,m3 s-2,681,1041.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,2.8988,427.30627,m3 s-2,700,1038.5,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,3.0013,433.21033,m3 s-2,720,1036.5,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,3.0986,437.63838,m3 s-2,739,1035.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,3.201,446.49446,m3 s-2,759,1032.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,3.2983,452.39852,m3 s-2,778,1030.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,3.4008,453.87454,m3 s-2,798,1029.5,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,3.4981,455.35055,m3 s-2,817,1029.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,3.6005,455.35055,m3 s-2,837,1029.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,3.6978,452.39852,m3 s-2,856,1030.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,3.8003,446.49446,m3 s-2,876,1032.0,0.0154,8.85609
+vertically_integrated_TKE,model_ensemble_mean,3.8976,446.49446,m3 s-2,895,1032.0,0.0154,8.85609

@@ -1,0 +1,810 @@
+{
+  "array_job_id": "7064",
+  "array_task_id": 6,
+  "case": "canonical_none_weno5",
+  "diagnostic_definitions": {
+    "cloud_fraction": "Fraction of columns whose maximum q_l exceeds the configured cloud threshold.",
+    "lwp_mean": "Domain mean of column integral rho*q_l dz.",
+    "pressure_tke_flux": "Raw resolved face flux <w' (p'/rho_r)'>.",
+    "q_t_8gkg_inversion_height_mean": "Mean linearly interpolated first downward q_t=8 g/kg crossing, conditioned on a valid crossing.",
+    "radiation_nearest_q_t_inversion_height_mean": "Mean radiation-internal nearest-q_t inversion height; distinct from interpolated contours.",
+    "resolved_tke": "One half the horizontal mean of centered u, v, and center-interpolated w squared.",
+    "resolved_tke_pressure_transport": "Anelastic pressure transport -rho_r^-1 d_z[rho_r <w' (p'/rho_r)'>].",
+    "resolved_tke_turbulent_transport": "Anelastic transport -rho_r^-1 d_z[rho_r <w' e'>].",
+    "theta_li_295_inversion_height_mean": "Mean linearly interpolated first upward theta_li=295 K crossing, conditioned on a valid crossing.",
+    "turbulent_tke_flux": "Raw resolved face flux <w' e'> for per-mass resolved TKE e.",
+    "w_center_variance": "Horizontal second central moment after interpolating vertical velocity to centers.",
+    "w_third_central_moment": "Horizontal third central moment of native vertical velocity on z faces.",
+    "w_variance": "Horizontal second central moment of native vertical velocity on z faces."
+  },
+  "export_files": {
+    "entrainment.csv": "Derived E=dz_i/dt+D*z_i for both independently diagnosed inversion heights.",
+    "profiles.csv": "All 46 profiles at all nine records with native Center/Face coordinates.",
+    "profiles_fourth_hour_long.csv": "True fourth-hour profiles from the two non-overlapping 30-minute records.",
+    "series.csv": "All 32 instantaneous reduced series; one row per minute including t=0."
+  },
+  "export_notes": ["Five budget terms can be stored as horizontally replicated 3-D arrays; the exporter takes their horizontal mean and records source shape and maximum x-y spread per variable.", "Native w-face w_mean, w_variance, and w_third_central_moment are preserved separately from center-interpolated variants.", "Missing inversion contours and cloud-free columns must be interpreted using their exported valid-fraction series.", "TKE budget residuals are not exported or claimed as numerical dissipation."],
+  "frozen_source": {
+    "diagnostics_sha256": "9096c9c980b8ca89a6e54446a14edd8227d7b158f970840ecbcd8fecdee41cf4",
+    "root_manifest_sha256": "9a410126b4340c4e2c17838e4c920df94d376e3852815b9db09033c01cd8a9fc",
+    "runner_sha256": "3e955fe94f416d3972a87ecaf51e5a83dbf022d532c0c461ea132a913e9ebc49"
+  },
+  "generated_utc": "2026-09-19T03:04:02.834",
+  "grid": {
+    "Lx_m": 3360.0,
+    "Ly_m": 3360.0,
+    "Lz_m": 1500.0,
+    "Nx": 96,
+    "Ny": 96,
+    "Nz": 300,
+    "center_z_definition": "z_m=(k-0.5)*dz_m, k=1:Nz",
+    "dx_m": 35.0,
+    "dy_m": 35.0,
+    "dz_m": 5.0,
+    "face_z_definition": "z_m=(k-1)*dz_m, k=1:Nz+1",
+    "topology": ["Periodic", "Periodic", "Bounded"]
+  },
+  "output_sha256": {
+    "entrainment.csv": "ad42af8f6abde5337ae3af03a4b80b23a37f623647af2b2368a1a963326a1331",
+    "profiles.csv": "99892a8d51b0b1d1f4ccefb0167c6aaa720ff7c4b6119377b5a7108ffc26a8db",
+    "profiles_fourth_hour_long.csv": "b13e2f54bfb19576a6756064d2691cc2959e8670b6146257972cd44c2d33636a",
+    "series.csv": "b7bf55739e3403f568ba7523395a98e5cb9f4dc00c4ec6f9e433b4120f6ae9fd"
+  },
+  "profile_record_semantics": {
+    "fourth_hour": "equal mean of t=12600 and t=14400 records, representing 10800-14400 s; t=10800 excluded",
+    "fourth_hour_source_times_s": [12600.0, 14400.0],
+    "positive_times": "true average over the preceding 1800 seconds",
+    "t0": "instantaneous initial profile"
+  },
+  "profile_variables": {
+    "buoyancy_mean": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 300],
+      "units": "m s^-2"
+    },
+    "cloud_fraction_profile": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 300],
+      "units": "1"
+    },
+    "density_at_w_faces": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 301,
+      "finite": true,
+      "location": "Face",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 301],
+      "units": "kg m^-3"
+    },
+    "density_mean": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 300],
+      "units": "kg m^-3"
+    },
+    "density_weighted_pressure_tke_flux": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 301,
+      "finite": true,
+      "location": "Face",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 301],
+      "units": "kg s^-3"
+    },
+    "density_weighted_turbulent_tke_flux": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 301,
+      "finite": true,
+      "location": "Face",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 301],
+      "units": "kg s^-3"
+    },
+    "net_upward_radiative_flux": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 301,
+      "finite": true,
+      "location": "Face",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 301],
+      "units": "W m^-2"
+    },
+    "pressure_tke_flux": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 301,
+      "finite": true,
+      "location": "Face",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 301],
+      "units": "m^3 s^-3"
+    },
+    "q_l_mean": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 300],
+      "units": "kg kg^-1"
+    },
+    "q_l_variance": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 300],
+      "units": "(kg kg^-1)^2"
+    },
+    "q_t_mean": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 300],
+      "units": "kg kg^-1"
+    },
+    "q_t_variance": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 300],
+      "units": "(kg kg^-1)^2"
+    },
+    "radiative_flux_divergence": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 300],
+      "units": "W m^-3"
+    },
+    "resolved_buoyancy_flux": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 301,
+      "finite": true,
+      "location": "Face",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 301],
+      "units": "m^2 s^-3"
+    },
+    "resolved_tke": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 300],
+      "units": "m^2 s^-2"
+    },
+    "resolved_tke_buoyancy_production": {
+      "export_time_horizontal_mean_applied": true,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [96, 96, 300],
+      "units": "m^2 s^-3"
+    },
+    "resolved_tke_pressure_transport": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 300],
+      "units": "m^2 s^-3"
+    },
+    "resolved_tke_shear_production": {
+      "export_time_horizontal_mean_applied": true,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [96, 96, 300],
+      "units": "m^2 s^-3"
+    },
+    "resolved_tke_transport": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 300],
+      "units": "m^2 s^-3"
+    },
+    "resolved_tke_turbulent_transport": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 300],
+      "units": "m^2 s^-3"
+    },
+    "resolved_u_w_flux": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 301,
+      "finite": true,
+      "location": "Face",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 301],
+      "units": "m^2 s^-2"
+    },
+    "resolved_v_w_flux": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 301,
+      "finite": true,
+      "location": "Face",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 301],
+      "units": "m^2 s^-2"
+    },
+    "resolved_w_q_l_flux": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 301,
+      "finite": true,
+      "location": "Face",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 301],
+      "units": "(kg kg^-1) m s^-1"
+    },
+    "resolved_w_q_t_flux": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 301,
+      "finite": true,
+      "location": "Face",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 301],
+      "units": "(kg kg^-1) m s^-1"
+    },
+    "resolved_w_theta_li_flux": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 301,
+      "finite": true,
+      "location": "Face",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 301],
+      "units": "K m s^-1"
+    },
+    "sgs_q_t_flux": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 301,
+      "finite": true,
+      "location": "Face",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 301],
+      "units": "(kg kg^-1) m s^-1"
+    },
+    "sgs_resolved_kinetic_energy_dissipation": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 300],
+      "units": "m^2 s^-3"
+    },
+    "sgs_theta_li_flux": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 301,
+      "finite": true,
+      "location": "Face",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 301],
+      "units": "K m s^-1"
+    },
+    "sgs_tke_dissipation": {
+      "export_time_horizontal_mean_applied": true,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [96, 96, 300],
+      "units": "m^2 s^-3"
+    },
+    "sgs_tke_shear_production": {
+      "export_time_horizontal_mean_applied": true,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [96, 96, 300],
+      "units": "m^2 s^-3"
+    },
+    "sgs_u_w_flux": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 301,
+      "finite": true,
+      "location": "Face",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 301],
+      "units": "m^2 s^-2"
+    },
+    "sgs_v_w_flux": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 301,
+      "finite": true,
+      "location": "Face",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 301],
+      "units": "m^2 s^-2"
+    },
+    "theta_li_mean": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 300],
+      "units": "K"
+    },
+    "theta_li_variance": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 300],
+      "units": "K^2"
+    },
+    "total_tke_shear_production": {
+      "export_time_horizontal_mean_applied": true,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [96, 96, 300],
+      "units": "m^2 s^-3"
+    },
+    "turbulent_tke_flux": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 301,
+      "finite": true,
+      "location": "Face",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 301],
+      "units": "m^3 s^-3"
+    },
+    "u_mean": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 300],
+      "units": "m s^-1"
+    },
+    "u_variance": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 300],
+      "units": "m^2 s^-2"
+    },
+    "v_mean": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 300],
+      "units": "m s^-1"
+    },
+    "v_variance": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 300],
+      "units": "m^2 s^-2"
+    },
+    "w_center_mean": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 300],
+      "units": "m s^-1"
+    },
+    "w_center_third_central_moment": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 300],
+      "units": "m^3 s^-3"
+    },
+    "w_center_variance": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 300,
+      "finite": true,
+      "location": "Center",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 300],
+      "units": "m^2 s^-2"
+    },
+    "w_mean": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 301,
+      "finite": true,
+      "location": "Face",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 301],
+      "units": "m s^-1"
+    },
+    "w_third_central_moment": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 301,
+      "finite": true,
+      "location": "Face",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 301],
+      "units": "m^3 s^-3"
+    },
+    "w_variance": {
+      "export_time_horizontal_mean_applied": false,
+      "export_time_records": 9,
+      "export_vertical_length": 301,
+      "finite": true,
+      "location": "Face",
+      "maximum_source_xy_spread": 0.0,
+      "source_shape": [1, 1, 301],
+      "units": "m^2 s^-2"
+    }
+  },
+  "reader": {
+    "exporter": "/shared/home/greg/review-coordination/dycoms-production-20260919/analysis_export/export_completed_cases.jl",
+    "exporter_sha256": "6d4a90873ecb67291741eb412514876f020f7cbfb7a283c1ffd1e3c0bd88a6b2",
+    "julia_version": "1.12.6",
+    "method": "plain numeric JLD2 leaves only; serialized GPU grids and fields were not loaded",
+    "project": "/shared/home/greg/review-coordination/dycoms-production-20260919/source/examples"
+  },
+  "record_audit": {
+    "profiles": {
+      "all_finite": true,
+      "final_time_s": 14400.0,
+      "records": 9,
+      "times_s": [0.0, 1800.0, 3600.0, 5400.0, 7200.0, 9000.0, 10800.0, 12600.0, 14400.0],
+      "variables": 46
+    },
+    "series": {
+      "all_finite": true,
+      "final_time_s": 14400.0,
+      "first_time_s": 0.0,
+      "interval_s": 60.0,
+      "records": 241,
+      "variables": 32
+    }
+  },
+  "schema_version": 1,
+  "series_metadata": {
+    "averaging_definition": "time average of instantaneous horizontally reduced diagnostics",
+    "averaging_window_seconds": 0.0,
+    "cloud_free_column_handling": "cloud-base moments exclude cloud-free columns, cloud_base_valid_fraction is output, and all-clear mean and variance are zero",
+    "cloud_liquid_threshold": 9.999999974752427e-7,
+    "convective_velocity_scale_definition": "w_star = cbrt(<q_t=8g/kg zi> B0), with B0 from fixed SHF/LHF and recorded reference constants",
+    "diagnostic_kind": "instantaneous_reduced_series",
+    "divergence": 3.749999905267032e-6,
+    "draft_inversion_height_definition": "first upward theta_li = 295 K crossing, linearly interpolated and conditioned on a crossing; retained for older GCSS-draft comparisons",
+    "entrainment_definition": "E = d<zi>/dt + D<zi>, computed separately for q_t=8 g/kg and theta_li=295 K contours",
+    "latent_heat_of_vaporization": 2.47e6,
+    "lower_mixed_layer": [100.0, 200.0],
+    "missing_contour_handling": "per-column fallback field holds nearest contour value, but reported means/variances exclude missing crossings and valid fractions are output; all-missing moments are zero",
+    "output_interval_seconds": 60.0,
+    "profile_flux_units": "kinematic: theta K m/s, moisture kg/kg m/s, momentum m2/s2, buoyancy m2/s3",
+    "published_inversion_height_definition": "first downward q_t = 8 g/kg crossing, linearly interpolated and conditioned on a crossing; Stevens et al. (2005) Appendix B Table B1",
+    "q_t_inversion_contour": 0.00800000037997961,
+    "radiation_inversion_height_definition": "DYCOMSRadiation nearest-q_t internal; not a linearly interpolated diagnostic contour",
+    "sgs_liquid_water_flux_available": false,
+    "sgs_tke_available": false,
+    "sgs_tke_dissipation_definition": "2 nu_e S:S minus SGS mean-shear production; total resolved-KE sink is also output",
+    "surface_buoyancy_flux": 0.0006346346344798803,
+    "surface_latent_heat_flux": 115.0,
+    "surface_reference_density": 1.2200000286102295,
+    "surface_reference_temperature": 292.5,
+    "surface_sensible_heat_flux": 15.0,
+    "theta_li_inversion_contour": 295.0,
+    "tke_pressure_transport_definition": "-1/rho_r d/dz [rho_r <w' (p'/rho_r)'>], matching the anelastic pressure-gradient acceleration -grad(p'/rho_r); both raw and density-weighted face fluxes are output",
+    "tke_residual_definition": "storage - shear - buoyancy - transport + dissipation; a budget-closure residual only, not an estimate of numerical dissipation",
+    "tke_turbulent_transport_definition": "-1/rho_r d/dz [rho_r <w' e'>], where e is per-mass resolved TKE; both raw and density-weighted face fluxes are output",
+    "upper_mixed_layer": [700.0, 800.0]
+  },
+  "series_variables": {
+    "cloud_base_mean": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "m"
+    },
+    "cloud_base_valid_fraction": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "1"
+    },
+    "cloud_base_variance": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "m^2"
+    },
+    "cloud_fraction": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "1"
+    },
+    "convective_velocity_scale": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "m s^-1"
+    },
+    "decoupling_delta_q_t": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "kg kg^-1"
+    },
+    "friction_velocity": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "m s^-1"
+    },
+    "lwp_mean": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "kg m^-2"
+    },
+    "lwp_variance": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "kg^2 m^-4"
+    },
+    "q_t_8gkg_inversion_height_mean": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "m"
+    },
+    "q_t_8gkg_inversion_height_variance": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "m^2"
+    },
+    "q_t_8gkg_inversion_valid_fraction": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "1"
+    },
+    "radiation_nearest_q_t_inversion_height_mean": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "m"
+    },
+    "radiation_nearest_q_t_inversion_height_variance": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "m^2"
+    },
+    "resolved_tke_depth_mean": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "m^2 s^-2"
+    },
+    "resolved_tke_vertical_integral": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "m^3 s^-2"
+    },
+    "surface_buoyancy_flux": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [],
+      "units": "m^2 s^-3"
+    },
+    "surface_density_for_drag": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "kg m^-3"
+    },
+    "surface_drag_u_dynamic_flux": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "kg m^-1 s^-2"
+    },
+    "surface_drag_u_kinematic_flux": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "m^2 s^-2"
+    },
+    "surface_drag_v_dynamic_flux": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "kg m^-1 s^-2"
+    },
+    "surface_drag_v_kinematic_flux": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "m^2 s^-2"
+    },
+    "surface_latent_heat_flux": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [],
+      "units": "W m^-2"
+    },
+    "surface_sensible_heat_flux": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [],
+      "units": "W m^-2"
+    },
+    "surface_sgs_q_t_flux": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "(kg kg^-1) m s^-1"
+    },
+    "surface_sgs_theta_li_flux": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "K m s^-1"
+    },
+    "surface_sgs_u_w_flux": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "m^2 s^-2"
+    },
+    "surface_sgs_v_w_flux": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "m^2 s^-2"
+    },
+    "theta_li_295_inversion_height_mean": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "m"
+    },
+    "theta_li_295_inversion_height_variance": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "m^2"
+    },
+    "theta_li_295_inversion_valid_fraction": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "1"
+    },
+    "w_variance_max": {
+      "finite": true,
+      "records": 241,
+      "source_shape": [1, 1, 1],
+      "units": "m^2 s^-2"
+    }
+  },
+  "source_files": {
+    "series": "runs/canonical_none_weno5/canonical_none_weno5_diag_series.jld2",
+    "series_sha256": "de32f1d1dc54187964ae7383feb0db6f2ec99bf1db04f190eafaddf0e768641d",
+    "statistics": "runs/canonical_none_weno5/canonical_none_weno5_diag_statistics.jld2",
+    "statistics_sha256": "9a3d68f93880808b977fe14d7a9177de022e036315e2da3868791a9e639d43ec"
+  },
+  "statistics_metadata": {
+    "averaging_definition": "time average of instantaneous horizontally reduced diagnostics",
+    "averaging_window_seconds": 1800.0,
+    "cloud_free_column_handling": "cloud-base moments exclude cloud-free columns, cloud_base_valid_fraction is output, and all-clear mean and variance are zero",
+    "cloud_liquid_threshold": 9.999999974752427e-7,
+    "convective_velocity_scale_definition": "w_star = cbrt(<q_t=8g/kg zi> B0), with B0 from fixed SHF/LHF and recorded reference constants",
+    "diagnostic_kind": "true_time_averaged_profiles",
+    "divergence": 3.749999905267032e-6,
+    "draft_inversion_height_definition": "first upward theta_li = 295 K crossing, linearly interpolated and conditioned on a crossing; retained for older GCSS-draft comparisons",
+    "entrainment_definition": "E = d<zi>/dt + D<zi>, computed separately for q_t=8 g/kg and theta_li=295 K contours",
+    "latent_heat_of_vaporization": 2.47e6,
+    "lower_mixed_layer": [100.0, 200.0],
+    "missing_contour_handling": "per-column fallback field holds nearest contour value, but reported means/variances exclude missing crossings and valid fractions are output; all-missing moments are zero",
+    "output_interval_seconds": 1800.0,
+    "profile_flux_units": "kinematic: theta K m/s, moisture kg/kg m/s, momentum m2/s2, buoyancy m2/s3",
+    "published_inversion_height_definition": "first downward q_t = 8 g/kg crossing, linearly interpolated and conditioned on a crossing; Stevens et al. (2005) Appendix B Table B1",
+    "q_t_inversion_contour": 0.00800000037997961,
+    "radiation_inversion_height_definition": "DYCOMSRadiation nearest-q_t internal; not a linearly interpolated diagnostic contour",
+    "sgs_liquid_water_flux_available": false,
+    "sgs_tke_available": false,
+    "sgs_tke_dissipation_definition": "2 nu_e S:S minus SGS mean-shear production; total resolved-KE sink is also output",
+    "surface_buoyancy_flux": 0.0006346346344798803,
+    "surface_latent_heat_flux": 115.0,
+    "surface_reference_density": 1.2200000286102295,
+    "surface_reference_temperature": 292.5,
+    "surface_sensible_heat_flux": 15.0,
+    "theta_li_inversion_contour": 295.0,
+    "tke_pressure_transport_definition": "-1/rho_r d/dz [rho_r <w' (p'/rho_r)'>], matching the anelastic pressure-gradient acceleration -grad(p'/rho_r); both raw and density-weighted face fluxes are output",
+    "tke_residual_definition": "storage - shear - buoyancy - transport + dissipation; a budget-closure residual only, not an estimate of numerical dissipation",
+    "tke_turbulent_transport_definition": "-1/rho_r d/dz [rho_r <w' e'>], where e is per-mass resolved TKE; both raw and density-weighted face fluxes are output",
+    "upper_mixed_layer": [700.0, 800.0]
+  }
+}

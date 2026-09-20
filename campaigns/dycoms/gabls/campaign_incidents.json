@@ -1,0 +1,17 @@
+[
+  {
+    "recorded_utc": "2026-09-19T13:52:00Z",
+    "applies_to_job_ids": ["7088_1", "7088_2", "7088_3", "7089_1", "7089_2", "7089_3", "7090_1", "7090_2", "7090_3", "7091_1", "7091_2", "7091_3", "7092_1", "7092_2", "7092_3"],
+    "message": "Production diagnostic audit failed: the first 32³ runs finished nine simulated hours, but total momentum/heat-flux and stress profiles were stored with one vertical level, and total shear production also had an invalid vertical shape. None is admitted as a complete scientific result. Larger pending jobs were held; two just-started 64³ jobs were cancelled. Original source and output are retained. The agents are preparing a versioned diagnostics correction and raw-output regression checks before repeating the affected cases. The three numerical configurations and physical parameters remain unchanged."
+  },
+  {
+    "recorded_utc": "2026-09-19T14:26:00Z",
+    "applies_to_job_ids": ["7099_1", "7099_2", "7099_3", "7100_1", "7100_2", "7100_3", "7101_1", "7101_2", "7101_3", "7102_1", "7102_2", "7102_3", "7103_1", "7103_2", "7103_3"],
+    "message": "Corrected production (v2) replaces the original campaign after a diagnostic index restriction truncated total-flux/stress profiles and exposed a boundary-layer-height contour-index error. The corrected source preserves the original physics and all three numerical configurations. Expanded CPU checks passed 278 kernel and 426 writer checks; GPU checks passed 268 kernel and 422 writer checks, including every raw profile extent. All 15 cases were resubmitted as arrays 7099-7103, beginning with 32³. Original outputs remain excluded from scientific comparisons and preserved as failure evidence. The collector and single cluster exporter now target v2."
+  },
+  {
+    "recorded_utc": "2026-09-20T01:48:00Z",
+    "applies_to_job_ids": ["7103_1", "7103_3", "7120_1", "7120_2"],
+    "message": "The original 400³ WENO9/no-closure and WENO9/Smagorinsky attempts failed during startup and remain excluded. Their fixed initial timestep of 0.5 s implied an advective CFL of 4 for 8 m/s wind and 1 m cells. The separate startup_dt_v1 snapshot changes only initial dt to min(0.5, 0.5*dx/8), or 0.0625 s at 1 m. Both variants passed 72 s GPU tests with finite saved bounds: 852/832 iterations and final actual CFL 0.700088/0.700007. The unchanged wizard gave an effective first dt of 0.06875 s. Replacement jobs 7120_1 (WENO9/no closure) and 7120_2 (WENO9/Smagorinsky) were submitted with a one-job array limit; 7120_1 is running and 7120_2 queued at this snapshot. Original WENO5 job 7103_2 continues without duplication. Original failed source/logs/outputs are preserved in attempt history, and replacements require their own job identity, revision and source-hash audits. Passing the short startup tests supports the repair but does not prove full-run stability, uniquely establish the failure cause, or establish that coarser results are independent of startup settings."
+  }
+]

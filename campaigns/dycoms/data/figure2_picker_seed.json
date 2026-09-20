@@ -1,0 +1,845 @@
+{
+  "x_axis": {
+    "pixel1": 134,
+    "value1": 0,
+    "pixel2": 915,
+    "value2": 4,
+    "units": "h"
+  },
+  "panels": {
+    "LWP": {
+      "y1": 78.5,
+      "v1": 60,
+      "y2": 286.5,
+      "v2": 20,
+      "lo": 50,
+      "hi": 301,
+      "units": "g m-2"
+    },
+    "cloud_fraction": {
+      "y1": 440.5,
+      "v1": 1,
+      "y2": 724.5,
+      "v2": 0.2,
+      "lo": 439,
+      "hi": 521,
+      "units": "1"
+    },
+    "vertically_integrated_TKE": {
+      "y1": 844.5,
+      "v1": 1000,
+      "y2": 1115.5,
+      "v2": 200,
+      "lo": 1000,
+      "hi": 1187,
+      "units": "m3 s-2"
+    }
+  },
+  "threshold": {
+    "cloud_fraction": 110,
+    "other": 90
+  },
+  "method": "column dark-pixel center within visually selected windows; reject dark candidates spanning more than8 pixels",
+  "source": "Stevens et al. 2005 Fig2 p1448",
+  "note": "Ensemble means only, no observations. Estimated 3px digitization tolerance is not ensemble or observational uncertainty.",
+  "points": [
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 173.0,
+      "py": 67.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 193.0,
+      "py": 78.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 212.0,
+      "py": 111.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 232.0,
+      "py": 148.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 251.0,
+      "py": 171.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 271.0,
+      "py": 179.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 290.0,
+      "py": 185.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 310.0,
+      "py": 190.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 329.0,
+      "py": 197.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 349.0,
+      "py": 202.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 368.0,
+      "py": 205.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 388.0,
+      "py": 208.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 407.0,
+      "py": 208.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 427.0,
+      "py": 207.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 446.0,
+      "py": 206.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 466.0,
+      "py": 204.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 485.0,
+      "py": 203.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 505.0,
+      "py": 202.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 525.0,
+      "py": 204.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 544.0,
+      "py": 205.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 564.0,
+      "py": 205.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 583.0,
+      "py": 205.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 603.0,
+      "py": 205.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 622.0,
+      "py": 206.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 642.0,
+      "py": 207.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 661.0,
+      "py": 209.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 681.0,
+      "py": 210.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 700.0,
+      "py": 211.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 720.0,
+      "py": 212.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 739.0,
+      "py": 213.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 759.0,
+      "py": 213.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 778.0,
+      "py": 210.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 798.0,
+      "py": 209.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 817.0,
+      "py": 207.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 837.0,
+      "py": 208.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 856.0,
+      "py": 208.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 876.0,
+      "py": 211.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "LWP",
+      "series": "model_ensemble_mean",
+      "px": 895.0,
+      "py": 209.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 173.0,
+      "py": 440.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 193.0,
+      "py": 440.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 212.0,
+      "py": 441.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 232.0,
+      "py": 441.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 251.0,
+      "py": 442.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 271.0,
+      "py": 445.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 290.0,
+      "py": 453.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 310.0,
+      "py": 457.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 329.0,
+      "py": 460.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 349.0,
+      "py": 462.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 368.0,
+      "py": 463.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 388.0,
+      "py": 465.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 407.0,
+      "py": 467.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 427.0,
+      "py": 469.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 446.0,
+      "py": 470.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 466.0,
+      "py": 470.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 485.0,
+      "py": 472.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 505.0,
+      "py": 475.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 525.0,
+      "py": 475.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 544.0,
+      "py": 476.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 564.0,
+      "py": 476.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 583.0,
+      "py": 475.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 603.0,
+      "py": 476.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 622.0,
+      "py": 478.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 642.0,
+      "py": 479.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 661.0,
+      "py": 479.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 681.0,
+      "py": 479.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 700.0,
+      "py": 480.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 720.0,
+      "py": 482.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 739.0,
+      "py": 483.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 759.0,
+      "py": 483.3333333333333,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 778.0,
+      "py": 486.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 798.0,
+      "py": 485.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 817.0,
+      "py": 484.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 837.0,
+      "py": 483.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 856.0,
+      "py": 485.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 876.0,
+      "py": 488.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "cloud_fraction",
+      "series": "model_ensemble_mean",
+      "px": 895.0,
+      "py": 485.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 173.0,
+      "py": 1176.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 193.0,
+      "py": 1163.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 212.0,
+      "py": 1125.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 232.0,
+      "py": 1075.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 251.0,
+      "py": 1036.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 271.0,
+      "py": 1017.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 290.0,
+      "py": 1030.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 310.0,
+      "py": 1055.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 329.0,
+      "py": 1071.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 349.0,
+      "py": 1079.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 368.0,
+      "py": 1076.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 388.0,
+      "py": 1071.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 407.0,
+      "py": 1066.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 427.0,
+      "py": 1062.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 446.0,
+      "py": 1059.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 466.0,
+      "py": 1057.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 485.0,
+      "py": 1055.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 505.0,
+      "py": 1052.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 525.0,
+      "py": 1050.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 544.0,
+      "py": 1049.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 564.0,
+      "py": 1048.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 583.0,
+      "py": 1047.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 603.0,
+      "py": 1045.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 622.0,
+      "py": 1044.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 642.0,
+      "py": 1043.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 661.0,
+      "py": 1043.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 681.0,
+      "py": 1041.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 700.0,
+      "py": 1038.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 720.0,
+      "py": 1036.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 739.0,
+      "py": 1035.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 759.0,
+      "py": 1032.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 778.0,
+      "py": 1030.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 798.0,
+      "py": 1029.5,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 817.0,
+      "py": 1029.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 837.0,
+      "py": 1029.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 856.0,
+      "py": 1030.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 876.0,
+      "py": 1032.0,
+      "method": "auto_darkline_trace"
+    },
+    {
+      "panel": "vertically_integrated_TKE",
+      "series": "model_ensemble_mean",
+      "px": 895.0,
+      "py": 1032.0,
+      "method": "auto_darkline_trace"
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Test Summary:                    | Pass  Total  Time
+Independent transcriptions agree |   69     69  0.7s

@@ -1,0 +1,138 @@
+{
+  "calibrations": {
+    "q_t": {
+      "x1": 234,
+      "x2": 719,
+      "v1": 2,
+      "v2": 10,
+      "units": "g kg-1",
+      "y1": 383,
+      "y2": 92,
+      "z1": 200,
+      "z2": 1000
+    },
+    "theta_l": {
+      "x1": 875,
+      "x2": 1303,
+      "v1": 291,
+      "v2": 303,
+      "units": "K",
+      "y1": 383,
+      "y2": 92,
+      "z1": 200,
+      "z2": 1000
+    },
+    "q_l": {
+      "x1": 1505,
+      "x2": 1909,
+      "v1": 0.1,
+      "v2": 0.5,
+      "units": "g kg-1",
+      "y1": 383,
+      "y2": 92,
+      "z1": 200,
+      "z2": 1000
+    }
+  },
+  "points": [
+    {
+      "panel": "q_t",
+      "series": "observed",
+      "px": 180,
+      "py": 72
+    },
+    {
+      "panel": "q_t",
+      "series": "observed",
+      "px": 227,
+      "py": 120
+    },
+    {
+      "panel": "q_t",
+      "series": "observed",
+      "px": 650,
+      "py": 224
+    },
+    {
+      "panel": "q_t",
+      "series": "observed",
+      "px": 655,
+      "py": 230
+    },
+    {
+      "panel": "q_t",
+      "series": "observed",
+      "px": 665,
+      "py": 401
+    },
+    {
+      "panel": "q_t",
+      "series": "observed",
+      "px": 655,
+      "py": 421
+    },
+    {
+      "panel": "theta_l",
+      "series": "observed",
+      "px": 1323,
+      "py": 72
+    },
+    {
+      "panel": "theta_l",
+      "series": "observed",
+      "px": 1208,
+      "py": 120
+    },
+    {
+      "panel": "theta_l",
+      "series": "observed",
+      "px": 795,
+      "py": 224
+    },
+    {
+      "panel": "theta_l",
+      "series": "observed",
+      "px": 786,
+      "py": 230
+    },
+    {
+      "panel": "theta_l",
+      "series": "observed",
+      "px": 797,
+      "py": 401
+    },
+    {
+      "panel": "theta_l",
+      "series": "observed",
+      "px": 796,
+      "py": 421
+    },
+    {
+      "panel": "q_l",
+      "series": "observed",
+      "px": 1689,
+      "py": 180
+    },
+    {
+      "panel": "q_l",
+      "series": "observed",
+      "px": 1699,
+      "py": 183
+    },
+    {
+      "panel": "q_l",
+      "series": "observed",
+      "px": 1543,
+      "py": 224
+    },
+    {
+      "panel": "q_l",
+      "series": "observed",
+      "px": 1494,
+      "py": 230
+    }
+  ],
+  "pixel_uncertainty": 3,
+  "source": "Stevens et al. 2005, Figure 4, p.1449",
+  "notes": "Partial: six q_t, six theta_l and four q_l markers. Overlapping q_t/theta_l markers near 480 and 750 m omitted. No error bars extracted. Pixel tolerance is not observational uncertainty."
+}

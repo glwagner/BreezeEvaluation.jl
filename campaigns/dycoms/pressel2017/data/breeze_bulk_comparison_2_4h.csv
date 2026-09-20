@@ -1,0 +1,6 @@
+breeze_case_id,pressel_case_id,averaging,breeze_LWP_g_m2,pressel_LWP_g_m2,breeze_cloud_fraction,pressel_cloud_fraction
+canonical_none_weno9,99NN,2-4 h,61.042929270416664,53.6,0.9991097910458334,1.0
+canonical_none_weno5,55NN,2-4 h,59.814967531250005,56.3,0.998821794775,1.0
+canonical_smagorinsky_weno9,99MS,2-4 h,52.499585565000004,45.1,0.9946867771708332,0.99
+canonical_smagorinsky_weno5,55MS,2-4 h,52.424727505,39.3,0.9896832518666667,0.98
+canonical_smagorinsky_centered2,22MS,2-4 h,35.78870955874999,12.4,0.9967850262375,0.75

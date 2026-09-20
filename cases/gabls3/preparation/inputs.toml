@@ -1,0 +1,44 @@
+schema_version = 1
+time_origin_utc = "2006-07-02T00:00:00Z"
+humidity_definition = "specific_humidity_kg_per_kg_moist_air"
+source = "GABLS3 LES Case Description, revised October 6, 2008, Tables 1–7"
+source_docx_sha256 = "c1f815de95c22b413ca5d1728d90ae470a5e1b8b86b2c96e29880818ee07c6ee"
+source_url = "https://github.com/Sukantabasu/jax-alfa/blob/aa7baebf99282711416dadbde7dfdfcba8940524/examples/SBL_GABLS3/GABLS3_LES_Revised.docx"
+status = "transcribed_pending_independent_review"
+
+[surface]
+t = [0,3600,7200,10800,14400,18000,21600,25200,28800,32400]
+pressure = [102210,102200,102200,102180,102190,102210,102230,102230,102230,102220]
+theta = [291.28,290.34,289.45,288.62,288.43,289.95,292.38,294.16,296.55,298.45]
+q = [0.0100,0.0099,0.0100,0.0099,0.0099,0.0104,0.0109,0.0113,0.0121,0.0129]
+scalar_reference_height = 0.25
+momentum_roughness = 0.15
+
+[geostrophic]
+t = [-3600,10800,21600,43200]
+u = [-6.5,-5.0,-5.0,-6.5]
+v = [4.5,4.5,4.5,2.5]
+reference_height = 2000
+u_at_reference = -2.0
+v_at_reference = 2.0
+
+[initial_wind]
+z = [10,20,40,80,140,200,203,257,308,310,363,408,426,465,520,541,575,635,657,694,715,749,772,801,830]
+u = [-3.35,-4.31,-6.13,-9.00,-11.48,-10.16,-10.08,-9.15,-8.75,-8.74,-8.57,-8.46,-8.41,-8.23,-7.82,-7.60,-7.17,-6.22,-5.82,-5.14,-4.77,-4.19,-3.86,-3.54,-3.37]
+v = [-0.04,0.08,0.32,0.90,3.50,5.58,5.57,5.47,5.54,5.55,5.64,5.64,5.61,5.47,5.10,4.90,4.53,3.76,3.47,3.00,2.76,2.46,2.34,2.31,2.46]
+
+[initial_thermodynamics]
+z = [10,20,40,80,140,200,203,257,308,363,408,465,520,575,635,694,749,801,854]
+pressure = [102091,101973,101737,101267,100567,99874,99850,99240,98660,98040,97540,96900,96280,95670,95020,94370,93780,93210,92640]
+theta = [292.72,293.02,293.41,294.30,295.68,297.35,297.35,297.51,297.66,297.81,297.94,298.11,298.27,298.42,298.60,298.77,298.93,299.08,299.23]
+q = [0.0098,0.0097,0.0096,0.0096,0.0092,0.0089,0.0089,0.0089,0.0089,0.0089,0.0089,0.0089,0.0088,0.0088,0.0088,0.0088,0.0088,0.0088,0.0087]
+
+[readiness]
+independent_input_transcription_audit = false
+below_10m_initialization_policy = false
+moist_thermodynamic_and_pressure_contract = false
+coupled_most_with_unstable_morning_branch = false
+boundary_damping_and_perturbation_audit = false
+breeze_runner_and_diagnostic_integration = false
+cpu_model_smoke = false
+gpu_model_smoke = false

@@ -1,0 +1,16 @@
+{
+  "checked_utc": "2026-09-20T15:04:10Z",
+  "verified_cases": 12,
+  "expected_cases": 15,
+  "running_jobs": ["7103_2", "7120_1"],
+  "pending_jobs": ["7120_2"],
+  "pending_reason": "JobArrayTaskLimit",
+  "latest_series_write_utc": {
+    "n400_weno5_none": "2026-09-20T15:03:29Z",
+    "n400_weno9_none": "2026-09-20T15:00:56Z"
+  },
+  "watcher_heartbeat_utc": "2026-09-20T14:56:11.570Z",
+  "new_failure_or_completion_sentinels": false,
+  "report_rebuilt": false,
+  "note": "Unchanged healthy production. Both active simulations have fresh output; no new completed exports to admit. Monitoring remains active."
+}

@@ -1,0 +1,40 @@
+{
+  "slurm_job_id": 7060,
+  "method": "WENO9 + SmagorinskyLilly; 150 warmup steps then 100 timed steps with CUDA synchronization; no diagnostic writers",
+  "limitations": "Early-time model-only timings exclude compilation, output and diagnostic accumulation. Timesteps may change as turbulence develops. Memory change is current CUDA free-memory difference, not peak allocation. Extrapolations are not production runtime guarantees.",
+  "results": [
+    {
+      "grid": "coarse",
+      "steps": 100.0,
+      "simulated_seconds": 200.0,
+      "wall_seconds": 1.093960253,
+      "s_per_step": 0.010939602530000002,
+      "final_dt": 2.0,
+      "memory_change_gib": 0.2578125,
+      "extrapolated_4h_wall_hours": 0.021879205060000004,
+      "julia": "1.12.6"
+    },
+    {
+      "grid": "canonical",
+      "steps": 100.0,
+      "simulated_seconds": 191.80129885673523,
+      "wall_seconds": 2.5080309030000003,
+      "s_per_step": 0.025080309030000004,
+      "final_dt": 1.9018744,
+      "memory_change_gib": 0.6015625,
+      "extrapolated_4h_wall_hours": 0.052304774116745854,
+      "julia": "1.12.6"
+    },
+    {
+      "grid": "fine",
+      "steps": 100.0,
+      "simulated_seconds": 55.62133729457855,
+      "wall_seconds": 11.614129111,
+      "s_per_step": 0.11614129111,
+      "final_dt": 0.5555671,
+      "memory_change_gib": 4.9140625,
+      "extrapolated_4h_wall_hours": 0.8352283261001017,
+      "julia": "1.12.6"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "slurm_array_job_id": "7064",
+  "dependency": null,
+  "array": "1-12%2",
+  "status": "released_after_validation",
+  "production_dir": "/shared/home/greg/review-coordination/dycoms-production-20260919",
+  "source_manifest_sha256": "9a410126b4340c4e2c17838e4c920df94d376e3852815b9db09033c01cd8a9fc",
+  "diagnostics_sha256": "9096c9c980b8ca89a6e54446a14edd8227d7b158f970840ecbcd8fecdee41cf4",
+  "original_dependency": "afterok:7063",
+  "released_utc": "2026-09-19T01:51:54.667340+00:00",
+  "validation_note": "Fine-grid numerical run and 250 diagnostic steps completed. Post-run harness incorrectly applied interior to a constant function; all preceding field checks passed. Independent saved-output audit passed 46 profile and 32 series variables, including constants. No production source changes. Dependency cleared after successful audit.",
+  "initial_array": "1-12%1",
+  "throttle_update_note": "Pane47 raised ArrayTaskThrottle to2 after checking shared GPU availability; actual concurrency remains controlled by Slurm resources."
+}

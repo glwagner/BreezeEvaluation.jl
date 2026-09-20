@@ -1,0 +1,16 @@
+experiment,case_id,momentum_scheme,momentum_order,scalar_scheme,scalar_order,momentum_sgs,scalar_sgs,cloud_fraction_2_4h,LWP_um_2_4h,LWP_g_m2_2_4h
+Mixed-SGS,25MS,Centered,2,WENO,5,true,true,0.54,9.1,9.1
+Mixed-SGS,45MS,Centered,4,WENO,5,true,true,0.52,9.3,9.3
+Mixed-SGS,65MS,Centered,6,WENO,5,true,true,0.51,9.9,9.9
+Paired-SGS,22MS,Centered,2,Centered,2,true,true,0.75,12.4,12.4
+Paired-SGS,44MS,Centered,4,Centered,4,true,true,0.97,30.1,30.1
+Paired-SGS,66MS,Centered,6,Centered,6,true,true,0.98,33.4,33.4
+Paired-SGS,55MS,WENO,5,WENO,5,true,true,0.98,39.3,39.3
+Paired-SGS,77MS,WENO,7,WENO,7,true,true,0.99,42.0,42.0
+Paired-SGS,99MS,WENO,9,WENO,9,true,true,0.99,45.1,45.1
+Mixed-NSGS,25MN,Centered,2,WENO,5,true,false,0.80,19.2,19.2
+Mixed-NSGS,45MN,Centered,4,WENO,5,true,false,0.87,24.0,24.0
+Mixed-NSGS,65MN,Centered,6,WENO,5,true,false,0.88,23.3,23.3
+Paired-NSGS,55NN,WENO,5,WENO,5,false,false,1.0,56.3,56.3
+Paired-NSGS,77NN,WENO,7,WENO,7,false,false,1.0,55.8,55.8
+Paired-NSGS,99NN,WENO,9,WENO,9,false,false,1.0,53.6,53.6

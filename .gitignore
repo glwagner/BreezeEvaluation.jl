@@ -5,6 +5,13 @@
 *.tar.gz
 *.zip
 *.pdf
+!campaigns/dycoms/breeze_les_master.pdf
+!campaigns/dycoms/dycoms_report.pdf
+!campaigns/dycoms/dycoms_section.pdf
+!campaigns/dycoms/report_figures/*.pdf
+!campaigns/dycoms/gabls/gabls_section.pdf
+!campaigns/dycoms/gabls/figures/*.pdf
+!campaigns/dycoms/gabls3/gabls3_section.pdf
 *.ps
 *.mp4
 ._*
@@ -13,4 +20,3 @@
 /scratch/
 /data/gabls1/reference/values.csv
 /data/gabls3/reference/source_files/
-

@@ -5,7 +5,7 @@ using TOML: parsefile
 export campaign_data_directory, evaluation_root, external_path
 
 """Return the root of the checked-out evaluation repository."""
-evaluation_root() = normpath(joinpath(@__DIR__, ".."))
+evaluation_root() = dirname(@__DIR__)
 
 """Return the version-controlled data directory for `campaign`."""
 function campaign_data_directory(campaign)
@@ -32,4 +32,3 @@ function external_path(name; config_path=joinpath(evaluation_root(), "config", "
 end
 
 end
-

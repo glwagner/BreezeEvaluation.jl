@@ -1,0 +1,7 @@
+# Preserve byte-identical audited imports and frozen source snapshots. Their SHA-256 values are
+# part of the scientific provenance, so Git must not normalize line endings or whitespace.
+campaigns/dycoms/data/** binary
+campaigns/dycoms/simulation_data/** binary
+campaigns/dycoms/gabls/reference_data/** binary
+cases/gabls3/preparation/** binary
+source_snapshots/** binary

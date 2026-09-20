@@ -1,0 +1,3 @@
+Test Summary:                         |  Pass  Total  Time
+GABLS3 published forcing and contract | 14214  14214  0.9s
+Prepared 9 logical cases; zero jobs submitted. Model integration is explicitly gated.

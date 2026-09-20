@@ -1,0 +1,193 @@
+{
+  "calibrations": {
+    "variance": {
+      "x1": 928,
+      "x2": 1256,
+      "v1": 0.2,
+      "v2": 0.6,
+      "y1": 338,
+      "y2": 81,
+      "z1": 200,
+      "z2": 1000,
+      "units": "m2 s-2"
+    },
+    "third_moment": {
+      "x1": 1522,
+      "x2": 1878,
+      "v1": -0.1,
+      "v2": 0.1,
+      "y1": 338,
+      "y2": 81,
+      "z1": 200,
+      "z2": 1000,
+      "units": "m3 s-3"
+    }
+  },
+  "points": [
+    {
+      "panel": "variance",
+      "series": "in_situ",
+      "px": 1036,
+      "py": 372
+    },
+    {
+      "panel": "variance",
+      "series": "in_situ",
+      "px": 1104,
+      "py": 354
+    },
+    {
+      "panel": "variance",
+      "series": "in_situ",
+      "px": 1154,
+      "py": 248
+    },
+    {
+      "panel": "variance",
+      "series": "in_situ",
+      "px": 1172,
+      "py": 248
+    },
+    {
+      "panel": "variance",
+      "series": "in_situ",
+      "px": 1188,
+      "py": 204
+    },
+    {
+      "panel": "variance",
+      "series": "in_situ",
+      "px": 1127,
+      "py": 199
+    },
+    {
+      "panel": "variance",
+      "series": "in_situ",
+      "px": 1087,
+      "py": 161
+    },
+    {
+      "panel": "variance",
+      "series": "in_situ",
+      "px": 1095,
+      "py": 161
+    },
+    {
+      "panel": "third_moment",
+      "series": "in_situ",
+      "px": 1744,
+      "py": 372
+    },
+    {
+      "panel": "third_moment",
+      "series": "in_situ",
+      "px": 1766,
+      "py": 354
+    },
+    {
+      "panel": "third_moment",
+      "series": "in_situ",
+      "px": 1671,
+      "py": 248
+    },
+    {
+      "panel": "third_moment",
+      "series": "in_situ",
+      "px": 1688,
+      "py": 248
+    },
+    {
+      "panel": "third_moment",
+      "series": "in_situ",
+      "px": 1623,
+      "py": 204
+    },
+    {
+      "panel": "third_moment",
+      "series": "in_situ",
+      "px": 1555,
+      "py": 199
+    },
+    {
+      "panel": "third_moment",
+      "series": "in_situ",
+      "px": 1635,
+      "py": 162
+    },
+    {
+      "panel": "third_moment",
+      "series": "in_situ",
+      "px": 1670,
+      "py": 162
+    },
+    {
+      "panel": "variance",
+      "series": "radar",
+      "px": 844,
+      "py": 134
+    },
+    {
+      "panel": "variance",
+      "series": "radar",
+      "px": 862,
+      "py": 138
+    },
+    {
+      "panel": "variance",
+      "series": "radar",
+      "px": 899,
+      "py": 143
+    },
+    {
+      "panel": "variance",
+      "series": "radar",
+      "px": 937,
+      "py": 148
+    },
+    {
+      "panel": "variance",
+      "series": "radar",
+      "px": 974,
+      "py": 153
+    },
+    {
+      "panel": "variance",
+      "series": "radar",
+      "px": 1002,
+      "py": 158
+    },
+    {
+      "panel": "variance",
+      "series": "radar",
+      "px": 1029,
+      "py": 163
+    },
+    {
+      "panel": "variance",
+      "series": "radar",
+      "px": 1049,
+      "py": 169
+    },
+    {
+      "panel": "variance",
+      "series": "radar",
+      "px": 1074,
+      "py": 174
+    },
+    {
+      "panel": "variance",
+      "series": "radar",
+      "px": 1107,
+      "py": 178
+    },
+    {
+      "panel": "variance",
+      "series": "radar",
+      "px": 1138,
+      "py": 183
+    }
+  ],
+  "pixel_uncertainty": 3,
+  "source": "Stevens et al. 2005, Fig. 5, p.1450",
+  "notes": "Partial extraction. Error bars NOT extracted. 3-pixel tolerance is an estimated digitization tolerance, not measurement uncertainty. Closely spaced observations kept separate. Upper points obscured by axes/labels and third-moment radar points omitted."
+}

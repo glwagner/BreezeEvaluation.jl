@@ -1,0 +1,16 @@
+case_id,grid,advection_scheme,advection_order,closure,solver_wall_s,iterations,wall_s_per_iteration
+coarse_none_weno9,coarse,WENO,9,none,243.1,7270,0.03343878954607978
+coarse_none_weno5,coarse,WENO,5,none,239.3,7266,0.032934214148086983
+coarse_smagorinsky_weno9,coarse,WENO,9,SmagorinskyLilly,246.0,7264,0.03386563876651982
+coarse_smagorinsky_weno5,coarse,WENO,5,SmagorinskyLilly,247.6,7264,0.03408590308370044
+canonical_none_weno9,canonical,WENO,9,none,726.6,19184,0.03787531276063386
+canonical_none_weno5,canonical,WENO,5,none,717.6,18859,0.03805079802746699
+canonical_smagorinsky_weno9,canonical,WENO,9,SmagorinskyLilly,701.7,18147,0.03866754835510002
+canonical_smagorinsky_weno5,canonical,WENO,5,SmagorinskyLilly,679.2,17651,0.03847940626593394
+fine_none_weno9,fine,WENO,9,none,5569.6,38996,0.1428249051184737
+fine_none_weno5,fine,WENO,5,none,4232.2,38678,0.10942137649309684
+fine_smagorinsky_weno9,fine,WENO,9,SmagorinskyLilly,6130.5,38499,0.1592379022831762
+fine_smagorinsky_weno5,fine,WENO,5,SmagorinskyLilly,4820.6,38229,0.12609798843809675
+coarse_smagorinsky_centered2,coarse,Centered,2,SmagorinskyLilly,252.5,7299,0.034593779969858886
+canonical_smagorinsky_centered2,canonical,Centered,2,SmagorinskyLilly,742.1,19156,0.03873982042179996
+fine_smagorinsky_centered2,fine,Centered,2,SmagorinskyLilly,4212.2,39273,0.10725434777073307

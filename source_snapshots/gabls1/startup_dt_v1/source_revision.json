@@ -1,0 +1,13 @@
+{
+  "source_revision": "startup_dt_v1",
+  "created_utc": "2026-09-20T01:10:20Z",
+  "parent_source": "/shared/home/greg/review-coordination/gabls-production-v2-20260919/source",
+  "source_path": "/shared/home/greg/review-coordination/gabls-production-v2-20260919/revisions/startup_dt_v1/source",
+  "change_contract": "Only the initial Simulation dt expression changes: 0.5 -> min(0.5, 0.5 * dx / 8). The CFL=0.7/max_dt=5 wizard and all physics, seed, schemes, closures and diagnostics are unchanged.",
+  "source_hashes": {
+    "root_Manifest.toml": "9a410126b4340c4e2c17838e4c920df94d376e3852815b9db09033c01cd8a9fc",
+    "gabls_diagnostics.jl": "6486c8ccd94f45df1c204fc57d1f3c0a79b8c4f3c27b3412c1b2bb81573e0c24",
+    "gabls_case.jl": "8d408477905868429fcd3a7defba2428984cb2efcf461450ace5bbb2b2f4140a",
+    "gabls_rough_wall_coefficient.jl": "5af7df039cf665817cd5ca0a9d48dca6d28bbae3bc300f3c5e79bd982aee20c3"
+  }
+}

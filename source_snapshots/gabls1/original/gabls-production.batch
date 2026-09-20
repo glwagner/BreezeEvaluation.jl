@@ -1,0 +1,62 @@
+#!/bin/bash
+# GABLS1 production -- 15 cases (USER SCOPE CORRECTION 2026-09-19).
+# v2: identical physics to v1 (arrays 7088-7092); the ONLY source difference is
+#     examples/gabls_diagnostics.jl, which fixes the collapsed face profiles and the
+#     boundary_layer_height off-by-one. See cases.json .supersedes.
+#
+# Three combos per grid: weno9/none, weno5/none, weno9+smagorinsky.
+# weno5+smagorinsky and centered2+smagorinsky are NOT production.
+#
+# ONE ARRAY PER GRID, chained explicitly. A single 1-15 array is deliberately NOT used:
+# Slurm array index order is not a guaranteed group barrier, so it cannot enforce
+# small-grids-first. The grid is passed in via GABLS_GRID_NX; the array index picks the combo.
+#
+#   J32=$(sbatch --parsable --export=ALL,GABLS_GRID_NX=32  --time=04:00:00 --array=1-3%2 gabls-production.batch)
+#   J64=$(sbatch --parsable --export=ALL,GABLS_GRID_NX=64  --time=04:00:00 --array=1-3%2 --dependency=afterany:$J32 gabls-production.batch)
+#   ... 128 (08:00:00), 200 (24:00:00), 400 (96:00:00) ...
+#
+# afterany, NOT afterok: afterok would leave every later grid permanently
+# DependencyNeverSatisfied after a single case failure.
+
+#SBATCH --job-name=gabls
+#SBATCH --output=/shared/home/greg/review-coordination/gabls-production-v2-20260919/gabls-%A_%a.log
+#SBATCH --nodes=1
+#SBATCH --partition=gpu-prod
+#SBATCH --gres=gpu:h100:1
+#SBATCH --mem=64G
+
+set -uo pipefail          # NOT -e: a failing case must still record evidence
+
+JULIA=/shared/home/greg/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/julia
+G=/shared/home/greg/review-coordination/gabls-production-v2-20260919
+export GABLS_REPO=$G/source
+export GABLS_STOP=9
+export GABLS_DIAGNOSTICS=1
+
+: "${GABLS_GRID_NX:?GABLS_GRID_NX must be exported (32|64|128|200|400)}"
+NX=$GABLS_GRID_NX
+
+COMBOS=("weno9 none" "weno5 none" "weno9 smagorinsky")
+read -r SCHEME CLOSURE <<< "${COMBOS[$((SLURM_ARRAY_TASK_ID - 1))]}"
+CASE=$(printf "n%03d_%s_%s" "$NX" "$SCHEME" "$CLOSURE")
+
+CASE_DIR=$G/runs/$CASE
+if [[ -e "$CASE_DIR/provenance/git.txt" ]]; then
+  echo "REFUSING to overwrite existing case: $CASE_DIR" >&2; exit 2
+fi
+mkdir -p "$CASE_DIR"; cd "$CASE_DIR"
+
+echo "GABLS_ARRAY_CASE $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID $CASE nx=$NX $SCHEME $CLOSURE"
+echo "=== node $(hostname) ==="; nvidia-smi --query-gpu=name,memory.total --format=csv
+
+GABLS_NX=$NX GABLS_SCHEME=$SCHEME GABLS_CLOSURE=$CLOSURE \
+  "$JULIA" --project=$GABLS_REPO/examples "$GABLS_REPO/validation_output/gabls/gabls_case.jl"
+RC=$?
+
+if [[ $RC -eq 0 ]]; then
+  echo "GABLS_CASE_EXIT_SUCCESS"
+else
+  echo "GABLS_CASE_FAILED case=$CASE rc=$RC"
+  ls -la "$CASE_DIR" || true
+fi
+exit $RC

@@ -1,0 +1,8 @@
+{
+  "origin": "/shared/home/greg/Projects/Breeze.jl",
+  "branch": "glw/dycoms-stratocumulus",
+  "commit": "548e6fb7b6aecc62b7e05ddcf3e422b8dadd9504",
+  "frozen_utc": "2026-09-19T13:22:02Z",
+  "frozen_by": "pane 47",
+  "note": "GABLS1 15-case production. Uncommitted working-tree state is captured in original_dirty.patch alongside this tree."
+}
