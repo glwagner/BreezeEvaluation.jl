@@ -29,6 +29,30 @@
     "redistributed": false,
     "role": "independent transcription cross-check, not the original 2008 implementation"
   },
+  "reference_data_search": {
+    "audited_utc": "2026-09-20",
+    "original_les_database": {
+      "status": "not publicly located",
+      "required_role": "Cabauw tower and profiler observations plus the original eleven-member 6.25 m LES ensemble used by the 2012 paper",
+      "handling": "remain unavailable; do not replace with SCM or later wind-energy benchmark products and do not digitize missing statistics without an explicit derived-data label"
+    },
+    "legacy_knmi_scm_observations": {
+      "url": "http://projects.knmi.nl/gabls/gabls3_scm_cabauw_obs_v33.nc",
+      "discovered_via": "https://github.com/windbench/gabls3/tree/98a3073cc2f72362b3286e397920dd16d377d95b",
+      "access_audit": "The HTTPS endpoint has an expired certificate and the HTTP endpoint returns a current KNMI HTML page rather than NetCDF.",
+      "role": "24-hour SCM validation candidate; not verified as the observation product used by the nine-hour LES paper",
+      "redistributed": false
+    },
+    "later_wind_energy_benchmark": {
+      "doi": "10.23728/b2share.f5d5a492d8aa4b7998b70abd68f5eae4",
+      "record_url": "https://b2share.eudat.eu/records/pjtk5-dqw63",
+      "published": "2017-06-22",
+      "size_mb_as_reported": 159.4,
+      "contents": "nineteen submitted simulation/tendency NetCDF files for the later rotor-based wind-energy benchmark",
+      "role": "related GABLS3 diurnal-cycle benchmark, not the original 2008 eleven-member LES database or its observation archive",
+      "redistributed": false
+    }
+  },
   "unresolved": [
     "The revised instructions name signed U/V components but do not explicitly define the horizontal axis orientation in text.",
     "The instructions prescribe only the stable MOST functions; the unstable morning branch is model-dependent and must be declared.",
