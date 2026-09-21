@@ -199,7 +199,7 @@ end
     @test gabls3_parsed["source_freeze_manifest_sha256"] ==
           "1cc45c554fe4675a5ffde2dc6bfe70953d9c5294f9df4e6fe76b6f1f033886ac"
     changed_path = copy(gabls3_parsed)
-    changed_path["gpu_validation_mode"] = "gabls3_surface_q_changed_path"
+    changed_path["gpu_validation_mode"] = "gabls3_surface_q_read_only_v2"
     changed_path["case_family"] = "GABLS1"
     @test_throws ErrorException SurfaceLayerScientificExport.verify_gpu_evidence_for_registry(
         changed_path, changed_path["source_freeze_root"])
@@ -296,7 +296,7 @@ end
             "batch_exit_record_sha256" => file_sha256(exit_path),
             "launch_wrapper_sha256" => "wrapper")
         registry = Dict{String, Any}(
-            "gpu_validation_mode" => "gabls3_surface_q_changed_path",
+            "gpu_validation_mode" => "gabls3_surface_q_read_only_v2",
             "source_freeze_manifest_sha256" => "source",
             "gpu_validation_job_id" => "8000",
             "gpu_validation_log_sha256" => "gpu_log",

@@ -194,14 +194,14 @@ function verify_gpu_evidence_for_registry(registry, freeze_root)
     mode == "gpu_full" && return verify_gpu_evidence(
         registry["gpu_validation_evidence_directory"], freeze_root,
         registry["source_freeze_manifest_sha256"])
-    require_check(mode == "gabls3_surface_q_changed_path" &&
+    require_check(mode == "gabls3_surface_q_read_only_v2" &&
                   registry["case_family"] == "GABLS3" &&
                   freeze_root == "/shared/home/greg/review-coordination/surface-layer-harness-freeze-20260921-131ad9b-02a1647" &&
                   registry["source_freeze_manifest_sha256"] ==
                       "1cc45c554fe4675a5ffde2dc6bfe70953d9c5294f9df4e6fe76b6f1f033886ac",
                   "changed-path admission is only for the corrected GABLS3 source")
-    reader = "/shared/home/greg/review-coordination/admit_gabls3_surface_q_gpu_gate_131ad9b-v1.jl"
-    reader_sha = "8a6c1e1d71d2b10049b5f6f499f5873892bd791a5ca8f51f5e605eb6f6c4676f"
+    reader = "/shared/home/greg/review-coordination/admit_gabls3_surface_q_gpu_gate_131ad9b-v2.jl"
+    reader_sha = "dfdfeeede4d3020749b3e629b11958ba4ebbf6961af1dc80f5be6c7f7054643a"
     require_check(registry["gpu_admission_reader_path"] == reader &&
                   registry["gpu_admission_reader_sha256"] == reader_sha &&
                   file_sha256(reader) == reader_sha,
@@ -947,7 +947,7 @@ function verify_attempt_identity(attempt, completion, scientific_path, registry)
     log = read(log_path, String)
     require_check(!occursin("CASE_FAILED", log) && !occursin("GPU_VALIDATION_FAILED", log),
                   "active-attempt log contains a failure sentinel")
-    if get(registry, "gpu_validation_mode", "gpu_full") == "gabls3_surface_q_changed_path"
+    if get(registry, "gpu_validation_mode", "gpu_full") == "gabls3_surface_q_read_only_v2"
         exit_path = attempt["batch_exit_record_path"]
         require_check(isfile(exit_path) &&
                       file_sha256(exit_path) == attempt["batch_exit_record_sha256"],
