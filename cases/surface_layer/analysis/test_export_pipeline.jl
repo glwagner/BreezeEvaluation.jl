@@ -101,10 +101,12 @@ end
         make_gabls3_fixture(run, case_id)
         manifest = export_fixture("GABLS3", run, case_id, destination, 2, 800.0, "none")
         @test manifest["record_audit"]["profiles"]["records"] == 109
-        @test manifest["record_audit"]["series"]["records"] == 3240
-        @test manifest["record_audit"]["points"]["records"] == 3240
-        @test length(readlines(joinpath(destination, "series.csv"))) == 3241
-        @test length(readlines(joinpath(destination, "points.csv"))) == 3241
+        @test manifest["record_audit"]["series"]["records"] == 3241
+        @test manifest["record_audit"]["points"]["records"] == 3241
+        @test first(manifest["record_audit"]["series"]["times_s"]) == 0.0
+        @test first(manifest["record_audit"]["points"]["times_s"]) == 0.0
+        @test length(readlines(joinpath(destination, "series.csv"))) == 3242
+        @test length(readlines(joinpath(destination, "points.csv"))) == 3242
         mean_lines = readlines(joinpath(destination, "profiles_03_04utc_mean.csv"))
         @test any(occursin("12750", line) for line in mean_lines)
         @test manifest["raw_metadata"]["points"][
@@ -113,6 +115,22 @@ end
 end
 
 @testset "Strict schedule, finite, shape, and completion rejection" begin
+    for missing_initial in ("series", "points")
+        mktempdir() do root
+            case_id = "fixture_gabls3_missing_initial_$(missing_initial)"
+            run = joinpath(root, "run")
+            make_gabls3_fixture(run, case_id)
+            path = joinpath(run, "$(case_id)_diag_$(missing_initial).jld2")
+            scheduled_only = collect(10.0:10.0:32400.0)
+            if missing_initial == "series"
+                write_series(path, scheduled_only; gabls3=true)
+            else
+                write_points(path, scheduled_only)
+            end
+            @test_throws ErrorException export_fixture(
+                "GABLS3", run, case_id, joinpath(root, "export"), 2, 800.0, "none")
+        end
+    end
     mktempdir() do root
         case_id = "fixture_incomplete"
         run = joinpath(root, "run")

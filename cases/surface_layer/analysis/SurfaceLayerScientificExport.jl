@@ -18,7 +18,10 @@ const GABLS1_SERIES_TIMES = collect(0.0:60.0:32400.0)
 const GABLS1_FINAL_HOUR_TIMES = [30600.0, 32400.0]
 const GABLS1_PENULTIMATE_HOUR_TIMES = [27000.0, 28800.0]
 const GABLS3_PROFILE_TIMES = collect(0.0:300.0:32400.0)
-const GABLS3_SERIES_TIMES = collect(10.0:10.0:32400.0)
+# Oceananigans writes an iteration-zero record to every output writer during
+# Simulation.initialize!, even when SpecifiedTimes starts at 10 s. Preserve
+# that native initial record alongside all 10 s scheduled records.
+const GABLS3_SERIES_TIMES = collect(0.0:10.0:32400.0)
 const GABLS3_PAPER_WINDOW_TIMES = collect(11100.0:300.0:14400.0)
 
 const PROFILE_UNITS = Dict(
@@ -701,14 +704,14 @@ function export_raw(family, run_directory, case_id, destination, nz, vertical_ex
             "profiles" => Dict("records" => 109, "times_s" => GABLS3_PROFILE_TIMES,
                 "variables" => length(profiles.data), "all_finite" => true,
                 "final_time_s" => 32400.0),
-            "series" => Dict("records" => 3240, "times_s" => GABLS3_SERIES_TIMES,
+            "series" => Dict("records" => 3241, "times_s" => GABLS3_SERIES_TIMES,
                 "variables" => length(series.values), "all_finite" => true,
                 "final_time_s" => 32400.0),
-            "points" => Dict("records" => 3240, "times_s" => GABLS3_SERIES_TIMES,
+            "points" => Dict("records" => 3241, "times_s" => GABLS3_SERIES_TIMES,
                 "variables" => length(points.values), "all_finite" => true,
                 "final_time_s" => 32400.0))
         semantics = Dict("profiles" => "instantaneous horizontal reductions",
-            "series_and_points" => "instantaneous records",
+            "series_and_points" => "instantaneous records, including Oceananigans initialization at t=0 before the 10 s SpecifiedTimes schedule",
             "paper_03_04utc_source_times_s" => GABLS3_PAPER_WINDOW_TIMES,
             "paper_03_04utc_window_s" => [10800.0, 14400.0],
             "left_boundary_10800_excluded" => true)

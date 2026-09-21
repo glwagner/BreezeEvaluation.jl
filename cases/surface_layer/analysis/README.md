@@ -51,8 +51,10 @@ GABLS1 preserves a separate instantaneous initial profile, 18 true preceding-hal
 averages at 1800:1800:32400 seconds, and 541 one-minute series records. Its penultimate and
 final hour products are equal means of `(27000, 28800)` and `(30600, 32400)` respectively.
 
-GABLS3 preserves 109 instantaneous profiles at 0:300:32400 seconds and 3240 series and
-point records at 10:10:32400 seconds. Its paper comparison is the equal mean of the 12
+GABLS3 preserves 109 instantaneous profiles at 0:300:32400 seconds and 3241 series and
+point records at 0:10:32400 seconds. The t=0 series/point records are Oceananigans
+initialization output; the installed SpecifiedTimes schedules remain 10:10:32400.
+Its paper comparison is the equal mean of the 12
 instantaneous profiles at 11100:300:14400 seconds; the 10800-second left boundary is not
 included. GABLS1 reference products are not substituted into GABLS3.
 
