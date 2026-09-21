@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-09-20T19:00:00Z",
+  "component": "SurfaceLayerDiffusivity",
+  "validation_scope": "cpu_feature_validation",
+  "scientific_admission": false,
+  "gpu_validated": false,
+  "breeze": {
+    "repository": "https://github.com/NumericalEarth/Breeze.jl",
+    "branch": "glw/surface-layer-diffusivity",
+    "base_commit": "8cc115e9bb15e2dbe8c7d530eea50118055546b7",
+    "feature_commit": "d73c82b326c7d3715034c7254c982d25548df5ae"
+  },
+  "environment": {
+    "julia_version": "1.12.6",
+    "julia_executable": "/shared/home/greg/.juliaup/bin/julia",
+    "breeze_version": "0.11.2",
+    "oceananigans_version": "0.113.1",
+    "cuda_version": "6.2.2",
+    "kernel_abstractions_version": "0.9.42",
+    "test_manifest_present": false
+  },
+  "tests": {
+    "feature": {
+      "passed": 119,
+      "failed": 0,
+      "groups": {
+        "construction": 17,
+        "cpu_model_integration": 50,
+        "exponential_filter_and_support": 9,
+        "stable_float32_covariance": 5,
+        "momentum_constitutive": 14,
+        "signed_scalar_guards": 15,
+        "float32_guard_and_cap": 9
+      }
+    },
+    "aqua": { "passed": 34, "failed": 0 },
+    "explicit_imports": { "passed": 5, "failed": 0 },
+    "core_box": { "passed": 1, "failed": 0 },
+    "doctests": { "passed": 1, "failed": 0 }
+  },
+  "validated_behaviors": [
+    "accepted-step time-dependent wall-flux sampling",
+    "stable 90000-sample Float32 centered covariance against a quantized-sample Float64 reference",
+    "native locations and one-face/two-face coordinate support",
+    "dynamic-to-kinematic materialized momentum and scalar wall fluxes",
+    "neutral manufactured discrete log profile",
+    "explicit guard, activity, support, and cap diagnostics",
+    "vertically implicit momentum conservation with nonzero redistribution",
+    "vertically implicit transported-scalar conservation with nonzero redistribution",
+    "full AtmosphereModel checkpoint restore and exact continued-versus-restarted evolution",
+    "clear rejection of unsupported topology, grid, and formulation"
+  ],
+  "source_sha256": {
+    "src/TurbulenceClosures/surface_layer_diffusivity.jl": "b5e446fad34155417606284fbd6cbe320dc68be8d1a902af7caf79ad1e5f311d",
+    "test/surface_layer_diffusivity.jl": "948069e765ceb09dce87957139df2b2b45ad0e0796bdc7050230852863158b8f",
+    "test/Project.toml": "f025631eb4fa6dfcbcef09ec4a905b9c1b6d997730b881da4bda3616fef5cedd",
+    "Project.toml": "d84b533af033eafdcdc91ed699b2e4c5174c711964698d91796833fcd8a64fbe",
+    "generated_root_Manifest.toml": "ea06afffc14487956976a78f9a5fdfca8d4806313cdccb84722d07ceb587aef9"
+  },
+  "remaining_gates": [
+    "bounded GPU kernel and restart validation on an immutable dependency snapshot",
+    "matched GABLS1 coarse control and closure comparisons",
+    "matched GABLS3 coarse control and closure comparisons",
+    "neutral-boundary-layer control and closure comparison",
+    "audited Julia exports and master-report integration"
+  ],
+  "interpretation": "These checks validate CPU implementation behavior and arithmetic. They are not LES fidelity evidence and do not admit a scientific case."
+}

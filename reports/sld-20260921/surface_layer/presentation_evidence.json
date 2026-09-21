@@ -1,0 +1,22 @@
+{
+  "arithmetic": {
+    "centered_float32": 0.0009245522669516504,
+    "dt_s": 0.1,
+    "filter_s": 300,
+    "naive_float32": -0.00146484375,
+    "quantized_input_float64": 0.0009243646022913793,
+    "relative_error": 0.00020302017170050607,
+    "sample_count": 90000,
+    "scope": "standalone reproducer; not a model-kernel run"
+  },
+  "artifact_kind": "analytic_and_synthetic_presentation",
+  "breeze_feature_commit": "d73c82b326c7d3715034c7254c982d25548df5ae",
+  "scientific_les_cases": 0,
+  "source_sha256": {
+    "analysis_export_evidence.toml": "8815b363dc89d5543c20764a410c10276aa272a23691d71667320605e23b2477",
+    "covariance_arithmetic.csv": "e8755ee4c7c5e1694d062dbb83636846b86e74b62f5b055f6edd146ba6ea7bde",
+    "cpu_validation.json": "2884e3fc49e5abbcd2de297ee440a9a5ec6fd16ddaf3a74e80f670f2442e61c3",
+    "gpu_harness_cpu_contract.toml": "83e22fb9acd9b00514d631652a5eaeb57919fc865c7aca567f58b7ebe7fd05af",
+    "presentation.jl": "bb0cf6dc2f742d80aa4b975454ecee3781b1469d0e967fcc9905c7ba85454d85"
+  }
+}

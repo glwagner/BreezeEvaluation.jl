@@ -1,0 +1,45 @@
+all_passed = true
+architecture = "CPU"
+completed_utc = "2026-09-20T21:28:31.888"
+cuda_functional = false
+cuda_scalar_indexing_disabled = false
+float_type = "Float32"
+freeze_root = "DEVELOPMENT_NO_FREEZE"
+freeze_source_manifest_entries = 0
+freeze_source_manifest_sha256 = "DEVELOPMENT_NO_FREEZE"
+julia_version = "1.12.6"
+nonphysical_clock_jump_outputs_admissible_as_science = false
+passed_checks = 562
+schema_version = 1
+validation_mode = "cpu_contract"
+
+[full_runner]
+
+[restart.dry_support1]
+checkpoint_bytes = 140501
+checkpoint_sha256 = "1357431a4ca50214c8933f9e71b6de334324354d81b8b8e650aa7b78c48b4b97"
+
+[restart.dry_support2]
+checkpoint_bytes = 140501
+checkpoint_sha256 = "bd9598934df343550205f2f9e57fa3d32aea79b9b32cadb3ba210f4d8f27e079"
+
+[restart.moist_support1]
+checkpoint_bytes = 140501
+checkpoint_sha256 = "f331668fbb4786bce6c69c761bb2d2289aa86ffc82d12a79b7422f384d406223"
+
+[restart.moist_support2]
+checkpoint_bytes = 140501
+checkpoint_sha256 = "19dded92a15070ad662b14c73c9fdc1a616482e0e214157da1e40b25581fe495"
+
+[restart.synthetic_signed_heat_flux]
+fixture_is_synthetic = true
+negative_filtered_theta_flux = -8.567238546675071e-5
+positive_filtered_theta_flux = 8.566460746806115e-5
+tiny_filtered_theta_flux_max_abs = 8.567238850851547e-14
+
+[source_sha256]
+"cases/gabls3/runner/gabls3_case.jl" = "d8a9b352fa8f4d9a9d2088f150a4e36a6cd2ef7f28a6f8b1ab4266eeab4faee8"
+"cases/surface_layer/gabls1/gabls1_case.jl" = "fc3a275d226ed96877a15e7ec922906116df0d4a79116ad7749d8e1b53e32fe6"
+"cases/surface_layer/gpu_validation/validate_surface_layer.jl" = "014b46844d61e774c9deafc626e041ec34503dbaf0303ee2d70a8b7475010bed"
+"cases/surface_layer/registries/gabls1_sld_4case.toml" = "6cbd416bd67d5cefc266cdbaa096133be0a360d7d4b5f1c51613097824a5faae"
+"cases/surface_layer/registries/gabls3_sld_4case.toml" = "5e36340edab0b21efd2badb2696c425910805aeae3d25bbe36024cae489b52be"

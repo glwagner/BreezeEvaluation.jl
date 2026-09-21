@@ -1,0 +1,26 @@
+admitted_count = 4
+attempt_registry_path = "/shared/home/greg/review-coordination/gabls1-sld-production-20260921-1212/gabls1_sld_attempts_7156_0bfa03d.toml"
+attempt_registry_sha256 = "af7059296cfcd2025bfb75f306541fc702890e9c5d97d9465ecec4c9a9370e37"
+case_family = "GABLS1"
+expected_cases = 4
+generated_utc = "2026-09-21T13:55:51.828"
+rejected = []
+rejected_count = 0
+schema_version = 1
+
+[[admitted]]
+case_id = "gabls1_n032_weno9_control"
+directory = "/shared/home/greg/review-coordination/gabls1-sld-production-20260921-1212/exports_0bfa03d/gabls1_n032_weno9_control"
+manifest_sha256 = "81acb2d108ad26bbdb4ea09f33f076086f43fd5c453bcb22e42aa5739e17c3ac"
+[[admitted]]
+case_id = "gabls1_n032_weno9_surface_layer_t100_s1"
+directory = "/shared/home/greg/review-coordination/gabls1-sld-production-20260921-1212/exports_0bfa03d/gabls1_n032_weno9_surface_layer_t100_s1"
+manifest_sha256 = "94f7e33eebf8e4f8d55c6b44258a9113681c4242f25c07308a8688c43d8d06e4"
+[[admitted]]
+case_id = "gabls1_n032_weno9_surface_layer_t300_s1"
+directory = "/shared/home/greg/review-coordination/gabls1-sld-production-20260921-1212/exports_0bfa03d/gabls1_n032_weno9_surface_layer_t300_s1"
+manifest_sha256 = "55303f8acdf2314bfdddddd7836117f9ccb8efb54e15c945fcfa0bb2e93a7eb5"
+[[admitted]]
+case_id = "gabls1_n032_weno9_surface_layer_t300_s2"
+directory = "/shared/home/greg/review-coordination/gabls1-sld-production-20260921-1212/exports_0bfa03d/gabls1_n032_weno9_surface_layer_t300_s2"
+manifest_sha256 = "2735630daa051a2a67f178ed1a6fc4fefabd2ac3c5737d9c74f9ae9650ac7c03"

@@ -1,0 +1,138 @@
+{
+  "cases": {
+    "gabls1_n032_weno9_control": {
+      "final_hour": {
+        "friction_velocity": 0.27916439274946847,
+        "peak_w2": 0.08640189468860626,
+        "resolved_tke_vertical_integral": 34.17831885019938,
+        "skewness_at_12_5m": 0.5631125812670836,
+        "surface_sensible_heat_flux": -15.213121239344279,
+        "surface_theta_kinematic_flux": -0.011447708463917176,
+        "theta_mean_rmse_0_200m": 0.37200451928151557,
+        "u_mean_rmse_0_200m": 0.7146621631861275,
+        "w2_at_12_5m": 0.06353432312607765,
+        "w3_at_12_5m": 0.009017950389534235,
+        "w_variance_rmse_0_200m": 0.01601883176482999
+      },
+      "label": "Matched control",
+      "penultimate_hour": {
+        "friction_velocity": 0.2813242261608442,
+        "peak_w2": 0.0894642174243927,
+        "resolved_tke_vertical_integral": 35.82096602121989,
+        "skewness_at_12_5m": 0.6330527022902246,
+        "surface_sensible_heat_flux": -14.939740308125813,
+        "surface_theta_kinematic_flux": -0.011241992330178618,
+        "theta_mean_rmse_0_200m": 0.32777712015762717,
+        "u_mean_rmse_0_200m": 0.747582812058559,
+        "w2_at_12_5m": 0.06525876373052597,
+        "w3_at_12_5m": 0.010553539264947176,
+        "w_variance_rmse_0_200m": 0.017950493231692385
+      }
+    },
+    "gabls1_n032_weno9_surface_layer_t100_s1": {
+      "final_hour": {
+        "friction_velocity": 0.29224465787410736,
+        "peak_w2": 0.05775854177772999,
+        "resolved_tke_vertical_integral": 28.15685764948527,
+        "skewness_at_12_5m": -0.21333531836741046,
+        "surface_sensible_heat_flux": -15.82651228904724,
+        "surface_theta_kinematic_flux": -0.011909278559808929,
+        "theta_mean_rmse_0_200m": 0.43112164724443924,
+        "u_mean_rmse_0_200m": 1.0087324514561682,
+        "w2_at_12_5m": 0.00924330623820424,
+        "w3_at_12_5m": -0.00018958491273224354,
+        "w_variance_rmse_0_200m": 0.023958553777836736
+      },
+      "label": "One face · 100 s",
+      "penultimate_hour": {
+        "friction_velocity": 0.29785831868648527,
+        "peak_w2": 0.06656111218035221,
+        "resolved_tke_vertical_integral": 32.925501410166426,
+        "skewness_at_12_5m": -0.2807686480827198,
+        "surface_sensible_heat_flux": -15.93961566289266,
+        "surface_theta_kinematic_flux": -0.011994387597466509,
+        "theta_mean_rmse_0_200m": 0.3538794989382424,
+        "u_mean_rmse_0_200m": 1.0495252759047853,
+        "w2_at_12_5m": 0.010753246024250984,
+        "w3_at_12_5m": -0.00031308191682910547,
+        "w_variance_rmse_0_200m": 0.028753167189346444
+      }
+    },
+    "gabls1_n032_weno9_surface_layer_t300_s1": {
+      "final_hour": {
+        "friction_velocity": 0.28860296110312145,
+        "peak_w2": 0.0575601439923048,
+        "resolved_tke_vertical_integral": 27.260249137878418,
+        "skewness_at_12_5m": -0.25346681080458794,
+        "surface_sensible_heat_flux": -15.538189236323039,
+        "surface_theta_kinematic_flux": -0.011692318584149082,
+        "theta_mean_rmse_0_200m": 0.41765551648099997,
+        "u_mean_rmse_0_200m": 0.9376946927511401,
+        "w2_at_12_5m": 0.008170557906851172,
+        "w3_at_12_5m": -0.00018719690706348047,
+        "w_variance_rmse_0_200m": 0.024537779805958636
+      },
+      "label": "One face · 300 s",
+      "penultimate_hour": {
+        "friction_velocity": 0.29714936912059786,
+        "peak_w2": 0.061979422345757484,
+        "resolved_tke_vertical_integral": 32.453289159139,
+        "skewness_at_12_5m": -0.2989698976549101,
+        "surface_sensible_heat_flux": -15.752013222376506,
+        "surface_theta_kinematic_flux": -0.011853218792627256,
+        "theta_mean_rmse_0_200m": 0.353248484050962,
+        "u_mean_rmse_0_200m": 1.012370551343558,
+        "w2_at_12_5m": 0.010015499778091908,
+        "w3_at_12_5m": -0.00029966526199132204,
+        "w_variance_rmse_0_200m": 0.02784777705225943
+      }
+    },
+    "gabls1_n032_weno9_surface_layer_t300_s2": {
+      "final_hour": {
+        "friction_velocity": 0.30146308392286303,
+        "peak_w2": 0.06148207746446133,
+        "resolved_tke_vertical_integral": 29.094790426890054,
+        "skewness_at_12_5m": -0.4204927832422658,
+        "surface_sensible_heat_flux": -16.559438959757486,
+        "surface_theta_kinematic_flux": -0.012460798009609182,
+        "theta_mean_rmse_0_200m": 0.46316907674493835,
+        "u_mean_rmse_0_200m": 1.1473109448297034,
+        "w2_at_12_5m": 0.004509203368797898,
+        "w3_at_12_5m": -0.00012732341565424576,
+        "w_variance_rmse_0_200m": 0.030222519686654195
+      },
+      "label": "Two faces · 300 s",
+      "penultimate_hour": {
+        "friction_velocity": 0.30677614162365596,
+        "peak_w2": 0.07178365811705589,
+        "resolved_tke_vertical_integral": 32.79378995895386,
+        "skewness_at_12_5m": -0.28147415165081796,
+        "surface_sensible_heat_flux": -16.68089009920756,
+        "surface_theta_kinematic_flux": -0.012552188492069643,
+        "theta_mean_rmse_0_200m": 0.36771693751202605,
+        "u_mean_rmse_0_200m": 1.1482609763805545,
+        "w2_at_12_5m": 0.0053815217688679695,
+        "w3_at_12_5m": -0.00011112100764876232,
+        "w_variance_rmse_0_200m": 0.03293329138545827
+      }
+    }
+  },
+  "profile_window": "8-9 h: equal mean of 30600 and 32400 s half-hour averages; sensitivity uses 7-8 h",
+  "reference": {
+    "peak_w2": 0.0774201685,
+    "surface_theta_flux": -0.009464155385983684,
+    "ustar": 0.26172700954261635,
+    "w2_at_12_5m": 0.077374840625
+  },
+  "rmse_definition": "Unweighted RMS at native model levels 0<z<=200 m, linearly interpolating fixed 1 m reference median only; descriptive, not uncertainty",
+  "scope": "Preliminary physical response; implicit SGS flux and dependent depth/budget diagnostics excluded pending repair.",
+  "series_window": "60 instantaneous samples: 28860:60:32400 s",
+  "sha256": {
+    "gabls1_n032_weno9_control/manifest.toml": "81acb2d108ad26bbdb4ea09f33f076086f43fd5c453bcb22e42aa5739e17c3ac",
+    "gabls1_n032_weno9_surface_layer_t100_s1/manifest.toml": "94f7e33eebf8e4f8d55c6b44258a9113681c4242f25c07308a8688c43d8d06e4",
+    "gabls1_n032_weno9_surface_layer_t300_s1/manifest.toml": "55303f8acdf2314bfdddddd7836117f9ccb8efb54e15c945fcfa0bb2e93a7eb5",
+    "gabls1_n032_weno9_surface_layer_t300_s2/manifest.toml": "2735630daa051a2a67f178ed1a6fc4fefabd2ac3c5737d9c74f9ae9650ac7c03",
+    "plot_source": "bd6cfbdbf250b2e03bc7b48077294680c9246c88c3cb48bf1e4e6138a5c8558f",
+    "reference": "b8a6f1a5c6abd934a18c006020e11366cd81c51299710694fa412176155b32d9"
+  }
+}
