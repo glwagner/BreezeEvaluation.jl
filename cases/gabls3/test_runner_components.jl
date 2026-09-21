@@ -71,6 +71,29 @@ end
     @test advective_theta_tendency(inputs, z, 21600f0) == 0
 end
 
+@testset "Table-free advective forcing preserves values and units" begin
+    event_times = (3600f0, 7200f0, 10800f0, 18000f0, 21600f0)
+    times = (0f0, 32400f0,
+             (time for event in event_times for time in
+              (prevfloat(event), event, nextfloat(event)))...)
+    heights = (0f0, 5f0, 100f0, 200f0, 800f0)
+    tendencies = (advective_u_tendency, advective_v_tendency,
+                  advective_theta_tendency, advective_q_tendency)
+    for tendency in tendencies, z in heights, time in times
+        @test tendency(inputs, z, time) === tendency(nothing, z, time)
+    end
+
+    # u/v: m s⁻²; θ: K s⁻¹; qᵗ: kg kg⁻¹ s⁻¹. The event-side checks above
+    # guard the discontinuities independently of these dimensional values.
+    @test advective_u_tendency(nothing, 200f0, 0f0) ≈ 5e-4 atol=1e-12
+    @test advective_v_tendency(nothing, 200f0, 0f0) == 0
+    @test advective_theta_tendency(nothing, 200f0, 0f0) ≈ -2.5e-5 atol=1e-12
+    @test advective_theta_tendency(nothing, 200f0, 3600f0) ≈ 7.5e-5 atol=1e-12
+    @test advective_q_tendency(nothing, 200f0, 7200f0) ≈ -8e-8 atol=1e-12
+    @test advective_u_tendency(nothing, 100f0, 0f0) ≈
+          0.5 * advective_u_tendency(nothing, 200f0, 0f0) atol=1e-12
+end
+
 @testset "MOST branches and caps" begin
     grid = RectilinearGrid(CPU(); size=(2, 2, 2), x=(0, 20), y=(0, 20), z=(0, 20))
     surface_q = Field{Center, Center, Nothing}(grid)

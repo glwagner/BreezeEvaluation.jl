@@ -225,10 +225,13 @@ function build_simulation(; run_directory=pwd())
     # its sign convention: Fu=-f*v_g and Fv=+f*u_g.
     geostrophic_u_forcing(x, y, z, t) = -coriolis_parameter * geostrophic_v(inputs, z, t)
     geostrophic_v_forcing(x, y, z, t) = +coriolis_parameter * geostrophic_u(inputs, z, t)
-    u_advection(x, y, z, t) = advective_u_tendency(inputs, z, t)
-    v_advection(x, y, z, t) = advective_v_tendency(inputs, z, t)
-    theta_advection(x, y, z, t) = advective_theta_tendency(inputs, z, t)
-    q_advection(x, y, z, t) = advective_q_tendency(inputs, z, t)
+    # These four prescribed tendencies do not use their first argument. Passing
+    # `nothing` keeps the exact forcing values and event times, without capturing
+    # the entire input-table object in each GPU forcing callable.
+    u_advection(x, y, z, t) = advective_u_tendency(nothing, z, t)
+    v_advection(x, y, z, t) = advective_v_tendency(nothing, z, t)
+    theta_advection(x, y, z, t) = advective_theta_tendency(nothing, z, t)
+    q_advection(x, y, z, t) = advective_q_tendency(nothing, z, t)
 
     damping_mask = PiecewiseLinearMask{:z}(center=domain_length, width=FT(200))
     vertical_sponge = Relaxation(rate=FT(1 / 300), mask=damping_mask)
