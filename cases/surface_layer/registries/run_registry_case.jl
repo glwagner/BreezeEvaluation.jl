@@ -40,6 +40,11 @@ try
         ENV["GABLS1_SLD_CLOSURE"] = case["closure"]
         ENV["GABLS1_SLD_FILTER_SECONDS"] = string(case["filter_seconds"])
         ENV["GABLS1_SLD_SUPPORT"] = string(case["support"])
+        if haskey(case, "resolved_flux_factor")
+            ENV["GABLS1_SLD_RESOLVED_FLUX_FACTOR"] = string(case["resolved_flux_factor"])
+        else
+            pop!(ENV, "GABLS1_SLD_RESOLVED_FLUX_FACTOR", nothing)
+        end
         ENV["GABLS1_SLD_STOP_SECONDS"] = string(registry["duration_s"])
         ENV["GABLS1_SLD_SEED"] = string(registry["seed"])
         ENV["GABLS1_SLD_DIAGNOSTICS"] = "1"

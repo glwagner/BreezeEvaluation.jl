@@ -160,10 +160,16 @@ function verify_gpu_evidence(directory, freeze_root, expected_manifest_sha)
     done = parse_fields(done_path)
     evidence = TOML.parsefile(evidence_path)
     evidence_sha = file_sha256(evidence_path)
-    require_check(get(done, "mode", "") == "gpu_full", "GPU evidence is not gpu_full")
+    mode = get(done, "mode", "")
+    require_check(mode in ("gpu_full", "gpu_resolved_flux_factor"), "GPU evidence has unrecognized scope")
     require_check(get(done, "evidence_sha256", "") == evidence_sha,
                   "GPU evidence sentinel hash mismatch")
-    require_check(evidence["validation_mode"] == "gpu_full", "CPU evidence is inadmissible")
+    require_check(evidence["validation_mode"] == mode, "GPU evidence mode mismatch")
+    if mode == "gpu_resolved_flux_factor"
+        require_check(get(evidence, "case_family", "") == "GABLS1", "factor gate is GABLS1 only")
+        require_check(get(evidence, "factors", []) == [1.0, 2.0], "factor gate did not test both factors")
+        require_check(get(evidence, "changed_path_checks_passed", false) === true, "factor checks missing")
+    end
     require_check(evidence["all_passed"] === true, "GPU evidence reports a failed check")
     require_check(evidence["architecture"] == "CUDAGPU", "GPU evidence is not CUDAGPU")
     require_check(evidence["cuda_functional"] === true, "CUDA was not functional")
@@ -185,6 +191,7 @@ function verify_gpu_evidence(directory, freeze_root, expected_manifest_sha)
                       "GPU evidence source mismatch: $relative")
     end
     return Dict("evidence_sha256" => evidence_sha,
+                "validation_mode" => mode,
                 "source_manifest_entries" => entries,
                 "passed_checks" => evidence["passed_checks"])
 end
@@ -855,6 +862,13 @@ function verify_provenance(family, run_directory, freeze_root, registry, scienti
     run_text = read(joinpath(provenance, "run.txt"), String)
     require_check(occursin("case_id: $(scientific_registry["case_id"])", run_text),
                   "run provenance case_id mismatch")
+    if haskey(scientific_registry, "resolved_flux_factor")
+        factor_lines = filter(line -> startswith(line, "resolved_flux_factor: "), split(run_text, '\n'))
+        require_check(length(factor_lines) == 1, "missing/duplicate resolved-flux factor provenance")
+        factor = parse(Float64, split(only(factor_lines), ": "; limit=2)[2])
+        require_check(factor == scientific_registry["resolved_flux_factor"],
+                      "resolved-flux factor differs from scientific registry")
+    end
     digest_table = family == "GABLS1" ?
         Dict("theta_initial_sha256" => scientific_registry["paired_initial_theta_sha256"]) :
         scientific_registry["paired_initial_state_sha256"]
@@ -885,6 +899,9 @@ function scientific_case_settings(registry, attempt)
     case = scientific["cases"][index]
     require_check(case["case_id"] == attempt["case_id"], "registry case/index mismatch")
     common = Dict{String, Any}("case_id" => case["case_id"], "closure" => case["closure"])
+    if haskey(case, "resolved_flux_factor")
+        common["resolved_flux_factor"] = case["resolved_flux_factor"]
+    end
     if registry["case_family"] == "GABLS1"
         common["paired_initial_theta_sha256"] = scientific["paired_initial_theta_sha256"]
     else
@@ -928,6 +945,17 @@ function verify_analysis_freeze(registry, program_path)
                 "manifest_entries" => entries, "program_sha256" => file_sha256(program_path))
 end
 
+function verify_raw_factor_metadata(run_directory, case_id, factor)
+    for kind in ("initial", "statistics", "series")
+        raw_path = joinpath(run_directory, "$(case_id)_diag_$(kind).jld2")
+        jldopen(raw_path, "r") do raw
+            require_check(haskey(raw, "metadata/resolved_flux_factor"), "raw factor metadata missing")
+            require_check(raw["metadata/resolved_flux_factor"] == factor, "raw factor metadata mismatch")
+        end
+    end
+    return nothing
+end
+
 function export_scientific_case(attempt_registry_path, case_id, export_root;
                                 program_path=abspath(PROGRAM_FILE))
     registry = load_attempt_registry(attempt_registry_path)
@@ -945,7 +973,16 @@ function export_scientific_case(attempt_registry_path, case_id, export_root;
                   "GPU evidence entry count does not match registry")
     analysis = verify_analysis_freeze(registry, program_path)
     settings = scientific_case_settings(registry, attempt)
+    if gpu["validation_mode"] == "gpu_resolved_flux_factor"
+        require_check(registry["case_family"] == "GABLS1" &&
+                      get(settings.case, "resolved_flux_factor", 0) in (1, 2) &&
+                      settings.case["support"] == 1 && settings.case["filter_seconds"] == 300,
+                      "factor GPU gate cannot admit another campaign")
+    end
     run_directory = abspath(attempt["run_directory"])
+    if haskey(settings.case, "resolved_flux_factor")
+        verify_raw_factor_metadata(run_directory, case_id, settings.case["resolved_flux_factor"])
+    end
     completion = verify_completion(run_directory, case_id)
     verify_attempt_identity(attempt, completion, settings.path)
     provenance_audit = verify_provenance(registry["case_family"], run_directory,
@@ -966,6 +1003,7 @@ function export_scientific_case(attempt_registry_path, case_id, export_root;
         "source_freeze_manifest_entries" => source_entries,
         "scientific_registry_path" => settings.path,
         "scientific_registry_sha256" => registry["scientific_registry_sha256"],
+        "scientific_case_settings" => settings.case,
         "gpu_validation" => gpu, "analysis_freeze" => analysis,
         "completion" => completion, "provenance_audit" => provenance_audit,
         "queue_state_used_for_admission" => false)

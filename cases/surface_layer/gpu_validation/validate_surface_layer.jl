@@ -44,6 +44,7 @@ guarded_moisture_flux(x, y) = ifelse(x < 20, 0.25f-12, 2f-8)
 
 function build_contract_model(architecture; moist, support, closure_enabled=true,
                               energy_flux=:signed, filter_timescale=0.2f0,
+                              resolved_flux_factor=1,
                               return_fixture=false)
     FT = Float32
     Oceananigans.defaults.FloatType = FT
@@ -71,7 +72,7 @@ function build_contract_model(architecture; moist, support, closure_enabled=true
     end
     guards = moist ? (ρθ=1f-8, ρqᵉ=1f-12) : (ρθ=1f-8,)
     closure = closure_enabled ? SurfaceLayerDiffusivity(FT;
-        filter_timescale, support, minimum_scalar_fluxes=guards,
+        filter_timescale, support, resolved_flux_factor, minimum_scalar_fluxes=guards,
         maximum_viscosity=20f0, maximum_diffusivity=20f0) : nothing
     microphysics = moist ?
         SaturationAdjustment(equilibrium=WarmPhaseEquilibrium()) : nothing
@@ -379,13 +380,13 @@ function require_identical_states(reference, restarted; horizontal_size=nothing)
     return nothing
 end
 
-function serialized_restart_check(architecture; moist, support, directory)
+function serialized_restart_check(architecture; moist, support, directory, resolved_flux_factor=1)
     mkpath(directory)
-    reference_model = build_contract_model(architecture; moist, support)
+    reference_model = build_contract_model(architecture; moist, support, resolved_flux_factor)
     reference = Simulation(reference_model; Δt=0.1f0, stop_iteration=4)
     run!(reference)
 
-    split_model = build_contract_model(architecture; moist, support)
+    split_model = build_contract_model(architecture; moist, support, resolved_flux_factor)
     split = Simulation(split_model; Δt=0.1f0, stop_iteration=2)
     prefix = "serialized_$(moist ? "moist" : "dry")_s$(support)"
     split.output_writers[:checkpoint] = Checkpointer(split_model;
@@ -398,7 +399,7 @@ function serialized_restart_check(architecture; moist, support, directory)
     checkpoint_path = joinpath(directory, only(checkpoint_files))
     require_contract(filesize(checkpoint_path) > 0, "serialized checkpoint is empty")
 
-    restarted_model = build_contract_model(architecture; moist, support)
+    restarted_model = build_contract_model(architecture; moist, support, resolved_flux_factor)
     restarted = Simulation(restarted_model; Δt=0.1f0, stop_iteration=4)
     restarted.output_writers[:checkpoint] = Checkpointer(restarted_model;
         prefix="restored_$prefix", dir=directory,

@@ -146,6 +146,9 @@ function build_simulation(; run_directory=pwd())
                                       ("none", "surface_layer"), "none")
     filter_seconds = parse(Float64, get(ENV, "GABLS1_SLD_FILTER_SECONDS", "300"))
     support = parse(Int, get(ENV, "GABLS1_SLD_SUPPORT", "1"))
+    resolved_flux_factor = parse(Float64, get(ENV, "GABLS1_SLD_RESOLVED_FLUX_FACTOR", "1"))
+    isfinite(resolved_flux_factor) && resolved_flux_factor >= 0 ||
+        error("GABLS1_SLD_RESOLVED_FLUX_FACTOR must be finite and nonnegative")
     filter_seconds > 0 || error("GABLS1_SLD_FILTER_SECONDS must be positive")
     support in (1, 2) || error("GABLS1_SLD_SUPPORT must be 1 or 2")
     stop_time = parse(Float64, get(ENV, "GABLS1_SLD_STOP_SECONDS", "32400"))
@@ -182,7 +185,7 @@ function build_simulation(; run_directory=pwd())
     forcing = (; u=geostrophic.u, v=geostrophic.v, w=sponge)
     scheme = WENO(order=9)
     closure = closure_name == "surface_layer" ? SurfaceLayerDiffusivity(FT;
-        filter_timescale=filter_seconds, support,
+        filter_timescale=filter_seconds, support, resolved_flux_factor,
         minimum_scalar_fluxes=(ρθ=FT(1e-8),)) : nothing
 
     model = AtmosphereModel(grid; dynamics, coriolis, microphysics=nothing,
@@ -208,9 +211,14 @@ function build_simulation(; run_directory=pwd())
 
     closure_id = closure_name == "surface_layer" ?
         @sprintf("surface_layer_t%03d_s%d", round(Int, filter_seconds), support) : "control"
+    # Explicit sensitivity runs have unique identities, including the factor-one
+    # matched baseline. Unscaled covariance/flux diagnostics remain physical.
+    if closure_name == "surface_layer" && haskey(ENV, "GABLS1_SLD_RESOLVED_FLUX_FACTOR")
+        closure_id *= "_rf" * replace(string(resolved_flux_factor), "." => "p")
+    end
     case_id = @sprintf("gabls1_n%03d_weno9_%s", nx, closure_id)
     mkpath(run_directory)
-    settings = (; nx, spacing, closure_name, filter_seconds, support, stop_time,
+    settings = (; nx, spacing, closure_name, filter_seconds, support, resolved_flux_factor, stop_time,
         seed, theta_initial_sha256, initial_dt, wizard_cfl=0.7,
         architecture=summary(architecture),
         diagnostics_enabled, surface_law_source=FROZEN_SURFACE_LAW)
