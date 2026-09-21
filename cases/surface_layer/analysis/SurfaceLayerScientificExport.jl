@@ -2,7 +2,8 @@ module SurfaceLayerScientificExport
 
 export collect_admitted_exports, export_fixture, export_scientific_case,
        file_sha256, load_attempt_registry, verify_completion,
-       verify_hash_manifest, GABLS1_PROFILE_TIMES, GABLS1_INITIAL_TIMES,
+       verify_hash_manifest, GABLS1_PROFILE_TIMES, GABLS1_STATISTICS_TIMES,
+       GABLS1_INITIAL_TIMES,
        GABLS1_SERIES_TIMES, GABLS3_PROFILE_TIMES, GABLS3_SERIES_TIMES
 
 using Dates
@@ -13,6 +14,7 @@ using Statistics
 using TOML
 
 const GABLS1_PROFILE_TIMES = collect(1800.0:1800.0:32400.0)
+const GABLS1_STATISTICS_TIMES = [0.0; GABLS1_PROFILE_TIMES]
 const GABLS1_INITIAL_TIMES = [0.0]
 const GABLS1_SERIES_TIMES = collect(0.0:60.0:32400.0)
 const GABLS1_FINAL_HOUR_TIMES = [30600.0, 32400.0]
@@ -100,6 +102,7 @@ const SERIES_UNITS = Dict(
     "surface_layer_filtered_surface_v_flux" => "m^2 s^-2",
     "surface_layer_filtered_friction_velocity" => "m s^-1",
     "surface_layer_filtered_surface_flux_ρθ" => "K m s^-1",
+    "surface_layer_filtered_surface_flux_ρqᵛ" => "m s^-1",
     "surface_layer_filtered_surface_flux_ρqᵉ" => "m s^-1")
 
 file_sha256(path) = bytes2hex(open(sha256, path))
@@ -458,6 +461,26 @@ function require_same_profile_contract(initial, averaged)
     end
 end
 
+function separate_gabls1_averages(initial, statistics)
+    require_same_profile_contract(initial, statistics)
+    require_check([record.time for record in statistics.records] == GABLS1_STATISTICS_TIMES,
+                  "GABLS1 statistics writer has wrong initial/averaged times")
+    require_check([record.time for record in initial.records] == GABLS1_INITIAL_TIMES,
+                  "GABLS1 separate initial writer has wrong time")
+    data = Dict{String, Dict{Float64, Vector{Float64}}}()
+    information = Dict{String, Any}()
+    for name in keys(statistics.data)
+        require_check(statistics.data[name][0.0] == initial.data[name][0.0],
+                      "GABLS1 statistics writer t=0 is not the separate initial $name")
+        data[name] = Dict(time => statistics.data[name][time]
+                          for time in GABLS1_PROFILE_TIMES)
+        information[name] = copy(statistics.information[name])
+        information[name]["records"] = length(GABLS1_PROFILE_TIMES)
+    end
+    return (; records=statistics.records[2:end], data, information,
+            metadata=statistics.metadata)
+end
+
 function write_profiles(path, records, data, information, nz, vertical_extent,
                         record_kind, window_start)
     open(path, "w") do io
@@ -644,8 +667,8 @@ function export_raw(family, run_directory, case_id, destination, nz, vertical_ex
 
     if family == "GABLS1"
         initial = read_profile_file(paths["initial"], GABLS1_INITIAL_TIMES, nz)
-        profiles = read_profile_file(paths["profiles"], GABLS1_PROFILE_TIMES, nz)
-        require_same_profile_contract(initial, profiles)
+        statistics = read_profile_file(paths["profiles"], GABLS1_STATISTICS_TIMES, nz)
+        profiles = separate_gabls1_averages(initial, statistics)
         series = read_series_file(paths["series"], GABLS1_SERIES_TIMES, series_unit)
         audit_closure_outputs(family, closure, profiles.data, series.values, profiles.metadata)
         profile_path = joinpath(destination, "profiles.csv")
@@ -669,11 +692,15 @@ function export_raw(family, run_directory, case_id, destination, nz, vertical_ex
             "profiles" => Dict("initial_records" => 1, "averaged_records" => 18,
                 "total_records" => 19, "initial_times_s" => GABLS1_INITIAL_TIMES,
                 "averaged_times_s" => GABLS1_PROFILE_TIMES, "variables" => length(profiles.data),
+                "statistics_writer_records" => 19,
+                "statistics_writer_times_s" => GABLS1_STATISTICS_TIMES,
+                "statistics_writer_initial_exact_duplicate" => true,
                 "all_finite" => true, "final_time_s" => 32400.0),
             "series" => Dict("records" => 541, "times_s" => GABLS1_SERIES_TIMES,
                 "variables" => length(series.values), "all_finite" => true,
                 "final_time_s" => 32400.0))
         semantics = Dict("t0" => "separate instantaneous initial profile",
+            "statistics_writer_t0" => "Oceananigans initialization record, audited as exact duplicate of the separate initial profile and omitted from profiles.csv",
             "positive_times" => "true average over the preceding 1800 seconds",
             "penultimate_hour_source_times_s" => GABLS1_PENULTIMATE_HOUR_TIMES,
             "final_hour_source_times_s" => GABLS1_FINAL_HOUR_TIMES)

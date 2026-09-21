@@ -48,7 +48,11 @@ Unavailable diagnostics remain absent and are described by availability metadata
 never converted to physical zero.
 
 GABLS1 preserves a separate instantaneous initial profile, 18 true preceding-half-hour
-averages at 1800:1800:32400 seconds, and 541 one-minute series records. Its penultimate and
+averages at 1800:1800:32400 seconds, and 541 one-minute series records. Oceananigans also
+writes an iteration-zero record into the averaged statistics file. The exporter requires
+that record to exactly match every variable in the separate instantaneous initial file,
+records its existence in the manifest, and excludes only that verified duplicate from
+`profiles.csv`; accumulation begins at t=0 for the first 0–1800 s window. Its penultimate and
 final hour products are equal means of `(27000, 28800)` and `(30600, 32400)` respectively.
 
 GABLS3 preserves 109 instantaneous profiles at 0:300:32400 seconds and 3241 series and

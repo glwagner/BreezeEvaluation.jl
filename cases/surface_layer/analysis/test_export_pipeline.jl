@@ -8,14 +8,15 @@ using .SurfaceLayerScientificExport
 using .SurfaceLayerAnalysisData
 
 function write_profiles(path, times, nz; metadata_available=false, bad_shape=false,
-                        nonfinite=false)
+                        nonfinite=false, initial_offset=0f0)
     jldopen(path, "w") do file
         file["metadata/surface_layer_diffusivity_available"] = metadata_available
         file["metadata/test_fixture"] = true
         for (index, time) in enumerate(times)
             key = string(index)
             file["timeseries/t/$key"] = time
-            center = fill(Float32(time), 1, 1, bad_shape ? nz - 1 : nz)
+            center = fill(Float32(time) + (index == 1 ? initial_offset : 0f0),
+                          1, 1, bad_shape ? nz - 1 : nz)
             face = fill(Float32(time + 1), 1, 1, nz + 1)
             nonfinite && index == length(times) && (center[1] = Float32(NaN))
             file["timeseries/u_mean/$key"] = center
@@ -55,13 +56,15 @@ function write_points(path, times)
     end
 end
 
-function make_gabls1_fixture(root, case_id; profile_times=GABLS1_PROFILE_TIMES,
-                             bad_shape=false, nonfinite=false)
+function make_gabls1_fixture(root, case_id; profile_times=GABLS1_STATISTICS_TIMES,
+                             bad_shape=false, nonfinite=false,
+                             mismatched_statistics_initial=false)
     mkpath(root)
     prefix = joinpath(root, "$(case_id)_diag")
     write_profiles(prefix * "_initial.jld2", GABLS1_INITIAL_TIMES, 2)
     write_profiles(prefix * "_statistics.jld2", profile_times, 2;
-                   bad_shape, nonfinite)
+                   bad_shape, nonfinite,
+                   initial_offset=mismatched_statistics_initial ? 99f0 : 0f0)
     write_series(prefix * "_series.jld2", GABLS1_SERIES_TIMES)
 end
 
@@ -83,6 +86,8 @@ end
         @test manifest["export_verified"] === false
         @test manifest["fixture_non_scientific"] === true
         @test manifest["record_audit"]["profiles"]["total_records"] == 19
+        @test manifest["record_audit"]["profiles"]["statistics_writer_records"] == 19
+        @test manifest["record_audit"]["profiles"]["statistics_writer_initial_exact_duplicate"] === true
         @test length(readlines(joinpath(destination, "profiles.csv"))) == 1 + 19 * 5
         @test length(readlines(joinpath(destination, "series.csv"))) == 1 + 541
         final_lines = readlines(joinpath(destination, "profiles_final_hour_long.csv"))
@@ -134,11 +139,18 @@ end
     mktempdir() do root
         case_id = "fixture_incomplete"
         run = joinpath(root, "run")
-        make_gabls1_fixture(run, case_id; profile_times=GABLS1_PROFILE_TIMES[1:end-1])
+        make_gabls1_fixture(run, case_id; profile_times=GABLS1_STATISTICS_TIMES[1:end-1])
         destination = joinpath(root, "export")
         @test_throws ErrorException export_fixture(
             "GABLS1", run, case_id, destination, 2, 400.0, "none")
         @test !ispath(destination)
+    end
+    mktempdir() do root
+        case_id = "fixture_statistics_initial_mismatch"
+        run = joinpath(root, "run")
+        make_gabls1_fixture(run, case_id; mismatched_statistics_initial=true)
+        @test_throws ErrorException export_fixture(
+            "GABLS1", run, case_id, joinpath(root, "export"), 2, 400.0, "none")
     end
     mktempdir() do root
         case_id = "fixture_nonfinite"
@@ -262,6 +274,10 @@ end
         "surface_layer_face1_ρθ_deficit") == "K m s^-1"
     @test SurfaceLayerScientificExport.series_unit(
         "surface_layer_face2_ρqᵉ_deficit") == "m s^-1"
+    @test SurfaceLayerScientificExport.series_unit(
+        "surface_layer_filtered_surface_flux_ρqᵛ") == "m s^-1"
+    @test SurfaceLayerScientificExport.series_unit(
+        "surface_layer_face2_ρqᵛ_filtered_scalar_mean_w_mean_transport") == "m s^-1"
     expected_units = Dict(
         "surface_layer_face1_filtered_u_mean" => "m s^-1",
         "surface_layer_face1_filtered_v_mean" => "m s^-1",
