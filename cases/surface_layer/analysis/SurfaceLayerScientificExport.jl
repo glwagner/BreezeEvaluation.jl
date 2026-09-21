@@ -201,7 +201,7 @@ function verify_gpu_evidence_for_registry(registry, freeze_root)
                       "1cc45c554fe4675a5ffde2dc6bfe70953d9c5294f9df4e6fe76b6f1f033886ac",
                   "changed-path admission is only for the corrected GABLS3 source")
     reader = "/shared/home/greg/review-coordination/admit_gabls3_surface_q_gpu_gate_131ad9b-v1.jl"
-    reader_sha = "4705a797e30f0a7096ddb49439ac95952f26f5d53af219ec9bfd19a66b79d327"
+    reader_sha = "55c69ddc2f824a8806d302ee5f136da6c4affd4e163506b4a360dba0405b22d7"
     require_check(registry["gpu_admission_reader_path"] == reader &&
                   registry["gpu_admission_reader_sha256"] == reader_sha &&
                   file_sha256(reader) == reader_sha,
