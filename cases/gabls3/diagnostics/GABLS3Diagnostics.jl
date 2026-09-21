@@ -248,6 +248,7 @@ function build_gabls3_diagnostics(model, coefficient, surface_temperature, input
 
     metadata = merge(base.metadata, (;
         diagnostic_case="GABLS3 revised nine-hour LES",
+        sgs_flux_diagnostic_definition="For SurfaceLayerDiffusivity, evaluate the full constitutive vertical flux with explicit-discretization operators for output only; the model retains vertically implicit diffusion",
         averaging_definition="instantaneous horizontal reductions; no temporal averaging",
         surface_law="coupled moist bulk-Richardson MOST; stable psi_m=psi_h=-5 zeta; unstable Businger-Dyer gamma=16",
         scalar_reference_height_m=inputs.scalar_reference_height,

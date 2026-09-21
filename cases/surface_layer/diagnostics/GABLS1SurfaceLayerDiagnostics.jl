@@ -31,6 +31,7 @@ function install_gabls1_surface_layer_diagnostics!(simulation;
     series_outputs = merge(base.series_outputs, surface_layer.series)
     metadata = merge(base.metadata, surface_layer.metadata, (;
         diagnostic_case="GABLS1 matched SurfaceLayerDiffusivity evaluation",
+        sgs_flux_diagnostic_definition="For SurfaceLayerDiffusivity, evaluate the full constitutive vertical flux with explicit-discretization operators for output only; the model retains vertically implicit diffusion",
         initial_profile_definition="separate instantaneous record at t=0",
         averaged_profile_definition="true non-overlapping 30-minute averages",
         required_final_hour_source_times_seconds=(30600, 32400),

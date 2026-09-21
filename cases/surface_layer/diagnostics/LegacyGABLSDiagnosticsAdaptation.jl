@@ -42,6 +42,38 @@ const ORIGINAL_PROFILE_ENTRY =
     "sgs_resolved_tke_dissipation=sgs_dissipation.sgs_resolved_tke_dissipation,"
 const ADAPTED_PROFILE_ENTRY = "sgs_dissipation.profiles...,"
 
+# The frozen helper evaluates SGS fluxes via the explicit-tendency path. For a vertically
+# implicit SLD closure, Oceananigans elides the interior vertical flux from that path;
+# the constitutive flux is still applied by the implicit solver. This adaptation changes
+# only diagnostic evaluation, never the model closure or its time discretization.
+const SGS_DIAGNOSTIC_IMPORT = """using Breeze.TurbulenceClosures: SurfaceLayerDiffusivity
+using Oceananigans.TurbulenceClosures: ExplicitTimeDiscretization
+
+@inline diagnostic_sgs_discretization(closure) = time_discretization(closure)
+@inline diagnostic_sgs_discretization(::SurfaceLayerDiffusivity) = ExplicitTimeDiscretization()
+
+"""
+
+const SGS_DIAGNOSTIC_CALLS = (
+    "@inline function scalar_sgs_flux(i, j, k, grid, density, closure, closure_fields,\n" *
+    "                                 id, scalar, clock, model_fields, buoyancy)\n" *
+    "    discretization = time_discretization(closure)" =>
+    "@inline function scalar_sgs_flux(i, j, k, grid, density, closure, closure_fields,\n" *
+    "                                 id, scalar, clock, model_fields, buoyancy)\n" *
+    "    discretization = diagnostic_sgs_discretization(closure)",
+    "@inline function u_sgs_flux(i, j, k, grid, density, closure, closure_fields,\n" *
+    "                            clock, model_fields)\n" *
+    "    discretization = time_discretization(closure)" =>
+    "@inline function u_sgs_flux(i, j, k, grid, density, closure, closure_fields,\n" *
+    "                            clock, model_fields)\n" *
+    "    discretization = diagnostic_sgs_discretization(closure)",
+    "@inline function v_sgs_flux(i, j, k, grid, density, closure, closure_fields,\n" *
+    "                            clock, model_fields)\n" *
+    "    discretization = time_discretization(closure)" =>
+    "@inline function v_sgs_flux(i, j, k, grid, density, closure, closure_fields,\n" *
+    "                            clock, model_fields)\n" *
+    "    discretization = diagnostic_sgs_discretization(closure)")
+
 const TKE_PRODUCTION_PROFILE_ADAPTATIONS = (
     "Field(@at (C, C, C) resolved_shear_production_face)" =>
         "plane_mean(Field(@at (C, C, C) resolved_shear_production_face))",
@@ -72,12 +104,19 @@ function load_adapted_gabls_diagnostics!(parent::Module, source_path)
                            ADAPTED_OPTIONAL_DISSIPATION, "optional dissipation")
     adapted = replace_once(adapted, ORIGINAL_PROFILE_ENTRY,
                            ADAPTED_PROFILE_ENTRY, "profile tuple")
+    adapted = replace_once(adapted, "const C = Center",
+                           SGS_DIAGNOSTIC_IMPORT * "const C = Center",
+                           "physical SGS diagnostic dispatch")
+    for (index, adaptation) in enumerate(SGS_DIAGNOSTIC_CALLS)
+        adapted = replace_once(adapted, first(adaptation), last(adaptation),
+                               "physical SGS diagnostic call $index")
+    end
     for (index, adaptation) in enumerate(TKE_PRODUCTION_PROFILE_ADAPTATIONS)
         adapted = replace_once(adapted, first(adaptation), last(adaptation),
                                "TKE production profile reduction $index")
     end
     Base.include_string(parent, adapted, source_path * "#surface-layer-adapted")
-    return (; source_hash, adaptation_count=8)
+    return (; source_hash, adaptation_count=12)
 end
 
 end
