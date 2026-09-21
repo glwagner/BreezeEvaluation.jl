@@ -8,7 +8,7 @@
 
 set -euo pipefail
 
-: "${SLD_CORE_FREEZE_ROOT:?set the sealed 3e1e3c5 GPU-contract snapshot}"
+: "${SLD_CORE_FREEZE_ROOT:?set the repaired sealed core GPU-contract snapshot}"
 : "${SLD_CORE_GPU_EVIDENCE:?set its admitted gpu_full evidence directory}"
 : "${SLD_NEUTRAL_FREEZE_ROOT:?set the separate read-only neutral snapshot}"
 : "${SLD_NEUTRAL_OUTPUT:?set a new neutral throughput output directory}"

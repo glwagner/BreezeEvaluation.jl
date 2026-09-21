@@ -95,6 +95,23 @@ function raw_records(path, name)
     end
 end
 
+@testset "Archive-aware provenance helpers" begin
+    mktempdir() do repository
+        @test NeutralRunner.repository_command_output(repository, "status") ==
+              "UNAVAILABLE: immutable source archive has no Git metadata"
+    end
+    mktempdir() do root
+        evaluation = joinpath(root, "source", "BreezeEvaluation.jl")
+        breeze = joinpath(root, "source", "Breeze.jl")
+        mkpath(evaluation)
+        mkpath(breeze)
+        @test isnothing(NeutralRunner.source_snapshot_root(evaluation, breeze))
+        write(joinpath(root, "source_sha256.txt"), "fixture\n")
+        @test NeutralRunner.source_snapshot_root(evaluation, breeze) == root
+        @test isnothing(NeutralRunner.source_snapshot_root(evaluation, joinpath(root, "other")))
+    end
+end
+
 @testset "Neutral registry and canonical contract" begin
     registry = TOML.parsefile(joinpath(@__DIR__, "neutral_sld_2case.toml"))
     @test registry["expected_case_count"] == 2

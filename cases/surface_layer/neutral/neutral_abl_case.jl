@@ -120,31 +120,70 @@ function initial_state_digests(initial)
         w_sha256=array_digest(initial.w))
 end
 
+function repository_command_output(repository, args...)
+    ispath(joinpath(repository, ".git")) ||
+        return "UNAVAILABLE: immutable source archive has no Git metadata"
+    command = Cmd(["git", "-C", repository, args...])
+    return try
+        readchomp(pipeline(command; stderr=devnull))
+    catch error
+        "UNAVAILABLE: $error"
+    end
+end
+
+function source_snapshot_root(evaluation_repository, breeze_repository)
+    evaluation_parent = dirname(evaluation_repository)
+    dirname(breeze_repository) == evaluation_parent || return nothing
+    root = dirname(evaluation_parent)
+    return isfile(joinpath(root, "source_sha256.txt")) ? root : nothing
+end
+
 function capture_provenance(directory, case_id, settings)
     provenance = joinpath(directory, "provenance")
     mkpath(provenance)
     breeze_repository = pkgdir(Breeze)
-    git(repository, args...) = try
-        readchomp(Cmd(["git", "-C", repository, args...]))
-    catch error
-        "UNAVAILABLE: $error"
-    end
     filehash(path) = bytes2hex(open(sha256, path))
     open(joinpath(provenance, "git.txt"), "w") do io
-        println(io, "commit: ", git(EVALUATION_REPO, "rev-parse", "HEAD"))
-        println(io, "status:\n", git(EVALUATION_REPO, "status", "--short"))
+        println(io, "commit: ", repository_command_output(
+            EVALUATION_REPO, "rev-parse", "HEAD"))
+        println(io, "status:\n", repository_command_output(
+            EVALUATION_REPO, "status", "--short"))
     end
     open(joinpath(provenance, "breeze_git.txt"), "w") do io
         println(io, "repository: ", breeze_repository)
-        println(io, "commit: ", git(breeze_repository, "rev-parse", "HEAD"))
-        println(io, "tree: ", git(breeze_repository, "rev-parse", "HEAD^{tree}"))
-        println(io, "branch: ", git(breeze_repository, "rev-parse", "--abbrev-ref", "HEAD"))
-        println(io, "status:\n", git(breeze_repository, "status", "--short"))
+        println(io, "commit: ", repository_command_output(
+            breeze_repository, "rev-parse", "HEAD"))
+        println(io, "tree: ", repository_command_output(
+            breeze_repository, "rev-parse", "HEAD^{tree}"))
+        println(io, "branch: ", repository_command_output(
+            breeze_repository, "rev-parse", "--abbrev-ref", "HEAD"))
+        println(io, "status:\n", repository_command_output(
+            breeze_repository, "status", "--short"))
         println(io, "untracked_files:\n",
-                git(breeze_repository, "ls-files", "--others", "--exclude-standard"))
+                repository_command_output(
+                    breeze_repository, "ls-files", "--others", "--exclude-standard"))
     end
     write(joinpath(provenance, "breeze_uncommitted.diff"),
-          git(breeze_repository, "diff", "HEAD"))
+          repository_command_output(breeze_repository, "diff", "HEAD"))
+    snapshot_root = source_snapshot_root(EVALUATION_REPO, breeze_repository)
+    open(joinpath(provenance, "source_snapshot.txt"), "w") do io
+        if isnothing(snapshot_root)
+            println(io, "source_snapshot: UNAVAILABLE: development worktree")
+        else
+            manifest = joinpath(snapshot_root, "source_sha256.txt")
+            readme = joinpath(snapshot_root, "README.md")
+            println(io, "source_snapshot: ", snapshot_root)
+            println(io, "source_manifest_sha256: ", filehash(manifest))
+            println(io, "source_manifest_entries: ", length(readlines(manifest)))
+            cp(manifest, joinpath(provenance, "source_snapshot_sha256.txt"); force=true)
+            if isfile(readme)
+                println(io, "source_snapshot_readme_sha256: ", filehash(readme))
+                cp(readme, joinpath(provenance, "source_snapshot_README.md"); force=true)
+            else
+                println(io, "source_snapshot_readme_sha256: MISSING")
+            end
+        end
+    end
     open(joinpath(provenance, "run.txt"), "w") do io
         println(io, "case_id: ", case_id)
         println(io, "julia: ", Base.julia_cmd()[1])
