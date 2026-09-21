@@ -327,13 +327,55 @@ function host_prognostic_state(model)
     return flatten_state!(Dict{String, Any}(), "", Oceananigans.prognostic_state(model))
 end
 
-function require_identical_states(reference, restarted)
+function state_difference_report(reference, restarted; horizontal_size=nothing)
+    mismatched = String[]
+    for key in sort!(collect(keys(reference)))
+        original, continued = reference[key], restarted[key]
+        original == continued && continue
+        push!(mismatched, key)
+        length(mismatched) > 24 && continue
+        if original isa AbstractArray && continued isa AbstractArray &&
+           size(original) == size(continued)
+            different = original .!= continued
+            index = findfirst(different)
+            differing_elements = count(different)
+            maximum_absolute_difference = maximum(abs.(original .- continued))
+            horizontal_interior_differences = "not_mapped"
+            horizontal_halo_differences = "not_mapped"
+            if horizontal_size !== nothing && ndims(different) >= 2
+                nx, ny = horizontal_size
+                mx, my = size(different, 1) - nx, size(different, 2) - ny
+                if mx >= 0 && my >= 0 && iseven(mx) && iseven(my)
+                    x = (mx ÷ 2 + 1):(mx ÷ 2 + nx)
+                    y = (my ÷ 2 + 1):(my ÷ 2 + ny)
+                    tail = ntuple(_ -> Colon(), ndims(different) - 2)
+                    horizontal_interior_differences = count(view(different, x, y, tail...))
+                    horizontal_halo_differences = differing_elements -
+                                                  horizontal_interior_differences
+                end
+            end
+            println("SLD_RESTART_STATE_MISMATCH key=", key,
+                    " size=", size(original), " differing_elements=", differing_elements,
+                    " horizontal_interior_differences=", horizontal_interior_differences,
+                    " horizontal_halo_differences=", horizontal_halo_differences,
+                    " maximum_absolute_difference=", maximum_absolute_difference,
+                    " first_index=", index, " first_reference=", original[index],
+                    " first_restarted=", continued[index])
+        else
+            println("SLD_RESTART_STATE_MISMATCH key=", key,
+                    " reference_value=", original, " restarted_value=", continued)
+        end
+    end
+    println("SLD_RESTART_STATE_MISMATCH_COUNT total=", length(mismatched))
+    return mismatched
+end
+
+function require_identical_states(reference, restarted; horizontal_size=nothing)
     require_contract(Set(keys(reference)) == Set(keys(restarted)),
                      "restart changed prognostic-state keys")
-    for key in keys(reference)
-        require_contract(reference[key] == restarted[key],
-                         "serialized restart mismatch at $key")
-    end
+    mismatched = state_difference_report(reference, restarted; horizontal_size)
+    isempty(mismatched) || error("serialized restart mismatch at $(first(mismatched))")
+    PASS_COUNT[] += length(reference)
     return nothing
 end
 
@@ -450,9 +492,9 @@ function audit_reduced_file(path, expected_time)
     return nothing
 end
 
-function gabls3_serialized_restart_contract(directory)
+function gabls3_serialized_restart_contract(directory; architecture_name="gpu")
     mkpath(directory)
-    ENV["GABLS3_ARCH"] = "gpu"
+    ENV["GABLS3_ARCH"] = architecture_name
     ENV["GABLS3_NX"] = "64"
     ENV["GABLS3_SCHEME"] = "weno9"
     ENV["GABLS3_CLOSURE"] = "surface_layer"
@@ -472,7 +514,7 @@ function gabls3_serialized_restart_contract(directory)
     reference_digest = reference.settings.initial_state_sha256
     reference = nothing
     GC.gc(true)
-    CUDA.reclaim()
+    architecture_name == "gpu" && CUDA.reclaim()
 
     split_directory = joinpath(directory, "split")
     split = GABLS3ValidationRunner.build_simulation(; run_directory=split_directory)
@@ -488,9 +530,11 @@ function gabls3_serialized_restart_contract(directory)
                      "GABLS3 runner did not serialize its iteration-1 checkpoint")
     require_contract(split.settings.initial_state_sha256 == reference_digest,
                      "GABLS3 split branch did not use the paired initial arrays")
+    split_state = host_prognostic_state(split.model)
+    split_surface_q = minimum(split.surface_q)
     split = nothing
     GC.gc(true)
-    CUDA.reclaim()
+    architecture_name == "gpu" && CUDA.reclaim()
 
     restart_directory = joinpath(directory, "restarted")
     restarted = GABLS3ValidationRunner.build_simulation(; run_directory=restart_directory)
@@ -499,6 +543,7 @@ function gabls3_serialized_restart_contract(directory)
     set!(restarted.simulation; checkpoint=checkpoint_path)
     require_contract(iteration(restarted.simulation) == 1,
                      "GABLS3 runner checkpoint did not restore iteration 1")
+    require_identical_states(split_state, host_prognostic_state(restarted.model))
     # Oceananigans checkpoints the model clock (including its applied last_Δt),
     # but not Simulation.Δt. The step-zero wizard has already raised Δt from the
     # constructor value; restoring only the model would continue at a different
@@ -510,10 +555,34 @@ function gabls3_serialized_restart_contract(directory)
     require_contract(restored_Δt != restarted.simulation.Δt,
                      "GABLS3 restart fixture did not exercise timestep restoration")
     restarted.simulation.Δt = restored_Δt
+    # The prescribed surface-q operand is a host-managed Field captured by MOST,
+    # not a model prognostic field. A newly constructed runner has its t=0 value
+    # even after model pickup; refresh it at the checkpointed clock time before
+    # the first resumed stage samples the wall law.
+    checkpoint_q = convert(eltype(restarted.model.grid),
+                           restarted.inputs.surface_q(time(restarted.simulation)))
+    require_contract(split_surface_q == checkpoint_q,
+                     "GABLS3 split surface-q operand did not match checkpoint time")
+    require_contract(restarted.coefficient.surface_q === restarted.surface_q,
+                     "GABLS3 restored MOST coefficient is not using the runner's surface-q field")
+    println("SLD_RESTART_SURFACE_Q split=", split_surface_q,
+            " initial_restarted=", minimum(restarted.surface_q),
+            " prescribed_at_checkpoint=", checkpoint_q,
+            " coefficient_is_returned_field=",
+            restarted.coefficient.surface_q === restarted.surface_q)
+    require_contract(minimum(restarted.surface_q) != checkpoint_q,
+                     "GABLS3 restart fixture did not exercise surface-q restoration")
+    GABLS3ValidationRunner.update_surface_humidity!(
+        restarted.surface_q, restarted.inputs, time(restarted.simulation))
+    require_contract(minimum(restarted.surface_q) == checkpoint_q,
+                     "GABLS3 prescribed surface-q operand was not restored")
+    println("SLD_RESTART_SURFACE_Q restored=", minimum(restarted.surface_q),
+            " coefficient_value=", minimum(restarted.coefficient.surface_q))
     run!(restarted.simulation)
     require_contract(time(restarted.simulation) == reference_time,
                      "GABLS3 restarted runner ended at the wrong time")
-    require_identical_states(reference_state, host_prognostic_state(restarted.model))
+    require_identical_states(reference_state, host_prognostic_state(restarted.model);
+                             horizontal_size=(64, 64))
     return Dict(
         "checkpoint_sha256" => bytes2hex(open(sha256, checkpoint_path)),
         "checkpoint_bytes" => filesize(checkpoint_path),
