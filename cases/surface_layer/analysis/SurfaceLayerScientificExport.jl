@@ -930,7 +930,7 @@ function scientific_case_settings(registry, attempt)
     return (; path, scientific, case, common)
 end
 
-function verify_attempt_identity(attempt, completion, scientific_path)
+function verify_attempt_identity(attempt, completion, scientific_path, registry)
     started = completion["started"]
     require_check(parse(Int, get(started, "registry_index", "0")) == attempt["registry_index"],
                   "ATTEMPT_STARTED registry index mismatch")
@@ -947,6 +947,29 @@ function verify_attempt_identity(attempt, completion, scientific_path)
     log = read(log_path, String)
     require_check(!occursin("CASE_FAILED", log) && !occursin("GPU_VALIDATION_FAILED", log),
                   "active-attempt log contains a failure sentinel")
+    if get(registry, "gpu_validation_mode", "gpu_full") == "gabls3_surface_q_changed_path"
+        exit_path = attempt["batch_exit_record_path"]
+        require_check(isfile(exit_path) &&
+                      file_sha256(exit_path) == attempt["batch_exit_record_sha256"],
+                      "GABLS3 durable child-exit hash mismatch")
+        exit = parse_fields(exit_path)
+        job_id, index = split(attempt["job_spec"], '_'; limit=2)
+        require_check(exit["schema_version"] == "2" &&
+                      exit["array_job_id"] == job_id && exit["task_id"] == index &&
+                      exit["child_exit_code"] == "0" &&
+                      exit["record_complete"] == "true" &&
+                      exit["wrapper_sha256"] == attempt["launch_wrapper_sha256"] &&
+                      exit["source_manifest_sha256"] ==
+                          registry["source_freeze_manifest_sha256"] &&
+                      exit["gpu_validation_job_id"] == registry["gpu_validation_job_id"] &&
+                      exit["gpu_validation_log_sha256"] ==
+                          registry["gpu_validation_log_sha256"] &&
+                      abspath(exit["gpu_evidence_directory"]) ==
+                          abspath(registry["gpu_validation_evidence_directory"]),
+                      "GABLS3 durable child-exit identity differs")
+        require_check(occursin("SLD_RECORDED_BATCH_EXIT job=$job_id task=$index child_exit_code=0 record=$exit_path", log),
+                      "GABLS3 active log lacks matching durable exit")
+    end
     return true
 end
 
@@ -983,7 +1006,7 @@ function export_scientific_case(attempt_registry_path, case_id, export_root;
     settings = scientific_case_settings(registry, attempt)
     run_directory = abspath(attempt["run_directory"])
     completion = verify_completion(run_directory, case_id)
-    verify_attempt_identity(attempt, completion, settings.path)
+    verify_attempt_identity(attempt, completion, settings.path, registry)
     provenance_audit = verify_provenance(registry["case_family"], run_directory,
                                          freeze_root, registry, settings.common)
     nz = settings.scientific["grid"][3]

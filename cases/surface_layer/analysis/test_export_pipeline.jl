@@ -270,6 +270,50 @@ end
     @test selected["job_spec"] == "new_job"
 end
 
+@testset "Corrected GABLS3 durable child-exit binding" begin
+    mktempdir() do root
+        scientific_path = joinpath(root, "registry.toml")
+        run_directory = joinpath(root, "run")
+        mkpath(run_directory)
+        started = joinpath(run_directory, "ATTEMPT_STARTED")
+        done = joinpath(run_directory, "CASE_DONE")
+        exit_path = joinpath(root, "case.exit")
+        log_path = joinpath(root, "case.log")
+        write(started, "case_id=x\nregistry=$scientific_path\nregistry_index=1\n")
+        write(done, "case_id=x\nfinal_time_s=32400\n")
+        write(exit_path,
+              "schema_version=2\narray_job_id=9000\ntask_id=1\nchild_exit_code=0\n" *
+              "record_complete=true\nwrapper_sha256=wrapper\nsource_manifest_sha256=source\n" *
+              "gpu_validation_job_id=8000\ngpu_validation_log_sha256=gpu_log\n" *
+              "gpu_evidence_directory=$root\n")
+        write(log_path, "SLD_RECORDED_BATCH_EXIT job=9000 task=1 child_exit_code=0 record=$exit_path\n")
+        attempt = Dict{String, Any}(
+            "registry_index" => 1, "run_directory" => run_directory,
+            "log_path" => log_path, "log_sha256" => file_sha256(log_path),
+            "attempt_started_sha256" => file_sha256(started),
+            "case_done_sha256" => file_sha256(done), "job_spec" => "9000_1",
+            "batch_exit_record_path" => exit_path,
+            "batch_exit_record_sha256" => file_sha256(exit_path),
+            "launch_wrapper_sha256" => "wrapper")
+        registry = Dict{String, Any}(
+            "gpu_validation_mode" => "gabls3_surface_q_changed_path",
+            "source_freeze_manifest_sha256" => "source",
+            "gpu_validation_job_id" => "8000",
+            "gpu_validation_log_sha256" => "gpu_log",
+            "gpu_validation_evidence_directory" => root)
+        completion = Dict("started" => SurfaceLayerScientificExport.parse_fields(started))
+        @test SurfaceLayerScientificExport.verify_attempt_identity(
+            attempt, completion, scientific_path, registry)
+        bad = copy(registry)
+        bad["gpu_validation_job_id"] = "old_job"
+        @test_throws ErrorException SurfaceLayerScientificExport.verify_attempt_identity(
+            attempt, completion, scientific_path, bad)
+        write(exit_path, read(exit_path, String) * "extra=tampered\n")
+        @test_throws ErrorException SurfaceLayerScientificExport.verify_attempt_identity(
+            attempt, completion, scientific_path, registry)
+    end
+end
+
 @testset "SLD variable/unit contract" begin
     for family in ("GABLS1", "GABLS3")
         required = SurfaceLayerScientificExport.required_surface_layer_variables(family)
