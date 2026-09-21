@@ -195,9 +195,19 @@ end
           "d2a6c2adea31fca7b6ed370780fc319e65c5cc7418f8153efb45dca6d563920c"
     gabls3_registry = joinpath(@__DIR__, "registries", "gabls3_analysis_attempts.toml")
     gabls3_parsed = load_attempt_registry(gabls3_registry)
-    @test gabls3_parsed["source_freeze_manifest_entries"] == 761
+    @test gabls3_parsed["source_freeze_manifest_entries"] == 762
     @test gabls3_parsed["source_freeze_manifest_sha256"] ==
-          parsed["source_freeze_manifest_sha256"]
+          "1cc45c554fe4675a5ffde2dc6bfe70953d9c5294f9df4e6fe76b6f1f033886ac"
+    changed_path = copy(gabls3_parsed)
+    changed_path["gpu_validation_mode"] = "gabls3_surface_q_changed_path"
+    changed_path["case_family"] = "GABLS1"
+    @test_throws ErrorException SurfaceLayerScientificExport.verify_gpu_evidence_for_registry(
+        changed_path, changed_path["source_freeze_root"])
+    changed_path["case_family"] = "GABLS3"
+    @test_throws ErrorException SurfaceLayerScientificExport.verify_gpu_evidence_for_registry(
+        changed_path, "/wrong/source")
+    @test_throws KeyError SurfaceLayerScientificExport.verify_gpu_evidence_for_registry(
+        changed_path, changed_path["source_freeze_root"])
     @test_throws ErrorException SurfaceLayerScientificExport.active_attempt(
         parsed, "gabls1_n032_weno9_control")
     mktempdir() do root

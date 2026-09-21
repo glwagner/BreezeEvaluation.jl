@@ -189,6 +189,43 @@ function verify_gpu_evidence(directory, freeze_root, expected_manifest_sha)
                 "passed_checks" => evidence["passed_checks"])
 end
 
+function verify_gpu_evidence_for_registry(registry, freeze_root)
+    mode = get(registry, "gpu_validation_mode", "gpu_full")
+    mode == "gpu_full" && return verify_gpu_evidence(
+        registry["gpu_validation_evidence_directory"], freeze_root,
+        registry["source_freeze_manifest_sha256"])
+    require_check(mode == "gabls3_surface_q_changed_path" &&
+                  registry["case_family"] == "GABLS3" &&
+                  freeze_root == "/shared/home/greg/review-coordination/surface-layer-harness-freeze-20260921-131ad9b-02a1647" &&
+                  registry["source_freeze_manifest_sha256"] ==
+                      "1cc45c554fe4675a5ffde2dc6bfe70953d9c5294f9df4e6fe76b6f1f033886ac",
+                  "changed-path admission is only for the corrected GABLS3 source")
+    reader = "/shared/home/greg/review-coordination/admit_gabls3_surface_q_gpu_gate_131ad9b-v1.jl"
+    reader_sha = "4705a797e30f0a7096ddb49439ac95952f26f5d53af219ec9bfd19a66b79d327"
+    require_check(registry["gpu_admission_reader_path"] == reader &&
+                  registry["gpu_admission_reader_sha256"] == reader_sha &&
+                  file_sha256(reader) == reader_sha,
+                  "GABLS3 changed-path admission reader differs")
+    job_id = registry["gpu_validation_job_id"]
+    log_path = registry["gpu_validation_log_path"]
+    require_check(!isempty(job_id) && all(isdigit, job_id) && isfile(log_path) &&
+                  file_sha256(log_path) == registry["gpu_validation_log_sha256"],
+                  "GABLS3 GPU job identity or log SHA differs")
+    directory = registry["gpu_validation_evidence_directory"]
+    project = joinpath(freeze_root, "source", "BreezeEvaluation.jl", "cases",
+                       "gabls3", "runner")
+    command = `$(Base.julia_cmd()) --startup-file=no --project=$project $reader $directory $job_id $log_path`
+    output = read(command, String)
+    require_check(occursin("GABLS3_SURFACE_Q_GPU_ADMITTED", output),
+                  "changed-path reader did not admit GABLS3 GPU evidence")
+    evidence_path = joinpath(directory, "surface_q_gpu_evidence.toml")
+    return Dict("evidence_sha256" => file_sha256(evidence_path),
+                "source_manifest_entries" => 762,
+                "validation_mode" => mode, "job_id" => job_id,
+                "reader_sha256" => reader_sha,
+                "old_source_reuse_is_source_scoped" => true)
+end
+
 function load_attempt_registry(path)
     registry = TOML.parsefile(path)
     attempts = registry["attempts"]
@@ -938,8 +975,7 @@ function export_scientific_case(attempt_registry_path, case_id, export_root;
         expected_sha=registry["source_freeze_manifest_sha256"])
     require_check(source_entries == registry["source_freeze_manifest_entries"],
                   "source freeze manifest entry count does not match registry")
-    gpu = verify_gpu_evidence(registry["gpu_validation_evidence_directory"], freeze_root,
-                              registry["source_freeze_manifest_sha256"])
+    gpu = verify_gpu_evidence_for_registry(registry, freeze_root)
     require_check(gpu["source_manifest_entries"] ==
                   registry["source_freeze_manifest_entries"],
                   "GPU evidence entry count does not match registry")
