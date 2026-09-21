@@ -107,7 +107,7 @@
       "source_revision": "v2_original"
     }],
     "case_id": "n400_weno9_none",
-    "export_verified": false,
+    "export_verified": true,
     "job_id": "7120",
     "log_path": "/shared/home/greg/review-coordination/gabls-production-v2-20260919/revisions/startup_dt_v1/logs/replacement-7120_1.log",
     "run_path": "/shared/home/greg/review-coordination/gabls-production-v2-20260919/revisions/startup_dt_v1/runs/n400_weno9_none",
@@ -117,7 +117,7 @@
       "gabls_rough_wall_coefficient.jl": "5af7df039cf665817cd5ca0a9d48dca6d28bbae3bc300f3c5e79bd982aee20c3",
       "root_Manifest.toml": "9a410126b4340c4e2c17838e4c920df94d376e3852815b9db09033c01cd8a9fc"
     },
-    "source_hashes_checked": false,
+    "source_hashes_checked": true,
     "source_revision": "startup_dt_v1"
   }, {
     "array_task_id": 2,
@@ -165,6 +165,6 @@
     "record_times_s": "0:1800:32400; t=0 instantaneous, subsequent records true preceding-1800-s means"
   },
   "schema_version": 2,
-  "updated_utc": "2026-09-20T19:37:03.698",
-  "verified_cases": 13
+  "updated_utc": "2026-09-21T04:25:11.723",
+  "verified_cases": 14
 }

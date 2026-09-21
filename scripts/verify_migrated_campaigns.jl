@@ -85,7 +85,7 @@ dycoms_cases, dycoms_rows = verify_cases(
     joinpath(CAMPAIGN, "simulation_data"), 15, collect(0.:60.:14400.),
     [9000., 10800., 12600., 14400.], 46)
 gabls_cases, gabls_rows = verify_cases(
-    joinpath(CAMPAIGN, "gabls", "simulation_data"), 13, collect(0.:60.:32400.),
+    joinpath(CAMPAIGN, "gabls", "simulation_data"), 14, collect(0.:60.:32400.),
     [27000., 28800., 30600., 32400.], 44)
 
 migration = JSON.parsefile(joinpath(ROOT, "provenance", "legacy_migration.json"))
@@ -103,6 +103,18 @@ for relative_path in (
     "gabls3/gabls3_section.pdf",
     "gabls3/reference.md",
     "gabls3/workflow.md",
+    "build_master_report.jl",
+    "surface_layer/story.md",
+    "surface_layer/presentation.jl",
+    "surface_layer/covariance_arithmetic.csv",
+    "surface_layer/presentation_evidence.json",
+    "surface_layer/01_mechanism.pdf",
+    "surface_layer/01_mechanism.png",
+    "surface_layer/02_arithmetic.pdf",
+    "surface_layer/02_arithmetic.png",
+    "surface_layer/03_readout.pdf",
+    "surface_layer/03_readout.png",
+    "surface_layer/surface_layer_story.pdf",
 )
     isfile(joinpath(CAMPAIGN, relative_path)) || error("Missing report artifact $relative_path")
 end

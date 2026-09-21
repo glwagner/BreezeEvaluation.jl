@@ -1,0 +1,42 @@
+schema_version = 1
+generated_utc = "2026-09-20T22:01:23Z"
+owner = "pane48"
+scope = "CPU-only Julia scientific export/admission preparation; no LES production"
+evaluation_commit = "52e2d85429c4b26a8ca9aa3a00f2234a14e36f75"
+evaluation_remote_commit = "52e2d85429c4b26a8ca9aa3a00f2234a14e36f75"
+breeze_commit = "d73c82b326c7d3715034c7254c982d25548df5ae"
+julia_version = "1.12.6"
+tests_passed = 55
+tests_failed = 0
+fixture_scientific_results = false
+jobs_submitted = 0
+scheduler_changes = 0
+watchers_started = 0
+
+[source_sha256]
+SurfaceLayerScientificExport = "3c28e95646d3a1310cb2914b9a52abc39f208b98df65968a5a9daae5061e3c43"
+SurfaceLayerAnalysisData = "4e2aedc3a4e8373093ad9f43fa770a5a0e18f51346881d8fef2d89130680fe61"
+export_case = "287302caefc16cdad15181dfec0c8beaebf70b8aba60dfaeee7b151b6e59794d"
+collect_admitted_exports = "474c062e0a3ebe0f0dd01d8c2d6bf37052efe7ed092cccd711820a848f888c00"
+test_export_pipeline = "56e8e0734810528a0fdc4865e35ae340ba04e499eac11e926b1fb8e4d6949c55"
+README = "c4381931f414481bde7cf598632cfc68a8c6e0f7ad9bd95136cdc612cdcd9836"
+
+[analysis_freeze]
+path = "/shared/home/greg/review-coordination/surface-layer-analysis-freeze-20260920-52e2d85"
+source_files = 743
+source_manifest_sha256 = "5160690392676806470618e0ac5be5d4679cff5829408babf0a44e7b54c7e2b2"
+hashes_verified = 743
+writable_paths = 0
+snapshot_local_tests_passed = 55
+
+[contracts]
+gabls1_profile_records = 19
+gabls1_series_records = 541
+gabls3_profile_records = 109
+gabls3_series_records = 3240
+gabls3_point_records = 3240
+queue_state_used_for_admission = false
+smoke_or_clock_jump_admissible = false
+active_attempt_sentinel_log_hashes_required = true
+gpu_full_evidence_required = true
+paired_initial_digests_required = true

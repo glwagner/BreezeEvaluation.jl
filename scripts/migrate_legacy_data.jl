@@ -109,6 +109,7 @@ end
 
 for path in (
     "README.md", "experiment_matrix.json", "report_methods.md", "report_workflow.md",
+    "build_master_report.jl", "surface_layer_handoff.md",
     "simulation_status.md", "breeze_les_master.md", "breeze_les_master.html",
     "breeze_les_master.pdf", "dycoms_report.md", "dycoms_report.html", "dycoms_report.pdf",
     "dycoms_section.md", "dycoms_section.html", "dycoms_section.pdf",
@@ -178,6 +179,14 @@ isfile(joinpath(gabls_source, "gabls_section.pdf")) &&
 
 for name in ("reference.md", "workflow.md", "gabls3_section.pdf")
     isfile(joinpath(SOURCE, "gabls3", name)) && copy_audited(joinpath("gabls3", name))
+end
+
+surface_layer_source = joinpath(SOURCE, "surface_layer")
+for (path, _, names) in walkdir(surface_layer_source), name in names
+    startswith(name, "._") && continue
+    extension = lowercase(splitext(name)[2])
+    extension in (".jl", ".md", ".csv", ".json", ".toml", ".png", ".pdf") || continue
+    copy_audited(relpath(joinpath(path, name), SOURCE))
 end
 
 gabls_simulation_source = joinpath(gabls_source, "simulation_data")

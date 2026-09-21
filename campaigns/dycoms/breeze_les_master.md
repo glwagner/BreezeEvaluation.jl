@@ -1,8 +1,8 @@
 # Breeze LES master report
 
-DYCOMS: 15 completed cases. GABLS1: 13 of 15 planned cases have completed, audited local results.
+DYCOMS: 15 completed cases. GABLS1: 14 of 15 planned cases have completed, audited local results.
 
-Checked 2026-09-20T19:37:25.224Z.
+Checked 2026-09-21T04:25:39.448Z.
 
 This document combines the completed DYCOMS RF01 experiment (including the Pressel comparison) with the developing GABLS1 experiment. The GABLS run order is smallest grids first; incomplete runs contribute status information only, never scientific curves.
 
@@ -13,6 +13,8 @@ GABLS1 uses a fixed 400 m cube and 9 h of surface cooling and geostrophic forcin
 Contents: Part I - completed DYCOMS and Pressel comparison; Part II - GABLS setup, progress, numerical references, then audited results as they arrive.
 
 Part III adds GABLS3: an observational evaluation now in preparation. All prior DYCOMS and GABLS1 information is retained. The requested persistent evaluation repository is glwagner/BreezeEvaluation.jl.
+
+Part IV presents SurfaceLayerDiffusivity: the mechanism, measured synthetic arithmetic evidence, and the controlled comparisons needed to assess physical fidelity. No completed SLD LES comparison is claimed in this edition.
 
 ---
 
@@ -261,7 +263,7 @@ Stevens et al. (2005), Monthly Weather Review 133, 1443–1462. DOI: https://doi
 
 Part II: GABLS1
 
-13/15 completed exports admitted to the scientific comparison. Checked 2026-09-20T19:37:25.224Z.
+14/15 completed exports admitted to the scientific comparison. Checked 2026-09-21T04:25:39.448Z.
 
 Grids: 12.5, 6.25, 3.125, 2, and 1 m isotropic; 32³, 64³, 128³, 200³, and 400³ cells, all in the same 400 m cube. Small grids run first.
 
@@ -293,13 +295,17 @@ At Δ=3.12 m without interior closure, WENO9 versus WENO5 gives final-hour h 184
 
 At Δ=2 m without interior closure, WENO9 versus WENO5 gives final-hour h 178.5 versus 159.2 m and peak resolved w2 0.0993 versus 0.0690 m²/s². This is a scheme sensitivity at fixed grid and seed, not evidence of resolution convergence.
 
+At Δ=1 m without interior closure, WENO9 versus WENO5 gives final-hour h 165.3 versus 159.4 m and peak resolved w2 0.0893 versus 0.0681 m²/s². This is a scheme sensitivity at fixed grid and seed, not evidence of resolution convergence.
+
 n032_weno9_none: peak final-hour resolved w2 (0.0927 m²/s²) exceeds the largest archived model peak at the same spacing (0.0602 m²/s²). Model spread is a comparison baseline, not observational truth; stronger resolved turbulence alone does not establish better fidelity.
 
 n064_weno9_none: peak final-hour resolved w2 (0.0976 m²/s²) exceeds the largest archived model peak at the same spacing (0.0779 m²/s²). Model spread is a comparison baseline, not observational truth; stronger resolved turbulence alone does not establish better fidelity.
 
 n128_weno9_none: peak final-hour resolved w2 (0.1008 m²/s²) exceeds the largest archived model peak at the same spacing (0.0904 m²/s²). Model spread is a comparison baseline, not observational truth; stronger resolved turbulence alone does not establish better fidelity.
 
-Resolution comparison for WENO9/none: reducing spacing from 12.5 to 2 m changes final-hour h from 195.6 to 178.5 m and peak resolved w2 from 0.0927 to 0.0993 m²/s². Surface heat flux changes from -15.52 to -11.87 W/m². These compare the coarsest and finest completed grids for this configuration; similarity of selected quantities alone is not a convergence or fidelity test.
+n400_weno9_none: peak final-hour resolved w2 (0.0893 m²/s²) exceeds the largest archived model peak at the same spacing (0.0851 m²/s²). Model spread is a comparison baseline, not observational truth; stronger resolved turbulence alone does not establish better fidelity.
+
+Resolution comparison for WENO9/none: reducing spacing from 12.5 to 1 m changes final-hour h from 195.6 to 165.3 m and peak resolved w2 from 0.0927 to 0.08926 m²/s². Surface heat flux changes from -15.52 to -8.05 W/m². These compare the coarsest and finest completed grids for this configuration; similarity of selected quantities alone is not a convergence or fidelity test.
 
 Resolution comparison for WENO5/none: reducing spacing from 12.5 to 1 m changes final-hour h from 136.1 to 159.4 m and peak resolved w2 from 0.05744 to 0.06807 m²/s². Surface heat flux changes from -11.79 to -7.47 W/m². These compare the coarsest and finest completed grids for this configuration; similarity of selected quantities alone is not a convergence or fidelity test.
 
@@ -343,11 +349,13 @@ n200_weno5_none: final-hour h = 159.2 m; ustar = 0.240 m/s; surface heat flux = 
 
 n200_weno9_smagorinsky: final-hour h = 188.9 m; ustar = 0.274 m/s; surface heat flux = -12.22 W/m²; peak mean w2 = 0.09298 m²/s². Between 7–8 and 8–9 h, h changed by 3.3 m and the w2 profile changed by 0.00138 m²/s² RMS. Simulation wall time 10660.3 s (252948 iterations), excluding preceding compilation/startup.
 
+n400_weno9_none: final-hour h = 165.3 m; ustar = 0.241 m/s; surface heat flux = -8.05 W/m²; peak mean w2 = 0.08926 m²/s². Between 7–8 and 8–9 h, h changed by 2.4 m and the w2 profile changed by 0.000512 m²/s² RMS. Simulation wall time 95437.1 s (510626 iterations), excluding preceding compilation/startup.
+
 n400_weno5_none: final-hour h = 159.4 m; ustar = 0.229 m/s; surface heat flux = -7.47 W/m²; peak mean w2 = 0.06807 m²/s². Between 7–8 and 8–9 h, h changed by 4.7 m and the w2 profile changed by 0.000682 m²/s² RMS. Simulation wall time 71341.1 s (506162 iterations), excluding preceding compilation/startup.
 
 Current queue snapshot (job|state|elapsed|start|node or pending reason):
-7120_2|RUNNING|1:14|2026-09-20T19:37:43|gpu-prod-st-gpu-prod-2
-7120_1|RUNNING|17:54:16|2026-09-20T01:44:41|gpu-prod-st-gpu-prod-1
+7132|RUNNING|0:47|2026-09-21T04:24:52|gpu-prod-st-gpu-prod-1
+7120_2|RUNNING|8:47:56|2026-09-20T19:37:43|gpu-prod-st-gpu-prod-2
 
 [Setup and reference](gabls/reference.md) · [Workflow](gabls/workflow.md) · [Case matrix](gabls/experiment_matrix.json) · [Implementation status](gabls/cluster/pane47-status.md) · [Export status](gabls/cluster/pane48-status.md)
 
@@ -449,3 +457,48 @@ Public evaluation repository: [glwagner/BreezeEvaluation.jl](https://github.com/
 The repository now retains the 15 completed DYCOMS and 12 completed GABLS1 cases as audited compact comparison data, alongside case/source snapshots, reference data, Julia plotting/report code, figures and this report. Compact profile subsets are explicitly distinguished from full scientific exports. A hash-verifying restoration workflow recovered all 27 complete profile histories in a separate pcluster analysis copy; the original GABLS1 admission checks accepted all 12 restored cases. Frozen production, failed attempts and raw fields remain on pcluster with checksummed manifests. Original simulation identities and hashes are preserved. Third-party papers are linked.
 
 All analysis and plots use Julia. Existing completed experiments and running GABLS1 jobs continue unchanged during migration. Future evaluations will live in BreezeEvaluation.jl, with their Breeze dependency revision pinned explicitly.
+
+
+---
+
+# Part IV: SurfaceLayerDiffusivity
+
+# SurfaceLayerDiffusivity: evidence and evaluation
+
+**Can a thin surface closure improve coarse LES without suppressing resolved turbulence?** This is the organizing question for the study. The closure is implemented and CPU-tested; its effect on completed LES comparisons has not yet been measured. The illustrations below separate the analytic mechanism, a reproducible arithmetic result, and the physical tests that will determine the conclusion.
+
+![Mechanism and scope](surface_layer/01_mechanism.png)
+
+![Synthetic arithmetic evidence](surface_layer/02_arithmetic.png)
+
+![Reading the controlled comparison](surface_layer/03_readout.png)
+
+## Results available today
+
+The standalone covariance experiment uses the same Float32 samples for all methods, then accumulates the reference in Float64. The naive filtered-product subtraction reverses the final covariance sign. The centered recurrence preserves the sign and closely matches the reference. This is a synthetic arithmetic result, not a heat-flux measurement from an atmospheric simulation. Exact values and the complete plotted history are saved in [presentation evidence](surface_layer/presentation_evidence.json) and [CSV](surface_layer/covariance_arithmetic.csv).
+
+The implemented closure has 119 passing CPU feature checks, including implicit conservation with nonzero redistribution, physical-time filtering, native-face support, signed scalar guards, and restored model evolution. The separate CPU integration harness has 562 passing checks, and the scientific export fixtures have 55. These test counts describe distinct scopes and are not added into a scientific confidence score. The core GPU validation and completed matched LES comparisons remain pending in this edition.
+
+## The scientific result will lead with three views
+
+| View | What to show | What would undermine the conclusion |
+|---|---|---|
+| Near-wall mechanism | Native-height resolved, added, and combined flux; active-face markers; coefficients and signed deficits | Mean improvement without the intended transport change; large unexplained transverse mismatch |
+| Boundary-layer response | Mean wind/theta, surface exchange, depth, and w²/w³/skewness | Collapsed resolved turbulence or improvement in one quantity accompanied by degradation in another |
+| Sensitivity and transfer | 100 versus 300 s; one versus two faces; two hour windows; GABLS3 sunrise and neutral flow | An effect confined to one averaging window or a guard/cap artifact at the flux sign change |
+
+The main comparison will use three columns (mean state, flux partition, turbulence) and two rows (full depth, near-wall detail). A companion timeline will align surface forcing, boundary-layer response, and closure activity. Every figure will state its time window, grid, native vertical locations, and sample definition. GABLS3 reference gaps remain explicit. Skewness is omitted or flagged where variance is too small for a meaningful normalized third moment.
+
+## Controls and presentation conventions
+
+GABLS1 uses a 400 m cube at 32³; GABLS3 uses an 800 m cube at 64³. Each has a newly run WENO9 control plus one-face/100 s, one-face/300 s, and two-face/300 s variants on the same source revision and paired initialization. Earlier GABLS1 runs remain historical context, not the treatment control. The neutral pair retains the prescribed surface stress and therefore cannot establish improved prediction of surface drag.
+
+Use dark solid/circle for the matched control, blue dashed/square for one-face/100 s, vermilion dotted/triangle for one-face/300 s, and purple dash-dot/diamond for two-face/300 s. The fixed 1 m GABLS1 archive median remains black dotted with clearly labeled gray ensemble spread on comparable panels. Markers and labels distinguish it from the vermilion treatment. Preserve unavailable values rather than turning them into zero.
+
+Report changes from the matched control in physical units. Compare those changes against the archive reference and temporal variability, without treating an LES ensemble as observational truth or a min/max envelope as a confidence interval. Do not claim that resolved plus explicit flux includes unmeasured WENO numerical transport. Single-seed comparisons do not establish sampling uncertainty.
+
+## Reproducibility
+
+All figures are generated by [Julia source](surface_layer/presentation.jl). The illustrated response is analytic; the covariance trace is synthetic. No missing LES curves or performance values have been filled in. [CPU feature evidence](surface_layer/cpu_validation.json), [integration harness evidence](surface_layer/gpu_harness_cpu_contract.toml), and [export evidence](surface_layer/analysis_export_evidence.toml) accompany the presentation. SHA-256 hashes of its sources and data are recorded in the presentation evidence.
+
+Implementation: [Breeze feature d73c82b](https://github.com/NumericalEarth/Breeze.jl/commit/d73c82b326c7d3715034c7254c982d25548df5ae). Evaluation and persistent results: [BreezeEvaluation.jl](https://github.com/glwagner/BreezeEvaluation.jl/tree/glw/surface-layer-evaluation). The next edition will replace the pending physical assessment with admitted comparisons while retaining this validation history.
