@@ -64,7 +64,7 @@ scientific `CASE_DONE` admission. No invocation has been submitted.
 Prepared command for use only after a GPU is free and both snapshot gates pass:
 
 ```sh
-SLD_CORE_FREEZE_ROOT=/shared/home/greg/review-coordination/surface-layer-harness-freeze-20260921-817c467 \
+SLD_CORE_FREEZE_ROOT=/shared/home/greg/review-coordination/surface-layer-harness-freeze-20260921-844c4ce-db73161 \
 SLD_CORE_GPU_EVIDENCE=/absolute/admitted/gpu-full-output \
 SLD_NEUTRAL_FREEZE_ROOT=/absolute/read-only/neutral-snapshot \
 SLD_NEUTRAL_OUTPUT=/absolute/new/neutral-throughput-output \
