@@ -108,6 +108,7 @@ end
         @test isnothing(NeutralRunner.source_snapshot_root(evaluation, breeze))
         write(joinpath(root, "source_sha256.txt"), "fixture\n")
         @test NeutralRunner.source_snapshot_root(evaluation, breeze) == root
+        @test NeutralRunner.source_snapshot_root(evaluation * "/", breeze * "/") == root
         @test isnothing(NeutralRunner.source_snapshot_root(evaluation, joinpath(root, "other")))
     end
 end

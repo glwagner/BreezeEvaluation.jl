@@ -132,8 +132,11 @@ function repository_command_output(repository, args...)
 end
 
 function source_snapshot_root(evaluation_repository, breeze_repository)
-    evaluation_parent = dirname(evaluation_repository)
-    dirname(breeze_repository) == evaluation_parent || return nothing
+    # Resolve via a child filename: Julia can preserve a trailing separator on directories.
+    evaluation_directory = dirname(joinpath(evaluation_repository, "Project.toml"))
+    breeze_directory = dirname(joinpath(breeze_repository, "Project.toml"))
+    evaluation_parent = dirname(evaluation_directory)
+    dirname(breeze_directory) == evaluation_parent || return nothing
     root = dirname(evaluation_parent)
     return isfile(joinpath(root, "source_sha256.txt")) ? root : nothing
 end
