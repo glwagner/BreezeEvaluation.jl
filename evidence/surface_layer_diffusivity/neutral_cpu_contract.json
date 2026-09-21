@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-09-21T04:32:25Z",
+  "validation_scope": "neutral_fixed_stress_runner_cpu_development_contract",
+  "scientific_admission": false,
+  "gpu_validated": false,
+  "evaluation_parent_commit": "52e2d85429c4b26a8ca9aa3a00f2234a14e36f75",
+  "breeze_feature_commit": "d73c82b326c7d3715034c7254c982d25548df5ae",
+  "julia_version": "1.12.6",
+  "julia_executable": "/shared/home/greg/.juliaup/bin/julia",
+  "environment": {
+    "active_project": "/shared/home/greg/Projects/Breeze-surface-layer-diffusivity/Project.toml",
+    "project_sha256": "d84b533af033eafdcdc91ed699b2e4c5174c711964698d91796833fcd8a64fbe",
+    "manifest_sha256": "ea06afffc14487956976a78f9a5fdfca8d4806313cdccb84722d07ceb587aef9",
+    "oceananigans_version": "0.113.1",
+    "authoritative_runner_oceananigans_version": "0.113.0",
+    "immutable_freeze": false
+  },
+  "tests": {
+    "passed": 163,
+    "failed": 0,
+    "canonical_registry_and_windows": 16,
+    "fixed_stress_zero_heat_support_conservation": 20,
+    "native_diagnostics_and_averaged_writer": 58,
+    "serialized_closure_restart_continuation": 69
+  },
+  "averaged_writer_contract": {
+    "separate_initial_times_s": [0.0],
+    "fixture_profile_times_s": [0.2, 0.4],
+    "fixture_midpoint_time_means_s": [0.1, 0.3],
+    "scientific_final_hour_source_times_s": [15000, 15600, 16200, 16800, 17400, 18000],
+    "scientific_penultimate_hour_source_times_s": [11400, 12000, 12600, 13200, 13800, 14400]
+  },
+  "paired_initial_state_sha256": {
+    "u_sha256": "c4d7f458e5eaf617761c0a038d2c528cce90a51ca5b5b6b79267de965e5480ac",
+    "v_sha256": "8fb4821696aa08647e2a8f4e6f3f650492804727d859544c05a286764b60b64c",
+    "theta_sha256": "3aad12354822c5331632e532dcbefb923e257ff9a673b3144fd493f737e8b0ba",
+    "w_sha256": "850cd43555630366e441e30eede43b8b1aa31913814e37ad3055db337e91a700"
+  },
+  "source_sha256": {
+    "cases/surface_layer/neutral/NeutralSurfaceLayerDiagnostics.jl": "0edcb6793cff74b9a8eed77f1900fc8e3ddbf5925500e039737bc3f213d5c49e",
+    "cases/surface_layer/neutral/neutral_abl_case.jl": "bba7856cc77afd6b5ae064e7095e857efcbffd46166b1025eb42c984276403bb",
+    "cases/surface_layer/neutral/neutral_sld_2case.toml": "5bb83f458af6cce588450bc70cac58655edaadff0e601c191773505ce5aa7156",
+    "cases/surface_layer/neutral/test_neutral_runner.jl": "5bbdd3d380caaa2ea907270ac5cbd0fd8b79dd20104ba96ef659be964d846c39",
+    "cases/surface_layer/neutral/run_neutral_gpu_throughput.jl": "15acf1ea5f24c390dcf7319b1a429b7076caa3d353192bcb688173ee656c0a91",
+    "cases/surface_layer/neutral/neutral_gpu_throughput.slurm": "26af2404dfba6cb3dc0abfb62ccba8cde13cf0eca74321ee69aa35d6e719553e",
+    "cases/surface_layer/neutral/preparation.md": "eed968d3739f8e62d66915835c1defac5981c53bc0b157eeb06d8e227d385db3"
+  },
+  "remaining_gate": "Repeat the full contract from a read-only snapshot using the tracked runner Manifest with Oceananigans 0.113.0 before neutral GPU validation."
+}

@@ -33,6 +33,13 @@ Use paired seed 1994 with uniform velocity perturbations of peak-to-peak 0.01 m/
 potential-temperature perturbations of peak-to-peak 0.1 K below 400 m; no initial vertical
 perturbation is specified. Save a digest of the actual initial arrays for both runs.
 
+The scientific runner rejects noncanonical grids, T, support, duration, seed, diagnostic cadence,
+and checkpoint cadence. Authorized records are 30 true 600 s averages ending at
+600:600:18000 s, plus a separate instantaneous t=0 profile. The final-hour comparison uses all
+six records at 15000:600:18000 s; the penultimate hour uses all six at 11400:600:14400 s. A
+non-scientific fixture may override those values, but its case ID includes a digest of its complete
+configuration and its provenance marks `fixture=true`.
+
 ## Validation and cost gate
 
 Keep initial dt=0.5 s and CFL target 0.7 from the example, identical across cases. Run a short
@@ -41,6 +48,28 @@ remaining five-hour cost from measured throughput, including diagnostic/checkpoi
 record the estimate before production. No measured neutral throughput or completion estimate is
 available yet. The selected grid is the example's existing grid, not a large-domain or resolution
 expansion. Preserve the global two-GPU limit and existing GABLS1 priority.
+
+Development CPU checks use the clean Breeze feature root, whose current Manifest resolves
+Oceananigans 0.113.1. The separately tracked runner Manifest resolves Oceananigans 0.113.0 and is
+the authoritative candidate environment. A neutral GPU gate must therefore use a new immutable
+snapshot and repeat the CPU contract snapshot-locally before any GPU throughput measurement.
+
+The bounded GPU cost harness is `run_neutral_gpu_throughput.jl`, launched only through
+`neutral_gpu_throughput.slurm`. It first admits the existing sealed `gpu_full` core evidence,
+audits the new neutral snapshot, warms the 96-cubed SLD kernels and full writers, and then times
+separate 120 s control and SLD fixtures. It records adaptive timestep extrema, finite/native-height
+writer audits, paired initial digests, and projected five-hour cost. Its fixture sentinels are not
+scientific `CASE_DONE` admission. No invocation has been submitted.
+
+Prepared command for use only after a GPU is free and both snapshot gates pass:
+
+```sh
+SLD_CORE_FREEZE_ROOT=/shared/home/greg/review-coordination/surface-layer-harness-freeze-20260920-3e1e3c5 \
+SLD_CORE_GPU_EVIDENCE=/absolute/admitted/gpu-full-output \
+SLD_NEUTRAL_FREEZE_ROOT=/absolute/read-only/neutral-snapshot \
+SLD_NEUTRAL_OUTPUT=/absolute/new/neutral-throughput-output \
+sbatch cases/surface_layer/neutral/neutral_gpu_throughput.slurm
+```
 
 Verify native-face support at z=10.4167 m, unchanged applied wall flux, interior momentum
 conservation, zero-flux scalar inactivity, stable covariance, and restart state. The existing
