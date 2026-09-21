@@ -1,8 +1,10 @@
 # SurfaceLayerDiffusivity: first coarse GABLS1 results
 
-[Read the findings](surface_layer/gabls1/results.md) · [Six-page illustrated brief](surface_layer/surface_layer_results.pdf) · [Complete 52-page DYCOMS/GABLS master report](breeze_les_master.pdf)
+[Read the findings](surface_layer/gabls1/results.md) · [Seven-page illustrated brief](surface_layer/surface_layer_results.pdf) · [Complete 53-page DYCOMS/GABLS master report](breeze_les_master.pdf)
 
 **Preliminary usable-diagnostic subset, 21 September 2026.** Four completed paired runs at 12.5 m strongly change near-wall turbulence, but the three closure configurations worsen the mean-u, mean-theta and w² profile errors against the fixed 1 m median in this test. Single seed; not a general closure verdict.
+
+**Historical Smagorinsky comparison added:** the earlier WENO9 + Smagorinsky 12.5 m run has almost no resolved vertical turbulence, despite a smaller mean-wind error. Three figure pages compare mean profiles, surface exchange, moments and log-scale variance. Its unchanged CSVs and original manifest are retained under `surface_layer/gabls1/historical_smagorinsky/`; its source differs from the four matched treatments and is labeled throughout. The figure script verifies its original export hashes and output times separately from the strict matched-case loader.
 
 **Read [diagnostic exclusions](surface_layer/gabls1/diagnostic_exclusions.md) before using the data.** Original exported files and admission manifests are preserved byte-for-byte, including their historical `export_verified` flags. Subsequent physical review found an omitted implicit contribution in SGS flux diagnostics. Those fluxes, their totals, stress-derived depth and dependent budget terms must not be used. The report uses only unaffected mean fields, resolved turbulence and direct surface exchange. No corrected flux result or new physical validation is implied by this report snapshot.
 

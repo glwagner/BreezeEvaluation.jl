@@ -1,6 +1,7 @@
 {
   "cases": {
     "gabls1_n032_weno9_control": {
+      "comparison_role": "Same-source matched treatment",
       "final_hour": {
         "friction_velocity": 0.27916439274946847,
         "peak_w2": 0.08640189468860626,
@@ -30,6 +31,7 @@
       }
     },
     "gabls1_n032_weno9_surface_layer_t100_s1": {
+      "comparison_role": "Same-source matched treatment",
       "final_hour": {
         "friction_velocity": 0.29224465787410736,
         "peak_w2": 0.05775854177772999,
@@ -59,6 +61,7 @@
       }
     },
     "gabls1_n032_weno9_surface_layer_t300_s1": {
+      "comparison_role": "Same-source matched treatment",
       "final_hour": {
         "friction_velocity": 0.28860296110312145,
         "peak_w2": 0.0575601439923048,
@@ -88,6 +91,7 @@
       }
     },
     "gabls1_n032_weno9_surface_layer_t300_s2": {
+      "comparison_role": "Same-source matched treatment",
       "final_hour": {
         "friction_velocity": 0.30146308392286303,
         "peak_w2": 0.06148207746446133,
@@ -115,6 +119,66 @@
         "w3_at_12_5m": -0.00011112100764876232,
         "w_variance_rmse_0_200m": 0.03293329138545827
       }
+    },
+    "n032_weno9_smagorinsky": {
+      "comparison_role": "Historical context; different source",
+      "final_hour": {
+        "friction_velocity": 0.22299013885000002,
+        "peak_w2": 1.11987936e-6,
+        "resolved_tke_vertical_integral": 0.0002969956418333334,
+        "skewness_at_12_5m": -0.0033539960962251903,
+        "surface_sensible_heat_flux": -9.174371624666666,
+        "surface_theta_kinematic_flux": -0.006903614988500001,
+        "theta_mean_rmse_0_200m": 0.3713405149682195,
+        "u_mean_rmse_0_200m": 0.5812652033122788,
+        "w2_at_12_5m": 2.00743047e-10,
+        "w3_at_12_5m": -9.539449660000001e-18,
+        "w_variance_rmse_0_200m": 0.03947237347171167
+      },
+      "label": "Smagorinsky (earlier run)",
+      "penultimate_hour": {
+        "friction_velocity": 0.22360965340000005,
+        "peak_w2": 1.129715315e-6,
+        "resolved_tke_vertical_integral": 0.00024875239113333333,
+        "skewness_at_12_5m": 0.017551595014138072,
+        "surface_sensible_heat_flux": -8.697676610999999,
+        "surface_theta_kinematic_flux": -0.0065449072126666655,
+        "theta_mean_rmse_0_200m": 0.4727581469466404,
+        "u_mean_rmse_0_200m": 0.5895179916153446,
+        "w2_at_12_5m": 2.850539595e-10,
+        "w3_at_12_5m": 8.447091650000001e-17,
+        "w_variance_rmse_0_200m": 0.039472374365394726
+      }
+    }
+  },
+  "historical_smagorinsky": {
+    "manifest_sha256": "f78d7922a0596580b1454d6a17cd5bb4b6505715c894d00222a1ab948016b5fe",
+    "relationship": "Same 12.5 m grid and WENO9; earlier source, not a fifth same-revision matched treatment",
+    "source_hashes": {
+      "diagnostics": {
+        "checked": true,
+        "frozen_path": "source/examples/gabls_diagnostics.jl",
+        "run_path": "runs/n032_weno9_smagorinsky/provenance/gabls_diagnostics.jl",
+        "sha256": "6486c8ccd94f45df1c204fc57d1f3c0a79b8c4f3c27b3412c1b2bb81573e0c24"
+      },
+      "manifest": {
+        "checked": true,
+        "frozen_path": "source/Manifest.toml",
+        "run_path": "runs/n032_weno9_smagorinsky/provenance/Manifest.toml",
+        "sha256": "9a410126b4340c4e2c17838e4c920df94d376e3852815b9db09033c01cd8a9fc"
+      },
+      "runner": {
+        "checked": true,
+        "frozen_path": "source/validation_output/gabls/gabls_case.jl",
+        "run_path": "runs/n032_weno9_smagorinsky/provenance/gabls_case.jl",
+        "sha256": "66f4c3351ecfdcfe19164ce2146ade842824d7c95b700c668e7a25e9c791be01"
+      },
+      "surface": {
+        "checked": true,
+        "frozen_path": "source/src/BoundaryConditions/gabls_rough_wall_coefficient.jl",
+        "run_path": "runs/n032_weno9_smagorinsky/provenance/gabls_rough_wall_coefficient.jl",
+        "sha256": "5af7df039cf665817cd5ca0a9d48dca6d28bbae3bc300f3c5e79bd982aee20c3"
+      }
     }
   },
   "profile_window": "8-9 h: equal mean of 30600 and 32400 s half-hour averages; sensitivity uses 7-8 h",
@@ -132,7 +196,7 @@
     "gabls1_n032_weno9_surface_layer_t100_s1/manifest.toml": "94f7e33eebf8e4f8d55c6b44258a9113681c4242f25c07308a8688c43d8d06e4",
     "gabls1_n032_weno9_surface_layer_t300_s1/manifest.toml": "55303f8acdf2314bfdddddd7836117f9ccb8efb54e15c945fcfa0bb2e93a7eb5",
     "gabls1_n032_weno9_surface_layer_t300_s2/manifest.toml": "2735630daa051a2a67f178ed1a6fc4fefabd2ac3c5737d9c74f9ae9650ac7c03",
-    "plot_source": "bd6cfbdbf250b2e03bc7b48077294680c9246c88c3cb48bf1e4e6138a5c8558f",
+    "plot_source": "64d840d8d3f96f15214fd74304ee0777ad034a53bdd28ed034c886970bf02316",
     "reference": "b8a6f1a5c6abd934a18c006020e11366cd81c51299710694fa412176155b32d9"
   }
 }

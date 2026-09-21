@@ -22,6 +22,7 @@ For the final hour, RMS discrepancies from the fixed 1 m median over native mode
 | One face / 100 s | 1.009 | 0.431 | 0.0240 |
 | One face / 300 s | 0.938 | 0.418 | 0.0245 |
 | Two faces / 300 s | 1.147 | 0.463 | 0.0302 |
+| Smagorinsky (earlier source) | 0.581 | 0.371 | 0.0395 |
 
 The reference median is linearly interpolated to the native simulation levels for this descriptive calculation; the simulation profiles themselves are not interpolated. The reference is an ensemble of LES, not observational truth. These are unweighted profile errors, not statistical significance tests or a combined ranking.
 
@@ -30,6 +31,24 @@ Final-hour u* increases from 0.279 m/s in the control to 0.292, 0.289 and 0.301 
 ![Surface exchange, resolved energy, and skewness](figures/sld_exchange_and_skewness.png)
 
 [Vector figure](figures/sld_exchange_and_skewness.pdf)
+
+### Comparison with Smagorinsky at 12.5 m
+
+The earlier WENO9 + Smagorinsky run is now shown in teal, with stars on profiles. It uses the same 400 m cube, 32³ grid, 9 h duration and perturbation seed, with Cs = 0.16, Cb = 1 and Pr = 1. Its source revision differs from the four matched SurfaceLayerDiffusivity runs: this is contextual evidence, not a fifth same-revision controlled treatment. Its original export hashes have been verified; [unchanged data and manifest](historical_smagorinsky/manifest.json) and [case settings](historical_smagorinsky/case_metadata.json) are retained alongside the plotting source.
+
+**Smagorinsky has almost no resolved vertical turbulence at this resolution.** The maximum of its final-hour w² profile is 1.12 × 10⁻⁶ m²/s², versus 0.0864 in the matched control and 0.0576–0.0615 in the SLD cases. At z = 12.5 m its w² is only 2.01 × 10⁻¹⁰ m²/s². Its mean resolved-TKE integral is 0.000297 m³/s², versus 34.2 in the matched control. Final-hour u* is 0.223 m/s and surface sensible heat flux is −9.17 W/m². These statistics use the same windows as the other cases.
+
+The mean-u RMS discrepancy is smaller than in the matched control and the mean-theta discrepancy is similar, despite the absence of appreciable resolved turbulence. Mean-profile agreement alone therefore misses a major difference in the simulated flow. The logarithmic variance plots expose this contrast; most Smagorinsky skewness levels are masked because their variance is below the threshold. The fixed 1 m archive contains no directly comparable time series of the instantaneous vertical maximum of w², so that panel has no reference curve.
+
+![Smagorinsky comparison on logarithmic variance axes](figures/sld_smagorinsky_variance.png)
+
+[Vector figure](figures/sld_smagorinsky_variance.pdf)
+
+### Should surface-layer viscosity act only on u and v?
+
+That is a useful controlled test. The present SurfaceLayerDiffusivity applies vertical diffusion to all three momentum components. Removing its contribution to w would isolate the effect of direct vertical-velocity damping, while keeping its horizontal-momentum transport. However, changing u and v still changes shear production and its tracer diffusion still changes stratification, so w² can respond even without direct w diffusion. The existing comparisons do not identify which mechanism dominates.
+
+A clean next comparison would retain the one-face, 300 s configuration, tracer diffusivity, grid, initialization and forcing, and change only whether the SLD viscosity acts on w. The implementation also needs an explicit check of both the tendency and vertically implicit solve. No u/v-only result is included here, and the historical Smagorinsky result does not establish that this modification would improve fidelity.
 
 ### A diagnostic limitation that matters
 
