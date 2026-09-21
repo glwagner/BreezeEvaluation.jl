@@ -19,10 +19,19 @@ family == "GABLS3" && reference_path != "none" &&
 
 mkpath(output_directory)
 profile_path = joinpath(output_directory, lowercase(family) * "_sld_profiles.pdf")
+scalar_path = joinpath(output_directory, lowercase(family) * "_sld_scalars.pdf")
+moment_path = joinpath(output_directory, lowercase(family) * "_sld_moments.pdf")
 timeline_path = joinpath(output_directory, lowercase(family) * "_sld_timeline.pdf")
+closure_path = joinpath(output_directory, lowercase(family) * "_sld_closure.pdf")
 plot_profile_comparison(directories, profile_path;
     reference_path=family == "GABLS1" ? reference_path : nothing)
-plot_surface_timeline(directories, timeline_path)
+plot_scalar_comparison(directories, scalar_path;
+    reference_path=family == "GABLS1" ? reference_path : nothing)
+plot_moment_comparison(directories, moment_path;
+    reference_path=family == "GABLS1" ? reference_path : nothing)
+plot_surface_timeline(directories, timeline_path;
+    reference_path=family == "GABLS1" ? reference_path : nothing)
+plot_closure_diagnostics(directories, closure_path)
 section_path = joinpath(output_directory, lowercase(family) * "_sld_admitted_section.md")
 open(section_path, "w") do io
     println(io, "## $family matched SurfaceLayerDiffusivity comparison")
@@ -35,7 +44,7 @@ open(section_path, "w") do io
         println(io, "Profiles are equal means of the twelve instantaneous records at 11100:300:14400 s (03:00–04:00 UTC); 10800 s is the left boundary, not a sample. No GABLS1 archive curves are used as GABLS3 observations.")
     end
     println(io)
-    println(io, "At interior faces, thick momentum-flux curves show resolved plus explicitly modeled SGS flux; thin curves show the resolved share. The bottom boundary flux is wall-prescribed. This sum excludes unmeasured WENO numerical transport. Missing/invalid boundary-layer heights are not converted to physical zero. These are single-seed comparisons, not sampling-uncertainty estimates.")
+    println(io, "At interior faces, thick momentum-flux curves show resolved plus explicitly modeled SGS flux; thin curves show the resolved share. The bottom boundary flux is wall-prescribed. This sum excludes unmeasured WENO numerical transport. Skewness is the ratio of window-mean native-face w³ and w², not a mean of instantaneous skewness. Missing/invalid boundary-layer heights are not converted to physical zero. These are single-seed comparisons, not sampling-uncertainty estimates.")
     println(io)
     println(io, "Plot-source SHA-256: `",
             bytes2hex(open(sha256, joinpath(@__DIR__, "SurfaceLayerScientificPlots.jl"))), "`.")
@@ -51,7 +60,7 @@ open(section_path, "w") do io
                 bytes2hex(open(sha256, joinpath(directory, "manifest.toml"))), "`.")
     end
     println(io)
-    for path in (profile_path, timeline_path)
+    for path in (profile_path, scalar_path, moment_path, timeline_path, closure_path)
         png_path = splitext(path)[1] * ".png"
         println(io, "![", basename(png_path), "](", basename(png_path), ")")
         println(io)
@@ -62,4 +71,6 @@ open(section_path, "w") do io
     end
 end
 println("SLD_ADMITTED_PLOTS family=", family, " profiles=", profile_path,
-        " timeline=", timeline_path, " section=", section_path)
+        " scalars=", scalar_path, " moments=", moment_path,
+        " timeline=", timeline_path, " closure=", closure_path,
+        " section=", section_path)
