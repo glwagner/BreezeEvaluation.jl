@@ -85,13 +85,72 @@ end
 
     # u/v: m s⁻²; θ: K s⁻¹; qᵗ: kg kg⁻¹ s⁻¹. The event-side checks above
     # guard the discontinuities independently of these dimensional values.
-    @test advective_u_tendency(nothing, 200f0, 0f0) ≈ 5e-4 atol=1e-12
+    @test advective_u_tendency(nothing, 200f0, 0f0) === Float32(5e-4)
     @test advective_v_tendency(nothing, 200f0, 0f0) == 0
-    @test advective_theta_tendency(nothing, 200f0, 0f0) ≈ -2.5e-5 atol=1e-12
-    @test advective_theta_tendency(nothing, 200f0, 3600f0) ≈ 7.5e-5 atol=1e-12
-    @test advective_q_tendency(nothing, 200f0, 7200f0) ≈ -8e-8 atol=1e-12
+    @test advective_theta_tendency(nothing, 200f0, 0f0) === Float32(-2.5e-5)
+    @test advective_theta_tendency(nothing, 200f0, 3600f0) === Float32(7.5e-5)
+    @test advective_q_tendency(nothing, 200f0, 7200f0) === Float32(-8e-8)
     @test advective_u_tendency(nothing, 100f0, 0f0) ≈
           0.5 * advective_u_tendency(nothing, 200f0, 0f0) atol=1e-12
+end
+
+@testset "Float32 advective forcing is type-stable at all event sides" begin
+    event_times = (3600f0, 7200f0, 10800f0, 18000f0, 21600f0)
+    times = (0f0, 32400f0,
+             (time for event in event_times for time in
+              (prevfloat(event), event, nextfloat(event)))...)
+    heights = Float32.((collect(1:64) .- 0.5) .* 12.5)
+    tendencies = (advective_u_tendency, advective_v_tendency,
+                  advective_theta_tendency, advective_q_tendency)
+    for tendency in tendencies
+        @test Base.return_types(tendency, Tuple{Nothing, Float32, Float32}) == [Float32]
+        @test all(typeof(tendency(nothing, z, time)) === Float32 for
+                  z in heights for time in times)
+    end
+
+    # Exact prescribed values at and after every forcing event, expressed in
+    # the Float32 precision used by the materialized LES state.
+    event_values = (
+        (0f0, 5f-4, 0f0, -2.5f-5, 0f0),
+        (3600f0, 5f-4, 0f0, 7.5f-5, 0f0),
+        (7200f0, 5f-4, 0f0, 7.5f-5, -8f-8),
+        (10800f0, 0f0, 0f0, 7.5f-5, -8f-8),
+        (18000f0, 0f0, 0f0, 7.5f-5, 0f0),
+        (21600f0, 0f0, 0f0, 0f0, 0f0),
+        (32400f0, 0f0, 0f0, 0f0, 0f0))
+    for (time, u, v, theta, q) in event_values
+        @test (advective_u_tendency(nothing, 200f0, time),
+               advective_v_tendency(nothing, 200f0, time),
+               advective_theta_tendency(nothing, 200f0, time),
+               advective_q_tendency(nothing, 200f0, time)) === (u, v, theta, q)
+    end
+
+    # Legacy Float64 literals were implicitly converted on assignment to the
+    # Float32 prognostic field. Preserve the physical forcing, but do not claim
+    # bit identity: typed intermediate multiplication may differ by one ulp.
+    legacy_u(z, time) = min(z / 200, 1) * ifelse(time < 10800, 5e-4, 0)
+    legacy_theta(z, time) = min(z / 200, 1) *
+        ifelse(time < 3600, -2.5e-5, ifelse(time < 21600, 7.5e-5, 0))
+    legacy_q(z, time) = min(z / 200, 1) *
+        ifelse((time >= 7200) & (time < 18000), -8e-8, 0)
+    for (tendency, legacy) in ((advective_u_tendency, legacy_u),
+                               (advective_theta_tendency, legacy_theta),
+                               (advective_q_tendency, legacy_q))
+        sample_errors = [(; expected=Float32(legacy(z, time)),
+                           actual=tendency(nothing, z, time)) for
+                         z in heights for time in times]
+        ulp(expected) = max(abs(nextfloat(expected) - expected),
+                            abs(expected - prevfloat(expected)))
+        @test all(abs(sample.actual - sample.expected) <= ulp(sample.expected)
+                  for sample in sample_errors)
+        maximum_absolute_error = maximum(abs(sample.actual - sample.expected)
+                                         for sample in sample_errors)
+        maximum_relative_error = maximum(abs(sample.actual - sample.expected) /
+            max(abs(sample.expected), floatmin(Float32)) for sample in sample_errors)
+        println("FLOAT32_FORCING_ROUNDING tendency=", tendency,
+                " maximum_absolute_error=", maximum_absolute_error,
+                " maximum_relative_error=", maximum_relative_error)
+    end
 end
 
 @testset "MOST branches and caps" begin

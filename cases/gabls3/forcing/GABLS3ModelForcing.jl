@@ -142,12 +142,15 @@ end
 end
 
 @inline height_factor(z) = min(z / 200, 1)
-@inline advective_u_tendency(tables, z, time) = height_factor(z) * ifelse(time < 10800, 5e-4, 0)
+@inline advective_u_tendency(tables, z, time) =
+    height_factor(z) * ifelse(time < 10800, oftype(z, 5e-4), zero(z))
 @inline advective_v_tendency(tables, z, time) = zero(z + time)
 @inline advective_theta_tendency(tables, z, time) =
-    height_factor(z) * ifelse(time < 3600, -2.5e-5, ifelse(time < 21600, 7.5e-5, 0))
+    height_factor(z) * ifelse(time < 3600, oftype(z, -2.5e-5),
+                             ifelse(time < 21600, oftype(z, 7.5e-5), zero(z)))
 @inline advective_q_tendency(tables, z, time) =
-    height_factor(z) * ifelse((time >= 7200) & (time < 18000), -8e-8, 0)
+    height_factor(z) * ifelse((time >= 7200) & (time < 18000),
+                             oftype(z, -8e-8), zero(z))
 
 # Below 10 m, scalars connect the prescribed 0.25 m surface values to the first sounding value.
 # Wind connects the no-slip aerodynamic origin at z₀ₘ to the 10 m observation logarithmically.
