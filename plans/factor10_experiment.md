@@ -1,6 +1,6 @@
 # GABLS1 resolved-flux factor10
 
-One nine-hour n032,400m³-domain,12.5m,WENO9,one-face,300s-filter,seed123 case.
+One nine-hour n032,400m × 400m × 400m domain,12.5m,WENO9,one-face,300s-filter,seed123 case.
 Breeze physics remains commit1df78f2bb94db159e3a296f7439e1a5e90286014.
 Both momentum and heat use factor10: it credits10 times measured local temporal
 resolved covariance, corresponding to assumed missing numerical transport9 times
