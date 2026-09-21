@@ -15,6 +15,10 @@ The earlier `surface-layer-freeze-20260920-34e955b` remains immutable and is not
   native-height initial profiles, exact GABLS3 t=300 s profile/series/point records, and exact
   t=21600 s sunrise callback/surface-humidity/guard plumbing. The two GABLS3 clock jumps are labeled
   nonphysical scheduler fixtures and their output is never admissible as a scientific state.
+  The 295→300 s writer fixture intentionally retains Oceananigans' iteration-zero initialization
+  record at 295 s alongside the SpecifiedTimes record at exactly 300 s in each profile, series,
+  and point file. Its audit requires both records for every variable, finite outputs, native
+  vertical coordinates and face moments; it never alters the production 300 s/10 s schedules.
 
 Every tiny dry/moist support combination is checkpointed to JLD2, loaded through Oceananigans'
 real `set!(simulation; checkpoint=...)` pickup path, evolved further, and compared bit-for-bit with

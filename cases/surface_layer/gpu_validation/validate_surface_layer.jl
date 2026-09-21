@@ -8,7 +8,7 @@ import Dates
 
 using Breeze.TurbulenceClosures: SurfaceLayerDiffusivityDeviceFields
 using Oceananigans.AbstractOperations: Average
-using Oceananigans.Fields: AbstractField, Field
+using Oceananigans.Fields: AbstractField, Field, location
 using Oceananigans.Grids: Center, Face, znodes
 
 const VALIDATION_ROOT = normpath(joinpath(@__DIR__, "..", "..", ".."))
@@ -453,40 +453,108 @@ function skip_past_specified_times!(simulation, current_time)
     return nothing
 end
 
-function audit_full_profile_file(path, expected_time, Nz; minimum_variables)
-    require_contract(raw_times(path) == [expected_time],
-                     "$path does not contain exactly the scheduled record $expected_time")
-    jldopen(path, "r") do file
+function audit_writer_records(file, path, expected_times)
+    time_group = file["timeseries/t"]
+    time_keys = filter(!=("serialized"), String.(collect(keys(time_group))))
+    records = sort([(parse(Int, key), Float64(time_group[key])) for key in time_keys]; by=first)
+    require_contract(length(records) == length(expected_times),
+                     "$path has $(length(records)) records, expected $(length(expected_times))")
+    require_contract(first(records)[1] == 0, "$path has no iteration-zero initial record")
+    require_contract(last.(records) == collect(expected_times),
+                     "$path records $(last.(records)) differ from expected $expected_times")
+    require_contract(all(diff(first.(records)) .> 0),
+                     "$path record iterations are not strictly increasing")
+    return string.(first.(records))
+end
+
+function audit_full_profile_file(path, expected_times, model_grid, writer;
+                                 minimum_variables)
+    return jldopen(path, "r") do file
+        record_keys = audit_writer_records(file, path, expected_times)
+        stored_grid = file["serialized/grid"]
+        center_z = collect(znodes(stored_grid, Center()))
+        face_z = collect(znodes(stored_grid, Face()))
+        require_contract(center_z == collect(znodes(model_grid, Center())),
+                         "$path stored center coordinates differ from the native model grid")
+        require_contract(face_z == collect(znodes(model_grid, Face())),
+                         "$path stored face coordinates differ from the native model grid")
+        require_contract(length(center_z) == model_grid.Nz &&
+                         length(face_z) == model_grid.Nz + 1 &&
+                         all(isfinite, center_z) && all(isfinite, face_z) &&
+                         all(diff(center_z) .> 0) && all(diff(face_z) .> 0),
+                         "$path has invalid native vertical coordinates")
         variables = filter(name -> name != "t" && name != "serialized",
                            String.(collect(keys(file["timeseries"]))))
         require_contract(length(variables) >= minimum_variables,
                          "$path has too few profile variables")
+        require_contract(Set(variables) == Set(string.(keys(writer.outputs))),
+                         "$path profile variables differ from the installed writer")
         for variable in variables
+            vertical_location = location(getproperty(writer.outputs, Symbol(variable)))[3]
+            require_contract(vertical_location === Center || vertical_location === Face,
+                             "$variable has no native vertical Center/Face location")
+            vertical_length = vertical_location === Face ? length(face_z) : length(center_z)
             group = file["timeseries/$variable"]
-            for key in filter(key -> key != "serialized", collect(keys(group)))
+            keys_for_variable = filter(!=("serialized"), String.(collect(keys(group))))
+            require_contract(Set(keys_for_variable) == Set(record_keys),
+                             "$variable lacks an initial or scheduled profile record")
+            for key in record_keys
                 values = group[key]
-                require_contract(length(values) in (Nz, Nz + 1),
-                                 "$variable has unexpected vertical length $(length(values))")
+                require_contract(size(values) == (1, 1, vertical_length),
+                                 "$variable has wrong native $vertical_location shape $(size(values))")
                 require_contract(all(isfinite, values), "$variable contains non-finite values")
             end
         end
+        for variable in (:w_mean, :w_variance, :w_third_central_moment)
+            require_contract(location(getproperty(writer.outputs, variable))[3] === Face,
+                             "$variable is not a native-face moment")
+        end
+        return record_keys
     end
-    return nothing
 end
 
-function audit_reduced_file(path, expected_time)
-    require_contract(raw_times(path) == [expected_time],
-                     "$path does not contain exactly the scheduled record $expected_time")
-    jldopen(path, "r") do file
+function audit_reduced_file(path, expected_times, writer)
+    return jldopen(path, "r") do file
+        record_keys = audit_writer_records(file, path, expected_times)
         variables = filter(name -> name != "t" && name != "serialized",
                            String.(collect(keys(file["timeseries"]))))
         require_contract(!isempty(variables), "$path has no reduced diagnostics")
+        require_contract(Set(variables) == Set(string.(keys(writer.outputs))),
+                         "$path reduced variables differ from the installed writer")
         for variable in variables
             group = file["timeseries/$variable"]
-            for key in filter(key -> key != "serialized", collect(keys(group)))
+            keys_for_variable = filter(!=("serialized"), String.(collect(keys(group))))
+            require_contract(Set(keys_for_variable) == Set(record_keys),
+                             "$variable lacks an initial or scheduled reduced record")
+            for key in record_keys
                 require_contract(all(isfinite, group[key]),
                                  "$variable contains non-finite reduced output")
             end
+        end
+        return record_keys
+    end
+end
+
+function audit_point_coordinates(path, model_grid)
+    jldopen(path, "r") do file
+        stored_grid = file["serialized/grid"]
+        center_z = collect(znodes(stored_grid, Center()))
+        face_z = collect(znodes(stored_grid, Face()))
+        require_contract(center_z == collect(znodes(model_grid, Center())) &&
+                         face_z == collect(znodes(model_grid, Face())),
+                         "$path point grid differs from the native model grid")
+        metadata = file["metadata"]
+        heights(key) = parse.(Float64, split(metadata[key], ","))
+        requested = heights("requested_point_heights_m")
+        actual_center = heights("actual_scalar_and_horizontal_velocity_heights_m")
+        actual_face = heights("actual_native_w_face_heights_m")
+        require_contract(length(requested) == length(actual_center) == length(actual_face),
+                         "$path point-height metadata lengths differ")
+        for (height, center, face) in zip(requested, actual_center, actual_face)
+            require_contract(center == center_z[argmin(abs.(center_z .- height))],
+                             "$path point scalar height is not the nearest native center")
+            require_contract(face == face_z[argmin(abs.(face_z .- height))],
+                             "$path point w height is not the nearest native face")
         end
     end
     return nothing
@@ -605,7 +673,9 @@ function full_gpu_runner_contract()
     gabls1 = GABLS1ValidationRunner.build_simulation(; run_directory=gabls1_directory)
     run!(gabls1.simulation)
     gabls1_initial = joinpath(gabls1_directory, "$(gabls1.case_id)_diag_initial.jld2")
-    audit_full_profile_file(gabls1_initial, 0.0, 32; minimum_variables=46)
+    audit_full_profile_file(gabls1_initial, (0.0,), gabls1.model.grid,
+                            gabls1.simulation.output_writers[:gabls1_surface_layer_initial];
+                            minimum_variables=46)
     require_contract(gabls1.settings.theta_initial_sha256 ==
         "1f5db33f2971ee607ac46b1a014b038a09fc876cc1669394dce023a9aa2f198b",
         "GABLS1 paired initial array digest changed")
@@ -630,14 +700,31 @@ function full_gpu_runner_contract()
     gabls3_writer = GABLS3ValidationRunner.build_simulation(
         ; run_directory=gabls3_writer_directory)
     delete!(gabls3_writer.simulation.output_writers, :checkpoint)
+    for name in (:gabls3_profiles, :gabls3_series, :gabls3_points)
+        schedule_times = gabls3_writer.simulation.output_writers[name].schedule.times
+        require_contract(300.0 in schedule_times && !(295.0 in schedule_times),
+                         "$name did not retain the original 300 s schedule")
+    end
     gabls3_writer.model.clock.time = 295.0
     skip_past_specified_times!(gabls3_writer.simulation, 295.0)
     run!(gabls3_writer.simulation)
     prefix = joinpath(gabls3_writer_directory, "$(gabls3_writer.case_id)_diag")
-    audit_full_profile_file(prefix * "_profiles.jld2", 300.0, 64;
-                            minimum_variables=46)
-    audit_reduced_file(prefix * "_series.jld2", 300.0)
-    audit_reduced_file(prefix * "_points.jld2", 300.0)
+    # `Simulation.initialize!` writes the iteration-zero record at the artificial
+    # 295 s clock, regardless of SpecifiedTimes. The real scheduled 300 s record
+    # must also exist in every writer. This fixture-only record is never science.
+    fixture_times = (295.0, 300.0)
+    profile_records = audit_full_profile_file(
+        prefix * "_profiles.jld2", fixture_times, gabls3_writer.model.grid,
+        gabls3_writer.simulation.output_writers[:gabls3_profiles]; minimum_variables=46)
+    series_records = audit_reduced_file(
+        prefix * "_series.jld2", fixture_times,
+        gabls3_writer.simulation.output_writers[:gabls3_series])
+    point_records = audit_reduced_file(
+        prefix * "_points.jld2", fixture_times,
+        gabls3_writer.simulation.output_writers[:gabls3_points])
+    audit_point_coordinates(prefix * "_points.jld2", gabls3_writer.model.grid)
+    require_contract(profile_records == series_records == point_records,
+                     "GABLS3 clock-jump writers disagree on initial/scheduled iterations")
     gabls3_case_id = gabls3_writer.case_id
     gabls3_initial_state_sha256 = string(gabls3_writer.settings.initial_state_sha256)
     gabls3_writer = nothing
@@ -690,6 +777,9 @@ function full_gpu_runner_contract()
         "gabls3_case_id" => gabls3_case_id,
         "gabls3_initial_state_sha256" => gabls3_initial_state_sha256,
         "gabls3_serialized_restart" => gabls3_restart,
+        "writer_clock_jump_initial_time_s" => 295.0,
+        "writer_clock_jump_scheduled_time_s" => 300.0,
+        "writer_clock_jump_record_iterations" => join(profile_records, ","),
         "sunrise_event_time_s" => event_time[],
         "sunrise_theta_flux_min" => minimum(theta_flux),
         "sunrise_theta_flux_max" => maximum(theta_flux),
