@@ -499,6 +499,17 @@ function gabls3_serialized_restart_contract(directory)
     set!(restarted.simulation; checkpoint=checkpoint_path)
     require_contract(iteration(restarted.simulation) == 1,
                      "GABLS3 runner checkpoint did not restore iteration 1")
+    # Oceananigans checkpoints the model clock (including its applied last_Δt),
+    # but not Simulation.Δt. The step-zero wizard has already raised Δt from the
+    # constructor value; restoring only the model would continue at a different
+    # timestep. This iteration-one fixture resumes with the serialized applied
+    # timestep, before the wizard's next scheduled update at iteration ten.
+    restored_Δt = restarted.model.clock.last_Δt
+    require_contract(isfinite(restored_Δt) && restored_Δt > 0,
+                     "GABLS3 checkpoint has no valid applied timestep")
+    require_contract(restored_Δt != restarted.simulation.Δt,
+                     "GABLS3 restart fixture did not exercise timestep restoration")
+    restarted.simulation.Δt = restored_Δt
     run!(restarted.simulation)
     require_contract(time(restarted.simulation) == reference_time,
                      "GABLS3 restarted runner ended at the wrong time")

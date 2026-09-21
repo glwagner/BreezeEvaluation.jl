@@ -1,6 +1,6 @@
 # Bounded SurfaceLayerDiffusivity GPU contract
 
-This directory contains preparation only. No job represented here has been submitted. The harness
+This directory contains validation source, not admitted LES results. The harness
 must be run from a new read-only snapshot whose checksum manifest includes the harness, both case
 runners, both registries, the pinned runner environment, and the reviewed Breeze feature source.
 The earlier `surface-layer-freeze-20260920-34e955b` remains immutable and is not modified.
@@ -20,6 +20,12 @@ Every tiny dry/moist support combination is checkpointed to JLD2, loaded through
 real `set!(simulation; checkpoint=...)` pickup path, evolved further, and compared bit-for-bit with
 an uninterrupted reference. GPU-full mode additionally performs that serialized split/restart
 comparison with the actual 64-cubed moist GABLS3 runner and its time-dependent surface operands.
+Oceananigans serializes the model clock's applied `last_Δt` but does not serialize
+`Simulation.Δt`. The actual-runner iteration-one restart fixture restores the next step
+from that checkpointed clock value before the wizard's next update at iteration ten.
+`test_restart_timestep.jl` checks this omission and the corrected two-step continuation
+on CPU. This narrow fixture does not establish a general variable-Δt restart policy;
+long-running production would need an explicit next-Δt sidecar at arbitrary checkpoints.
 CPU mode writes distinct `CPU_VALIDATION_*` sentinels and can never
 admit an array. GPU mode writes mutually exclusive `GPU_VALIDATION_DONE` and
 `GPU_VALIDATION_FAILED` sentinels plus a hashed TOML evidence record.
