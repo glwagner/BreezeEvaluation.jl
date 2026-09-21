@@ -190,12 +190,12 @@ end
     end
     registry = joinpath(@__DIR__, "registries", "gabls1_analysis_attempts.toml")
     parsed = load_attempt_registry(registry)
-    @test parsed["source_freeze_manifest_entries"] == 760
+    @test parsed["source_freeze_manifest_entries"] == 761
     @test parsed["source_freeze_manifest_sha256"] ==
-          "9ff80a44fdb5135fd719bd93f91603e84da9422e031604f9f71f974262c03ef1"
+          "d2a6c2adea31fca7b6ed370780fc319e65c5cc7418f8153efb45dca6d563920c"
     gabls3_registry = joinpath(@__DIR__, "registries", "gabls3_analysis_attempts.toml")
     gabls3_parsed = load_attempt_registry(gabls3_registry)
-    @test gabls3_parsed["source_freeze_manifest_entries"] == 760
+    @test gabls3_parsed["source_freeze_manifest_entries"] == 761
     @test gabls3_parsed["source_freeze_manifest_sha256"] ==
           parsed["source_freeze_manifest_sha256"]
     @test_throws ErrorException SurfaceLayerScientificExport.active_attempt(
