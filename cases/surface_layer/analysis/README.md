@@ -90,3 +90,50 @@ available for explicitly non-scientific pipeline development without weakening a
 The synthetic fixtures are labeled `fixture_non_scientific=true` and
 `export_verified=false`. They test I/O, schedule, coordinate, averaging, finite-value,
 shape, hash-corruption, and collector rejection behavior only; they are not LES results.
+
+## Admitted-only scientific figure and report-section preparation
+
+`SurfaceLayerScientificPlots.jl` loads every case through `load_case_export`; the
+command below refuses absent, fixture, unverified, or hash-corrupted exports and
+requires all four distinct matched variants from one family. It creates a six-panel
+two-row (full depth / near wall), three-column (mean u / momentum-flux partition /
+native-face w variance) comparison, a forcing/response/closure-activity timeline,
+and a Markdown section with manifest and figure hashes. No LES figure is generated
+from the synthetic export fixtures, and no output is available until scientific
+cases are admitted.
+
+Use the report's Julia environment with CairoMakie and JSON; this is a separate
+plotting dependency from the frozen scientific runner and exporter. For GABLS1,
+the fixed 1 m archive median JSON is required. GABLS3 must pass `none` in that
+argument and never inherits GABLS1 reference data. Example after all four
+exports have passed admission:
+
+```sh
+JULIA=/shared/home/greg/.juliaup/bin/julia
+PLOT_PROJECT=/path/to/dycoms-reference/julia
+PLOT_SCRIPT=/path/to/BreezeEvaluation.jl/cases/surface_layer/analysis/plot_admitted_comparisons.jl
+EXPORT_ROOT=/path/to/admitted-sld-exports
+REFERENCE=/path/to/dycoms-reference/gabls/reference_data/fixed_1m_medians.json
+
+$JULIA --startup-file=no --project=$PLOT_PROJECT $PLOT_SCRIPT \
+  GABLS1 /path/to/report/surface_layer $REFERENCE \
+  $EXPORT_ROOT/gabls1_n032_weno9_control \
+  $EXPORT_ROOT/gabls1_n032_weno9_surface_layer_t100_s1 \
+  $EXPORT_ROOT/gabls1_n032_weno9_surface_layer_t300_s1 \
+  $EXPORT_ROOT/gabls1_n032_weno9_surface_layer_t300_s2
+```
+
+For GABLS3 use its four `n064_weno9_*` directories and `none`. Profiles
+preserve the exported native Center/Face z coordinates and use the official
+GABLS1 final two half-hour bins or GABLS3 twelve 03:00–04:00 UTC instantaneous
+records. The historical GABLS1 1 m upper-level flux reference above 300 m is
+omitted, not silently repaired. The report builder should append the generated
+`*_sld_admitted_section.md` and two PDFs only after this command succeeds;
+the current report remains an explicitly pending comparison until then.
+
+The plotting-module fixture test is deliberately non-scientific:
+
+```sh
+$JULIA --startup-file=no --project=$PLOT_PROJECT \
+  cases/surface_layer/analysis/test_scientific_plots.jl
+```
