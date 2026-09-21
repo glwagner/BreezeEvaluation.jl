@@ -14,7 +14,7 @@ the original GABLS1 production campaign remain unchanged.
 - the exact active log, `ATTEMPT_STARTED`, and `CASE_DONE` hashes match the registry;
 - `CASE_DONE` reports 32400 seconds and `CASE_FAILED` is absent;
 - `ATTEMPT_STARTED` identifies the exact frozen scientific registry and case index;
-- the registry-pinned 755-file source snapshot and the separately pinned analysis snapshot pass complete
+- the registry-pinned 756-file source snapshot and the separately pinned analysis snapshot pass complete
   SHA-256 audits;
 - a `gpu_full` / `CUDAGPU` validation bundle, including disabled CUDA scalar indexing,
   admits that same source snapshot;
