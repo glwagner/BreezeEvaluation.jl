@@ -6,6 +6,7 @@ using SHA
 using TOML
 import Dates
 
+using Breeze.TurbulenceClosures: SurfaceLayerDiffusivityDeviceFields
 using Oceananigans.AbstractOperations: Average
 using Oceananigans.Fields: AbstractField, Field
 using Oceananigans.Grids: Center, Face, znodes
@@ -131,6 +132,13 @@ end
 function column_conservation_check(architecture; moist, support)
     model = build_contract_model(architecture; moist, support, closure_enabled=true)
     control = build_contract_model(architecture; moist, support, closure_enabled=false)
+    if architecture isa GPU
+        device_fields = CUDA.cudaconvert(model.closure_fields)
+        require_contract(device_fields isa SurfaceLayerDiffusivityDeviceFields,
+                         "GPU closure adaptation did not select device-only fields")
+        require_contract(isbitstype(typeof(device_fields)),
+                         "GPU closure fields retain non-bitstype host state")
+    end
     Oceananigans.time_step!(model, 0.1f0)
     Oceananigans.time_step!(control, 0.1f0)
     check_support_and_guards(model; moist, support)
