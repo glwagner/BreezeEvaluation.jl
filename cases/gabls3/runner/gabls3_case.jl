@@ -1,5 +1,5 @@
-# GABLS3 revised nine-hour LES case. This runner is CPU-validation-only until the
-# GABLS1 campaign releases GPU capacity and the GPU diagnostic contract passes.
+# GABLS3 revised nine-hour LES case. Scientific execution requires a separately
+# frozen, source-specific GPU admission and hash-checked production wrapper.
 
 using Breeze
 using CUDA
@@ -196,9 +196,8 @@ function build_simulation(; run_directory=pwd())
     surface_q = Field{Center, Center, Nothing}(grid)
     update_surface_humidity!(surface_q, inputs, 0)
     surface_temperature = SurfaceTemperature(inputs, constants)
-    anelastic_surface_pressure = FT(reference_state.base_pressure)
     surface_relative_humidity = SurfaceRelativeHumidity(
-        inputs, constants, anelastic_surface_pressure)
+        inputs, constants, reference_state.pressure, reference_state.density)
     coefficient = GABLS3MOSTCoefficient(surface_q;
         momentum_roughness=inputs.momentum_roughness,
         scalar_reference_height=inputs.scalar_reference_height)

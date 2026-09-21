@@ -34,7 +34,11 @@ Only Julia stdlibs are needed. Load with `load_case("inputs.toml")`.
   Values below10m are deliberately rejected pending an explicit lower-level initialization policy.
 - `scalar_flux`: case-spec0.25m MOST scalar flux expression with caller-provided stabilityfunction.
   Included stable branch is psi=-5z/L. It explicitly rejects unstable z/L; a full morning branch is still needed.
-- `preflight` rejects unresolved readiness gates; it must run before any submission or model construction.
+- `preflight` rejects the original unresolved preparation flags. These flags are historical
+  metadata, not a current runner-admission record: the later runner uses `load_case` and does
+  not call `preflight`. Production is instead admitted through a versioned source-manifest and
+  GPU-evidence-checked launch wrapper plus strict finalization; see `../README.md`. Do not
+  interpret successful `load_case` or the original flags as production authorization.
 
 ## Runner integration contract and unresolved choices
 
@@ -83,5 +87,8 @@ from the11-model6.25m ensemble and from observations; never call it a GABLS1-sty
 
 Input interpolation and exact jump handling can pass CPU unit tests independently of a model.
 That does not establish model integration, GPU safety, nine-hour stability, or physical fidelity.
-All readiness gates in inputs.toml remain false until their evidence exists. No production authorized;
-GABLS1 retains priority and the campaign-wide maximum is two active GPU jobs.
+All original readiness gates in inputs.toml remain false as preparation-era metadata. Later
+CPU/GPU evidence is tracked by immutable source-bound campaign gates, not by rewriting this
+input table. The current development revision still requires a new GABLS3-only frozen GPU
+admission before production. GABLS1 retains priority and the campaign-wide maximum is two
+active GPU jobs.

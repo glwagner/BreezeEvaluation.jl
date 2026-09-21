@@ -3,7 +3,9 @@
 GABLS3 is the nine-hour LES case for 00:00--09:00 UTC on 2 July 2006 at Cabauw, not the separate
 24-hour SCM experiment. The repository now contains a case-local Breeze runner, surface/forcing
 implementation, instantaneous diagnostics, audited input preparation, and reference data. The
-runner is under CPU validation; it is not production-authorized.
+runner is not production-authorized in the current development revision. The earlier immutable
+`a14c358` source passed a combined GPU gate, but that evidence does not validate subsequent
+GABLS3 source changes.
 
 Planned matrix: an 800 m cube at 64³ (12.5 m), 128³ (6.25 m canonical), and 256³ (3.125 m), each
 with WENO9/no interior closure, WENO5/no interior closure, and WENO9/Smagorinsky. Preparation and
@@ -25,6 +27,11 @@ perturbations.
   from the observed initial temperature and humidity profiles with the 00 UTC surface pressure.
   Observed time-varying surface pressure converts prescribed surface potential temperature to
   temperature and is exported, while the anelastic pressure profile itself remains fixed.
+  The vapor-flux boundary condition converts the prescribed surface `q` to relative humidity using
+  the same saturation function and hydrostatically extrapolated wall pressure as its inverse
+  conversion. This is tested against the actual materialized boundary flux, not an assumed air
+  humidity. The wall pressure is computed from the fixed anelastic reference pressure and density;
+  it is not the time-varying observed surface-pressure table.
 - Surface transfer is local, coupled through the moist virtual-potential-temperature bulk
   Richardson number. Momentum uses `z0m=0.15 m`; heat and moisture use the specified 0.25 m
   scalar reference. Stable `psi_m=psi_h=-5z/L`; unstable transfer uses Businger--Dyer with
@@ -74,5 +81,20 @@ the separate surface-humidity callback remains at the update-state callsite.
 It does **not** establish that `Simulation.run!` crosses the event correctly;
 the pinned supplemental GPU gate tests that integration and its native writers.
 
-GPU smoke and production remain gated by free capacity, the full diagnostic/writer contract,
-and an explicit campaign freeze. GABLS1 jobs retain priority and no GABLS3 scheduler files exist.
+## Readiness and production entrypoint
+
+`preparation/inputs.toml` retains its original all-false readiness flags and
+`GABLS3Forcing.preflight` as a **historical preparation contract**. Those flags were never
+advanced with the later runner integration and are not an accurate record of the current
+CPU/GPU evidence. Do not flip them wholesale or use a successful `load_case` as scientific
+admission. The preparation README's earlier statement that `preflight` runs before every
+model construction does not describe the implemented runner.
+
+The production entrypoint is a separately versioned, source-hash-pinned array wrapper. It
+must reject missing/failed combined GPU evidence, verify the exact source manifest and
+scientific registry, and write a durable child-exit record. The finalizer then requires those
+records and strict raw-output/export checks. Existing `7241` combined evidence binds only the
+immutable `a14c358` source. The corrected surface-humidity source needs its own frozen revision,
+focused GPU boundary-flux/round-trip check, and re-bound wrapper/finalizer before any GABLS3
+science is scheduled. CPU construction and artificial clock-jump fixtures are development tests,
+not substitutes for this gate. GABLS1 retains priority; root alone schedules GABLS3.

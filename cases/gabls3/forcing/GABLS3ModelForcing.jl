@@ -24,13 +24,14 @@ using Breeze
 using Oceananigans
 
 using Breeze.AtmosphereModels: moisture_specific_name, standard_pressure
-using Breeze.AtmosphereModels.Diagnostics: saturation_total_specific_moisture,
-                                           virtual_potential_temperature
+using Breeze.AtmosphereModels.Diagnostics: virtual_potential_temperature
 using Breeze.BoundaryConditions: NearWallVirtualPotentialTemperature,
                                  tangential_speed²,
                                  wall_distance
 using Breeze.Thermodynamics: MoistureMassFractions,
-                             PlanarLiquidSurface
+                             PlanarLiquidSurface,
+                             saturation_specific_humidity,
+                             surface_density
 using Oceananigans.BoundaryConditions: Bottom
 using Oceananigans.Fields: Field
 using Oceananigans.Grids: Center
@@ -214,10 +215,11 @@ Adapt.adapt_structure(to, surface::SurfaceTemperature) =
     return state.theta * (state.pressure / surface.inputs.standard_pressure)^(Rᵈ / cᵖᵈ)
 end
 
-struct SurfaceRelativeHumidity{I, TC, FT}
+struct SurfaceRelativeHumidity{I, TC, P, R}
     inputs :: I
     thermodynamic_constants :: TC
-    anelastic_surface_pressure :: FT
+    reference_pressure :: P
+    reference_density :: R
 end
 
 BCS.materialize_surface_field(surface::SurfaceTemperature, grid, side) = surface
@@ -232,22 +234,24 @@ end
 @inline function BCS.wall_value(i, j, grid, ::Bottom,
                                 surface::SurfaceRelativeHumidity, clock)
     x, y = Oceananigans.Grids.node(i, j, 1, grid, Center(), Center(), nothing)
-    return surface(x, y, clock.time)
+    temperature = SurfaceTemperature(surface.inputs, surface.thermodynamic_constants)(x, y, clock.time)
+    qˢ = surface.inputs.surface_q(clock.time)
+    # Use the same bottom-wall pressure, dry surface density, and saturation function as
+    # BulkVaporFluxFunction.getbc. For anelastic dynamics, both reference fields are fixed.
+    fields = (; p=surface.reference_pressure, ρ=surface.reference_density)
+    pˢ = BCS.wall_air_pressure(i, j, 1, grid, Bottom(), nothing, fields,
+                              surface.thermodynamic_constants)
+    ρˢ = surface_density(pˢ, temperature, surface.thermodynamic_constants)
+    qˢᵃᵗ = saturation_specific_humidity(temperature, ρˢ,
+                                       surface.thermodynamic_constants, PlanarLiquidSurface())
+    return clamp(qˢ / qˢᵃᵗ, 0, 1)
 end
 
 Adapt.adapt_structure(to, surface::SurfaceRelativeHumidity) =
     SurfaceRelativeHumidity(Adapt.adapt(to, surface.inputs),
                             Adapt.adapt(to, surface.thermodynamic_constants),
-                            Adapt.adapt(to, surface.anelastic_surface_pressure))
-
-@inline function (surface::SurfaceRelativeHumidity)(x, y, time)
-    temperature = SurfaceTemperature(surface.inputs, surface.thermodynamic_constants)(x, y, time)
-    qˢ = surface.inputs.surface_q(time)
-    qˢᵃᵗ = saturation_total_specific_moisture(
-        temperature, surface.anelastic_surface_pressure,
-        surface.thermodynamic_constants, PlanarLiquidSurface())
-    return clamp(qˢ / qˢᵃᵗ, 0, 1)
-end
+                            Adapt.adapt(to, surface.reference_pressure),
+                            Adapt.adapt(to, surface.reference_density))
 
 """GABLS3 MOST coefficient shared by momentum, heat, and moisture boundary conditions."""
 struct GABLS3MOSTCoefficient{FT, Q, θV, SP, TC, TT}
