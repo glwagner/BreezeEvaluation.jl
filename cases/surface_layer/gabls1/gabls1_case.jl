@@ -2,6 +2,7 @@
 # Development-only until an immutable source/dependency freeze and GPU contract pass.
 
 using Breeze
+using CUDA
 using Oceananigans
 using Oceananigans.Units
 using Printf
@@ -60,7 +61,6 @@ end
 function architecture_from_environment()
     name = environment_choice("GABLS1_SLD_ARCH", ("cpu", "gpu"), "cpu")
     if name == "gpu"
-        @eval using CUDA
         CUDA.functional() || error("GABLS1_SLD_ARCH=gpu but CUDA is not functional")
     end
     return name == "gpu" ? GPU() : CPU()

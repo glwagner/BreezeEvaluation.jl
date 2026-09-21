@@ -2,6 +2,7 @@
 # Production use requires a separately reviewed immutable snapshot and GPU gate.
 
 using Breeze
+using CUDA
 using Oceananigans
 using Oceananigans.Units
 using Printf
@@ -44,7 +45,6 @@ end
 function architecture_from_environment()
     name = environment_choice("NEUTRAL_ABL_ARCH", ("cpu", "gpu"), "cpu")
     if name == "gpu"
-        @eval using CUDA
         CUDA.functional() || error("NEUTRAL_ABL_ARCH=gpu but CUDA is not functional")
         CUDA.allowscalar(false)
     end

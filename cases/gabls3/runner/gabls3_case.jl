@@ -2,6 +2,7 @@
 # GABLS1 campaign releases GPU capacity and the GPU diagnostic contract passes.
 
 using Breeze
+using CUDA
 using Oceananigans
 using Oceananigans.Units
 using Printf
@@ -29,7 +30,6 @@ end
 function architecture_from_environment()
     name = environment_choice("GABLS3_ARCH", ("cpu", "gpu"), "cpu")
     if name == "gpu"
-        @eval using CUDA
         CUDA.functional() || error("GABLS3_ARCH=gpu but CUDA is not functional")
     end
     return name == "gpu" ? GPU() : CPU()

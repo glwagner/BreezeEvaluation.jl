@@ -1,4 +1,5 @@
 using Breeze
+using CUDA
 using Oceananigans
 using JLD2
 using SHA
@@ -32,7 +33,6 @@ function validation_architecture()
     VALIDATION_MODE in ("cpu_contract", "gpu_full") ||
         error("SLD_VALIDATION_MODE must be cpu_contract or gpu_full")
     VALIDATION_MODE == "cpu_contract" && return CPU()
-    @eval using CUDA
     CUDA.functional() || error("gpu_full requested but CUDA is not functional")
     CUDA.allowscalar(false)
     return GPU()
