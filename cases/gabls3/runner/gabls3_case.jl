@@ -4,6 +4,7 @@
 using Breeze
 using CUDA
 using Oceananigans
+using Oceananigans: TimeStepCallsite
 using Oceananigans.Units
 using Printf
 using Random
@@ -267,9 +268,12 @@ function build_simulation(; run_directory=pwd())
 
     update_q(model) = update_surface_humidity!(surface_q, inputs, model.clock.time)
     add_callback!(simulation, update_q, IterationInterval(1); callsite=UpdateStateCallsite())
-    event_callback(model) = nothing
+    # This no-op exists only to align steps with discontinuous prescribed forcing.
+    # A TimeStep callback advances its SpecifiedTimes schedule after each event;
+    # UpdateState callbacks run at RK stages without advancing that schedule.
+    event_callback(simulation) = nothing
     add_callback!(simulation, event_callback, SpecifiedTimes(collect(forcing_events()));
-                  callsite=UpdateStateCallsite())
+                  callsite=TimeStepCallsite())
 
     closure_id = closure_name == "surface_layer" ?
         @sprintf("surface_layer_t%03d_s%d",

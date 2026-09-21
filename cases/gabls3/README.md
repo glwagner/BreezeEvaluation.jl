@@ -66,5 +66,13 @@ julia --project=cases/gabls3/runner cases/gabls3/test_runner_integration.jl OUTP
 Its states are deliberately nonphysical and must never be admitted as scientific
 results or cited as evidence of nine-hour numerical stability.
 
+`cases/gabls3/test_event_alignment.jl` is a narrower, non-integrating CPU
+fixture. It constructs the actual runner callbacks, jumps the clock to 3599 s,
+checks that the no-op forcing-event callback is scheduled after a step, verifies
+the exact 3600 s alignment/actuation and event-side forcing values, and confirms
+the separate surface-humidity callback remains at the update-state callsite.
+It does **not** establish that `Simulation.run!` crosses the event correctly;
+the pinned supplemental GPU gate tests that integration and its native writers.
+
 GPU smoke and production remain gated by free capacity, the full diagnostic/writer contract,
 and an explicit campaign freeze. GABLS1 jobs retain priority and no GABLS3 scheduler files exist.
