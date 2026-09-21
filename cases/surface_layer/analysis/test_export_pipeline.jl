@@ -162,7 +162,7 @@ end
     parsed = load_attempt_registry(registry)
     @test parsed["source_freeze_manifest_entries"] == 756
     @test parsed["source_freeze_manifest_sha256"] ==
-          "651d6dc137498c8d161b6e5b077f87795ff6e6f1ed0c31c6987c4f7d5c2b9d2b"
+          "2d572c44ae699d9ff7b3b5af02adb5b118b6434d41599e64f3fa0e56de7b0a69"
     gabls3_registry = joinpath(@__DIR__, "registries", "gabls3_analysis_attempts.toml")
     gabls3_parsed = load_attempt_registry(gabls3_registry)
     @test gabls3_parsed["source_freeze_manifest_entries"] == 756
