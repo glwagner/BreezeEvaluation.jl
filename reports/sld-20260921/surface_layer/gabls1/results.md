@@ -50,18 +50,35 @@ That is a useful controlled test. The present SurfaceLayerDiffusivity applies ve
 
 A clean next comparison would retain the one-face, 300 s configuration, tracer diffusivity, grid, initialization and forcing, and change only whether the SLD viscosity acts on w. The implementation also needs an explicit check of both the tendency and vertically implicit solve. No u/v-only result is included here, and the historical Smagorinsky result does not establish that this modification would improve fidelity.
 
-### A diagnostic limitation that matters
+### Where does the missing resolved transport go?
 
-**Do not use the exported SGS flux, combined flux, stress-based depth, or dependent SGS/combined production terms from this attempt for physical conclusions.** The first review found zero reported SGS flux despite nonzero closure coefficients. The diagnostics call the flux path for the model's vertically implicit time discretization; that path omits the implicit contribution. GABLS3 shares the helper. This is a diagnostic problem and does not mean that the closure supplied no transport in the model.
+**The corrected diagnostics show that SGS mixing carries 86–95% of the first-level u-momentum flux in the SLD cases.** At z = 12.5 m, the final-hour means are:
 
-The plots above use mean fields, resolved moments, resolved energy and direct wall exchange. Their values do not depend on the omitted SGS-flux diagnostic. No inference about a collapsed boundary-layer depth is made. The original exports and initial admission records are retained unchanged, accompanied by an explicit [diagnostic exclusion record](diagnostic_exclusions.md). Successful file/shape/hash validation was insufficient to establish flux semantics. A nonzero implicit-flux regression is being added before a corrected transport comparison is admitted. Reduced averages cannot reconstruct exact averages of coefficient–gradient products.
+| Configuration | Resolved u′w′ | SGS u-momentum flux | Total u-momentum flux | SGS / total magnitude |
+|---|---:|---:|---:|---:|
+| Matched control | −0.06128 | 0 | −0.06128 | 0% |
+| One face / 100 s | −0.00915 | −0.05737 | −0.06653 | 86% |
+| One face / 300 s | −0.00734 | −0.05741 | −0.06476 | 89% |
+| Two faces / 300 s | −0.00373 | −0.06802 | −0.07175 | 95% |
+
+Flux units are m²/s²; negative values indicate downward transport of positive u momentum. SGS flux largely replaces resolved flux: the total magnitude is only 9%, 6% and 17% larger than the control, even as the resolved contribution falls sharply. The corresponding total potential-temperature flux magnitudes rise by about 4%, 1% and 9%; SGS supplies 84%, 87% and 94% of those totals. The transport split helps explain how surface exchange can persist alongside reduced resolved turbulence. It does not establish which damping mechanism controls w², nor does it demonstrate improved fidelity. These totals include resolved plus explicit closure transport; they do not measure WENO numerical mixing.
+
+![Corrected resolved, SGS and total near-wall transport](figures/sld_flux_partition.png)
+
+[Vector figure](figures/sld_flux_partition.pdf) · [Exact flux audit and coefficients](corrected_flux_audit.json)
+
+The four corrected runs reproduce every previously reported mean-field and resolved-moment profile exactly. The new diagnostic evaluates the native implicit coefficient–gradient products before averaging. GPU validation and an independent export audit check nonzero supported SGS flux, zero flux outside the one- or two-face support, exact output schedules and interior total = resolved + SGS within Float32 reduction tolerance. At the wall, the total uses the prescribed boundary flux; the artificial SGS wall zero is omitted from the figure.
+
+### Historical diagnostic exclusion
+
+The original array 7156 reported zero SGS flux because its generic diagnostic omitted the vertically implicit contribution. Its SGS/combined fluxes, stress-based depth and dependent budgets remain excluded. Its files and [exclusion record](diagnostic_exclusions.md) are preserved unchanged; passing file/shape/hash checks did not establish physical semantics. The current figures use the separately archived, corrected array 7293. No boundary-layer-depth or production-budget conclusion is drawn here.
 
 ### Reproduce and extend
 
 The final-hour profiles average the two true half-hour windows ending at 30600 and 32400 s. Surface/energy statistics use 60 instantaneous samples at 28860:60:32400 s. Skewness is the ratio of window-mean third moment to variance raised to 3/2; levels with w² < 10⁻⁶ m²/s² are omitted in its plot. The preceding-hour sensitivity uses bins ending at 27000 and 28800 s.
 
-[Julia figure and analysis source](present_results.jl) · [Exact metrics, definitions and hashes](physical_response_summary.json) · [Physical summary table](physical_response_table.md) · [Original export collection](collection_0bfa03d/manifest.toml)
+[Julia figure and analysis source](present_results.jl) · [Julia transport plots](plot_fluxes.jl) · [Julia flux audit](audit_corrected_fluxes.jl) · [Exact metrics, definitions and hashes](physical_response_summary.json) · [Physical summary table](physical_response_table.md) · [Corrected export collection](collection_e0655cf/manifest.toml) · [Historical export collection](collection_0bfa03d/manifest.toml)
 
-Breeze source: `02a16478869abf556a464f0874925510bb7c233c`; scientific evaluation source: `9fb39dc8b82cd20559b2a74dfa9545dcf395c4c6`; export analysis: `0bfa03d0ce2df07faaa14d22e3f59b3d1e06c66d`. Four-case array: `7156`. Full GPU harness passed 1,678 checks on the source used for these runs; that does not override the later diagnostic exclusion.
+Breeze source: `02a16478869abf556a464f0874925510bb7c233c`; scientific evaluation source: `a14c3586708de70cd3a47f44878991a440678442`; export analysis: `e0655cf77568bc24af1b0bcd7a4c9efe46aa9f45`. Four-case array: `7293`. [Source-bound GPU validation](../gpu_validation_7241_admitted.toml) and [timing/flux semantic checks](../gpu_semantics_7241_admitted.toml) precede this admission. The corrected collection admitted all four cases with no rejected exports.
 
-The next evidence needed is a correct explicit-plus-implicit transport comparison, followed by the matched GABLS3 transfer test and the bounded neutral-flow check. The present result is a reason to investigate the closure's strength and support, not to tune it to one aggregate metric. Original DYCOMS and GABLS1 studies are retained in the master report.
+The next evidence needed is the matched GABLS3 transfer test and the bounded neutral-flow check. GABLS3 replacement runs are held for an independent surface-humidity boundary-condition review and validation of its correction. The present GABLS1 result is a reason to investigate the closure's strength and support, not to tune it to one aggregate metric. Original DYCOMS and GABLS1 studies are retained in the master report.

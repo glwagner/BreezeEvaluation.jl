@@ -1,22 +1,25 @@
-# SurfaceLayerDiffusivity: first coarse GABLS1 results
+# SurfaceLayerDiffusivity: coarse GABLS1 results and corrected transport
 
-[Read the findings](surface_layer/gabls1/results.md) · [Seven-page illustrated brief](surface_layer/surface_layer_results.pdf) · [Complete 53-page DYCOMS/GABLS master report](breeze_les_master.pdf)
+[Read the findings](surface_layer/gabls1/results.md) · [Eight-page illustrated brief](surface_layer/surface_layer_results.pdf) · [Complete DYCOMS/GABLS master report](breeze_les_master.pdf)
 
-**Preliminary usable-diagnostic subset, 21 September 2026.** Four completed paired runs at 12.5 m strongly change near-wall turbulence, but the three closure configurations worsen the mean-u, mean-theta and w² profile errors against the fixed 1 m median in this test. Single seed; not a general closure verdict.
+Four paired 9 h runs at 12.5 m strongly suppress near-wall turbulence, but the three closure configurations worsen mean-u, mean-theta and w² profile errors against the fixed 1 m median in this test. SGS supplies 86–95% of first-level u-momentum transport; total transport changes much less than its resolved contribution. This is one grid and one seed, not a general closure verdict.
 
-**Historical Smagorinsky comparison added:** the earlier WENO9 + Smagorinsky 12.5 m run has almost no resolved vertical turbulence, despite a smaller mean-wind error. Three figure pages compare mean profiles, surface exchange, moments and log-scale variance. Its unchanged CSVs and original manifest are retained under `surface_layer/gabls1/historical_smagorinsky/`; its source differs from the four matched treatments and is labeled throughout. The figure script verifies its original export hashes and output times separately from the strict matched-case loader.
+The historical 12.5 m WENO9 + Smagorinsky case has almost no resolved vertical turbulence despite smaller mean-wind error. Its source differs from the matched treatments, and it is labeled throughout. Four Julia figure pages show profiles, moments, surface exchange, logarithmic variance and corrected resolved/SGS/total transport. Data, original manifests and native coordinates accompany the plots.
 
-**Read [diagnostic exclusions](surface_layer/gabls1/diagnostic_exclusions.md) before using the data.** Original exported files and admission manifests are preserved byte-for-byte, including their historical `export_verified` flags. Subsequent physical review found an omitted implicit contribution in SGS flux diagnostics. Those fluxes, their totals, stress-derived depth and dependent budget terms must not be used. The report uses only unaffected mean fields, resolved turbulence and direct surface exchange. No corrected flux result or new physical validation is implied by this report snapshot.
+Current figures use corrected array 7293 and `surface_layer/gabls1/exports_e0655cf/`. All four cases passed source/hash verification, exact schedules, native implicit-flux semantics and total = resolved + SGS. Mean fields and resolved moments exactly reproduce the earlier runs. Historical array 7156 and `exports_0bfa03d/` remain unchanged, with invalid fluxes and dependent diagnostics explicitly excluded in [the historical exclusion record](surface_layer/gabls1/diagnostic_exclusions.md). The preceding brief is retained as `surface_layer/historical_7156_results.pdf`.
 
-All figures and analysis use Julia. From this directory, with Julia 1.12 and Poppler (`pdfunite`) available:
+All analysis and plots use Julia. With Julia 1.12 and Poppler (`pdfunite`):
 
 ```sh
 julia --project=julia -e 'using Pkg; Pkg.instantiate()'
+julia --project=julia verify_snapshot.jl
+julia --project=julia surface_layer/gabls1/audit_corrected_fluxes.jl
 julia --project=julia surface_layer/gabls1/present_results.jl
+julia --project=julia surface_layer/gabls1/plot_fluxes.jl
 julia --project=julia surface_layer/presentation.jl
 julia --project=julia surface_layer/gabls1/build_brief.jl
 ```
 
-The output metrics file records window definitions, reference/source hashes and native-level error calculations. Full reduced histories and original case manifests are in `surface_layer/gabls1/exports_0bfa03d/`; raw 3-D/checkpoint JLD2 files remain external. All four stored exports are verified locally against their `output_sha256` maps before plotting. `files_sha256.toml` records this published snapshot. This new directory does not modify any older DYCOMS/GABLS1 case, snapshot or historical report.
+Run snapshot verification before regenerating outputs: generated PDFs can differ bytewise across library/runtime versions. `files_sha256.toml` identifies the published bytes. Reduced complete histories are included; raw 3-D/checkpoint JLD2 files remain on pcluster. The master PDF preserves all original DYCOMS/GABLS1 material. GABLS3 replacements remain held pending validation of a separately identified humidity boundary-condition correction; no new GABLS3 science is claimed.
 
-Physical run sources: [Breeze 02a1647](https://github.com/NumericalEarth/Breeze.jl/commit/02a16478869abf556a464f0874925510bb7c233c), [evaluation 9fb39dc](https://github.com/glwagner/BreezeEvaluation.jl/commit/9fb39dc8b82cd20559b2a74dfa9545dcf395c4c6); [export 0bfa03d](https://github.com/glwagner/BreezeEvaluation.jl/commit/0bfa03d0ce2df07faaa14d22e3f59b3d1e06c66d). These identify the original runs; a diagnostic correction is under preparation and has not been substituted into this evidence.
+Corrected run sources: [Breeze 02a1647](https://github.com/NumericalEarth/Breeze.jl/commit/02a16478869abf556a464f0874925510bb7c233c), [evaluation a14c358](https://github.com/glwagner/BreezeEvaluation.jl/commit/a14c3586708de70cd3a47f44878991a440678442), [analysis e0655cf](https://github.com/glwagner/BreezeEvaluation.jl/commit/e0655cf77568bc24af1b0bcd7a4c9efe46aa9f45). Source-bound GPU evidence and the separate corrected collection/audit are stored alongside the report.

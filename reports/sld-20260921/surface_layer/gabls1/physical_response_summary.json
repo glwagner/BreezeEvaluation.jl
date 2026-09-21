@@ -189,14 +189,14 @@
     "w2_at_12_5m": 0.077374840625
   },
   "rmse_definition": "Unweighted RMS at native model levels 0<z<=200 m, linearly interpolating fixed 1 m reference median only; descriptive, not uncertainty",
-  "scope": "Preliminary physical response; implicit SGS flux and dependent depth/budget diagnostics excluded pending repair.",
+  "scope": "Four corrected-source GABLS1 reruns, array7293; native implicit SGS/total flux verified. Historical7156 flux exclusions remain in force.",
   "series_window": "60 instantaneous samples: 28860:60:32400 s",
   "sha256": {
-    "gabls1_n032_weno9_control/manifest.toml": "81acb2d108ad26bbdb4ea09f33f076086f43fd5c453bcb22e42aa5739e17c3ac",
-    "gabls1_n032_weno9_surface_layer_t100_s1/manifest.toml": "94f7e33eebf8e4f8d55c6b44258a9113681c4242f25c07308a8688c43d8d06e4",
-    "gabls1_n032_weno9_surface_layer_t300_s1/manifest.toml": "55303f8acdf2314bfdddddd7836117f9ccb8efb54e15c945fcfa0bb2e93a7eb5",
-    "gabls1_n032_weno9_surface_layer_t300_s2/manifest.toml": "2735630daa051a2a67f178ed1a6fc4fefabd2ac3c5737d9c74f9ae9650ac7c03",
-    "plot_source": "64d840d8d3f96f15214fd74304ee0777ad034a53bdd28ed034c886970bf02316",
+    "gabls1_n032_weno9_control/manifest.toml": "21b9368d859e9fbb84924d6eb31024657e66b1726596d22102df844fd4121c3a",
+    "gabls1_n032_weno9_surface_layer_t100_s1/manifest.toml": "bbda40ea3761dcbaac04cfafbffbc78bd926fd4b102db775fbb789d5ddb2ac3d",
+    "gabls1_n032_weno9_surface_layer_t300_s1/manifest.toml": "faa994e7b9ba23b90c30aea045b6e8f3ca566a10a469b05f74a5e53740a0416d",
+    "gabls1_n032_weno9_surface_layer_t300_s2/manifest.toml": "56bf88bc51db20b0d5797b32b663275d2f7aaf15f71b32caf4ccac6d43ba6e4f",
+    "plot_source": "e7e2f9249148b589b692fa19075ea1816cdad6f2f46f1287fe7130b09d20f419",
     "reference": "b8a6f1a5c6abd934a18c006020e11366cd81c51299710694fa412176155b32d9"
   }
 }

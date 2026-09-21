@@ -5,7 +5,7 @@ using .SurfaceLayerScientificPlots
 const D=@__DIR__
 const FIG=joinpath(D,"figures")
 const REF=normpath(joinpath(D,"../../gabls/reference_data/fixed_1m_medians.json"))
-const dirs=sort(readdir(joinpath(D,"exports_0bfa03d");join=true))
+const dirs=sort(readdir(joinpath(D,"exports_e0655cf");join=true))
 const comp=load_comparison_cases(dirs)
 # The historical run is contextual evidence, not a fifth same-source SLD treatment.
 const HD=joinpath(D,"historical_smagorinsky")
@@ -63,7 +63,7 @@ end
 r=S.reference_curve(ref,"w_variance")
 reference_means["w2_at_12_5m"]=interp(r.z_m,r.value,12.5)
 reference_means["peak_w2"]=maximum(r.value)
-evidence=Dict("cases"=>metrics,"reference"=>reference_means,"scope"=>"Preliminary physical response; implicit SGS flux and dependent depth/budget diagnostics excluded pending repair.","profile_window"=>"8-9 h: equal mean of 30600 and 32400 s half-hour averages; sensitivity uses 7-8 h", "series_window"=>"60 instantaneous samples: 28860:60:32400 s", "rmse_definition"=>"Unweighted RMS at native model levels 0<z<=200 m, linearly interpolating fixed 1 m reference median only; descriptive, not uncertainty", "sha256"=>Dict("reference"=>bytes2hex(open(sha256,REF)), "plot_source"=>bytes2hex(open(sha256,@__FILE__)), (basename(d)*"/manifest.toml"=>bytes2hex(open(sha256,joinpath(d,"manifest.toml"))) for d in dirs)...))
+evidence=Dict("cases"=>metrics,"reference"=>reference_means,"scope"=>"Four corrected-source GABLS1 reruns, array7293; native implicit SGS/total flux verified. Historical7156 flux exclusions remain in force.","profile_window"=>"8-9 h: equal mean of 30600 and 32400 s half-hour averages; sensitivity uses 7-8 h", "series_window"=>"60 instantaneous samples: 28860:60:32400 s", "rmse_definition"=>"Unweighted RMS at native model levels 0<z<=200 m, linearly interpolating fixed 1 m reference median only; descriptive, not uncertainty", "sha256"=>Dict("reference"=>bytes2hex(open(sha256,REF)), "plot_source"=>bytes2hex(open(sha256,@__FILE__)), (basename(d)*"/manifest.toml"=>bytes2hex(open(sha256,joinpath(d,"manifest.toml"))) for d in dirs)...))
 evidence["historical_smagorinsky"]=Dict("manifest_sha256"=>bytes2hex(open(sha256,joinpath(HD,"manifest.json"))),"source_hashes"=>hm["source_hashes"],"relationship"=>"Same 12.5 m grid and WENO9; earlier source, not a fifth same-revision matched treatment")
 open(io->JSON.print(io,evidence,2),joinpath(D,"physical_response_summary.json"),"w")
 function profiles!(ax,variable;threshold=false)
@@ -94,7 +94,7 @@ for (i,(var,xlabel,title)) in enumerate((("u_mean","u (m s⁻¹)","Wind: added n
  profiles!(ax,var);reference!(ax,var);push!(axes,ax)
 end
 Legend(f[4,1:2],axes[1];orientation=:horizontal,nbanks=2,labelsize=16)
-Label(f[5,1:2],"Teal stars: earlier Smagorinsky source; its w² and w³ nearly coincide with zero on these linear axes.\nBlack dotted: fixed 1 m LES median. SLD SGS/combined flux and dependent diagnostics are withheld.",fontsize=15,tellwidth=false)
+Label(f[5,1:2],"Teal stars: earlier Smagorinsky source; its w² and w³ nearly coincide with zero on these linear axes.\nBlack dotted: fixed 1 m LES median. Matched runs use the corrected, GPU-validated flux diagnostics.",fontsize=15,tellwidth=false)
 save(joinpath(FIG,"sld_physical_response.pdf"),f);save(joinpath(FIG,"sld_physical_response.png"),f)
 f=Figure(size=(1300,1050),fontsize=18)
 Label(f[0,1:2],"Follow the response beyond the mean profile",fontsize=29,font=:bold,color="#173e56")

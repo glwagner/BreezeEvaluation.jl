@@ -1,0 +1,88 @@
+all_passed = true
+architecture = "CUDAGPU"
+completed_utc = "2026-09-21T16:37:36.881"
+cuda_functional = true
+cuda_scalar_indexing_disabled = true
+float_type = "Float32"
+freeze_root = "/shared/home/greg/review-coordination/surface-layer-harness-freeze-20260921-a14c358-02a1647"
+freeze_source_manifest_entries = 761
+freeze_source_manifest_sha256 = "d2a6c2adea31fca7b6ed370780fc319e65c5cc7418f8153efb45dca6d563920c"
+julia_version = "1.12.6"
+nonphysical_clock_jump_outputs_admissible_as_science = false
+passed_checks = 1678
+schema_version = 1
+validation_mode = "gpu_full"
+
+[flux_semantics]
+all_passed = true
+dry_moist_native_writer_and_paired_state = true
+full_evidence_sha256 = "948071963753858061c08babd97f41182a105877713711b2e5e3e8aea59ea34f"
+gabls3_3600_event_and_3610_writers_exact = true
+no_closure_native_writer_zero = true
+old_implicit_flux_zero_and_new_constitutive_flux_nonzero = true
+semantic_evidence_sha256 = "47826ecbfb00dde15e281cf94bea0e98d0dc5bbbad85eaccf1b68797cc7411a1"
+semantic_script_sha256 = "bdbbd5762c35f64d4ad8814710b354af5341bc29b3366b9394248c566c1769ee"
+source_full_contract_job_id = 7199
+source_full_contract_path = "/shared/home/greg/review-coordination/surface-layer-flux-schedule-gpu-validation-20260921-1553/full_contract"
+
+[full_contract_reuse]
+full_contract_passed_checks = 1678
+full_contract_path = "/shared/home/greg/review-coordination/surface-layer-flux-schedule-gpu-validation-20260921-1553/full_contract"
+full_evidence_sha256 = "948071963753858061c08babd97f41182a105877713711b2e5e3e8aea59ea34f"
+source_job_id = 7199
+source_job_log_sha256 = "b8e0521ec4cf94df90cf82fb3e172ccdc91baf1e34a823c4f67c56a8b75638a4"
+source_launch_manifest_sha256 = "b477b7b5b2079d32f15e85289c7aba910430b8d4b6c2307c472fb5565d7bb68b"
+source_parent_directory = "/shared/home/greg/review-coordination/surface-layer-flux-schedule-gpu-validation-20260921-1553"
+source_parent_failed = true
+
+[full_runner]
+gabls1_case_id = "gabls1_n032_weno9_surface_layer_t300_s2"
+gabls1_initial_theta_sha256 = "1f5db33f2971ee607ac46b1a014b038a09fc876cc1669394dce023a9aa2f198b"
+gabls3_case_id = "n064_weno9_surface_layer_t300_s2"
+gabls3_initial_state_sha256 = "(u_sha256 = \"f0b01718f516f6c71870f753f619696528638f7319788c0b51ebd9d1c3ec6fd5\", v_sha256 = \"a0d7729f3cab5f52b5deae41a2fd7011a7b570392488f664da8ffea2ee86f28e\", theta_sha256 = \"7fbad0eb9fc24b28c3c621cb4e6b8cc2943c75611e187e5a0f8b30e87d4e872d\", q_sha256 = \"1318165d6db8db964bfba2cdd9135aaf9c46a32b6744df4e1a9da4b91cbeaeb1\", w_sha256 = \"1c096f259c652e157a8633719844341da5c0a583d1362afa404cc83762066ac5\")"
+sunrise_clock_jump_fixture_nonphysical = true
+sunrise_event_time_s = 21600.0
+sunrise_theta_active_fraction = 1.0
+sunrise_theta_flux_guard = 9.99999993922529e-9
+sunrise_theta_flux_max = 0.07391798496246338
+sunrise_theta_flux_min = -0.028150558471679688
+writer_clock_jump_fixture_nonphysical = true
+writer_clock_jump_initial_time_s = 295.0
+writer_clock_jump_record_iterations = "0,11"
+writer_clock_jump_scheduled_time_s = 300.0
+
+    [full_runner.gabls3_serialized_restart]
+    checkpoint_bytes = 14174319
+    checkpoint_sha256 = "e6fa15876645308f7f69d8f5b7baf91ef3baf36bbf835b9f056992f63eec8e2d"
+    continued_iteration = 2
+    continued_time_s = 0.9166666865348816
+    initial_state_sha256 = "(u_sha256 = \"f0b01718f516f6c71870f753f619696528638f7319788c0b51ebd9d1c3ec6fd5\", v_sha256 = \"a0d7729f3cab5f52b5deae41a2fd7011a7b570392488f664da8ffea2ee86f28e\", theta_sha256 = \"7fbad0eb9fc24b28c3c621cb4e6b8cc2943c75611e187e5a0f8b30e87d4e872d\", q_sha256 = \"1318165d6db8db964bfba2cdd9135aaf9c46a32b6744df4e1a9da4b91cbeaeb1\", w_sha256 = \"1c096f259c652e157a8633719844341da5c0a583d1362afa404cc83762066ac5\")"
+
+[restart.dry_support1]
+checkpoint_bytes = 140501
+checkpoint_sha256 = "3377f006d927f08f39a29f910f9cbf0a6dad3313dbb342699dee93d660a51265"
+
+[restart.dry_support2]
+checkpoint_bytes = 140501
+checkpoint_sha256 = "3b8ecca29d973e0e93e0608dc10ec72ee01016098f8ec51cbca668e8630d0215"
+
+[restart.moist_support1]
+checkpoint_bytes = 140501
+checkpoint_sha256 = "c8967b4c6be418e56b3fdbc088bb661d91534bd3948f6efa564314527efec6a8"
+
+[restart.moist_support2]
+checkpoint_bytes = 140501
+checkpoint_sha256 = "af06006236169b17d748a231599b7b19d394494517be33abaddd09e662f76297"
+
+[restart.synthetic_signed_heat_flux]
+fixture_is_synthetic = true
+negative_filtered_theta_flux = -8.567238546675071e-5
+positive_filtered_theta_flux = 8.566460746806115e-5
+tiny_filtered_theta_flux_max_abs = 8.567238850851547e-14
+
+[source_sha256]
+"cases/gabls3/runner/gabls3_case.jl" = "b3e47f0f8f80eba9d936cd05b71bea8e33c73eec44e8beb810abb8cf18627b6d"
+"cases/surface_layer/gabls1/gabls1_case.jl" = "d8987bf45431a780adfe0895409db5b955b266bc1e5662ada182b9cc262b2628"
+"cases/surface_layer/gpu_validation/validate_surface_layer.jl" = "7bcf081228746d18d511a70938f7678e043f969b9b9bc50ebc64a2b307e578af"
+"cases/surface_layer/registries/gabls1_sld_4case.toml" = "6cbd416bd67d5cefc266cdbaa096133be0a360d7d4b5f1c51613097824a5faae"
+"cases/surface_layer/registries/gabls3_sld_4case.toml" = "5e36340edab0b21efd2badb2696c425910805aeae3d25bbe36024cae489b52be"

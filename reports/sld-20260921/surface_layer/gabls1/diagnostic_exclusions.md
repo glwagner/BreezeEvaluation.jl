@@ -11,3 +11,8 @@ Usable for the preliminary physical-response presentation: direct mean velocitie
 Original automatically generated five-figure comparison is excluded from the report and archived outside the deliverable tree. The custom `present_results.jl` uses only the above usable subset, verifies original exported hashes, and discloses the exclusion on each figure.
 
 Exact mean SGS flux cannot be recovered as mean coefficient times mean gradient: their covariance matters. Any checkpoint reconstruction must be labeled instantaneous and must not substitute for the missing time averages. Diagnostic repair and replacement-run admission remain pending.
+
+
+## Corrected replacement, 21 September 2026
+
+This exclusion remains in force for historical array 7156 and `exports_0bfa03d`. Current figures now use the separate array 7293 (`exports_e0655cf`, evaluation a14c358, analysis e0655cf). All four replacement exports passed native implicit-flux checks, exact output schedules, source/hash verification and interior total = resolved + SGS. See [current results](results.md), [corrected collection](collection_e0655cf/manifest.toml) and [flux audit](corrected_flux_audit.json). No historical files or admission records were overwritten.

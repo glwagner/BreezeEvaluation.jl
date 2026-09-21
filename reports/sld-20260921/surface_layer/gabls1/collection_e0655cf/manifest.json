@@ -1,0 +1,28 @@
+{
+  "admitted": [{
+    "case_id": "gabls1_n032_weno9_control",
+    "directory": "/shared/home/greg/review-coordination/gabls1-sld-production-a14c358-20260921-1938/analysis_export/gabls1_n032_weno9_control",
+    "manifest_sha256": "21b9368d859e9fbb84924d6eb31024657e66b1726596d22102df844fd4121c3a"
+  }, {
+    "case_id": "gabls1_n032_weno9_surface_layer_t100_s1",
+    "directory": "/shared/home/greg/review-coordination/gabls1-sld-production-a14c358-20260921-1938/analysis_export/gabls1_n032_weno9_surface_layer_t100_s1",
+    "manifest_sha256": "bbda40ea3761dcbaac04cfafbffbc78bd926fd4b102db775fbb789d5ddb2ac3d"
+  }, {
+    "case_id": "gabls1_n032_weno9_surface_layer_t300_s1",
+    "directory": "/shared/home/greg/review-coordination/gabls1-sld-production-a14c358-20260921-1938/analysis_export/gabls1_n032_weno9_surface_layer_t300_s1",
+    "manifest_sha256": "faa994e7b9ba23b90c30aea045b6e8f3ca566a10a469b05f74a5e53740a0416d"
+  }, {
+    "case_id": "gabls1_n032_weno9_surface_layer_t300_s2",
+    "directory": "/shared/home/greg/review-coordination/gabls1-sld-production-a14c358-20260921-1938/analysis_export/gabls1_n032_weno9_surface_layer_t300_s2",
+    "manifest_sha256": "56bf88bc51db20b0d5797b32b663275d2f7aaf15f71b32caf4ccac6d43ba6e4f"
+  }],
+  "admitted_count": 4,
+  "attempt_registry_path": "/shared/home/greg/review-coordination/gabls1-sld-production-a14c358-20260921-1938/metadata/gabls1_sld_attempts_7293.toml",
+  "attempt_registry_sha256": "37a41db4b8a9431f336bbdf969f2565dcd58ad713f7492ab53def012de115deb",
+  "case_family": "GABLS1",
+  "expected_cases": 4,
+  "generated_utc": "2026-09-21T21:05:39.665",
+  "rejected": [],
+  "rejected_count": 0,
+  "schema_version": 1
+}

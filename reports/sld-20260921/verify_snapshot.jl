@@ -6,8 +6,8 @@ for (name,hash) in manifest["files"]
 end
 include("surface_layer/analysis/SurfaceLayerAnalysisData.jl")
 using .SurfaceLayerAnalysisData
-cases=readdir(joinpath(ROOT,"surface_layer/gabls1/exports_0bfa03d");join=true)
-@assert length(cases)==4
+cases=vcat([readdir(joinpath(ROOT,"surface_layer/gabls1",d);join=true) for d in ("exports_0bfa03d","exports_e0655cf")]...)
+@assert length(cases)==8
 for d in cases
  c=load_case_export(d)
  @assert length(c.series.time_s)==541
@@ -18,4 +18,4 @@ end
 h=joinpath(ROOT,"surface_layer/gabls1/historical_smagorinsky")
 @assert read_wide_series(joinpath(h,"series.csv")).time_s==collect(0.:60.:32400.)
 @assert sort(unique(r.time_s for r in read_long_profiles(joinpath(h,"profiles.csv"))))==collect(0.:1800.:32400.)
-println("SLD_SNAPSHOT_INTEGRITY_VERIFIED files=",length(manifest["files"])," matched_cases=4 historical_smagorinsky=1; implicit SGS/total flux and dependent diagnostics EXCLUDED, not physically admitted")
+println("SLD_SNAPSHOT_INTEGRITY_VERIFIED files=",length(manifest["files"])," corrected_cases=4 historical_cases=4 historical_smagorinsky=1; old7156 flux exclusions preserved; run audit_corrected_fluxes.jl for corrected physical checks")
