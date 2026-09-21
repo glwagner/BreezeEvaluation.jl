@@ -1,0 +1,10 @@
+array_job_id=7331
+task_id=2
+slurm_job_id=7331
+child_exit_code=0
+started_utc=2026-09-21T22:51:19Z
+finished_utc=2026-09-21T23:10:32Z
+source_manifest_sha256=395f7a42b5cdc7dfd688d1e0b0d0d2767f11d4cb186748070d517f507b74c1c4
+wrapper_sha256=5d602bb8413c0e2df1e8d57fb510e6232e0608c3f2a05aa62f41e0a5b071779c
+gpu_evidence_directory=/shared/home/greg/review-coordination/gabls1-sld-factor-20260921-v2/gpu_gate
+record_complete=true

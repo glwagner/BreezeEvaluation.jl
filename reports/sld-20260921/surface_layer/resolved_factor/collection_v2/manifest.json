@@ -1,0 +1,20 @@
+{
+  "admitted": [{
+    "case_id": "gabls1_n032_weno9_surface_layer_t300_s1_rf1p0",
+    "directory": "/shared/home/greg/review-coordination/gabls1-sld-factor-20260921-v2/analysis_export/gabls1_n032_weno9_surface_layer_t300_s1_rf1p0",
+    "manifest_sha256": "55ff3a0744773b21e110f4a1a07fbb9cd1629f7f0efe080d47a609559b08b3e4"
+  }, {
+    "case_id": "gabls1_n032_weno9_surface_layer_t300_s1_rf2p0",
+    "directory": "/shared/home/greg/review-coordination/gabls1-sld-factor-20260921-v2/analysis_export/gabls1_n032_weno9_surface_layer_t300_s1_rf2p0",
+    "manifest_sha256": "c8cefd6e76ed21428fa7b3f27cb241ede86c0fff1cc922a99f0db58cd48680e4"
+  }],
+  "admitted_count": 2,
+  "attempt_registry_path": "/shared/home/greg/review-coordination/gabls1-sld-factor-20260921-v2/attempts.toml",
+  "attempt_registry_sha256": "4caf689044f56406a61238f04e28bd8da0c95d92194ae04facb7a390edf78c5c",
+  "case_family": "GABLS1",
+  "expected_cases": 2,
+  "generated_utc": "2026-09-21T23:16:42.458",
+  "rejected": [],
+  "rejected_count": 0,
+  "schema_version": 1
+}

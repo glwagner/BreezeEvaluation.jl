@@ -1,0 +1,41 @@
+all_passed = true
+architecture = "CUDAGPU"
+case_family = "GABLS1"
+changed_path_checks_passed = true
+completed_utc = "2026-09-21T22:31:15.896"
+cuda_functional = true
+cuda_scalar_indexing_disabled = true
+factors = [1.0, 2.0]
+freeze_root = "/shared/home/greg/review-coordination/sld-factor-freeze-20260921-v2"
+freeze_source_manifest_entries = 771
+freeze_source_manifest_sha256 = "395f7a42b5cdc7dfd688d1e0b0d0d2767f11d4cb186748070d517f507b74c1c4"
+observers_are_read_only = true
+passed_checks = 7924
+scientific_output = false
+validation_mode = "gpu_resolved_flux_factor"
+
+[restart.1]
+checkpoint_bytes = 140501
+checkpoint_sha256 = "45b40ce8c75718ad3c89641bd5477b47ef6226a2028018594b219ead83fe909b"
+
+[restart.2]
+checkpoint_bytes = 140501
+checkpoint_sha256 = "6fc805f95bf48f429d309938af498e92ff292446064b5d5a9fbcc139409dccd4"
+
+[[runners]]
+accepted_filter_iterations_observed = 1899
+case_id = "gabls1_n032_weno9_surface_layer_t300_s1_rf1p0"
+end_time_s = 1800.0
+factor = 1.0
+[[runners]]
+accepted_filter_iterations_observed = 1897
+case_id = "gabls1_n032_weno9_surface_layer_t300_s1_rf2p0"
+end_time_s = 1800.0
+factor = 2.0
+
+[source_sha256]
+"cases/surface_layer/gabls1/gabls1_case.jl" = "4657ea4b8ebb41e466dcb7ad5a214b8861c73daa136adb4409354cf9f0fa939b"
+"cases/surface_layer/gpu_validation/audit_resolved_factor_outputs.jl" = "2c8b304fc75bdb5cd1fd2e59eba96c89e49a2106658b22f2d13ebd4e64ef5d7c"
+"cases/surface_layer/gpu_validation/validate_resolved_flux_factor.jl" = "1a8281f7406ea6565c86fcd5a1b3ce010cbd1eb33b6e3817fff3856bccaf3ab0"
+"cases/surface_layer/gpu_validation/validate_surface_layer.jl" = "b7fbb5108acc4f983920533f520c198578529646051b83a23f5c4131bf7317c2"
+"cases/surface_layer/registries/gabls1_sld_resolved_factor.toml" = "6dcd5c7f597a80a64beaa7b021df57891bbd6599eae9e66db38d968e76cb1832"

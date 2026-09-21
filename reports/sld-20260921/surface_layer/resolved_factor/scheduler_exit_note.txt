@@ -1,0 +1,11 @@
+Transcribed from root tool output captured 2026-09-21 approximately23:15UTC, before Slurm aged the records out. This is an excerpt, not a subsequently retrieved scheduler file.
+JobId=7331 ArrayJobId=7331 ArrayTaskId=2
+JobState=FAILED Reason=NonZeroExitCode ExitCode=1:0
+StartTime=2026-09-21T22:51:01 EndTime=2026-09-21T23:10:32
+Scientific durable child exit record: child_exit_code=0, record_complete=true; CASE_DONE final_time_s=32400.0. Strict exporter independently admitted complete scientific data.
+JobId=7333 JobName=gabls3-q-gate
+JobState=CANCELLED Reason=DependencyNeverSatisfied Dependency=afterok:7331_*(failed)
+RunTime=00:00:00 StartTime=2026-09-21T23:10:32 EndTime=2026-09-21T23:10:32
+No gate log or gate output directory was created. Later scontrol calls returned Invalid job id specified; empty attempted preservation files are not evidence of success.
+A harmless CPU login-shell fixture reproduced explicit exit0 becoming1 when ~/.bash_logout invoked failing clear_console -q under set-e atSHLVL1. This explains the observed pattern but actual batchSHLVL was not recorded.
+Unchanged GABLS3 gate separately resubmitted7335 at23:16:50 to fresh parent gabls3-surface-q-gpu-v2-20260921-2316, node1, no dependencies.

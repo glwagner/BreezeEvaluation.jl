@@ -15,9 +15,15 @@ paragraphs=[
 "Reading the figures: native-height profiles are true 8–9 h means; timelines use instantaneous output. Colors, line styles and markers distinguish cases. Exact data, Julia source, reference hashes and diagnostic exclusions accompany this brief; all original DYCOMS/GABLS1 report material is retained."]
 pages=textpages("SurfaceLayerDiffusivity: GABLS1 results",paragraphs,"sld_results",joinpath(D,"../../../work/sld/brief");footer="GABLS1 | Julia analysis | Four matched cases + historical Smagorinsky")
 append!(pages,[joinpath(D,"figures/sld_physical_response.pdf"),joinpath(D,"figures/sld_exchange_and_skewness.pdf"),joinpath(D,"figures/sld_smagorinsky_variance.pdf"),joinpath(D,"figures/sld_flux_partition.pdf")])
+factorsection=joinpath(D,"../resolved_factor/factor_results_section.pdf")
+isfile(factorsection) && push!(pages,factorsection)
 run(`pdfunite $pages $(joinpath(D,"sld_results_section.pdf"))`)
 run(`pdfunite $(joinpath(D,"sld_results_section.pdf")) $(joinpath(D,"../surface_layer_story.pdf")) $(joinpath(D,"../surface_layer_results.pdf"))`)
 md=read(joinpath(D,"results.md"),String)
+factormd=joinpath(D,"../resolved_factor/results.md")
+if isfile(factormd)
+ md*="\n\n---\n\n"*replace(read(factormd,String),r"\]\((?!https?://)([^)]+)\)"=>s"](../resolved_factor/\1)")
+end
 css="body{font:17px/1.65 -apple-system,sans-serif;background:#f5f7f8;color:#203340}main{max-width:1200px;margin:30px auto;padding:40px;background:white;border-top:6px solid #0072B2}img{max-width:100%}table{border-collapse:collapse}td,th{padding:10px;border-bottom:1px solid #ddd}h2,h3{color:#173e56}a{color:#0072B2}"
 write(joinpath(D,"results.html"),"<!doctype html><meta charset=\"utf-8\"><title>SurfaceLayerDiffusivity results</title><style>$css</style><main>"*Markdown.html(Markdown.parse(md))*"</main>")
 println("SLD_BRIEF_COMPLETE ",length(pages)," result pages plus three mechanism pages")
