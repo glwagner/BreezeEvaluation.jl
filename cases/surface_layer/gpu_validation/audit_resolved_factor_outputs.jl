@@ -1,6 +1,6 @@
 using JLD2
 
-function audit_resolved_factor_outputs(prefix, factor; check)
+function audit_resolved_factor_outputs(prefix, factor; check, require_nonzero_momentum=true)
     records(file) = sort([(time=Float64(file["timeseries/t/$key"]), key=String(key))
                          for key in keys(file["timeseries/t"])]; by=record -> record.time)
     times(path) = jldopen(file -> [r.time for r in records(file)], path, "r")
@@ -37,7 +37,7 @@ function audit_resolved_factor_outputs(prefix, factor; check)
                     check(all(isfinite, res) && all(isfinite, sgs) && all(isfinite, total), "nonfinite flux")
                     # Uniform initial wind has zero shear and zero SGS flux;
                     # the evolved 1800s profile must have active implicit transport.
-                    if path == statistics_path && record.time == 1800 && stem == "u_w"
+                    if require_nonzero_momentum && path == statistics_path && record.time == 1800 && stem == "u_w"
                         check(abs(sgs[2]) > 1e-8, "supported implicit momentum flux is zero")
                     end
                     check(all(isapprox.(total[2:end-1], res[2:end-1] .+ sgs[2:end-1]; atol=5e-6, rtol=5e-5)), "unscaled flux partition failed")

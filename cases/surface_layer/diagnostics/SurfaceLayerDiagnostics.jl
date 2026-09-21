@@ -3,11 +3,31 @@ module SurfaceLayerDiagnostics
 export surface_layer_diagnostic_outputs
 
 using Oceananigans
-using Oceananigans.AbstractOperations: Average
+using Oceananigans.AbstractOperations: Average, KernelFunctionOperation
 using Oceananigans.Fields: Field
 using Oceananigans.Grids: Center, Face
 
 plane_mean(field) = Field(Average(field; dims=(1, 2)))
+
+@inline nonpositive_indicator(i, j, k, grid, field, source_k) =
+    ifelse(field[i, j, source_k] <= 0, one(eltype(grid)), zero(eltype(grid)))
+
+@inline valid_nonpositive_indicator(i, j, k, grid, deficit, active) =
+    ifelse((deficit[i, j, 1] <= 0) & (active[i, j, 1] > 0), one(eltype(grid)), zero(eltype(grid)))
+
+function valid_nonpositive_fraction(deficit, active)
+    operation = KernelFunctionOperation{Center, Center, Nothing}(
+        valid_nonpositive_indicator, deficit.grid, deficit, active)
+    return plane_mean(Field(operation))
+end
+
+# Diagnostic-only kernel: retain spatial information before the horizontal mean.
+# A zero mean coefficient cannot be used to reconstruct this fraction.
+function nonpositive_fraction(field, source_k)
+    operation = KernelFunctionOperation{Center, Center, Nothing}(
+        nonpositive_indicator, field.grid, field, source_k)
+    return plane_mean(Field(operation))
+end
 
 function surface_layer_diagnostic_outputs(model)
     closure_fields = model.closure_fields
@@ -60,6 +80,15 @@ function surface_layer_diagnostic_outputs(model)
                   plane_mean(closure_fields.momentum_active[slot]),
               Symbol(prefix, "viscosity_cap_fraction") =>
                   plane_mean(closure_fields.viscosity_cap_active[slot])))
+        if slot == 1
+            series = merge(series, (;
+                surface_layer_face1_momentum_deficit_zero_fraction=
+                    nonpositive_fraction(closure_fields.momentum_deficit[slot], 1),
+                surface_layer_face1_viscosity_zero_fraction=
+                    nonpositive_fraction(closure_fields.Kᵘ, face),
+                surface_layer_face1_momentum_valid_zero_deficit_fraction=
+                    valid_nonpositive_fraction(closure_fields.momentum_deficit[slot], closure_fields.momentum_active[slot])))
+        end
     end
 
     for name in keys(closure_fields.tupled_tracer_diffusivities)
@@ -92,6 +121,15 @@ function surface_layer_diagnostic_outputs(model)
                       plane_mean(closure_fields.scalar_active[name][slot]),
                   Symbol(prefix, "cap_fraction") =>
                       plane_mean(closure_fields.diffusivity_cap_active[name][slot])))
+            if slot == 1 && name == :ρθ
+                series = merge(series, (;
+                    surface_layer_face1_ρθ_deficit_zero_fraction=
+                        nonpositive_fraction(closure_fields.scalar_deficit[name][slot], 1),
+                    surface_layer_face1_ρθ_diffusivity_zero_fraction=
+                        nonpositive_fraction(diffusivity, face),
+                    surface_layer_face1_ρθ_valid_zero_deficit_fraction=
+                        valid_nonpositive_fraction(closure_fields.scalar_deficit[name][slot], closure_fields.scalar_active[name][slot])))
+            end
         end
     end
 
@@ -101,6 +139,7 @@ function surface_layer_diagnostic_outputs(model)
     support_weights = (one(FT), closure.support == 2 ? FT(0.5) : zero(FT))
     metadata = (;
         surface_layer_diffusivity_available=true,
+        surface_layer_zero_fraction_definition="all fractions use all horizontal points as denominator: deficit_zero is clipped deficit<=0; valid_zero_deficit is active>0 AND deficit<=0 (off because signed resolved target met); coefficient_zero is actual coefficient<=0; active_fraction reports target/guard/support validity, not positive mixing; cap_fraction is separate",
         surface_layer_filter_timescale_seconds=closure.filter_timescale,
         surface_layer_support_faces=closure.support,
         surface_layer_interior_face_indices=(2, 3),

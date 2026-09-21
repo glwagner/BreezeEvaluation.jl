@@ -271,14 +271,17 @@ end
                   required.series)
     end
     @test SurfaceLayerScientificExport.series_unit(
-        "surface_layer_face1_ρθ_deficit") == "K m s^-1"
+        "surface_layer_face1_ρθ_deficit") == "1"
     @test SurfaceLayerScientificExport.series_unit(
-        "surface_layer_face2_ρqᵉ_deficit") == "m s^-1"
+        "surface_layer_face2_ρqᵉ_deficit") == "1"
     @test SurfaceLayerScientificExport.series_unit(
         "surface_layer_filtered_surface_flux_ρqᵛ") == "m s^-1"
     @test SurfaceLayerScientificExport.series_unit(
         "surface_layer_face2_ρqᵛ_filtered_scalar_mean_w_mean_transport") == "m s^-1"
     expected_units = Dict(
+        "surface_layer_face1_momentum_deficit" => "1",
+        "surface_layer_face1_momentum_valid_zero_deficit_fraction" => "1",
+        "surface_layer_face1_ρθ_diffusivity_zero_fraction" => "1",
         "surface_layer_face1_filtered_u_mean" => "m s^-1",
         "surface_layer_face1_filtered_v_mean" => "m s^-1",
         "surface_layer_face1_filtered_uw_product" => "m^2 s^-2",

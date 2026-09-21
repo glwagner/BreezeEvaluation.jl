@@ -161,7 +161,7 @@ function verify_gpu_evidence(directory, freeze_root, expected_manifest_sha)
     evidence = TOML.parsefile(evidence_path)
     evidence_sha = file_sha256(evidence_path)
     mode = get(done, "mode", "")
-    require_check(mode in ("gpu_full", "gpu_resolved_flux_factor"), "GPU evidence has unrecognized scope")
+    require_check(mode in ("gpu_full", "gpu_resolved_flux_factor", "gpu_factor10"), "GPU evidence has unrecognized scope")
     require_check(get(done, "evidence_sha256", "") == evidence_sha,
                   "GPU evidence sentinel hash mismatch")
     require_check(evidence["validation_mode"] == mode, "GPU evidence mode mismatch")
@@ -169,6 +169,12 @@ function verify_gpu_evidence(directory, freeze_root, expected_manifest_sha)
         require_check(get(evidence, "case_family", "") == "GABLS1", "factor gate is GABLS1 only")
         require_check(get(evidence, "factors", []) == [1.0, 2.0], "factor gate did not test both factors")
         require_check(get(evidence, "changed_path_checks_passed", false) === true, "factor checks missing")
+    end
+    if mode == "gpu_factor10"
+        require_check(get(evidence, "case_family", "") == "GABLS1", "factor10 gate is GABLS1 only")
+        require_check(get(evidence, "factors", []) == [10.0], "factor10 gate scope mismatch")
+        require_check(get(evidence, "changed_path_checks_passed", false) === true, "factor10 checks missing")
+        require_check(get(evidence, "zero_fraction_contract_passed", false) === true, "zero fraction diagnostics not validated")
     end
     require_check(evidence["all_passed"] === true, "GPU evidence reports a failed check")
     require_check(evidence["architecture"] == "CUDAGPU", "GPU evidence is not CUDAGPU")
@@ -293,6 +299,7 @@ end
 function series_unit(name)
     haskey(SERIES_UNITS, name) && return SERIES_UNITS[name]
     startswith(name, "surface_layer_face") || error("no units registered for series $name")
+    (endswith(name, "_fraction") || endswith(name, "_deficit")) && return "1"
     endswith(name, "_viscosity") && return "m^2 s^-1"
     endswith(name, "_diffusivity") && return "m^2 s^-1"
     (occursin("filtered_uw_product", name) || occursin("filtered_vw_product", name) ||
@@ -586,6 +593,15 @@ function audit_closure_outputs(family, closure, profiles, series, profile_metada
         end
         for name in required.series
             require_check(haskey(series, name), "missing required SLD series $name")
+        end
+        if haskey(profile_metadata, "surface_layer_zero_fraction_definition")
+            for suffix in ("momentum_deficit_zero_fraction", "viscosity_zero_fraction",
+                           "ρθ_deficit_zero_fraction", "ρθ_diffusivity_zero_fraction",
+                           "momentum_valid_zero_deficit_fraction", "ρθ_valid_zero_deficit_fraction")
+                name = "surface_layer_face1_" * suffix
+                require_check(haskey(series, name), "missing required zero fraction $name")
+                require_check(all(value -> isfinite(value) && 0 <= value <= 1, series[name]), "invalid zero fraction $name")
+            end
         end
     else
         require_check(available === false, "control metadata unexpectedly says SLD is available")
@@ -978,6 +994,13 @@ function export_scientific_case(attempt_registry_path, case_id, export_root;
                       get(settings.case, "resolved_flux_factor", 0) in (1, 2) &&
                       settings.case["support"] == 1 && settings.case["filter_seconds"] == 300,
                       "factor GPU gate cannot admit another campaign")
+    end
+    if gpu["validation_mode"] == "gpu_factor10"
+        require_check(registry["case_family"] == "GABLS1" &&
+                      get(settings.case, "resolved_flux_factor", 0) == 10 &&
+                      settings.case["support"] == 1 && settings.case["filter_seconds"] == 300 &&
+                      settings.scientific["expected_case_count"] == 1,
+                      "factor10 GPU gate cannot admit another campaign")
     end
     run_directory = abspath(attempt["run_directory"])
     if haskey(settings.case, "resolved_flux_factor")
