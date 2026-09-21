@@ -1,6 +1,7 @@
 # Focused changed-source gate. This never claims the broader gpu_full GABLS3 suite.
 using Breeze, Oceananigans, CUDA, SHA, TOML, JLD2
 import Dates
+include("audit_resolved_factor_outputs.jl")
 module Helpers
     include("validate_surface_layer.jl")
 end
@@ -66,28 +67,7 @@ function runner_check(factor, architecture_name)
     check(length(seen) > 2, "accepted-step filter did not advance")
     audit_coefficients(setup.model, factor)
     prefix = joinpath(directory, "$(setup.case_id)_diag")
-    check(Helpers.raw_times(prefix * "_initial.jld2") == [0.0], "initial output schedule changed")
-    check(Helpers.raw_times(prefix * "_statistics.jld2") == [1800.0], "averaged output schedule changed")
-    check(Helpers.raw_times(prefix * "_series.jld2") == collect(0.0:60.0:1800.0), "series output schedule changed")
-    for suffix in ("_initial.jld2", "_statistics.jld2")
-        jldopen(prefix * suffix, "r") do file
-            check(file["metadata/resolved_flux_factor"] == factor, "raw output factor metadata mismatch")
-            for key in keys(file["timeseries/t"])
-                for stem in ("u_w", "v_w", "w_theta")
-                    # Names match the native GABLS diagnostic contract.
-                    res = vec(file["timeseries/resolved_$(stem)_flux/$key"])
-                    sgs = vec(file["timeseries/sgs_$(stem)_flux/$key"])
-                    total = vec(file["timeseries/total_$(stem)_flux/$key"])
-                    check(length(res) == 33, "flux lost native vertical faces")
-                    check(all(isfinite, res) && all(isfinite, sgs) && all(isfinite, total), "nonfinite flux")
-                    if suffix == "_statistics.jld2" && stem == "u_w"
-                        check(abs(sgs[2]) > 1e-8, "supported implicit momentum flux is zero")
-                    end
-                    check(all(isapprox.(total[2:end-1], res[2:end-1] .+ sgs[2:end-1]; atol=5e-6, rtol=5e-5)), "unscaled flux partition failed")
-                end
-            end
-        end
-    end
+    audit_resolved_factor_outputs(prefix, factor; check)
     return Dict("case_id" => setup.case_id, "factor" => Float64(factor), "accepted_filter_iterations_observed" => length(seen), "end_time_s" => time(setup.simulation))
 end
 
@@ -122,6 +102,7 @@ function main()
         # The longer runner path is a source-specific GPU gate, not a CPU smoke run.
         runs = gpu ? [runner_check(factor, "gpu") for factor in (1, 2)] : Any[]
         sources = ("cases/surface_layer/gpu_validation/validate_resolved_flux_factor.jl",
+                   "cases/surface_layer/gpu_validation/audit_resolved_factor_outputs.jl",
                    "cases/surface_layer/gpu_validation/validate_surface_layer.jl",
                    "cases/surface_layer/gabls1/gabls1_case.jl",
                    "cases/surface_layer/registries/gabls1_sld_resolved_factor.toml")
