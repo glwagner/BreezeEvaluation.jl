@@ -52,9 +52,12 @@ open(section_path, "w") do io
     end
     println(io)
     for path in (profile_path, timeline_path)
-        println(io, "![", basename(path), "](", basename(path), ")")
+        png_path = splitext(path)[1] * ".png"
+        println(io, "![", basename(png_path), "](", basename(png_path), ")")
         println(io)
-        println(io, "Figure SHA-256: `", bytes2hex(open(sha256, path)), "`.")
+        println(io, "[Vector figure](", basename(path), ") · PDF SHA-256 `",
+                bytes2hex(open(sha256, path)), "` · PNG SHA-256 `",
+                bytes2hex(open(sha256, png_path)), "`.")
         println(io)
     end
 end

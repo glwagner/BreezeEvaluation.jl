@@ -169,6 +169,8 @@ function plot_profile_comparison(directories, output_path;
     Legend(figure[4, 1:3], figure[1, 1], orientation=:horizontal, nbanks=2)
     mkpath(dirname(output_path))
     save(output_path, figure)
+    endswith(lowercase(output_path), ".pdf") &&
+        save(splitext(output_path)[1] * ".png", figure)
     return output_path
 end
 
@@ -217,6 +219,8 @@ function plot_surface_timeline(directories, output_path)
     Legend(figure[5, 1], figure[1, 1], orientation=:horizontal)
     mkpath(dirname(output_path))
     save(output_path, figure)
+    endswith(lowercase(output_path), ".pdf") &&
+        save(splitext(output_path)[1] * ".png", figure)
     return output_path
 end
 

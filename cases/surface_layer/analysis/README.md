@@ -98,7 +98,7 @@ command below refuses absent, fixture, unverified, or hash-corrupted exports and
 requires all four distinct matched variants from one family. It creates a six-panel
 two-row (full depth / near wall), three-column (mean u / momentum-flux partition /
 native-face w variance) comparison, a forcing/response/closure-activity timeline,
-and a Markdown section with manifest and figure hashes. No LES figure is generated
+and a Markdown section with manifest and PDF/PNG figure hashes. No LES figure is generated
 from the synthetic export fixtures, and no output is available until scientific
 cases are admitted.
 
