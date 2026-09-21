@@ -906,8 +906,13 @@ function export_scientific_case(attempt_registry_path, case_id, export_root;
     manifest_path = joinpath(freeze_root, "source_sha256.txt")
     source_entries = verify_hash_manifest(freeze_root, manifest_path;
         expected_sha=registry["source_freeze_manifest_sha256"])
+    require_check(source_entries == registry["source_freeze_manifest_entries"],
+                  "source freeze manifest entry count does not match registry")
     gpu = verify_gpu_evidence(registry["gpu_validation_evidence_directory"], freeze_root,
                               registry["source_freeze_manifest_sha256"])
+    require_check(gpu["source_manifest_entries"] ==
+                  registry["source_freeze_manifest_entries"],
+                  "GPU evidence entry count does not match registry")
     analysis = verify_analysis_freeze(registry, program_path)
     settings = scientific_case_settings(registry, attempt)
     run_directory = abspath(attempt["run_directory"])
