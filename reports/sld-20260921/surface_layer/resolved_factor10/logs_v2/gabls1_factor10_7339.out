@@ -1,0 +1,197 @@
+FACTOR10_GPU_ADMITTED evidence_sha256=4d9e203c5c25f8f98d9ea6fe89419f9a647556996e009fdee30f2490fe738b01
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+warning: Not a git repository. Use --no-index to compare two paths outside a working tree
+usage: git diff --no-index [<options>] <path> <path>
+
+Diff output format options
+    -p, --patch           generate patch
+    -s, --no-patch        suppress diff output
+    -u                    generate patch
+    -U, --unified[=<n>]   generate diffs with <n> lines context
+    -W, --[no-]function-context
+                          generate diffs with <n> lines context
+    --raw                 generate the diff in raw format
+    --patch-with-raw      synonym for '-p --raw'
+    --patch-with-stat     synonym for '-p --stat'
+    --numstat             machine friendly --stat
+    --shortstat           output only the last line of --stat
+    -X, --dirstat[=<param1,param2>...]
+                          output the distribution of relative amount of changes for each sub-directory
+    --cumulative          synonym for --dirstat=cumulative
+    --dirstat-by-file[=<param1,param2>...]
+                          synonym for --dirstat=files,param1,param2...
+    --check               warn if changes introduce conflict markers or whitespace errors
+    --summary             condensed summary such as creations, renames and mode changes
+    --name-only           show only names of changed files
+    --name-status         show only names and status of changed files
+    --stat[=<width>[,<name-width>[,<count>]]]
+                          generate diffstat
+    --stat-width <width>  generate diffstat with a given width
+    --stat-name-width <width>
+                          generate diffstat with a given name width
+    --stat-graph-width <width>
+                          generate diffstat with a given graph width
+    --stat-count <count>  generate diffstat with limited lines
+    --[no-]compact-summary
+                          generate compact summary in diffstat
+    --binary              output a binary diff that can be applied
+    --[no-]full-index     show full pre- and post-image object names on the "index" lines
+    --[no-]color[=<when>] show colored diff
+    --ws-error-highlight <kind>
+                          highlight whitespace errors in the 'context', 'old' or 'new' lines in the diff
+    -z                    do not munge pathnames and use NULs as output field terminators in --raw or --numstat
+    --[no-]abbrev[=<n>]   use <n> digits to display object names
+    --src-prefix <prefix> show the given source prefix instead of "a/"
+    --dst-prefix <prefix> show the given destination prefix instead of "b/"
+    --line-prefix <prefix>
+                          prepend an additional prefix to every line of output
+    --no-prefix           do not show any source or destination prefix
+    --default-prefix      use default prefixes a/ and b/
+    --inter-hunk-context <n>
+                          show context between diff hunks up to the specified number of lines
+    --output-indicator-new <char>
+                          specify the character to indicate a new line instead of '+'
+    --output-indicator-old <char>
+                          specify the character to indicate an old line instead of '-'
+    --output-indicator-context <char>
+                          specify the character to indicate a context instead of ' '
+
+Diff rename options
+    -B, --break-rewrites[=<n>[/<m>]]
+                          break complete rewrite changes into pairs of delete and create
+    -M, --find-renames[=<n>]
+                          detect renames
+    -D, --irreversible-delete
+                          omit the preimage for deletes
+    -C, --find-copies[=<n>]
+                          detect copies
+    --[no-]find-copies-harder
+                          use unmodified files as source to find copies
+    --no-renames          disable rename detection
+    --[no-]rename-empty   use empty blobs as rename source
+    --[no-]follow         continue listing the history of a file beyond renames
+    -l <n>                prevent rename/copy detection if the number of rename/copy targets exceeds given limit
+
+Diff algorithm options
+    --minimal             produce the smallest possible diff
+    -w, --ignore-all-space
+                          ignore whitespace when comparing lines
+    -b, --ignore-space-change
+                          ignore changes in amount of whitespace
+    --ignore-space-at-eol ignore changes in whitespace at EOL
+    --ignore-cr-at-eol    ignore carrier-return at the end of line
+    --ignore-blank-lines  ignore changes whose lines are all blank
+    -I, --[no-]ignore-matching-lines <regex>
+                          ignore changes whose all lines match <regex>
+    --[no-]indent-heuristic
+                          heuristic to shift diff hunk boundaries for easy reading
+    --patience            generate diff using the "patience diff" algorithm
+    --histogram           generate diff using the "histogram diff" algorithm
+    --diff-algorithm <algorithm>
+                          choose a diff algorithm
+    --anchored <text>     generate diff using the "anchored diff" algorithm
+    --word-diff[=<mode>]  show word diff, using <mode> to delimit changed words
+    --word-diff-regex <regex>
+                          use <regex> to decide what a word is
+    --color-words[=<regex>]
+                          equivalent to --word-diff=color --word-diff-regex=<regex>
+    --[no-]color-moved[=<mode>]
+                          moved lines of code are colored differently
+    --[no-]color-moved-ws <mode>
+                          how white spaces are ignored in --color-moved
+
+Other diff options
+    --[no-]relative[=<prefix>]
+                          when run from subdir, exclude changes outside and show relative paths
+    -a, --[no-]text       treat all files as text
+    -R                    swap two inputs, reverse the diff
+    --[no-]exit-code      exit with 1 if there were differences, 0 otherwise
+    --[no-]quiet          disable all output of the program
+    --[no-]ext-diff       allow an external diff helper to be executed
+    --[no-]textconv       run external text conversion filters when comparing binary files
+    --ignore-submodules[=<when>]
+                          ignore changes to submodules in the diff generation
+    --submodule[=<format>]
+                          specify how differences in submodules are shown
+    --ita-invisible-in-index
+                          hide 'git add -N' entries from the index
+    --ita-visible-in-index
+                          treat 'git add -N' entries as real in the index
+    -S <string>           look for differences that change the number of occurrences of the specified string
+    -G <regex>            look for differences that change the number of occurrences of the specified regex
+    --pickaxe-all         show all changes in the changeset with -S or -G
+    --pickaxe-regex       treat <string> in -S as extended POSIX regular expression
+    -O <file>             control the order in which files appear in the output
+    --rotate-to <path>    show the change in the specified path first
+    --skip-to <path>      skip the output to the specified path
+    --find-object <object-id>
+                          look for differences that change the number of occurrences of the specified object
+    --diff-filter [(A|C|D|M|R|T|U|X|B)...[*]]
+                          select files by diff type
+    --output <file>       output to a specific file
+
+┌ Info: SLD_REGISTERED_CASE_START
+│   case_id = "gabls1_n032_weno9_surface_layer_t300_s1_rf10p0"
+└   settings = (nx = 32, spacing = 12.5f0, closure_name = "surface_layer", filter_seconds = 300.0, support = 1, resolved_flux_factor = 10.0, stop_time = 32400.0, seed = 123, theta_initial_sha256 = "1f5db33f2971ee607ac46b1a014b038a09fc876cc1669394dce023a9aa2f198b", initial_dt = 0.5f0, wizard_cfl = 0.7, architecture = "CUDAGPU", diagnostics_enabled = true, surface_law_source = "/shared/home/greg/review-coordination/sld-factor10-freeze-20260921-v2/source/BreezeEvaluation.jl/source_snapshots/gabls1/original/source/src/BoundaryConditions/gabls_rough_wall_coefficient.jl")
+[ Info: Initializing simulation...
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 0 t=0 seconds dt=550.000 ms NaN s/step max|w|=1.35e-06 theta=[264.950,267.938] CFL target=.7
+[ Info:     ... simulation initialization complete (1.889 minutes)
+[ Info: Executing initial time step...
+[ Info:     ... initial time step complete (11.593 seconds).
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 1000 t=15.439 minutes dt=883.273 ms 0.0616 s/step max|w|=1.62 theta=[264.934,267.932] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 2000 t=31.269 minutes dt=1.005 seconds 0.0118 s/step max|w|=1.08 theta=[264.912,267.935] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 3000 t=47.900 minutes dt=1.015 seconds 0.0130 s/step max|w|=1.4 theta=[264.842,267.929] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 4000 t=1.078 hours dt=996.100 ms 0.0130 s/step max|w|=1.2 theta=[264.803,267.923] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 5000 t=1.356 hours dt=1.019 seconds 0.0119 s/step max|w|=0.81 theta=[264.680,267.911] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 6000 t=1.639 hours dt=994.156 ms 0.0129 s/step max|w|=1.05 theta=[264.652,267.903] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 7000 t=1.921 hours dt=1.039 seconds 0.0120 s/step max|w|=0.879 theta=[264.591,267.895] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 8000 t=2.189 hours dt=961.546 ms 0.0139 s/step max|w|=0.838 theta=[264.554,267.884] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 9000 t=2.458 hours dt=959.182 ms 0.0129 s/step max|w|=1.05 theta=[264.495,267.875] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 10000 t=2.720 hours dt=946.900 ms 0.0119 s/step max|w|=0.78 theta=[264.456,267.871] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 11000 t=2.977 hours dt=906.522 ms 0.0128 s/step max|w|=0.954 theta=[264.379,267.861] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 12000 t=3.224 hours dt=861.993 ms 0.0131 s/step max|w|=1.07 theta=[264.290,267.855] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 13000 t=3.461 hours dt=845.458 ms 0.0129 s/step max|w|=0.864 theta=[264.169,267.849] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 14000 t=3.690 hours dt=817.649 ms 0.0120 s/step max|w|=1.17 theta=[264.161,267.842] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 15000 t=3.913 hours dt=797.221 ms 0.0128 s/step max|w|=0.984 theta=[264.052,267.835] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 16000 t=4.132 hours dt=781.326 ms 0.0130 s/step max|w|=1.4 theta=[264.137,267.831] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 17000 t=4.343 hours dt=715.936 ms 0.0117 s/step max|w|=1.16 theta=[263.987,267.824] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 18000 t=4.551 hours dt=744.048 ms 0.0128 s/step max|w|=1.06 theta=[264.007,267.819] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 19000 t=4.759 hours dt=776.417 ms 0.0127 s/step max|w|=1.13 theta=[263.973,267.812] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 20000 t=4.969 hours dt=742.268 ms 0.0118 s/step max|w|=1.04 theta=[263.909,267.808] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 21000 t=5.172 hours dt=757.152 ms 0.0129 s/step max|w|=1.34 theta=[263.854,267.803] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 22000 t=5.382 hours dt=765.873 ms 0.0127 s/step max|w|=0.859 theta=[263.672,267.797] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 23000 t=5.586 hours dt=746.652 ms 0.0127 s/step max|w|=1.06 theta=[263.710,267.795] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 24000 t=5.787 hours dt=738.857 ms 0.0118 s/step max|w|=1.25 theta=[263.670,267.788] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 25000 t=5.986 hours dt=737.728 ms 0.0128 s/step max|w|=1.39 theta=[263.553,267.782] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 26000 t=6.188 hours dt=737.377 ms 0.0130 s/step max|w|=1.03 theta=[263.553,267.781] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 27000 t=6.391 hours dt=724.105 ms 0.0118 s/step max|w|=1.29 theta=[263.581,267.772] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 28000 t=6.588 hours dt=677.752 ms 0.0128 s/step max|w|=1.14 theta=[263.403,267.768] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 29000 t=6.785 hours dt=727.617 ms 0.0128 s/step max|w|=1.07 theta=[263.514,267.762] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 30000 t=6.984 hours dt=724.182 ms 0.0128 s/step max|w|=1.28 theta=[263.419,267.760] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 31000 t=7.183 hours dt=707.957 ms 0.0118 s/step max|w|=1.19 theta=[263.367,267.753] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 32000 t=7.380 hours dt=717.176 ms 0.0127 s/step max|w|=1.19 theta=[263.279,267.752] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 33000 t=7.578 hours dt=720.017 ms 0.0128 s/step max|w|=1.06 theta=[263.225,267.743] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 34000 t=7.778 hours dt=740.251 ms 0.0128 s/step max|w|=1.17 theta=[263.133,267.738] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 35000 t=7.981 hours dt=725.949 ms 0.0119 s/step max|w|=1.06 theta=[263.097,267.734] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 36000 t=8.181 hours dt=736.950 ms 0.0131 s/step max|w|=1.44 theta=[263.078,267.730] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 37000 t=8.380 hours dt=706.299 ms 0.0129 s/step max|w|=1.51 theta=[263.117,267.726] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 38000 t=8.584 hours dt=745.386 ms 0.0130 s/step max|w|=1.54 theta=[262.954,267.720] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 39000 t=8.785 hours dt=731.862 ms 0.0119 s/step max|w|=1.08 theta=[262.912,267.715] CFL target=.7
+[ Info: [gabls1_n032_weno9_surface_layer_t300_s1_rf10p0] iter 40000 t=8.985 hours dt=703.288 ms 0.0129 s/step max|w|=1.56 theta=[262.958,267.709] CFL target=.7
+[ Info: Simulation is stopping after running for 10.603 minutes.
+[ Info: Simulation time 9 hours equals or exceeds stop time 9 hours.
+SLD_REGISTERED_CASE_DONE case_id=gabls1_n032_weno9_surface_layer_t300_s1_rf10p0 run_directory=/shared/home/greg/review-coordination/gabls1-sld-factor10-20260921-v2/runs/gabls1_n032_weno9_surface_layer_t300_s1_rf10p0
+SLD_FACTOR10_BATCH_EXIT job=7339 case=1 child_exit_code=0 record=/shared/home/greg/review-coordination/gabls1-sld-factor10-20260921-v2/logs/gabls1_factor10_7339.exit

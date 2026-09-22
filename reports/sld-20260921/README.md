@@ -1,6 +1,6 @@
 # SurfaceLayerDiffusivity: coarse GABLS1 results and corrected transport
 
-[Read the findings](surface_layer/gabls1/results.md) · [Eight-page illustrated brief](surface_layer/surface_layer_results.pdf) · [Complete DYCOMS/GABLS master report](breeze_les_master.pdf)
+[Read the findings](surface_layer/gabls1/results.md) · [Illustrated brief](surface_layer/surface_layer_results.pdf) · [Complete DYCOMS/GABLS master report](breeze_les_master.pdf)
 
 Four paired 9 h runs at 12.5 m strongly suppress near-wall turbulence, but the three closure configurations worsen mean-u, mean-theta and w² profile errors against the fixed 1 m median in this test. SGS supplies 86–95% of first-level u-momentum transport; total transport changes much less than its resolved contribution. This is one grid and one seed, not a general closure verdict.
 
@@ -20,7 +20,7 @@ julia --project=julia surface_layer/presentation.jl
 julia --project=julia surface_layer/gabls1/build_brief.jl
 ```
 
-Run snapshot verification before regenerating outputs: generated PDFs can differ bytewise across library/runtime versions. `files_sha256.toml` identifies the published bytes. Reduced complete histories are included; raw 3-D/checkpoint JLD2 files remain on pcluster. The master PDF preserves all original DYCOMS/GABLS1 material. GABLS3 replacements remain held pending validation of a separately identified humidity boundary-condition correction; no new GABLS3 science is claimed.
+Run snapshot verification before regenerating outputs: generated PDFs can differ bytewise across library/runtime versions. `files_sha256.toml` identifies the published bytes. Reduced complete histories are included; raw 3-D/checkpoint JLD2 files remain on pcluster. The master PDF preserves all original DYCOMS/GABLS1 material. GABLS3 replacements passed corrected-source validation and are running as sequential array7343; no new GABLS3 science is yet claimed.
 
 Corrected run sources: [Breeze 02a1647](https://github.com/NumericalEarth/Breeze.jl/commit/02a16478869abf556a464f0874925510bb7c233c), [evaluation a14c358](https://github.com/glwagner/BreezeEvaluation.jl/commit/a14c3586708de70cd3a47f44878991a440678442), [analysis e0655cf](https://github.com/glwagner/BreezeEvaluation.jl/commit/e0655cf77568bc24af1b0bcd7a4c9efe46aa9f45). Source-bound GPU evidence and the separate corrected collection/audit are stored alongside the report.
 
@@ -38,3 +38,12 @@ julia --project=julia surface_layer/resolved_factor/plot_comparison.jl
 julia --project=julia surface_layer/resolved_factor/build_report.jl
 julia --project=julia surface_layer/gabls1/build_brief.jl
 ```
+
+
+## Factor 10: near-complete mixing shutoff
+
+[Factor1/2/10 findings](surface_layer/resolved_factor10/results.md) · [Illustrated comparison](surface_layer/resolved_factor10/factor_results_section.pdf). One separately validated nine-hour case uses the same Breeze physics, grid, seed, support and filter as factors1/2. The factor10 evaluation adds read-only switch-off diagnostics. Final-hour first-face variance is0.06467m²/s², close to earlier no-closure0.06353; skewness is+0.594 rather than factor1−0.253. Added momentum viscosity is zero at99.9935% of sampled horizontal-point/time pairs and heat diffusivity at100%. This exposes closure shutoff under the assumed factor; it does not measure or calibrate numerical transport. All historical sections are retained.
+
+The reported combined flux is covariance+constitutiveSGS, excluding the scheme-native WENO reconstruction correction. The proposed reconstruction experiment is on hold until Greg reviews factor10.
+
+Reproduce with Julia: run surface_layer/resolved_factor10/compare.jl, plot_comparison.jl, build_report.jl, then surface_layer/gabls1/build_brief.jl after snapshot verification.

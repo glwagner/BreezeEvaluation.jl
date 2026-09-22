@@ -1,0 +1,1549 @@
+case_family = "GABLS1"
+case_id = "gabls1_n032_weno9_surface_layer_t300_s1_rf10p0"
+closure = "surface_layer"
+export_verified = true
+fixture_non_scientific = false
+generated_utc = "2026-09-22T00:17:36.716"
+schema_version = 1
+scientific_admission = "passed"
+
+[definitions]
+momentum_stress_sign = "wall stress vector; resolved vertical momentum flux retains native sign"
+stable_surface_heat_flux_expectation = "negative; audited as physics, not admission"
+surface_layer_covariance = "stable exponentially weighted centered recurrence from old means"
+surface_layer_friction_velocity = "local ustar from local filtered stress vector, then horizontal mean"
+surface_layer_mean_transport = "horizontal mean of local filtered-mean products, not product of horizontal averages"
+unavailable_terms = "omitted and identified by availability metadata; never filled with physical zero"
+vertical_flux_sign = "upward-positive kinematic vertical flux"
+
+[grid]
+Lx_m = 400.0
+Ly_m = 400.0
+Lz_m = 400.0
+Nx = 32
+Ny = 32
+Nz = 32
+center_z_definition = "(k-0.5)*dz_m, k=1:Nz"
+dx_m = 12.5
+dy_m = 12.5
+dz_m = 12.5
+face_z_definition = "(k-1)*dz_m, k=1:Nz+1"
+
+[output_sha256]
+"profiles.csv" = "5ff93e4f25b54d3b4ae15c321adeebc3ac8265ac3fc5951c59252623249ff553"
+"profiles_final_hour_long.csv" = "0e63ff2a237d10b5c0039bd90182c56aa50cd64651741b25e02a03434220323b"
+"profiles_penultimate_hour_long.csv" = "5e98c78be7e584862f54df2f7795d4c01ecf229bf84a0d57b5be27cb136f0e6e"
+"series.csv" = "16e532dfaa52adeeefec57943d3c727113778e9e2f2e08db165e508c227a2d93"
+
+[physics_audit]
+final_surface_theta_kinematic_flux_negative = true
+maximum_surface_layer_face1_viscosity_cap_fraction = 0.0
+"maximum_surface_layer_face1_ρqᵛ_cap_fraction" = 0.0
+"maximum_surface_layer_face1_ρθ_cap_fraction" = 0.0
+maximum_surface_layer_face2_viscosity_cap_fraction = 0.0
+"maximum_surface_layer_face2_ρqᵛ_cap_fraction" = 0.0
+"maximum_surface_layer_face2_ρθ_cap_fraction" = 0.0
+maximum_surface_stability_cap_fraction = 0.001953125
+
+[point_variables]
+
+[profile_record_semantics]
+final_hour_source_times_s = [30600.0, 32400.0]
+penultimate_hour_source_times_s = [27000.0, 28800.0]
+positive_times = "true average over the preceding 1800 seconds"
+statistics_writer_t0 = "Oceananigans initialization record, audited as exact duplicate of the separate initial profile and omitted from profiles.csv"
+t0 = "separate instantaneous initial profile"
+
+[profile_variables.buoyancy_mean]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Center"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 32]
+units = "m s^-2"
+
+[profile_variables.density_at_w_faces]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Face"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 33]
+units = "kg m^-3"
+
+[profile_variables.density_mean]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Center"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 32]
+units = "kg m^-3"
+
+[profile_variables.density_weighted_pressure_tke_flux]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Face"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 33]
+units = "kg s^-3"
+
+[profile_variables.density_weighted_turbulent_tke_flux]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Face"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 33]
+units = "kg s^-3"
+
+[profile_variables.pressure_tke_flux]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Face"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 33]
+units = "m^3 s^-3"
+
+[profile_variables.resolved_buoyancy_flux]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Face"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 33]
+units = "m^2 s^-3"
+
+[profile_variables.resolved_tke]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Center"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 32]
+units = "m^2 s^-2"
+
+[profile_variables.resolved_tke_buoyancy_production]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Center"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 32]
+units = "m^2 s^-3"
+
+[profile_variables.resolved_tke_pressure_transport]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Center"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 32]
+units = "m^2 s^-3"
+
+[profile_variables.resolved_tke_shear_production]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Center"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 32]
+units = "m^2 s^-3"
+
+[profile_variables.resolved_tke_transport]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Center"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 32]
+units = "m^2 s^-3"
+
+[profile_variables.resolved_tke_turbulent_transport]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Center"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 32]
+units = "m^2 s^-3"
+
+[profile_variables.resolved_u_w_flux]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Face"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 33]
+units = "m^2 s^-2"
+
+[profile_variables.resolved_v_w_flux]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Face"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 33]
+units = "m^2 s^-2"
+
+[profile_variables.resolved_w_theta_flux]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Face"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 33]
+units = "K m s^-1"
+
+[profile_variables.sgs_buoyancy_flux]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Face"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 33]
+units = "m^2 s^-3"
+
+[profile_variables.sgs_tke_buoyancy_production]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Center"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 32]
+units = "m^2 s^-3"
+
+[profile_variables.sgs_tke_shear_production]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Center"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 32]
+units = "m^2 s^-3"
+
+[profile_variables.sgs_u_w_flux]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Face"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 33]
+units = "m^2 s^-2"
+
+[profile_variables.sgs_v_w_flux]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Face"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 33]
+units = "m^2 s^-2"
+
+[profile_variables.sgs_w_theta_flux]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Face"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 33]
+units = "K m s^-1"
+
+[profile_variables."surface_layer_diffusivity_ρqᵛ"]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Face"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 33]
+units = "m^2 s^-1"
+
+[profile_variables."surface_layer_diffusivity_ρθ"]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Face"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 33]
+units = "m^2 s^-1"
+
+[profile_variables.surface_layer_viscosity]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Face"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 33]
+units = "m^2 s^-1"
+
+[profile_variables.theta_mean]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Center"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 32]
+units = "K"
+
+[profile_variables.theta_variance]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Center"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 32]
+units = "K^2"
+
+[profile_variables.total_buoyancy_flux]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Face"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 33]
+units = "m^2 s^-3"
+
+[profile_variables.total_stress_magnitude]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Face"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 33]
+units = "m^2 s^-2"
+
+[profile_variables.total_tke_buoyancy_production]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Center"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 32]
+units = "m^2 s^-3"
+
+[profile_variables.total_tke_shear_production]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Center"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 32]
+units = "m^2 s^-3"
+
+[profile_variables.total_u_w_flux]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Face"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 33]
+units = "m^2 s^-2"
+
+[profile_variables.total_v_w_flux]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Face"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 33]
+units = "m^2 s^-2"
+
+[profile_variables.total_w_theta_flux]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Face"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 33]
+units = "K m s^-1"
+
+[profile_variables.turbulent_tke_flux]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Face"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 33]
+units = "m^3 s^-3"
+
+[profile_variables.u_mean]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Center"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 32]
+units = "m s^-1"
+
+[profile_variables.u_variance]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Center"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 32]
+units = "m^2 s^-2"
+
+[profile_variables.v_mean]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Center"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 32]
+units = "m s^-1"
+
+[profile_variables.v_variance]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Center"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 32]
+units = "m^2 s^-2"
+
+[profile_variables.w_center_mean]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Center"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 32]
+units = "m s^-1"
+
+[profile_variables.w_center_third_central_moment]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Center"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 32]
+units = "m^3 s^-3"
+
+[profile_variables.w_center_variance]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Center"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 32]
+units = "m^2 s^-2"
+
+[profile_variables.w_mean]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Face"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 33]
+units = "m s^-1"
+
+[profile_variables.w_skewness_instantaneous_ratio]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Face"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 33]
+units = "1"
+
+[profile_variables.w_third_central_moment]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Face"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 33]
+units = "m^3 s^-3"
+
+[profile_variables.w_variance]
+all_finite = true
+horizontal_mean_applied_during_export = false
+location = "Face"
+maximum_source_xy_spread = 0.0
+raw_element_type = "Float32"
+records = 18
+source_shape = [1, 1, 33]
+units = "m^2 s^-2"
+
+[provenance]
+active_attempt_id = "slurm-7339-1"
+attempt_registry_path = "/shared/home/greg/review-coordination/gabls1-sld-factor10-20260921-v2/attempts.toml"
+attempt_registry_sha256 = "d92a62ac01b2fa45165c4a6c1c086758e6dc5289c846437e4ab9a92542a4c12b"
+job_spec = "7339"
+queue_state_used_for_admission = false
+run_directory = "/shared/home/greg/review-coordination/gabls1-sld-factor10-20260921-v2/runs/gabls1_n032_weno9_surface_layer_t300_s1_rf10p0"
+scientific_registry_path = "/shared/home/greg/review-coordination/sld-factor10-freeze-20260921-v2/source/BreezeEvaluation.jl/cases/surface_layer/registries/gabls1_sld_factor10.toml"
+scientific_registry_sha256 = "d1f4e56ed705ce035207d9900e8da441cb8f4d3a06a283acaa4958e08f314519"
+source_freeze_manifest_entries = 779
+source_freeze_manifest_sha256 = "32ebced6c54266ce5f9d7300759635e51d599bc1b090ced070eaa6111e540b0f"
+source_freeze_root = "/shared/home/greg/review-coordination/sld-factor10-freeze-20260921-v2"
+
+    [provenance.analysis_freeze]
+    manifest_entries = 779
+    manifest_sha256 = "32ebced6c54266ce5f9d7300759635e51d599bc1b090ced070eaa6111e540b0f"
+    program_sha256 = "287302caefc16cdad15181dfec0c8beaebf70b8aba60dfaeee7b151b6e59794d"
+    root = "/shared/home/greg/review-coordination/sld-factor10-freeze-20260921-v2"
+
+    [provenance.completion]
+    final_time_s = 32400.0
+
+        [provenance.completion.done]
+        case_id = "gabls1_n032_weno9_surface_layer_t300_s1_rf10p0"
+        final_time_s = "32400.0"
+        finished_utc = "2026-09-22T00:16:23.756"
+
+        [provenance.completion.started]
+        case_id = "gabls1_n032_weno9_surface_layer_t300_s1_rf10p0"
+        registry = "/shared/home/greg/review-coordination/sld-factor10-freeze-20260921-v2/source/BreezeEvaluation.jl/cases/surface_layer/registries/gabls1_sld_factor10.toml"
+        registry_index = "1"
+        started_utc = "2026-09-21T23:57:15.338"
+
+    [provenance.gpu_validation]
+    evidence_sha256 = "4d9e203c5c25f8f98d9ea6fe89419f9a647556996e009fdee30f2490fe738b01"
+    passed_checks = 4462
+    source_manifest_entries = 779
+    validation_mode = "gpu_factor10"
+
+    [provenance.provenance_audit]
+    captured_breeze_git_available = false
+    captured_evaluation_git_available = false
+    captured_source_files_checked = 6
+    environment_files_checked = 4
+    immutable_archive_manifest_is_authoritative = true
+    paired_initial_digests_checked = 1
+
+        [provenance.provenance_audit.captured_source_sha256]
+        "GABLS1SurfaceLayerDiagnostics.jl" = "978b04f0a4527209f68aa60b02b0ca958e117ad2a274d4b81cdd0ff6f0cee580"
+        "LegacyGABLSDiagnosticsAdaptation.jl" = "a8d029d23d9765c76895337c6d537008c5d322f401756fc9d1eae714c9052257"
+        "SurfaceLayerDiagnostics.jl" = "078cf8e288d96d9f982d00f546e3efa63bed4894f4b2535b78aa38c9a80b77d6"
+        "gabls1_case.jl" = "4657ea4b8ebb41e466dcb7ad5a214b8861c73daa136adb4409354cf9f0fa939b"
+        "gabls_diagnostics.jl" = "6486c8ccd94f45df1c204fc57d1f3c0a79b8c4f3c27b3412c1b2bb81573e0c24"
+        "gabls_rough_wall_coefficient.jl" = "5af7df039cf665817cd5ca0a9d48dca6d28bbae3bc300f3c5e79bd982aee20c3"
+
+        [provenance.provenance_audit.environment_sha256]
+        "Breeze.Manifest.toml" = "ea06afffc14487956976a78f9a5fdfca8d4806313cdccb84722d07ceb587aef9"
+        "Breeze.Project.toml" = "d84b533af033eafdcdc91ed699b2e4c5174c711964698d91796833fcd8a64fbe"
+        "active.Manifest.toml" = "1c74d77dab44e6a4c81a033d7e8fd7e1f21349614a9223b5e02665c75eb47365"
+        "active.Project.toml" = "62ecdea43e5df532937b18872a3e7a51bc283d73a5b176d00dea8c9c064b2413"
+
+    [provenance.scientific_case_settings]
+    case_id = "gabls1_n032_weno9_surface_layer_t300_s1_rf10p0"
+    closure = "surface_layer"
+    filter_seconds = 300.0
+    resolved_flux_factor = 10.0
+    submission_state = "UNSUBMITTED"
+    support = 1
+
+[raw_metadata.initial]
+averaged_profile_definition = "true non-overlapping 30-minute averages"
+averaging_definition = "time average of instantaneous horizontally reduced diagnostics"
+averaging_window_seconds = 0
+boundary_layer_height_definition = "h = h_0.05 / 0.95; h_0.05 is the first linearly interpolated height where total momentum-stress magnitude falls to 5 percent of its actual MOST surface magnitude"
+diagnostic_case = "GABLS1 matched SurfaceLayerDiffusivity evaluation"
+diagnostic_kind = "instantaneous_initial_profile"
+heat_roughness_length = 0.10000000149011612
+initial_profile_definition = "separate instantaneous record at t=0"
+instantaneous_skewness_definition = "instantaneous w third central moment divided by instantaneous w variance^(3/2), then time averaged by the profile writer; raw moments are retained for ratio-of-window-averaged-moments"
+interior_sgs_closure_available = true
+low_level_jet_definition = "lowest global maximum of horizontal-mean wind speed; turning is atan(v,u) relative to the eastward geostrophic-wind direction"
+maximum_surface_stability = 10.0
+minimum_surface_wind_speed = 0.009999999776482582
+missing_stress_crossing_handling = "top-face fallback with boundary_layer_height_valid=0; never interpret fallback as a valid h"
+momentum_roughness_length = 0.10000000149011612
+native_w_moment_definition = "horizontal central moments computed directly on native z faces before any vertical interpolation"
+no_closure_definition = "interior SGS flux and dissipation profiles are identically zero with explicit availability metadata; actual wall stress and heat flux remain active and are diagnosed independently"
+obukhov_length_definition = "L = -u_star^3 theta_ref / (kappa g <w theta>_surface); zero fallback only when obukhov_length_valid=0"
+output_interval_seconds = 0
+reference_temperature = 263.5
+required_final_hour_source_times_seconds = [30600, 32400]
+required_penultimate_hour_source_times_seconds = [27000, 28800]
+resolved_flux_factor = 10.0
+resolved_flux_factor_scope = "closure deficit only; physical covariance and diagnostic fluxes are unscaled"
+resolved_tke_definition = "one half of centered u, v, and center-interpolated w perturbation variances"
+sgs_flux_diagnostic_definition = "For SurfaceLayerDiffusivity, evaluate the full constitutive vertical flux with explicit-discretization operators for output only; the model retains vertically implicit diffusion"
+sgs_resolved_tke_dissipation_available = false
+sgs_tke_available = false
+stable_heat_beta = 7.800000190734863
+stable_momentum_beta = 4.800000190734863
+surface_bulk_richardson_definition = "g z1 [theta(z1)-theta_surface] / [theta_ref max(U(z1)^2, minimum_surface_wind_speed^2)], using the exact native-staggered tangential_speed² interpolation used by the scalar wall coefficient and the prescribed surface potential temperature"
+surface_cooling_rate = 6.944444612599909e-5
+surface_heat_flux_definition = "actual bottom thermodynamic-density BoundaryConditionOperation divided by surface density for K m s^-1; multiplied by dry-air heat capacity for W m^-2"
+surface_layer_covariance_definition = "stable exponentially weighted centered recurrence; raw product means do not drive the closure"
+surface_layer_diffusivity_available = true
+"surface_layer_diffusivity_ρqᵛ_units" = "m2 s-1"
+"surface_layer_diffusivity_ρθ_units" = "m2 s-1"
+surface_layer_filter_timescale_seconds = 300.0
+surface_layer_filter_timing = "updated once per accepted step from completed-step state and contemporaneous wall operands; coefficients have a one-completed-step lag"
+"surface_layer_flux_guard_ρqᵛ" = "Inf"
+"surface_layer_flux_guard_ρqᵛ_units" = "m s-1"
+"surface_layer_flux_guard_ρθ" = 9.99999993922529e-9
+"surface_layer_flux_guard_ρθ_units" = "K m s-1"
+surface_layer_friction_velocity_definition = "compute local ustar from the filtered local wall-stress vector, then horizontally average local ustar"
+surface_layer_interior_face_heights_m = [12.5, 25.0]
+surface_layer_interior_face_indices = [2, 3]
+surface_layer_interior_face_weights = [1.0, 0.0]
+surface_layer_maximum_diffusivity = "Inf"
+surface_layer_maximum_viscosity = "Inf"
+surface_layer_mean_transport_definition = "horizontal mean of each local filtered mean product, for example <ubar_T wbar_T>_xy; never product of horizontal averages"
+surface_layer_minimum_friction_velocity = 9.999999747378752e-5
+surface_layer_momentum_flux_units = "m2 s-2"
+surface_layer_support_faces = 1
+surface_layer_turbulent_prandtl_number = 1.0
+surface_layer_viscosity_units = "m2 s-1"
+surface_layer_von_karman_constant = 0.4000000059604645
+surface_layer_zero_fraction_definition = "all fractions use all horizontal points as denominator: deficit_zero is clipped deficit<=0; valid_zero_deficit is active>0 AND deficit<=0 (off because signed resolved target met); coefficient_zero is actual coefficient<=0; active_fraction reports target/guard/support validity, not positive mixing; cap_fraction is separate"
+surface_stability_fraction_definition = "horizontal fractions at the bottom matching point for which the exact linear-stable solver returns its maximum-stability cap, or Rb<=0 invokes the neutral fallback"
+surface_temperature_initial = 265.0
+tke_budget_residual_definition = "derive storage from successive profile records and form storage minus available production, transport, and dissipation terms; this closure residual is not numerical dissipation"
+tke_pressure_transport_definition = "-1/rho_r d/dz [rho_r <w' (p'/rho_r)'>], matching Breeze anelastic pressure-gradient acceleration; raw and density-weighted face fluxes are retained"
+tke_turbulent_transport_definition = "-1/rho_r d/dz [rho_r <w' e'>], where e is per-mass resolved TKE; raw and density-weighted face fluxes are retained"
+total_flux_definition = "resolved plus interior SGS flux on interior faces; actual MOST BoundaryConditionOperation flux substituted at the bottom face"
+von_karman_constant = 0.4000000059604645
+
+[raw_metadata.profiles]
+averaged_profile_definition = "true non-overlapping 30-minute averages"
+averaging_definition = "time average of instantaneous horizontally reduced diagnostics"
+averaging_window_seconds = 1800.0
+boundary_layer_height_definition = "h = h_0.05 / 0.95; h_0.05 is the first linearly interpolated height where total momentum-stress magnitude falls to 5 percent of its actual MOST surface magnitude"
+diagnostic_case = "GABLS1 matched SurfaceLayerDiffusivity evaluation"
+diagnostic_kind = "true_time_averaged_profiles"
+heat_roughness_length = 0.10000000149011612
+initial_profile_definition = "separate instantaneous record at t=0"
+instantaneous_skewness_definition = "instantaneous w third central moment divided by instantaneous w variance^(3/2), then time averaged by the profile writer; raw moments are retained for ratio-of-window-averaged-moments"
+interior_sgs_closure_available = true
+low_level_jet_definition = "lowest global maximum of horizontal-mean wind speed; turning is atan(v,u) relative to the eastward geostrophic-wind direction"
+maximum_surface_stability = 10.0
+minimum_surface_wind_speed = 0.009999999776482582
+missing_stress_crossing_handling = "top-face fallback with boundary_layer_height_valid=0; never interpret fallback as a valid h"
+momentum_roughness_length = 0.10000000149011612
+native_w_moment_definition = "horizontal central moments computed directly on native z faces before any vertical interpolation"
+no_closure_definition = "interior SGS flux and dissipation profiles are identically zero with explicit availability metadata; actual wall stress and heat flux remain active and are diagnosed independently"
+obukhov_length_definition = "L = -u_star^3 theta_ref / (kappa g <w theta>_surface); zero fallback only when obukhov_length_valid=0"
+output_interval_seconds = 1800.0
+reference_temperature = 263.5
+required_final_hour_source_times_seconds = [30600, 32400]
+required_penultimate_hour_source_times_seconds = [27000, 28800]
+resolved_flux_factor = 10.0
+resolved_flux_factor_scope = "closure deficit only; physical covariance and diagnostic fluxes are unscaled"
+resolved_tke_definition = "one half of centered u, v, and center-interpolated w perturbation variances"
+sgs_flux_diagnostic_definition = "For SurfaceLayerDiffusivity, evaluate the full constitutive vertical flux with explicit-discretization operators for output only; the model retains vertically implicit diffusion"
+sgs_resolved_tke_dissipation_available = false
+sgs_tke_available = false
+stable_heat_beta = 7.800000190734863
+stable_momentum_beta = 4.800000190734863
+surface_bulk_richardson_definition = "g z1 [theta(z1)-theta_surface] / [theta_ref max(U(z1)^2, minimum_surface_wind_speed^2)], using the exact native-staggered tangential_speed² interpolation used by the scalar wall coefficient and the prescribed surface potential temperature"
+surface_cooling_rate = 6.944444612599909e-5
+surface_heat_flux_definition = "actual bottom thermodynamic-density BoundaryConditionOperation divided by surface density for K m s^-1; multiplied by dry-air heat capacity for W m^-2"
+surface_layer_covariance_definition = "stable exponentially weighted centered recurrence; raw product means do not drive the closure"
+surface_layer_diffusivity_available = true
+"surface_layer_diffusivity_ρqᵛ_units" = "m2 s-1"
+"surface_layer_diffusivity_ρθ_units" = "m2 s-1"
+surface_layer_filter_timescale_seconds = 300.0
+surface_layer_filter_timing = "updated once per accepted step from completed-step state and contemporaneous wall operands; coefficients have a one-completed-step lag"
+"surface_layer_flux_guard_ρqᵛ" = "Inf"
+"surface_layer_flux_guard_ρqᵛ_units" = "m s-1"
+"surface_layer_flux_guard_ρθ" = 9.99999993922529e-9
+"surface_layer_flux_guard_ρθ_units" = "K m s-1"
+surface_layer_friction_velocity_definition = "compute local ustar from the filtered local wall-stress vector, then horizontally average local ustar"
+surface_layer_interior_face_heights_m = [12.5, 25.0]
+surface_layer_interior_face_indices = [2, 3]
+surface_layer_interior_face_weights = [1.0, 0.0]
+surface_layer_maximum_diffusivity = "Inf"
+surface_layer_maximum_viscosity = "Inf"
+surface_layer_mean_transport_definition = "horizontal mean of each local filtered mean product, for example <ubar_T wbar_T>_xy; never product of horizontal averages"
+surface_layer_minimum_friction_velocity = 9.999999747378752e-5
+surface_layer_momentum_flux_units = "m2 s-2"
+surface_layer_support_faces = 1
+surface_layer_turbulent_prandtl_number = 1.0
+surface_layer_viscosity_units = "m2 s-1"
+surface_layer_von_karman_constant = 0.4000000059604645
+surface_layer_zero_fraction_definition = "all fractions use all horizontal points as denominator: deficit_zero is clipped deficit<=0; valid_zero_deficit is active>0 AND deficit<=0 (off because signed resolved target met); coefficient_zero is actual coefficient<=0; active_fraction reports target/guard/support validity, not positive mixing; cap_fraction is separate"
+surface_stability_fraction_definition = "horizontal fractions at the bottom matching point for which the exact linear-stable solver returns its maximum-stability cap, or Rb<=0 invokes the neutral fallback"
+surface_temperature_initial = 265.0
+tke_budget_residual_definition = "derive storage from successive profile records and form storage minus available production, transport, and dissipation terms; this closure residual is not numerical dissipation"
+tke_pressure_transport_definition = "-1/rho_r d/dz [rho_r <w' (p'/rho_r)'>], matching Breeze anelastic pressure-gradient acceleration; raw and density-weighted face fluxes are retained"
+tke_turbulent_transport_definition = "-1/rho_r d/dz [rho_r <w' e'>], where e is per-mass resolved TKE; raw and density-weighted face fluxes are retained"
+total_flux_definition = "resolved plus interior SGS flux on interior faces; actual MOST BoundaryConditionOperation flux substituted at the bottom face"
+von_karman_constant = 0.4000000059604645
+
+[raw_metadata.series]
+averaged_profile_definition = "true non-overlapping 30-minute averages"
+averaging_definition = "time average of instantaneous horizontally reduced diagnostics"
+averaging_window_seconds = 0
+boundary_layer_height_definition = "h = h_0.05 / 0.95; h_0.05 is the first linearly interpolated height where total momentum-stress magnitude falls to 5 percent of its actual MOST surface magnitude"
+diagnostic_case = "GABLS1 matched SurfaceLayerDiffusivity evaluation"
+diagnostic_kind = "instantaneous_reduced_series"
+heat_roughness_length = 0.10000000149011612
+initial_profile_definition = "separate instantaneous record at t=0"
+instantaneous_skewness_definition = "instantaneous w third central moment divided by instantaneous w variance^(3/2), then time averaged by the profile writer; raw moments are retained for ratio-of-window-averaged-moments"
+interior_sgs_closure_available = true
+low_level_jet_definition = "lowest global maximum of horizontal-mean wind speed; turning is atan(v,u) relative to the eastward geostrophic-wind direction"
+maximum_surface_stability = 10.0
+minimum_surface_wind_speed = 0.009999999776482582
+missing_stress_crossing_handling = "top-face fallback with boundary_layer_height_valid=0; never interpret fallback as a valid h"
+momentum_roughness_length = 0.10000000149011612
+native_w_moment_definition = "horizontal central moments computed directly on native z faces before any vertical interpolation"
+no_closure_definition = "interior SGS flux and dissipation profiles are identically zero with explicit availability metadata; actual wall stress and heat flux remain active and are diagnosed independently"
+obukhov_length_definition = "L = -u_star^3 theta_ref / (kappa g <w theta>_surface); zero fallback only when obukhov_length_valid=0"
+output_interval_seconds = 60.0
+reference_temperature = 263.5
+required_final_hour_source_times_seconds = [30600, 32400]
+required_penultimate_hour_source_times_seconds = [27000, 28800]
+resolved_flux_factor = 10.0
+resolved_flux_factor_scope = "closure deficit only; physical covariance and diagnostic fluxes are unscaled"
+resolved_tke_definition = "one half of centered u, v, and center-interpolated w perturbation variances"
+sgs_flux_diagnostic_definition = "For SurfaceLayerDiffusivity, evaluate the full constitutive vertical flux with explicit-discretization operators for output only; the model retains vertically implicit diffusion"
+sgs_resolved_tke_dissipation_available = false
+sgs_tke_available = false
+stable_heat_beta = 7.800000190734863
+stable_momentum_beta = 4.800000190734863
+surface_bulk_richardson_definition = "g z1 [theta(z1)-theta_surface] / [theta_ref max(U(z1)^2, minimum_surface_wind_speed^2)], using the exact native-staggered tangential_speed² interpolation used by the scalar wall coefficient and the prescribed surface potential temperature"
+surface_cooling_rate = 6.944444612599909e-5
+surface_heat_flux_definition = "actual bottom thermodynamic-density BoundaryConditionOperation divided by surface density for K m s^-1; multiplied by dry-air heat capacity for W m^-2"
+surface_layer_covariance_definition = "stable exponentially weighted centered recurrence; raw product means do not drive the closure"
+surface_layer_diffusivity_available = true
+"surface_layer_diffusivity_ρqᵛ_units" = "m2 s-1"
+"surface_layer_diffusivity_ρθ_units" = "m2 s-1"
+surface_layer_filter_timescale_seconds = 300.0
+surface_layer_filter_timing = "updated once per accepted step from completed-step state and contemporaneous wall operands; coefficients have a one-completed-step lag"
+"surface_layer_flux_guard_ρqᵛ" = "Inf"
+"surface_layer_flux_guard_ρqᵛ_units" = "m s-1"
+"surface_layer_flux_guard_ρθ" = 9.99999993922529e-9
+"surface_layer_flux_guard_ρθ_units" = "K m s-1"
+surface_layer_friction_velocity_definition = "compute local ustar from the filtered local wall-stress vector, then horizontally average local ustar"
+surface_layer_interior_face_heights_m = [12.5, 25.0]
+surface_layer_interior_face_indices = [2, 3]
+surface_layer_interior_face_weights = [1.0, 0.0]
+surface_layer_maximum_diffusivity = "Inf"
+surface_layer_maximum_viscosity = "Inf"
+surface_layer_mean_transport_definition = "horizontal mean of each local filtered mean product, for example <ubar_T wbar_T>_xy; never product of horizontal averages"
+surface_layer_minimum_friction_velocity = 9.999999747378752e-5
+surface_layer_momentum_flux_units = "m2 s-2"
+surface_layer_support_faces = 1
+surface_layer_turbulent_prandtl_number = 1.0
+surface_layer_viscosity_units = "m2 s-1"
+surface_layer_von_karman_constant = 0.4000000059604645
+surface_layer_zero_fraction_definition = "all fractions use all horizontal points as denominator: deficit_zero is clipped deficit<=0; valid_zero_deficit is active>0 AND deficit<=0 (off because signed resolved target met); coefficient_zero is actual coefficient<=0; active_fraction reports target/guard/support validity, not positive mixing; cap_fraction is separate"
+surface_stability_fraction_definition = "horizontal fractions at the bottom matching point for which the exact linear-stable solver returns its maximum-stability cap, or Rb<=0 invokes the neutral fallback"
+surface_temperature_initial = 265.0
+tke_budget_residual_definition = "derive storage from successive profile records and form storage minus available production, transport, and dissipation terms; this closure residual is not numerical dissipation"
+tke_pressure_transport_definition = "-1/rho_r d/dz [rho_r <w' (p'/rho_r)'>], matching Breeze anelastic pressure-gradient acceleration; raw and density-weighted face fluxes are retained"
+tke_turbulent_transport_definition = "-1/rho_r d/dz [rho_r <w' e'>], where e is per-mass resolved TKE; raw and density-weighted face fluxes are retained"
+total_flux_definition = "resolved plus interior SGS flux on interior faces; actual MOST BoundaryConditionOperation flux substituted at the bottom face"
+von_karman_constant = 0.4000000059604645
+
+[record_audit.profiles]
+all_finite = true
+averaged_records = 18
+averaged_times_s = [1800.0, 3600.0, 5400.0, 7200.0, 9000.0, 10800.0, 12600.0, 14400.0, 16200.0, 18000.0, 19800.0, 21600.0, 23400.0, 25200.0, 27000.0, 28800.0, 30600.0, 32400.0]
+final_time_s = 32400.0
+initial_records = 1
+initial_times_s = [0.0]
+statistics_writer_initial_exact_duplicate = true
+statistics_writer_records = 19
+statistics_writer_times_s = [0.0, 1800.0, 3600.0, 5400.0, 7200.0, 9000.0, 10800.0, 12600.0, 14400.0, 16200.0, 18000.0, 19800.0, 21600.0, 23400.0, 25200.0, 27000.0, 28800.0, 30600.0, 32400.0]
+total_records = 19
+variables = 46
+
+[record_audit.series]
+all_finite = true
+final_time_s = 32400.0
+records = 541
+times_s = [0.0, 60.0, 120.0, 180.0, 240.0, 300.0, 360.0, 420.0, 480.0, 540.0, 600.0, 660.0, 720.0, 780.0, 840.0, 900.0, 960.0, 1020.0, 1080.0, 1140.0, 1200.0, 1260.0, 1320.0, 1380.0, 1440.0, 1500.0, 1560.0, 1620.0, 1680.0, 1740.0, 1800.0, 1860.0, 1920.0, 1980.0, 2040.0, 2100.0, 2160.0, 2220.0, 2280.0, 2340.0, 2400.0, 2460.0, 2520.0, 2580.0, 2640.0, 2700.0, 2760.0, 2820.0, 2880.0, 2940.0, 3000.0, 3060.0, 3120.0, 3180.0, 3240.0, 3300.0, 3360.0, 3420.0, 3480.0, 3540.0, 3600.0, 3660.0, 3720.0, 3780.0, 3840.0, 3900.0, 3960.0, 4020.0, 4080.0, 4140.0, 4200.0, 4260.0, 4320.0, 4380.0, 4440.0, 4500.0, 4560.0, 4620.0, 4680.0, 4740.0, 4800.0, 4860.0, 4920.0, 4980.0, 5040.0, 5100.0, 5160.0, 5220.0, 5280.0, 5340.0, 5400.0, 5460.0, 5520.0, 5580.0, 5640.0, 5700.0, 5760.0, 5820.0, 5880.0, 5940.0, 6000.0, 6060.0, 6120.0, 6180.0, 6240.0, 6300.0, 6360.0, 6420.0, 6480.0, 6540.0, 6600.0, 6660.0, 6720.0, 6780.0, 6840.0, 6900.0, 6960.0, 7020.0, 7080.0, 7140.0, 7200.0, 7260.0, 7320.0, 7380.0, 7440.0, 7500.0, 7560.0, 7620.0, 7680.0, 7740.0, 7800.0, 7860.0, 7920.0, 7980.0, 8040.0, 8100.0, 8160.0, 8220.0, 8280.0, 8340.0, 8400.0, 8460.0, 8520.0, 8580.0, 8640.0, 8700.0, 8760.0, 8820.0, 8880.0, 8940.0, 9000.0, 9060.0, 9120.0, 9180.0, 9240.0, 9300.0, 9360.0, 9420.0, 9480.0, 9540.0, 9600.0, 9660.0, 9720.0, 9780.0, 9840.0, 9900.0, 9960.0, 10020.0, 10080.0, 10140.0, 10200.0, 10260.0, 10320.0, 10380.0, 10440.0, 10500.0, 10560.0, 10620.0, 10680.0, 10740.0, 10800.0, 10860.0, 10920.0, 10980.0, 11040.0, 11100.0, 11160.0, 11220.0, 11280.0, 11340.0, 11400.0, 11460.0, 11520.0, 11580.0, 11640.0, 11700.0, 11760.0, 11820.0, 11880.0, 11940.0, 12000.0, 12060.0, 12120.0, 12180.0, 12240.0, 12300.0, 12360.0, 12420.0, 12480.0, 12540.0, 12600.0, 12660.0, 12720.0, 12780.0, 12840.0, 12900.0, 12960.0, 13020.0, 13080.0, 13140.0, 13200.0, 13260.0, 13320.0, 13380.0, 13440.0, 13500.0, 13560.0, 13620.0, 13680.0, 13740.0, 13800.0, 13860.0, 13920.0, 13980.0, 14040.0, 14100.0, 14160.0, 14220.0, 14280.0, 14340.0, 14400.0, 14460.0, 14520.0, 14580.0, 14640.0, 14700.0, 14760.0, 14820.0, 14880.0, 14940.0, 15000.0, 15060.0, 15120.0, 15180.0, 15240.0, 15300.0, 15360.0, 15420.0, 15480.0, 15540.0, 15600.0, 15660.0, 15720.0, 15780.0, 15840.0, 15900.0, 15960.0, 16020.0, 16080.0, 16140.0, 16200.0, 16260.0, 16320.0, 16380.0, 16440.0, 16500.0, 16560.0, 16620.0, 16680.0, 16740.0, 16800.0, 16860.0, 16920.0, 16980.0, 17040.0, 17100.0, 17160.0, 17220.0, 17280.0, 17340.0, 17400.0, 17460.0, 17520.0, 17580.0, 17640.0, 17700.0, 17760.0, 17820.0, 17880.0, 17940.0, 18000.0, 18060.0, 18120.0, 18180.0, 18240.0, 18300.0, 18360.0, 18420.0, 18480.0, 18540.0, 18600.0, 18660.0, 18720.0, 18780.0, 18840.0, 18900.0, 18960.0, 19020.0, 19080.0, 19140.0, 19200.0, 19260.0, 19320.0, 19380.0, 19440.0, 19500.0, 19560.0, 19620.0, 19680.0, 19740.0, 19800.0, 19860.0, 19920.0, 19980.0, 20040.0, 20100.0, 20160.0, 20220.0, 20280.0, 20340.0, 20400.0, 20460.0, 20520.0, 20580.0, 20640.0, 20700.0, 20760.0, 20820.0, 20880.0, 20940.0, 21000.0, 21060.0, 21120.0, 21180.0, 21240.0, 21300.0, 21360.0, 21420.0, 21480.0, 21540.0, 21600.0, 21660.0, 21720.0, 21780.0, 21840.0, 21900.0, 21960.0, 22020.0, 22080.0, 22140.0, 22200.0, 22260.0, 22320.0, 22380.0, 22440.0, 22500.0, 22560.0, 22620.0, 22680.0, 22740.0, 22800.0, 22860.0, 22920.0, 22980.0, 23040.0, 23100.0, 23160.0, 23220.0, 23280.0, 23340.0, 23400.0, 23460.0, 23520.0, 23580.0, 23640.0, 23700.0, 23760.0, 23820.0, 23880.0, 23940.0, 24000.0, 24060.0, 24120.0, 24180.0, 24240.0, 24300.0, 24360.0, 24420.0, 24480.0, 24540.0, 24600.0, 24660.0, 24720.0, 24780.0, 24840.0, 24900.0, 24960.0, 25020.0, 25080.0, 25140.0, 25200.0, 25260.0, 25320.0, 25380.0, 25440.0, 25500.0, 25560.0, 25620.0, 25680.0, 25740.0, 25800.0, 25860.0, 25920.0, 25980.0, 26040.0, 26100.0, 26160.0, 26220.0, 26280.0, 26340.0, 26400.0, 26460.0, 26520.0, 26580.0, 26640.0, 26700.0, 26760.0, 26820.0, 26880.0, 26940.0, 27000.0, 27060.0, 27120.0, 27180.0, 27240.0, 27300.0, 27360.0, 27420.0, 27480.0, 27540.0, 27600.0, 27660.0, 27720.0, 27780.0, 27840.0, 27900.0, 27960.0, 28020.0, 28080.0, 28140.0, 28200.0, 28260.0, 28320.0, 28380.0, 28440.0, 28500.0, 28560.0, 28620.0, 28680.0, 28740.0, 28800.0, 28860.0, 28920.0, 28980.0, 29040.0, 29100.0, 29160.0, 29220.0, 29280.0, 29340.0, 29400.0, 29460.0, 29520.0, 29580.0, 29640.0, 29700.0, 29760.0, 29820.0, 29880.0, 29940.0, 30000.0, 30060.0, 30120.0, 30180.0, 30240.0, 30300.0, 30360.0, 30420.0, 30480.0, 30540.0, 30600.0, 30660.0, 30720.0, 30780.0, 30840.0, 30900.0, 30960.0, 31020.0, 31080.0, 31140.0, 31200.0, 31260.0, 31320.0, 31380.0, 31440.0, 31500.0, 31560.0, 31620.0, 31680.0, 31740.0, 31800.0, 31860.0, 31920.0, 31980.0, 32040.0, 32100.0, 32160.0, 32220.0, 32280.0, 32340.0, 32400.0]
+variables = 105
+
+[series_variables.boundary_layer_height]
+all_finite = true
+raw_element_type = "Float64"
+records = 541
+source_shape = []
+units = "m"
+
+[series_variables.boundary_layer_height_valid]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = []
+units = "1"
+
+[series_variables.friction_velocity]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m s^-1"
+
+[series_variables.low_level_jet_height]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = []
+units = "m"
+
+[series_variables.low_level_jet_speed]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = []
+units = "m s^-1"
+
+[series_variables.low_level_jet_turning_from_geostrophic]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = []
+units = "rad"
+
+[series_variables.low_level_jet_valid]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = []
+units = "1"
+
+[series_variables.obukhov_length]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m"
+
+[series_variables.obukhov_length_valid]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables.resolved_tke_vertical_integral]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^3 s^-2"
+
+[series_variables.speed_maximum]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m s^-1"
+
+[series_variables.stress_height_0_05]
+all_finite = true
+raw_element_type = "Float64"
+records = 541
+source_shape = []
+units = "m"
+
+[series_variables.surface_bulk_richardson_maximum]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables.surface_bulk_richardson_mean]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables.surface_buoyancy_flux]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-3"
+
+[series_variables.surface_density]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "kg m^-3"
+
+[series_variables.surface_drag_u_dynamic_flux]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "kg m^-1 s^-2"
+
+[series_variables.surface_drag_u_kinematic_flux]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-2"
+
+[series_variables.surface_drag_v_dynamic_flux]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "kg m^-1 s^-2"
+
+[series_variables.surface_drag_v_kinematic_flux]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-2"
+
+[series_variables.surface_layer_face1_filtered_u_mean]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m s^-1"
+
+[series_variables.surface_layer_face1_filtered_u_mean_w_mean_transport]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-2"
+
+[series_variables.surface_layer_face1_filtered_uw_product]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-2"
+
+[series_variables.surface_layer_face1_filtered_v_mean]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m s^-1"
+
+[series_variables.surface_layer_face1_filtered_v_mean_w_mean_transport]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-2"
+
+[series_variables.surface_layer_face1_filtered_vw_product]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-2"
+
+[series_variables.surface_layer_face1_filtered_w_mean]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m s^-1"
+
+[series_variables.surface_layer_face1_momentum_active_fraction]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables.surface_layer_face1_momentum_deficit]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables.surface_layer_face1_momentum_deficit_zero_fraction]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables.surface_layer_face1_momentum_valid_zero_deficit_fraction]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables.surface_layer_face1_resolved_u_flux]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-2"
+
+[series_variables.surface_layer_face1_resolved_v_flux]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-2"
+
+[series_variables.surface_layer_face1_transverse_resolved_stress]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-2"
+
+[series_variables.surface_layer_face1_viscosity]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-1"
+
+[series_variables.surface_layer_face1_viscosity_cap_fraction]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables.surface_layer_face1_viscosity_zero_fraction]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables."surface_layer_face1_ρqᵛ_active_fraction"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables."surface_layer_face1_ρqᵛ_cap_fraction"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables."surface_layer_face1_ρqᵛ_deficit"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables."surface_layer_face1_ρqᵛ_diffusivity"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-1"
+
+[series_variables."surface_layer_face1_ρqᵛ_filtered_scalar_mean"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables."surface_layer_face1_ρqᵛ_filtered_scalar_mean_w_mean_transport"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m s^-1"
+
+[series_variables."surface_layer_face1_ρqᵛ_filtered_scalar_w_product"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m s^-1"
+
+[series_variables."surface_layer_face1_ρqᵛ_resolved_flux"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m s^-1"
+
+[series_variables."surface_layer_face1_ρθ_active_fraction"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables."surface_layer_face1_ρθ_cap_fraction"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables."surface_layer_face1_ρθ_deficit"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables."surface_layer_face1_ρθ_deficit_zero_fraction"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables."surface_layer_face1_ρθ_diffusivity"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-1"
+
+[series_variables."surface_layer_face1_ρθ_diffusivity_zero_fraction"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables."surface_layer_face1_ρθ_filtered_scalar_mean"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "K"
+
+[series_variables."surface_layer_face1_ρθ_filtered_scalar_mean_w_mean_transport"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "K m s^-1"
+
+[series_variables."surface_layer_face1_ρθ_filtered_scalar_w_product"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "K m s^-1"
+
+[series_variables."surface_layer_face1_ρθ_resolved_flux"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "K m s^-1"
+
+[series_variables."surface_layer_face1_ρθ_valid_zero_deficit_fraction"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables.surface_layer_face2_filtered_u_mean]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m s^-1"
+
+[series_variables.surface_layer_face2_filtered_u_mean_w_mean_transport]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-2"
+
+[series_variables.surface_layer_face2_filtered_uw_product]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-2"
+
+[series_variables.surface_layer_face2_filtered_v_mean]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m s^-1"
+
+[series_variables.surface_layer_face2_filtered_v_mean_w_mean_transport]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-2"
+
+[series_variables.surface_layer_face2_filtered_vw_product]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-2"
+
+[series_variables.surface_layer_face2_filtered_w_mean]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m s^-1"
+
+[series_variables.surface_layer_face2_momentum_active_fraction]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables.surface_layer_face2_momentum_deficit]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables.surface_layer_face2_resolved_u_flux]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-2"
+
+[series_variables.surface_layer_face2_resolved_v_flux]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-2"
+
+[series_variables.surface_layer_face2_transverse_resolved_stress]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-2"
+
+[series_variables.surface_layer_face2_viscosity]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-1"
+
+[series_variables.surface_layer_face2_viscosity_cap_fraction]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables."surface_layer_face2_ρqᵛ_active_fraction"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables."surface_layer_face2_ρqᵛ_cap_fraction"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables."surface_layer_face2_ρqᵛ_deficit"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables."surface_layer_face2_ρqᵛ_diffusivity"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-1"
+
+[series_variables."surface_layer_face2_ρqᵛ_filtered_scalar_mean"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables."surface_layer_face2_ρqᵛ_filtered_scalar_mean_w_mean_transport"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m s^-1"
+
+[series_variables."surface_layer_face2_ρqᵛ_filtered_scalar_w_product"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m s^-1"
+
+[series_variables."surface_layer_face2_ρqᵛ_resolved_flux"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m s^-1"
+
+[series_variables."surface_layer_face2_ρθ_active_fraction"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables."surface_layer_face2_ρθ_cap_fraction"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables."surface_layer_face2_ρθ_deficit"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables."surface_layer_face2_ρθ_diffusivity"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-1"
+
+[series_variables."surface_layer_face2_ρθ_filtered_scalar_mean"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "K"
+
+[series_variables."surface_layer_face2_ρθ_filtered_scalar_mean_w_mean_transport"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "K m s^-1"
+
+[series_variables."surface_layer_face2_ρθ_filtered_scalar_w_product"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "K m s^-1"
+
+[series_variables."surface_layer_face2_ρθ_resolved_flux"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "K m s^-1"
+
+[series_variables.surface_layer_filtered_friction_velocity]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m s^-1"
+
+[series_variables."surface_layer_filtered_surface_flux_ρqᵛ"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m s^-1"
+
+[series_variables."surface_layer_filtered_surface_flux_ρθ"]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "K m s^-1"
+
+[series_variables.surface_layer_filtered_surface_u_flux]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-2"
+
+[series_variables.surface_layer_filtered_surface_v_flux]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-2"
+
+[series_variables.surface_neutral_fallback_fraction]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables.surface_sensible_heat_flux]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "W m^-2"
+
+[series_variables.surface_stability_cap_fraction]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables.surface_stability_parameter_maximum]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables.surface_stability_parameter_mean]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "1"
+
+[series_variables.surface_temperature]
+all_finite = true
+raw_element_type = "Float64"
+records = 541
+source_shape = []
+units = "K"
+
+[series_variables.surface_theta_dynamic_flux]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "kg K m^-2 s^-1"
+
+[series_variables.surface_theta_kinematic_flux]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "K m s^-1"
+
+[series_variables.theta_maximum]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "K"
+
+[series_variables.theta_minimum]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "K"
+
+[series_variables.u_absolute_maximum]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m s^-1"
+
+[series_variables.v_absolute_maximum]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m s^-1"
+
+[series_variables.w_absolute_maximum]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m s^-1"
+
+[series_variables.w_variance_maximum]
+all_finite = true
+raw_element_type = "Float32"
+records = 541
+source_shape = [1, 1, 1]
+units = "m^2 s^-2"
+
+[source_files.initial]
+path = "/shared/home/greg/review-coordination/gabls1-sld-factor10-20260921-v2/runs/gabls1_n032_weno9_surface_layer_t300_s1_rf10p0/gabls1_n032_weno9_surface_layer_t300_s1_rf10p0_diag_initial.jld2"
+sha256 = "a4e4a7db0d7b03fcb28ca07ae32a8008635fab2520d18e1cc9814ba7109e5e2e"
+
+[source_files.profiles]
+path = "/shared/home/greg/review-coordination/gabls1-sld-factor10-20260921-v2/runs/gabls1_n032_weno9_surface_layer_t300_s1_rf10p0/gabls1_n032_weno9_surface_layer_t300_s1_rf10p0_diag_statistics.jld2"
+sha256 = "d42d0d7325607431c9c8fa1236de7ebd9b8cdd25f5d1fc19001da82de569dbbe"
+
+[source_files.series]
+path = "/shared/home/greg/review-coordination/gabls1-sld-factor10-20260921-v2/runs/gabls1_n032_weno9_surface_layer_t300_s1_rf10p0/gabls1_n032_weno9_surface_layer_t300_s1_rf10p0_diag_series.jld2"
+sha256 = "871b529058d2937c98a0fd454eea3f472a97948fb30e4e4507897eea1ee77540"

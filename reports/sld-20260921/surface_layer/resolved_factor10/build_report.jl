@@ -1,0 +1,46 @@
+using JSON, Markdown, Printf
+include("../../report_layout.jl")
+using .ReportLayout
+const D=@__DIR__
+const r=JSON.parsefile(joinpath(D,"comparison.json"))
+const a=r["cases"]["factor1"]["final_hour"]
+const b=r["cases"]["factor2"]["final_hour"]
+const c=r["cases"]["factor10"]["final_hour"]
+const n=r["cases"]["historical_control"]["final_hour"]
+const c8=r["cases"]["factor10"]["penultimate_hour"]
+fmt(x,n=4)=@sprintf("%.*g",n,x)
+change(key)=100(c[key]-a[key])/abs(a[key])
+paragraphs=[
+"GABLS1 factor-10 sensitivity | 21 September 2026 | 12.5 m, WENO9, one interior face, 300 s filter, 9 h, seed 123. All earlier factor-1/2 results are retained separately.",
+"Result: factor 10 largely removes the added surface-layer mixing after spin-up. Resolved turbulence then resembles the earlier no-closure run. In 8-9 h, first-face w² is $(fmt(c["w2_at_12p5m"],6)) m²/s², versus $(fmt(a["w2_at_12p5m"],6)) for factor 1, $(fmt(b["w2_at_12p5m"],6)) for factor 2, and $(fmt(n["w2_at_12p5m"],6)) without closure. Factor 10 is $(fmt(c["w2_at_12p5m"]/a["w2_at_12p5m"],3)) times factor 1 and only $(fmt(100(c["w2_at_12p5m"]-n["w2_at_12p5m"])/n["w2_at_12p5m"],3))% above the no-closure value. This is recovery of resolved turbulence, not proof of accurate total transport.",
+"Mechanism: the multiplier acts only inside the signed local deficit, max(0, 1 - a F_resolved/F_target), for momentum and heat. With a=10, aligned resolved transport carrying 10% of the target can satisfy the deficit. Countergradient transport increases it. Crediting ten times the resolved flux assumes a missing contribution nine times as large; the experiment does not measure that contribution. Physical covariance diagnostics are never multiplied.",
+"The saved fractions explain the response. In the final hour, momentum viscosity is exactly zero at 99.9934896% of sampled horizontal point-times; heat diffusivity is zero at 100%. The corresponding raw-zero-deficit and guard-valid-zero-deficit fractions agree. Momentum and heat guards remain valid at 100%, with zero coefficient-cap activity, so this is deficit satisfaction rather than guard failure. Each value averages 60 one-minute samples over all 32×32 horizontal points. It does not imply continuous switch-off between samples: true averaged SGS heat flux is tiny but nonzero, $(fmt(c["sgs_w_theta_flux_at_12p5m"],6)) K m/s. These six fractions were not saved for factors 1/2 and remain unavailable there.",
+"The closure acts during spin-up. During 0-1 h, mean viscosity is 0.5168 m²/s and heat diffusivity is 0.6870 m²/s; zero-coefficient fractions are about 81.54% and 82.98%. By 1-2 h, momentum is zero at 99.9837% of sampled points and heat at 100%. Small intermittent reactivations remain later. In 8-9 h the mean viscosity is $(fmt(c["surface_layer_face1_viscosity"],6)) m²/s, versus $(fmt(a["surface_layer_face1_viscosity"],6)) and $(fmt(b["surface_layer_face1_viscosity"],6)) for factors 1 and 2; sampled mean heat diffusivity is zero.",
+"Moments and energy: factor-10 first-face w³ is +$(fmt(c["w3_at_12p5m"],6)) m³/s³ and skewness +$(fmt(c["skewness_at_12p5m"],5)), compared with negative values for factors 1/2 and +$(fmt(n["skewness_at_12p5m"],5)) without closure. Final-hour peak w² is $(fmt(c["peak_w2"],6)), and integrated resolved TKE is $(fmt(c["resolved_tke_vertical_integral"],6)) m³/s², $(fmt(change("resolved_tke_vertical_integral"),4))% above factor 1. The response persists in 7-8 h: first-face w² is $(fmt(c8["w2_at_12p5m"],6)), skewness +$(fmt(c8["skewness_at_12p5m"],5)), and integrated TKE $(fmt(c8["resolved_tke_vertical_integral"],6)). Neighboring hours and one seed are not an uncertainty estimate.",
+"Transport and exchange: final-hour SGS carries $(fmt(100c["sgs_signed_fraction_u_w_flux_at_12p5m"],5))% of first-face u-momentum covariance-plus-SGS transport, versus 88.66% and 86.82% for factors 1/2. Factor-10 u* is $(fmt(c["friction_velocity"],6)) m/s and surface sensible heat flux $(fmt(c["surface_sensible_heat_flux"],6)) W/m², close to the no-closure values $(fmt(n["friction_velocity"],6)) and $(fmt(n["surface_sensible_heat_flux"],6)). The plots' quantity called total is covariance plus actual constitutive SGS. It is NOT the scheme-native WENO advective flux plus SGS: the numerical correction to covariance has not been reconstructed. Agreement of that plotted quantity with a reference cannot validate the missing numerical contribution.",
+"Reference comparison: relative to factor 1, final-hour native-level RMS errors against the fixed 1 m LES median fall $(fmt(-change("u_mean_rmse_0_200m"),4))% for u, $(fmt(-change("theta_mean_rmse_0_200m"),4))% for theta, and $(fmt(-change("w_variance_rmse_0_200m"),4))% for w². Nevertheless, factor-10 errors remain larger than the no-closure errors for all three quantities in 8-9 h. The reference is an LES ensemble median, not observations. This strong sensitivity chiefly approaches the no-closure regime; it does not establish factor 10 as a calibrated or faithful correction.",
+"Comparison integrity: factor10 passed separate strict admission (1 admitted, 0 rejected), with 19 native profiles, 541 exact series times, finite values, supported-face SGS and covariance-plus-SGS consistency. Factors1/2 retain their original admission. Breeze physics commit is identical; factor10's evaluation revision adds read-only diagnostics, with source-specific GPU validation (4,462 checks). Initial native profiles match exactly. Fresh factor1 already reproduces every corrected historical one-face300 profile and series value bit for bit. The earlier no-closure run is labeled as source context. Job7339 used a non-login wrapper and its durable child record verifies exit zero. The preserved older factor2 scheduler discrepancy is documented separately.",
+"Definitions: plotted 8-9 h profiles average the two true half-hour means ending at 30600 and 32400 s; 7-8 h uses 27000 and 28800 s. Series metrics average samples strictly after the hour start through its end. Skewness is the ratio of averaged third moment to averaged variance^(3/2), omitted for w²<1e-6. Native model heights are retained; only the fixed 1 m median is interpolated for unweighted RMS errors over 0<z<=200 m. No WENO flux reconstruction or additional experiment is included."]
+pages=textpages("Factor 10 mostly switches the closure off",paragraphs,"factor10",joinpath(D,"../../../work/sld/factor10/report");footer="Breeze LES evaluation | Julia | factors 1, 2 and 10")
+append!(pages,[joinpath(D,"figures/factor_profiles.pdf"),joinpath(D,"figures/factor_fluxes.pdf"),joinpath(D,"figures/factor_activity.pdf")])
+run(`pdfunite $pages $(joinpath(D,"factor_results_section.pdf"))`)
+open(joinpath(D,"results.md"),"w") do io
+ println(io,"# Factor 10 mostly switches the closure off\n")
+ println(io,join(paragraphs,"\n\n"))
+ println(io,"\n| Final-hour quantity | Factor 1 | Factor 2 | Factor 10 | No closure (earlier source) |\n|---|---:|---:|---:|---:|")
+ for (label,key) in (("w² at 12.5 m (m²/s²)","w2_at_12p5m"),("w³ at 12.5 m (m³/s³)","w3_at_12p5m"),("Skewness at 12.5 m","skewness_at_12p5m"),("Integrated resolved TKE (m³/s²)","resolved_tke_vertical_integral"),("u* (m/s)","friction_velocity"),("Sensible heat (W/m²)","surface_sensible_heat_flux"),("First-face viscosity (m²/s)","surface_layer_face1_viscosity"),("First-face heat diffusivity (m²/s)","surface_layer_face1_ρθ_diffusivity"),("u RMS error (m/s)","u_mean_rmse_0_200m"),("theta RMS error (K)","theta_mean_rmse_0_200m"),("w² RMS error (m²/s²)","w_variance_rmse_0_200m"))
+  println(io,"| ",label," | ",join([fmt(get(m,key,0.0),7) for m in (a,b,c,n)]," | ")," |")
+ end
+ println(io,"\n| Factor10 saved horizontal fraction | 7-8 h | 8-9 h |\n|---|---:|---:|")
+ for key in r["factor10_switch_off_series"]
+  println(io,"| ",replace(key,"surface_layer_face1_"=>"")," | ",fmt(c8[key],10)," | ",fmt(c[key],10)," |")
+ end
+ println(io,"\nFractions for factors1/2 are unavailable, not zero. The no-closure coefficient is identically zero by construction.")
+ for (title,name) in (("Mean profiles and resolved moments","factor_profiles"),("Covariance plus SGS flux partition","factor_fluxes"),("Coefficient and switch-off evolution","factor_activity"))
+  println(io,"\n![",title,"](figures/",name,".png)")
+ end
+ println(io,"\n[Detailed comparison](comparison.md) · [Complete metrics and hourly fractions](comparison.json) · [Native profiles](comparison_profiles.csv) · [Julia audit](compare.jl) · [Julia plots](plot_comparison.jl) · [Strict collection](collection_v2/manifest.toml)")
+ println(io,"\nSources: [Breeze 1df78f2](https://github.com/NumericalEarth/Breeze.jl/commit/1df78f2bb94db159e3a296f7439e1a5e90286014), [factor10 evaluation cbe90ce](https://github.com/glwagner/BreezeEvaluation.jl/commit/cbe90cee275866f742275127de95b6148d2a4653). Earlier factor1/2 exports and reference data remain linked through the Julia audit.")
+end
+write(joinpath(D,"results.html"),"<!doctype html><meta charset=\"utf-8\"><title>GABLS1 factor10 sensitivity</title><style>body{font:18px/1.6 sans-serif;max-width:1150px;margin:40px auto;padding:0 20px}img{max-width:100%}td,th{padding:8px;text-align:left}table{border-collapse:collapse}tr{border-bottom:1px solid #ddd}</style>"*Markdown.html(Markdown.parse(read(joinpath(D,"results.md"),String))))
+println("FACTOR10_REPORT_COMPLETE pages=",length(pages))

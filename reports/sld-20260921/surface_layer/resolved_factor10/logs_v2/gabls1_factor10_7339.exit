@@ -1,0 +1,10 @@
+batch_job_id=7339
+case_index=1
+slurm_job_id=7339
+child_exit_code=0
+started_utc=2026-09-21T23:57:13Z
+finished_utc=2026-09-22T00:16:27Z
+source_manifest_sha256=32ebced6c54266ce5f9d7300759635e51d599bc1b090ced070eaa6111e540b0f
+wrapper_sha256=6e479e83a6e20859704944add7eda50a64a71c79dfc45c3d136d2c80688e00ec
+gpu_evidence_directory=/shared/home/greg/review-coordination/gabls1-sld-factor10-20260921-v2/gpu_gate
+record_complete=true

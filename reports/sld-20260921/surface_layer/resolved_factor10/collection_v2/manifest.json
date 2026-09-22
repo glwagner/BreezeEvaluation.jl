@@ -1,0 +1,16 @@
+{
+  "admitted": [{
+    "case_id": "gabls1_n032_weno9_surface_layer_t300_s1_rf10p0",
+    "directory": "/shared/home/greg/review-coordination/gabls1-sld-factor10-20260921-v2/analysis_export/gabls1_n032_weno9_surface_layer_t300_s1_rf10p0",
+    "manifest_sha256": "758e460b46aaef259988e867604dc8d4b6306e9c20a93fa324be94bb07b827bc"
+  }],
+  "admitted_count": 1,
+  "attempt_registry_path": "/shared/home/greg/review-coordination/gabls1-sld-factor10-20260921-v2/attempts.toml",
+  "attempt_registry_sha256": "d92a62ac01b2fa45165c4a6c1c086758e6dc5289c846437e4ab9a92542a4c12b",
+  "case_family": "GABLS1",
+  "expected_cases": 1,
+  "generated_utc": "2026-09-22T00:17:43.668",
+  "rejected": [],
+  "rejected_count": 0,
+  "schema_version": 1
+}
