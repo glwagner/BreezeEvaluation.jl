@@ -1,0 +1,49 @@
+# Corrected GABLS3 SLD array 7343: final scientific export
+
+Status, 2026-09-22 UTC: **4 admitted, 0 rejected**. No GPU jobs were submitted, no production/core/GPU-gate bytes were changed, and no WENO reconstructed-flux work was done. Root owns plots and report integration.
+
+## Active paths and immutable identities
+
+- Campaign: `/shared/home/greg/review-coordination/gabls3-sld-production-131ad9b-v2-20260922`
+- Four active logical cases: `n064_weno9_none`, `n064_weno9_surface_layer_t100_s1`, `n064_weno9_surface_layer_t300_s1`, `n064_weno9_surface_layer_t300_s2`.
+- Core freeze: `/shared/home/greg/review-coordination/surface-layer-harness-freeze-20260921-131ad9b-02a1647`; 762-file SHA manifest `1cc45c554fe4675a5ffde2dc6bfe70953d9c5294f9df4e6fe76b6f1f033886ac`, full `sha256sum --check --quiet` passed.
+- Admitted GPU gate: job 7335, `/shared/home/greg/review-coordination/gabls3-surface-q-gpu-v2-20260921-2316/gpu_gate`, evidence `surface_q_gpu_evidence.toml` SHA `6ac9cb780c89a7fe5d2fa22052d9476fe8602242ee37b83c791f01658e4d04e4`; gate log `logs/gate_7335.out` SHA `2aefc6554e1e7966af9843949ca2ef8b3a7e72f5e4652f7a3a9dd08e670796b3`. Sealed reader re-admitted this evidence.
+- Original, sealed analysis freeze f234ff7: `/shared/home/greg/review-coordination/surface-layer-analysis-freeze-20260921-f234ff7-02a1647`; original finalized registry `metadata/gabls3_sld_attempts_7343.toml`, SHA `b0c6b2decb6ded7f8d4cd9c800fc5581c3f018304480bd33da612c3c02415ab7`. Both remain unchanged.
+- Versioned **analysis-only** compatibility revision b144835 (`b14483555ace3f5833b940221f3fd4d383c949f1`, pushed to `glw/surface-layer-evaluation`): `/shared/home/greg/review-coordination/surface-layer-analysis-freeze-20260922-b144835-02a1647`, 762-file SHA manifest `6d01a371267d8a4402b4c297daa162046065aee616ed881ad8ec25ee5d89a245`; complete hash audit passed, zero writable files. Breeze commit remains `02a16478869abf556a464f0874925510bb7c233c`; runner and Breeze Manifest SHAs are unchanged from f234ff7. The corresponding *new* active registry is `metadata/gabls3_sld_attempts_7343_analysis_b144835.toml`, SHA `025d1649fdc2dfcfec794e211ae65d5f5ed9a2632c6c16886945636f3ba0ba6e`. Its only two differences from the sealed finalized registry are the analysis freeze path and manifest SHA.
+- Strict exports: `/shared/home/greg/review-coordination/gabls3-sld-production-131ad9b-v2-20260922/exports_strict_7343_b144835/<case_id>/`.
+- Strict collection: `/shared/home/greg/review-coordination/gabls3-sld-production-131ad9b-v2-20260922/collection_strict_7343_b144835/manifest.toml`, SHA `5758fb8d098da9ccaa2e8c788a6a1f68188dbb9525667ce253575f32abe67b2c`, with `admitted_count=4`, `rejected_count=0`, and four manifest SHAs.
+- Independent read-only audit script: `/shared/home/greg/review-coordination/audit_gabls3_final_7343.jl`, SHA `70dc41d4bc9690b9e74e8e00df53ab98f65f07b6ce2f1e6e94f20f8d9179c702`. Passing output: campaign `metadata/audit_gabls3_final_7343_native_points.log`, SHA `a0be04c8a60dfe59f3f6e12549576b338915bc9afc35e3c5e8beff76a86203c7`.
+
+## Why a new analysis freeze was required
+
+The first export with the exact original f234ff7 analysis halted before publishing a case: `prescribed_surface_pressure element type changes over time`. Raw JLD2 inspection in **all four** runs found exactly three affected series: `prescribed_surface_pressure`, `prescribed_surface_theta`, and `prescribed_surface_q`. Each has 3,240 `Float64` records from t=0 through t=32,390 s and one `Float32` record at t=32,400 s. All other series, point, and profile variables retain their original element type. The production values, files, and hashes were not transformed. Revision b144835 accepts only this exact GABLS3 final-record storage exception, records `raw_element_type_counts` and `final_record_float32_exception` in the manifest, and still rejects earlier or unrelated type changes. Its CPU fixture suite passed **83/83** checks (including positive final-only and negative middle/unlisted-type tests). This is an exporter storage-contract change, not a simulation or physics change. The original f234ff7 freeze remains part of the production provenance; scientific CSV admission uses the explicitly rebound b144835 analysis freeze.
+
+## Exact Julia commands executed
+
+Sealed gate reader (PASS) and sealed finalizer (created the original immutable attempt registry):
+
+```sh
+/shared/home/greg/.juliaup/bin/julia --startup-file=no --project=/shared/home/greg/review-coordination/surface-layer-harness-freeze-20260921-131ad9b-02a1647/source/BreezeEvaluation.jl/cases/gabls3/runner /shared/home/greg/review-coordination/admit_gabls3_surface_q_gpu_gate_131ad9b-v2.jl /shared/home/greg/review-coordination/gabls3-surface-q-gpu-v2-20260921-2316/gpu_gate 7335 /shared/home/greg/review-coordination/gabls3-surface-q-gpu-v2-20260921-2316/logs/gate_7335.out
+
+/shared/home/greg/.juliaup/bin/julia --startup-file=no --project=/shared/home/greg/review-coordination/surface-layer-analysis-freeze-20260921-f234ff7-02a1647/source/BreezeEvaluation.jl/cases/gabls3/runner /shared/home/greg/review-coordination/prepare_gabls3_sld_attempts_131ad9b-v2.jl /shared/home/greg/review-coordination/gabls3-surface-q-gpu-v2-20260921-2316/gpu_gate 7335 /shared/home/greg/review-coordination/gabls3-surface-q-gpu-v2-20260921-2316/logs/gate_7335.out 7343 /shared/home/greg/review-coordination/gabls3-sld-production-131ad9b-v2-20260922/runs /shared/home/greg/review-coordination/gabls3-sld-production-131ad9b-v2-20260922/logs /shared/home/greg/review-coordination/gabls3-sld-production-131ad9b-v2-20260922/metadata/gabls3_sld_attempts_7343.toml
+```
+
+The finalizer verified four `CASE_DONE` sentinels, complete nine-hour time, matching scientific registry/index/source and log hashes, and four durable child exit records (`child_exit_code=0`). The two-field analysis-only registry derivation is shown by `diff -u` between the two registry paths above. The following export command was run once for each of the four case IDs listed above; all four returned `SLD_SCIENTIFIC_EXPORT_VERIFIED`:
+
+```sh
+/shared/home/greg/.juliaup/bin/julia --startup-file=no --project=/shared/home/greg/review-coordination/surface-layer-analysis-freeze-20260922-b144835-02a1647/source/BreezeEvaluation.jl/cases/gabls3/runner /shared/home/greg/review-coordination/surface-layer-analysis-freeze-20260922-b144835-02a1647/source/BreezeEvaluation.jl/cases/surface_layer/analysis/export_case.jl /shared/home/greg/review-coordination/gabls3-sld-production-131ad9b-v2-20260922/metadata/gabls3_sld_attempts_7343_analysis_b144835.toml CASE_ID /shared/home/greg/review-coordination/gabls3-sld-production-131ad9b-v2-20260922/exports_strict_7343_b144835
+
+/shared/home/greg/.juliaup/bin/julia --startup-file=no --project=/shared/home/greg/review-coordination/surface-layer-analysis-freeze-20260922-b144835-02a1647/source/BreezeEvaluation.jl/cases/gabls3/runner /shared/home/greg/review-coordination/surface-layer-analysis-freeze-20260922-b144835-02a1647/source/BreezeEvaluation.jl/cases/surface_layer/analysis/collect_admitted_exports.jl /shared/home/greg/review-coordination/gabls3-sld-production-131ad9b-v2-20260922/metadata/gabls3_sld_attempts_7343_analysis_b144835.toml /shared/home/greg/review-coordination/gabls3-sld-production-131ad9b-v2-20260922/exports_strict_7343_b144835 /shared/home/greg/review-coordination/gabls3-sld-production-131ad9b-v2-20260922/collection_strict_7343_b144835
+
+/shared/home/greg/.juliaup/bin/julia --startup-file=no --project=/shared/home/greg/review-coordination/surface-layer-analysis-freeze-20260922-b144835-02a1647/source/BreezeEvaluation.jl/cases/gabls3/runner /shared/home/greg/review-coordination/audit_gabls3_final_7343.jl /shared/home/greg/review-coordination/gabls3-sld-production-131ad9b-v2-20260922/exports_strict_7343_b144835 /shared/home/greg/review-coordination/gabls3-sld-production-131ad9b-v2-20260922/collection_strict_7343_b144835
+```
+
+The finalizer/export commands refuse existing destinations; use new paths for any rerun rather than overwriting these records.
+
+## Independent scientific/data audit
+
+- Each case has **109** instantaneous full-depth profiles at exact `0:300:32400` s, **3,241** series and **3,241** point records at exact `0:10:32400` s. All values finite; per-variable native profile shape and `Center`/`Face` z coordinates checked row by row. Control has 49 profile/42 series/30 point variables; each SLD case 51/107/30. Point metadata distinguishes native w-face heights `12.5,25,50,100,175,200` m from scalar/horizontal-velocity center heights `6.25,18.75,43.75,93.75,181.25,193.75` m.
+- `profiles_03_04utc_mean.csv` was independently recomputed from exactly the 12 instantaneous 11100:300:14400 s profiles, excluding the 10800 s left boundary. All raw JLD2 and exported CSV hashes match each case manifest; all four case manifest hashes match the collection. No GABLS1 averaging/reference was substituted.
+- At **interior** faces, `total = resolved + SGS` for u, v, θ, and q fluxes, with maximum absolute roundoff mismatch `3.99e-9`. At **z=0**, `total` is the directly sampled wall flux from the matching series, not the interior resolved+SGS decomposition; maximum wall mismatch was zero. This substitution must be retained in plots/interpretation.
+- Control SGS fluxes are exactly zero. In the 03–04 UTC paper window, mean SGS u-flux at z=12.5 m is `0.0300681`, `0.0304436`, and `0.0335156 m² s⁻²` for t100/s1, t300/s1, and t300/s2; z=25 m is zero for both one-face cases and `0.0271288 m² s⁻²` for the two-face case. Native SGS θ and q fluxes are likewise nonzero at the first interior face. These are diagnostics, not a fidelity ranking.
+- `final_surface_theta_kinematic_flux_negative=false` in some manifest physics audits is **not** an admission failure: the nine-hour GABLS3 case spans morning warming. It should not be interpreted using GABLS1's stable-night sign expectation.

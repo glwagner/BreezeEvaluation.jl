@@ -1,0 +1,622 @@
+GABLS3_SURFACE_Q_GPU_ADMITTED evidence_sha256=6ac9cb780c89a7fe5d2fa22052d9476fe8602242ee37b83c791f01658e4d04e4 job_id=7335 source_manifest_sha256=1cc45c554fe4675a5ffde2dc6bfe70953d9c5294f9df4e6fe76b6f1f033886ac
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+warning: Not a git repository. Use --no-index to compare two paths outside a working tree
+usage: git diff --no-index [<options>] <path> <path>
+
+Diff output format options
+    -p, --patch           generate patch
+    -s, --no-patch        suppress diff output
+    -u                    generate patch
+    -U, --unified[=<n>]   generate diffs with <n> lines context
+    -W, --[no-]function-context
+                          generate diffs with <n> lines context
+    --raw                 generate the diff in raw format
+    --patch-with-raw      synonym for '-p --raw'
+    --patch-with-stat     synonym for '-p --stat'
+    --numstat             machine friendly --stat
+    --shortstat           output only the last line of --stat
+    -X, --dirstat[=<param1,param2>...]
+                          output the distribution of relative amount of changes for each sub-directory
+    --cumulative          synonym for --dirstat=cumulative
+    --dirstat-by-file[=<param1,param2>...]
+                          synonym for --dirstat=files,param1,param2...
+    --check               warn if changes introduce conflict markers or whitespace errors
+    --summary             condensed summary such as creations, renames and mode changes
+    --name-only           show only names of changed files
+    --name-status         show only names and status of changed files
+    --stat[=<width>[,<name-width>[,<count>]]]
+                          generate diffstat
+    --stat-width <width>  generate diffstat with a given width
+    --stat-name-width <width>
+                          generate diffstat with a given name width
+    --stat-graph-width <width>
+                          generate diffstat with a given graph width
+    --stat-count <count>  generate diffstat with limited lines
+    --[no-]compact-summary
+                          generate compact summary in diffstat
+    --binary              output a binary diff that can be applied
+    --[no-]full-index     show full pre- and post-image object names on the "index" lines
+    --[no-]color[=<when>] show colored diff
+    --ws-error-highlight <kind>
+                          highlight whitespace errors in the 'context', 'old' or 'new' lines in the diff
+    -z                    do not munge pathnames and use NULs as output field terminators in --raw or --numstat
+    --[no-]abbrev[=<n>]   use <n> digits to display object names
+    --src-prefix <prefix> show the given source prefix instead of "a/"
+    --dst-prefix <prefix> show the given destination prefix instead of "b/"
+    --line-prefix <prefix>
+                          prepend an additional prefix to every line of output
+    --no-prefix           do not show any source or destination prefix
+    --default-prefix      use default prefixes a/ and b/
+    --inter-hunk-context <n>
+                          show context between diff hunks up to the specified number of lines
+    --output-indicator-new <char>
+                          specify the character to indicate a new line instead of '+'
+    --output-indicator-old <char>
+                          specify the character to indicate an old line instead of '-'
+    --output-indicator-context <char>
+                          specify the character to indicate a context instead of ' '
+
+Diff rename options
+    -B, --break-rewrites[=<n>[/<m>]]
+                          break complete rewrite changes into pairs of delete and create
+    -M, --find-renames[=<n>]
+                          detect renames
+    -D, --irreversible-delete
+                          omit the preimage for deletes
+    -C, --find-copies[=<n>]
+                          detect copies
+    --[no-]find-copies-harder
+                          use unmodified files as source to find copies
+    --no-renames          disable rename detection
+    --[no-]rename-empty   use empty blobs as rename source
+    --[no-]follow         continue listing the history of a file beyond renames
+    -l <n>                prevent rename/copy detection if the number of rename/copy targets exceeds given limit
+
+Diff algorithm options
+    --minimal             produce the smallest possible diff
+    -w, --ignore-all-space
+                          ignore whitespace when comparing lines
+    -b, --ignore-space-change
+                          ignore changes in amount of whitespace
+    --ignore-space-at-eol ignore changes in whitespace at EOL
+    --ignore-cr-at-eol    ignore carrier-return at the end of line
+    --ignore-blank-lines  ignore changes whose lines are all blank
+    -I, --[no-]ignore-matching-lines <regex>
+                          ignore changes whose all lines match <regex>
+    --[no-]indent-heuristic
+                          heuristic to shift diff hunk boundaries for easy reading
+    --patience            generate diff using the "patience diff" algorithm
+    --histogram           generate diff using the "histogram diff" algorithm
+    --diff-algorithm <algorithm>
+                          choose a diff algorithm
+    --anchored <text>     generate diff using the "anchored diff" algorithm
+    --word-diff[=<mode>]  show word diff, using <mode> to delimit changed words
+    --word-diff-regex <regex>
+                          use <regex> to decide what a word is
+    --color-words[=<regex>]
+                          equivalent to --word-diff=color --word-diff-regex=<regex>
+    --[no-]color-moved[=<mode>]
+                          moved lines of code are colored differently
+    --[no-]color-moved-ws <mode>
+                          how white spaces are ignored in --color-moved
+
+Other diff options
+    --[no-]relative[=<prefix>]
+                          when run from subdir, exclude changes outside and show relative paths
+    -a, --[no-]text       treat all files as text
+    -R                    swap two inputs, reverse the diff
+    --[no-]exit-code      exit with 1 if there were differences, 0 otherwise
+    --[no-]quiet          disable all output of the program
+    --[no-]ext-diff       allow an external diff helper to be executed
+    --[no-]textconv       run external text conversion filters when comparing binary files
+    --ignore-submodules[=<when>]
+                          ignore changes to submodules in the diff generation
+    --submodule[=<format>]
+                          specify how differences in submodules are shown
+    --ita-invisible-in-index
+                          hide 'git add -N' entries from the index
+    --ita-visible-in-index
+                          treat 'git add -N' entries as real in the index
+    -S <string>           look for differences that change the number of occurrences of the specified string
+    -G <regex>            look for differences that change the number of occurrences of the specified regex
+    --pickaxe-all         show all changes in the changeset with -S or -G
+    --pickaxe-regex       treat <string> in -S as extended POSIX regular expression
+    -O <file>             control the order in which files appear in the output
+    --rotate-to <path>    show the change in the specified path first
+    --skip-to <path>      skip the output to the specified path
+    --find-object <object-id>
+                          look for differences that change the number of occurrences of the specified object
+    --diff-filter [(A|C|D|M|R|T|U|X|B)...[*]]
+                          select files by diff type
+    --output <file>       output to a specific file
+
+┌ Info: SLD_REGISTERED_CASE_START
+│   case_id = "n064_weno9_surface_layer_t300_s1"
+└   settings = (nx = 64, spacing = 12.5f0, scheme_name = "weno9", closure_name = "surface_layer", surface_layer_filter_seconds = 300.0, surface_layer_support = 1, stop_time = 32400.0, seed = 20260702, initial_dt = 0.41666666f0, wizard_cfl = 0.7, latitude = 51.9711f0, coriolis_parameter = 0.00011488f0, diagnostics_enabled = true, architecture = "CUDAGPU", initial_state_sha256 = (u_sha256 = "f0b01718f516f6c71870f753f619696528638f7319788c0b51ebd9d1c3ec6fd5", v_sha256 = "a0d7729f3cab5f52b5deae41a2fd7011a7b570392488f664da8ffea2ee86f28e", theta_sha256 = "7fbad0eb9fc24b28c3c621cb4e6b8cc2943c75611e187e5a0f8b30e87d4e872d", q_sha256 = "1318165d6db8db964bfba2cdd9135aaf9c46a32b6744df4e1a9da4b91cbeaeb1", w_sha256 = "1c096f259c652e157a8633719844341da5c0a583d1362afa404cc83762066ac5"), checkpoint_interval = 3600.0)
+[ Info: Initializing simulation...
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 0 t=0 seconds dt=458.333 ms NaN s/step max|w|=0.72 theta=[291.034,299.059] q=[0.0088,0.00987692] CFL target=.7
+[ Info:     ... simulation initialization complete (2.276 minutes)
+[ Info: Executing initial time step...
+[ Info:     ... initial time step complete (16.381 seconds).
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 100 t=51.656 seconds dt=551.807 ms 0.9091 s/step max|w|=0.346 theta=[291.884,299.058] q=[0.00879999,0.00989119] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 200 t=1.740 minutes dt=549.914 ms 0.0090 s/step max|w|=0.367 theta=[292.086,299.056] q=[0.00879999,0.00987004] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 300 t=2.619 minutes dt=550.375 ms 0.0090 s/step max|w|=0.503 theta=[292.166,299.055] q=[0.00879998,0.0098659] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 400 t=3.499 minutes dt=550.991 ms 0.0092 s/step max|w|=0.531 theta=[292.156,299.053] q=[0.00879998,0.0098621] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 500 t=4.370 minutes dt=550.955 ms 0.0098 s/step max|w|=0.671 theta=[292.155,299.052] q=[0.00879996,0.00985695] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 600 t=5.249 minutes dt=551.813 ms 0.0095 s/step max|w|=0.624 theta=[292.154,299.050] q=[0.00879994,0.00985976] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 700 t=6.129 minutes dt=551.695 ms 0.0090 s/step max|w|=0.743 theta=[292.114,299.049] q=[0.00879992,0.00985769] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 800 t=7 minutes dt=553.371 ms 0.0090 s/step max|w|=0.965 theta=[292.118,299.047] q=[0.0087999,0.00986176] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 900 t=7.879 minutes dt=552.310 ms 0.0097 s/step max|w|=0.966 theta=[292.104,299.046] q=[0.00879989,0.00985935] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 1000 t=8.759 minutes dt=553.282 ms 0.0813 s/step max|w|=0.823 theta=[292.108,299.044] q=[0.00879988,0.00985586] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 1100 t=9.639 minutes dt=554.022 ms 0.0101 s/step max|w|=0.926 theta=[292.081,299.043] q=[0.00879985,0.00986056] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 1200 t=10.509 minutes dt=554.450 ms 0.0103 s/step max|w|=1.11 theta=[292.048,299.041] q=[0.00879983,0.00986205] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 1300 t=11.389 minutes dt=552.205 ms 0.0093 s/step max|w|=0.983 theta=[292.038,299.040] q=[0.00879982,0.00986421] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 1400 t=12.268 minutes dt=554.663 ms 0.0094 s/step max|w|=1.11 theta=[292.022,299.038] q=[0.0087998,0.00986448] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 1500 t=13.148 minutes dt=552.768 ms 0.0090 s/step max|w|=1.05 theta=[291.968,299.037] q=[0.00879978,0.00987254] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 1600 t=14.018 minutes dt=552.199 ms 0.0098 s/step max|w|=0.906 theta=[291.990,299.035] q=[0.00879976,0.00986358] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 1700 t=14.898 minutes dt=552.881 ms 0.0091 s/step max|w|=0.904 theta=[292.004,299.034] q=[0.00879974,0.00986251] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 1800 t=15.777 minutes dt=550.139 ms 0.0094 s/step max|w|=0.944 theta=[292.000,299.032] q=[0.00879975,0.00986351] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 1900 t=16.655 minutes dt=546.993 ms 0.0092 s/step max|w|=0.852 theta=[291.957,299.031] q=[0.00879975,0.00986676] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 2000 t=17.527 minutes dt=550.133 ms 0.0099 s/step max|w|=0.909 theta=[291.951,299.030] q=[0.00879973,0.00987] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 2100 t=18.407 minutes dt=553.351 ms 0.0094 s/step max|w|=0.833 theta=[291.907,299.028] q=[0.0087997,0.00986908] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 2200 t=19.287 minutes dt=554.463 ms 0.0093 s/step max|w|=0.88 theta=[291.890,299.027] q=[0.00879967,0.00987298] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 2300 t=20.166 minutes dt=551.437 ms 0.0097 s/step max|w|=0.922 theta=[291.890,299.025] q=[0.00879963,0.00987444] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 2400 t=21.036 minutes dt=546.279 ms 0.0100 s/step max|w|=0.985 theta=[291.882,299.024] q=[0.00879962,0.00987104] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 2500 t=21.916 minutes dt=547.450 ms 0.0094 s/step max|w|=0.907 theta=[291.853,299.022] q=[0.00879962,0.00987294] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 2600 t=22.793 minutes dt=538.852 ms 0.0096 s/step max|w|=1 theta=[291.829,299.021] q=[0.0087996,0.00987332] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 2700 t=23.667 minutes dt=539.625 ms 0.0095 s/step max|w|=0.935 theta=[291.827,299.019] q=[0.00879955,0.00987505] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 2800 t=24.545 minutes dt=544.260 ms 0.0101 s/step max|w|=0.906 theta=[291.823,299.018] q=[0.0087995,0.00987597] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 2900 t=25.424 minutes dt=545.490 ms 0.0180 s/step max|w|=0.997 theta=[291.808,299.017] q=[0.00879947,0.00987605] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 3000 t=26.302 minutes dt=539.970 ms 0.0099 s/step max|w|=1.08 theta=[291.794,299.015] q=[0.00879945,0.00987652] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 3100 t=27.176 minutes dt=542.789 ms 0.0100 s/step max|w|=0.936 theta=[291.803,299.014] q=[0.00879938,0.00987168] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 3200 t=28.054 minutes dt=540.756 ms 0.0095 s/step max|w|=1.12 theta=[291.762,299.012] q=[0.00879932,0.00987516] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 3300 t=28.933 minutes dt=541.516 ms 0.0095 s/step max|w|=0.938 theta=[291.752,299.011] q=[0.00879932,0.00987444] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 3400 t=29.810 minutes dt=535.835 ms 0.0096 s/step max|w|=0.926 theta=[291.701,299.010] q=[0.00879932,0.00987775] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 3500 t=30.684 minutes dt=529.990 ms 0.0106 s/step max|w|=0.876 theta=[291.725,299.008] q=[0.00879932,0.00987497] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 3600 t=31.562 minutes dt=533.925 ms 0.0095 s/step max|w|=0.881 theta=[291.718,299.007] q=[0.00879928,0.00987484] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 3700 t=32.440 minutes dt=536.758 ms 0.0096 s/step max|w|=0.956 theta=[291.701,299.005] q=[0.00879925,0.00987293] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 3800 t=33.319 minutes dt=538.189 ms 0.0096 s/step max|w|=0.868 theta=[291.699,299.004] q=[0.00879925,0.00986842] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 3900 t=34.194 minutes dt=538.760 ms 0.0185 s/step max|w|=0.857 theta=[291.690,299.003] q=[0.00879925,0.00987009] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 4000 t=35.072 minutes dt=541.738 ms 0.0103 s/step max|w|=0.955 theta=[291.674,299.001] q=[0.00879925,0.0098701] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 4100 t=35.951 minutes dt=543.928 ms 0.0096 s/step max|w|=0.858 theta=[291.648,299.000] q=[0.00879923,0.00986942] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 4200 t=36.830 minutes dt=541.909 ms 0.0095 s/step max|w|=0.944 theta=[291.669,298.998] q=[0.00879921,0.00987003] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 4300 t=37.703 minutes dt=542.089 ms 0.0105 s/step max|w|=0.819 theta=[291.624,298.997] q=[0.0087992,0.00987277] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 4400 t=38.582 minutes dt=543.651 ms 0.0097 s/step max|w|=0.742 theta=[291.628,298.996] q=[0.00879921,0.00986894] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 4500 t=39.461 minutes dt=549.210 ms 0.0097 s/step max|w|=0.77 theta=[291.644,298.994] q=[0.00879922,0.0098653] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 4600 t=40.333 minutes dt=545.871 ms 0.0100 s/step max|w|=0.758 theta=[291.636,298.993] q=[0.0087992,0.00986825] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 4700 t=41.212 minutes dt=549.503 ms 0.0104 s/step max|w|=0.806 theta=[291.605,298.991] q=[0.00879917,0.00987055] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 4800 t=42.092 minutes dt=552.113 ms 0.0181 s/step max|w|=0.76 theta=[291.586,298.990] q=[0.00879917,0.0098686] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 4900 t=42.972 minutes dt=553.085 ms 0.0099 s/step max|w|=0.842 theta=[291.592,298.988] q=[0.00879917,0.00986161] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 5000 t=43.843 minutes dt=551.665 ms 0.0105 s/step max|w|=0.993 theta=[291.579,298.987] q=[0.00879912,0.00986448] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 5100 t=44.722 minutes dt=548.069 ms 0.0097 s/step max|w|=0.726 theta=[291.566,298.986] q=[0.00879906,0.00986348] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 5200 t=45.601 minutes dt=552.727 ms 0.0102 s/step max|w|=0.781 theta=[291.556,298.984] q=[0.00879905,0.00986217] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 5300 t=46.481 minutes dt=555.334 ms 0.0099 s/step max|w|=0.771 theta=[291.550,298.983] q=[0.00879906,0.00986059] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 5400 t=47.352 minutes dt=551.327 ms 0.0107 s/step max|w|=0.749 theta=[291.523,298.981] q=[0.00879906,0.00985934] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 5500 t=48.232 minutes dt=556.959 ms 0.0099 s/step max|w|=0.983 theta=[291.517,298.980] q=[0.00879903,0.00985873] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 5600 t=49.120 minutes dt=553.037 ms 0.0098 s/step max|w|=0.649 theta=[291.515,298.978] q=[0.00879899,0.00985968] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 5700 t=50.000 minutes dt=555.424 ms 0.0100 s/step max|w|=0.702 theta=[291.487,298.977] q=[0.00879897,0.00985769] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 5800 t=50.908 minutes dt=558.528 ms 0.0191 s/step max|w|=0.807 theta=[291.484,298.975] q=[0.00879896,0.0098593] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 5900 t=51.833 minutes dt=558.304 ms 0.0103 s/step max|w|=0.806 theta=[291.457,298.974] q=[0.00879895,0.00985706] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 6000 t=52.722 minutes dt=558.398 ms 0.0107 s/step max|w|=0.834 theta=[291.439,298.972] q=[0.00879895,0.00985878] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 6100 t=53.649 minutes dt=556.738 ms 0.0099 s/step max|w|=0.814 theta=[291.436,298.971] q=[0.00879895,0.00985812] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 6200 t=54.537 minutes dt=553.819 ms 0.0106 s/step max|w|=0.734 theta=[291.414,298.969] q=[0.00879895,0.00985861] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 6300 t=55.426 minutes dt=557.558 ms 0.0103 s/step max|w|=0.766 theta=[291.404,298.968] q=[0.0087989,0.00985975] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 6400 t=56.352 minutes dt=558.827 ms 0.0109 s/step max|w|=0.719 theta=[291.380,298.966] q=[0.00879887,0.00985924] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 6500 t=57.279 minutes dt=561.282 ms 0.0099 s/step max|w|=0.668 theta=[291.370,298.965] q=[0.00879886,0.00985654] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 6600 t=58.204 minutes dt=562.599 ms 0.0190 s/step max|w|=0.692 theta=[291.381,298.963] q=[0.00879884,0.00985263] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 6700 t=59.131 minutes dt=563.679 ms 0.0105 s/step max|w|=0.687 theta=[291.359,298.961] q=[0.00879878,0.0098538] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 6800 t=1.001 hours dt=561.952 ms 0.0130 s/step max|w|=0.725 theta=[291.330,298.960] q=[0.00879874,0.00985118] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 6900 t=1.016 hours dt=564.856 ms 0.0100 s/step max|w|=0.606 theta=[291.310,298.964] q=[0.00879874,0.00985186] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 7000 t=1.032 hours dt=566.517 ms 0.0109 s/step max|w|=0.626 theta=[291.283,298.969] q=[0.00879876,0.00985476] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 7100 t=1.047 hours dt=564.895 ms 0.0101 s/step max|w|=0.604 theta=[291.291,298.973] q=[0.00879877,0.00985461] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 7200 t=1.063 hours dt=568.205 ms 0.0110 s/step max|w|=0.592 theta=[291.292,298.977] q=[0.00879877,0.0098532] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 7300 t=1.078 hours dt=569.230 ms 0.0120 s/step max|w|=0.631 theta=[291.259,298.981] q=[0.00879874,0.00985705] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 7400 t=1.094 hours dt=568.188 ms 0.0273 s/step max|w|=0.633 theta=[291.240,298.985] q=[0.00879871,0.00985833] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 7500 t=1.109 hours dt=570.422 ms 0.0109 s/step max|w|=0.629 theta=[291.244,298.990] q=[0.00879868,0.00985586] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 7600 t=1.124 hours dt=569.296 ms 0.0103 s/step max|w|=0.678 theta=[291.206,298.994] q=[0.00879867,0.00985014] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 7700 t=1.140 hours dt=570.264 ms 0.0109 s/step max|w|=0.594 theta=[291.184,298.998] q=[0.00879866,0.00985394] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 7800 t=1.155 hours dt=571.735 ms 0.0103 s/step max|w|=0.774 theta=[291.211,299.003] q=[0.00879866,0.00985052] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 7900 t=1.171 hours dt=570.605 ms 0.0115 s/step max|w|=0.652 theta=[291.206,299.007] q=[0.00879867,0.0098522] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 8000 t=1.186 hours dt=573.446 ms 0.0104 s/step max|w|=0.596 theta=[291.198,299.011] q=[0.00879868,0.00985406] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 8100 t=1.202 hours dt=572.890 ms 0.0192 s/step max|w|=0.699 theta=[291.187,299.016] q=[0.00879864,0.0098518] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 8200 t=1.217 hours dt=572.486 ms 0.0116 s/step max|w|=0.693 theta=[291.179,299.020] q=[0.0087986,0.0098521] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 8300 t=1.232 hours dt=572.642 ms 0.0103 s/step max|w|=0.619 theta=[291.152,299.024] q=[0.00879857,0.00985684] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 8400 t=1.248 hours dt=572.284 ms 0.0113 s/step max|w|=0.628 theta=[291.102,299.029] q=[0.00879856,0.00985688] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 8500 t=1.263 hours dt=573.114 ms 0.0107 s/step max|w|=0.75 theta=[291.117,299.033] q=[0.00879856,0.00985754] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 8600 t=1.279 hours dt=576.139 ms 0.0113 s/step max|w|=0.746 theta=[291.104,299.037] q=[0.00879851,0.0098584] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 8700 t=1.294 hours dt=573.791 ms 0.0104 s/step max|w|=0.709 theta=[291.117,299.042] q=[0.00879849,0.00985839] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 8800 t=1.310 hours dt=570.332 ms 0.0194 s/step max|w|=0.678 theta=[291.085,299.046] q=[0.00879848,0.00985991] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 8900 t=1.325 hours dt=576.354 ms 0.0108 s/step max|w|=0.728 theta=[291.089,299.050] q=[0.00879847,0.00985867] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 9000 t=1.340 hours dt=578.898 ms 0.0114 s/step max|w|=0.731 theta=[291.056,299.055] q=[0.00879848,0.00986197] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 9100 t=1.356 hours dt=578.958 ms 0.0113 s/step max|w|=0.585 theta=[291.033,299.059] q=[0.00879844,0.00986412] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 9200 t=1.371 hours dt=580.278 ms 0.0105 s/step max|w|=0.619 theta=[291.024,299.064] q=[0.00879837,0.00986362] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 9300 t=1.387 hours dt=581.199 ms 0.0114 s/step max|w|=0.569 theta=[290.995,299.068] q=[0.00879837,0.00986467] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 9400 t=1.402 hours dt=579.800 ms 0.0105 s/step max|w|=0.578 theta=[290.977,299.072] q=[0.00879839,0.00986745] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 9500 t=1.418 hours dt=583.332 ms 0.0198 s/step max|w|=0.605 theta=[290.978,299.076] q=[0.00879839,0.00986871] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 9600 t=1.433 hours dt=586.670 ms 0.0111 s/step max|w|=0.671 theta=[290.988,299.080] q=[0.00879836,0.00986799] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 9700 t=1.449 hours dt=584.578 ms 0.0117 s/step max|w|=0.584 theta=[290.974,299.084] q=[0.00879837,0.00987086] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 9800 t=1.464 hours dt=581.079 ms 0.0106 s/step max|w|=0.599 theta=[290.956,299.087] q=[0.00879837,0.00986818] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 9900 t=1.479 hours dt=586.040 ms 0.0115 s/step max|w|=0.601 theta=[290.932,299.091] q=[0.00879836,0.0098691] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 10000 t=1.495 hours dt=585.994 ms 0.0115 s/step max|w|=0.632 theta=[290.929,299.095] q=[0.00879836,0.00987197] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 10100 t=1.511 hours dt=589.665 ms 0.0189 s/step max|w|=0.584 theta=[290.919,299.099] q=[0.00879836,0.00987167] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 10200 t=1.527 hours dt=587.215 ms 0.0122 s/step max|w|=0.739 theta=[290.880,299.103] q=[0.00879834,0.00987451] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 10300 t=1.543 hours dt=588.838 ms 0.0114 s/step max|w|=0.711 theta=[290.853,299.106] q=[0.00879834,0.00987812] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 10400 t=1.558 hours dt=589.106 ms 0.0116 s/step max|w|=0.539 theta=[290.857,299.110] q=[0.00879835,0.00987802] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 10500 t=1.575 hours dt=591.174 ms 0.0190 s/step max|w|=0.646 theta=[290.839,299.114] q=[0.00879833,0.00987945] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 10600 t=1.591 hours dt=588.597 ms 0.0126 s/step max|w|=0.601 theta=[290.851,299.118] q=[0.00879829,0.00987758] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 10700 t=1.607 hours dt=589.209 ms 0.0117 s/step max|w|=0.726 theta=[290.841,299.122] q=[0.00879829,0.00988134] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 10800 t=1.623 hours dt=593.725 ms 0.0117 s/step max|w|=0.616 theta=[290.828,299.125] q=[0.00879823,0.00987979] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 10900 t=1.640 hours dt=592.115 ms 0.0202 s/step max|w|=0.747 theta=[290.809,299.129] q=[0.00879808,0.00988495] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 11000 t=1.656 hours dt=596.657 ms 0.0120 s/step max|w|=0.641 theta=[290.795,299.133] q=[0.00879802,0.00988176] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 11100 t=1.672 hours dt=594.922 ms 0.0122 s/step max|w|=0.558 theta=[290.795,299.137] q=[0.00879805,0.00988296] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 11200 t=1.689 hours dt=595.978 ms 0.0110 s/step max|w|=0.619 theta=[290.793,299.141] q=[0.00879809,0.00988201] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 11300 t=1.705 hours dt=597.366 ms 0.0201 s/step max|w|=0.514 theta=[290.756,299.145] q=[0.00879804,0.00988718] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 11400 t=1.721 hours dt=598.193 ms 0.0125 s/step max|w|=0.638 theta=[290.754,299.149] q=[0.00879795,0.00988747] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 11500 t=1.738 hours dt=599.308 ms 0.0121 s/step max|w|=0.652 theta=[290.754,299.153] q=[0.00879794,0.00988886] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 11600 t=1.754 hours dt=600.069 ms 0.0132 s/step max|w|=0.512 theta=[290.735,299.157] q=[0.00879795,0.00989053] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 11700 t=1.770 hours dt=603.554 ms 0.0196 s/step max|w|=0.649 theta=[290.697,299.161] q=[0.00879797,0.00989708] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 11800 t=1.787 hours dt=602.237 ms 0.0122 s/step max|w|=0.585 theta=[290.676,299.164] q=[0.00879797,0.00989598] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 11900 t=1.803 hours dt=604.462 ms 0.0120 s/step max|w|=0.649 theta=[290.673,299.168] q=[0.00879798,0.00989485] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 12000 t=1.819 hours dt=606.695 ms 0.0192 s/step max|w|=0.598 theta=[290.657,299.172] q=[0.00879797,0.00989607] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 12100 t=1.836 hours dt=604.496 ms 0.0132 s/step max|w|=0.587 theta=[290.631,299.176] q=[0.00879794,0.00989931] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 12200 t=1.852 hours dt=608.213 ms 0.0119 s/step max|w|=0.538 theta=[290.623,299.180] q=[0.00879794,0.00990025] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 12300 t=1.869 hours dt=609.007 ms 0.0121 s/step max|w|=0.59 theta=[290.625,299.184] q=[0.00879792,0.00989946] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 12400 t=1.885 hours dt=607.122 ms 0.0202 s/step max|w|=0.577 theta=[290.589,299.188] q=[0.00879793,0.00990381] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 12500 t=1.901 hours dt=611.787 ms 0.0129 s/step max|w|=0.492 theta=[290.595,299.192] q=[0.00879789,0.0099042] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 12600 t=1.918 hours dt=610.825 ms 0.0124 s/step max|w|=0.586 theta=[290.560,299.196] q=[0.00879788,0.00990505] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 12700 t=1.934 hours dt=606.802 ms 0.0203 s/step max|w|=0.506 theta=[290.561,299.200] q=[0.00879789,0.00990752] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 12800 t=1.950 hours dt=612.076 ms 0.0123 s/step max|w|=0.562 theta=[290.548,299.204] q=[0.0087978,0.0099088] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 12900 t=1.967 hours dt=614.070 ms 0.0116 s/step max|w|=0.519 theta=[290.531,299.209] q=[0.00879766,0.00990933] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 13000 t=1.983 hours dt=615.280 ms 0.0122 s/step max|w|=0.505 theta=[290.510,299.213] q=[0.00879759,0.00991213] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 13100 t=1.999 hours dt=622.496 ms 0.0206 s/step max|w|=0.48 theta=[290.496,299.217] q=[0.00879757,0.00991272] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 13200 t=2.016 hours dt=614.535 ms 0.0148 s/step max|w|=0.605 theta=[290.454,299.221] q=[0.00879305,0.0099163] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 13300 t=2.032 hours dt=620.556 ms 0.0124 s/step max|w|=0.618 theta=[290.479,299.225] q=[0.00878834,0.00991326] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 13400 t=2.048 hours dt=620.960 ms 0.0205 s/step max|w|=0.451 theta=[290.437,299.229] q=[0.00878363,0.00991556] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 13500 t=2.065 hours dt=623.251 ms 0.0130 s/step max|w|=0.554 theta=[290.464,299.234] q=[0.00877864,0.0099137] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 13600 t=2.081 hours dt=626.736 ms 0.0121 s/step max|w|=0.565 theta=[290.439,299.238] q=[0.00877378,0.00991574] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 13700 t=2.098 hours dt=630.253 ms 0.0137 s/step max|w|=0.669 theta=[290.433,299.242] q=[0.00876883,0.00991642] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 13800 t=2.116 hours dt=629.696 ms 0.0200 s/step max|w|=0.487 theta=[290.416,299.246] q=[0.00876424,0.0099143] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 13900 t=2.133 hours dt=624.924 ms 0.0123 s/step max|w|=0.565 theta=[290.389,299.251] q=[0.00875912,0.00991675] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 14000 t=2.150 hours dt=627.135 ms 0.0124 s/step max|w|=0.549 theta=[290.380,299.256] q=[0.00875409,0.00991454] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 14100 t=2.167 hours dt=632.327 ms 0.0219 s/step max|w|=0.512 theta=[290.379,299.260] q=[0.00874911,0.00991299] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 14200 t=2.185 hours dt=634.334 ms 0.0132 s/step max|w|=0.452 theta=[290.359,299.264] q=[0.00874418,0.00991274] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 14300 t=2.202 hours dt=634.185 ms 0.0123 s/step max|w|=0.482 theta=[290.329,299.269] q=[0.00873913,0.00991387] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 14400 t=2.219 hours dt=638.390 ms 0.0206 s/step max|w|=0.486 theta=[290.333,299.273] q=[0.00873396,0.00991351] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 14500 t=2.237 hours dt=631.530 ms 0.0142 s/step max|w|=0.577 theta=[290.313,299.278] q=[0.00872889,0.009914] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 14600 t=2.254 hours dt=634.402 ms 0.0129 s/step max|w|=0.548 theta=[290.293,299.282] q=[0.00872392,0.00991443] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 14700 t=2.272 hours dt=643.472 ms 0.0210 s/step max|w|=0.528 theta=[290.274,299.287] q=[0.00871892,0.00991474] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 14800 t=2.289 hours dt=643.900 ms 0.0129 s/step max|w|=0.509 theta=[290.251,299.292] q=[0.00871391,0.00991782] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 14900 t=2.306 hours dt=646.155 ms 0.0141 s/step max|w|=0.51 theta=[290.249,299.296] q=[0.00870895,0.00991806] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 15000 t=2.324 hours dt=644.381 ms 0.0211 s/step max|w|=0.562 theta=[290.229,299.301] q=[0.00870396,0.00991305] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 15100 t=2.341 hours dt=646.042 ms 0.0132 s/step max|w|=0.531 theta=[290.214,299.306] q=[0.00869885,0.0099133] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 15200 t=2.358 hours dt=648.799 ms 0.0131 s/step max|w|=0.553 theta=[290.207,299.311] q=[0.0086938,0.00991279] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 15300 t=2.376 hours dt=647.927 ms 0.0222 s/step max|w|=0.512 theta=[290.176,299.315] q=[0.00868878,0.00991154] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 15400 t=2.393 hours dt=654.559 ms 0.0129 s/step max|w|=0.478 theta=[290.186,299.320] q=[0.00868376,0.00990899] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 15500 t=2.411 hours dt=650.790 ms 0.0132 s/step max|w|=0.44 theta=[290.160,299.325] q=[0.00867875,0.00990921] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 15600 t=2.428 hours dt=653.687 ms 0.0130 s/step max|w|=0.513 theta=[290.127,299.330] q=[0.0086738,0.00991317] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 15700 t=2.445 hours dt=650.796 ms 0.0226 s/step max|w|=0.535 theta=[290.107,299.335] q=[0.00866882,0.0099104] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 15800 t=2.463 hours dt=657.772 ms 0.0129 s/step max|w|=0.524 theta=[290.112,299.340] q=[0.00866383,0.00990813] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 15900 t=2.480 hours dt=657.446 ms 0.0130 s/step max|w|=0.585 theta=[290.089,299.346] q=[0.00865873,0.00990917] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 16000 t=2.497 hours dt=654.625 ms 0.0210 s/step max|w|=0.605 theta=[290.075,299.350] q=[0.00865375,0.00990763] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 16100 t=2.515 hours dt=655.862 ms 0.0150 s/step max|w|=0.532 theta=[290.069,299.355] q=[0.00864877,0.00990627] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 16200 t=2.532 hours dt=656.466 ms 0.0132 s/step max|w|=0.622 theta=[290.075,299.360] q=[0.00864378,0.00990354] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 16300 t=2.549 hours dt=662.081 ms 0.0219 s/step max|w|=0.569 theta=[290.057,299.365] q=[0.00863873,0.00990346] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 16400 t=2.567 hours dt=661.859 ms 0.0130 s/step max|w|=0.525 theta=[290.043,299.370] q=[0.00863374,0.0099051] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 16500 t=2.584 hours dt=660.157 ms 0.0145 s/step max|w|=0.583 theta=[290.011,299.375] q=[0.00862879,0.00990294] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 16600 t=2.602 hours dt=664.779 ms 0.0211 s/step max|w|=0.431 theta=[290.016,299.380] q=[0.00862364,0.00990417] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 16700 t=2.619 hours dt=669.609 ms 0.0140 s/step max|w|=0.536 theta=[289.976,299.385] q=[0.00861839,0.009906] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 16800 t=2.637 hours dt=663.689 ms 0.0141 s/step max|w|=0.588 theta=[289.964,299.390] q=[0.00861311,0.0099028] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 16900 t=2.655 hours dt=667.678 ms 0.0212 s/step max|w|=0.624 theta=[289.958,299.396] q=[0.00860809,0.0099009] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 17000 t=2.673 hours dt=675.803 ms 0.0153 s/step max|w|=0.596 theta=[289.957,299.401] q=[0.00860276,0.00989832] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 17100 t=2.692 hours dt=674.430 ms 0.0134 s/step max|w|=0.459 theta=[289.941,299.406] q=[0.00859745,0.00989641] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 17200 t=2.710 hours dt=677.277 ms 0.0231 s/step max|w|=0.477 theta=[289.936,299.412] q=[0.0085921,0.00989919] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 17300 t=2.729 hours dt=679.118 ms 0.0147 s/step max|w|=0.532 theta=[289.901,299.417] q=[0.00858676,0.00989713] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 17400 t=2.747 hours dt=681.873 ms 0.0216 s/step max|w|=0.519 theta=[289.902,299.422] q=[0.00858144,0.00989444] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 17500 t=2.766 hours dt=681.471 ms 0.0148 s/step max|w|=0.48 theta=[289.884,299.428] q=[0.00857607,0.00989338] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 17600 t=2.784 hours dt=686.106 ms 0.0146 s/step max|w|=0.481 theta=[289.879,299.433] q=[0.00857069,0.00989174] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 17700 t=2.803 hours dt=683.990 ms 0.0217 s/step max|w|=0.515 theta=[289.855,299.438] q=[0.00856538,0.00989059] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 17800 t=2.821 hours dt=683.582 ms 0.0151 s/step max|w|=0.502 theta=[289.843,299.443] q=[0.00856001,0.00988934] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 17900 t=2.840 hours dt=691.919 ms 0.0146 s/step max|w|=0.522 theta=[289.834,299.449] q=[0.0085547,0.00988596] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 18000 t=2.858 hours dt=688.826 ms 0.0216 s/step max|w|=0.457 theta=[289.818,299.454] q=[0.00854935,0.00988749] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 18100 t=2.877 hours dt=685.549 ms 0.0153 s/step max|w|=0.556 theta=[289.806,299.459] q=[0.008544,0.00989694] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 18200 t=2.895 hours dt=681.875 ms 0.0146 s/step max|w|=0.433 theta=[289.790,299.464] q=[0.00853864,0.00989027] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 18300 t=2.914 hours dt=695.311 ms 0.0215 s/step max|w|=0.505 theta=[289.791,299.470] q=[0.0085333,0.00988613] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 18400 t=2.932 hours dt=694.922 ms 0.0157 s/step max|w|=0.497 theta=[289.780,299.475] q=[0.00852786,0.00987913] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 18500 t=2.951 hours dt=697.169 ms 0.0146 s/step max|w|=0.475 theta=[289.754,299.480] q=[0.00852248,0.00987866] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 18600 t=2.969 hours dt=698.060 ms 0.0215 s/step max|w|=0.462 theta=[289.723,299.486] q=[0.00851714,0.00987829] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 18700 t=2.988 hours dt=698.481 ms 0.0154 s/step max|w|=0.507 theta=[289.693,299.491] q=[0.00851187,0.00987876] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 18800 t=3.007 hours dt=705.255 ms 0.0178 s/step max|w|=0.461 theta=[289.694,299.496] q=[0.00850634,0.00987556] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 18900 t=3.025 hours dt=705.590 ms 0.0213 s/step max|w|=0.46 theta=[289.678,299.501] q=[0.00850097,0.00987746] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 19000 t=3.044 hours dt=708.179 ms 0.0150 s/step max|w|=0.466 theta=[289.685,299.507] q=[0.00849549,0.00987655] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 19100 t=3.062 hours dt=716.031 ms 0.0230 s/step max|w|=0.458 theta=[289.642,299.512] q=[0.00849012,0.00987512] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 19200 t=3.081 hours dt=711.658 ms 0.0154 s/step max|w|=0.397 theta=[289.629,299.517] q=[0.00848482,0.00987673] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 19300 t=3.099 hours dt=712.391 ms 0.0139 s/step max|w|=0.409 theta=[289.616,299.522] q=[0.00847937,0.00987261] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 19400 t=3.118 hours dt=712.826 ms 0.0231 s/step max|w|=0.486 theta=[289.595,299.527] q=[0.00847416,0.00987131] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 19500 t=3.136 hours dt=706.806 ms 0.0155 s/step max|w|=0.549 theta=[289.587,299.532] q=[0.00846891,0.00987135] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 19600 t=3.155 hours dt=712.986 ms 0.0140 s/step max|w|=0.493 theta=[289.590,299.538] q=[0.00846337,0.00986822] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 19700 t=3.174 hours dt=705.646 ms 0.0240 s/step max|w|=0.49 theta=[289.584,299.543] q=[0.0084581,0.00986787] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 19800 t=3.192 hours dt=714.025 ms 0.0151 s/step max|w|=0.369 theta=[289.548,299.548] q=[0.00845274,0.00987074] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 19900 t=3.211 hours dt=714.787 ms 0.0146 s/step max|w|=0.51 theta=[289.537,299.553] q=[0.00844727,0.00987069] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 20000 t=3.230 hours dt=713.378 ms 0.0227 s/step max|w|=0.508 theta=[289.549,299.558] q=[0.00844168,0.00987884] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 20100 t=3.249 hours dt=717.188 ms 0.0155 s/step max|w|=0.487 theta=[289.503,299.563] q=[0.00843622,0.00986867] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 20200 t=3.269 hours dt=714.731 ms 0.0234 s/step max|w|=0.455 theta=[289.477,299.569] q=[0.00843059,0.00986722] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 20300 t=3.289 hours dt=715.916 ms 0.0173 s/step max|w|=0.47 theta=[289.484,299.574] q=[0.00842478,0.00986468] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 20400 t=3.309 hours dt=720.134 ms 0.0160 s/step max|w|=0.475 theta=[289.461,299.580] q=[0.00841908,0.00986906] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 20500 t=3.329 hours dt=717.016 ms 0.0229 s/step max|w|=0.586 theta=[289.458,299.585] q=[0.00841333,0.00986738] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 20600 t=3.349 hours dt=714.992 ms 0.0160 s/step max|w|=0.486 theta=[289.442,299.591] q=[0.00840755,0.00986705] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 20700 t=3.368 hours dt=719.344 ms 0.0233 s/step max|w|=0.532 theta=[289.423,299.596] q=[0.00840172,0.00987003] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 20800 t=3.388 hours dt=726.793 ms 0.0159 s/step max|w|=0.425 theta=[289.423,299.602] q=[0.00839595,0.00986884] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 20900 t=3.408 hours dt=720.054 ms 0.0166 s/step max|w|=0.531 theta=[289.402,299.608] q=[0.00839017,0.00986416] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 21000 t=3.428 hours dt=718.366 ms 0.0245 s/step max|w|=0.509 theta=[289.410,299.613] q=[0.0083844,0.00986241] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 21100 t=3.448 hours dt=723.007 ms 0.0158 s/step max|w|=0.466 theta=[289.409,299.619] q=[0.00837855,0.00986234] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 21200 t=3.468 hours dt=728.810 ms 0.0236 s/step max|w|=0.463 theta=[289.384,299.624] q=[0.00837276,0.0098626] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 21300 t=3.488 hours dt=726.882 ms 0.0164 s/step max|w|=0.525 theta=[289.388,299.630] q=[0.00836694,0.00986052] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 21400 t=3.507 hours dt=728.350 ms 0.0166 s/step max|w|=0.571 theta=[289.385,299.635] q=[0.0083612,0.00986013] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 21500 t=3.527 hours dt=729.740 ms 0.0233 s/step max|w|=0.506 theta=[289.377,299.641] q=[0.00835549,0.00986268] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 21600 t=3.547 hours dt=727.789 ms 0.0160 s/step max|w|=0.651 theta=[289.361,299.646] q=[0.00834959,0.0098626] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 21700 t=3.567 hours dt=719.956 ms 0.0256 s/step max|w|=0.521 theta=[289.353,299.653] q=[0.00834391,0.00986219] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 21800 t=3.587 hours dt=727.907 ms 0.0159 s/step max|w|=0.496 theta=[289.342,299.658] q=[0.0083382,0.00986303] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 21900 t=3.607 hours dt=735.104 ms 0.0239 s/step max|w|=0.444 theta=[289.330,299.663] q=[0.0083325,0.00986089] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 22000 t=3.626 hours dt=721.695 ms 0.0164 s/step max|w|=0.448 theta=[289.338,299.668] q=[0.00832675,0.0098594] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 22100 t=3.646 hours dt=732.151 ms 0.0159 s/step max|w|=0.475 theta=[289.326,299.673] q=[0.00832102,0.00985853] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 22200 t=3.666 hours dt=737.441 ms 0.0247 s/step max|w|=0.467 theta=[289.316,299.677] q=[0.00831454,0.00985685] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 22300 t=3.686 hours dt=737.075 ms 0.0163 s/step max|w|=0.523 theta=[289.285,299.682] q=[0.00830882,0.00986152] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 22400 t=3.706 hours dt=728.182 ms 0.0255 s/step max|w|=0.514 theta=[289.291,299.687] q=[0.00830351,0.00986331] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 22500 t=3.726 hours dt=733.775 ms 0.0163 s/step max|w|=0.504 theta=[289.285,299.691] q=[0.00829758,0.00985928] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 22600 t=3.745 hours dt=735.152 ms 0.0171 s/step max|w|=0.517 theta=[289.281,299.696] q=[0.0082911,0.0098573] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 22700 t=3.765 hours dt=735.985 ms 0.0239 s/step max|w|=0.549 theta=[289.268,299.701] q=[0.00828539,0.009856] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 22800 t=3.785 hours dt=729.457 ms 0.0164 s/step max|w|=0.484 theta=[289.250,299.706] q=[0.00827973,0.00985687] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 22900 t=3.805 hours dt=732.078 ms 0.0240 s/step max|w|=0.521 theta=[289.267,299.711] q=[0.00827412,0.00985561] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 23000 t=3.825 hours dt=735.021 ms 0.0167 s/step max|w|=0.509 theta=[289.247,299.716] q=[0.00826889,0.00985537] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 23100 t=3.845 hours dt=737.972 ms 0.0260 s/step max|w|=0.552 theta=[289.231,299.720] q=[0.0082633,0.00985639] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 23200 t=3.865 hours dt=737.674 ms 0.0169 s/step max|w|=0.566 theta=[289.243,299.726] q=[0.00825717,0.00985475] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 23300 t=3.884 hours dt=734.784 ms 0.0249 s/step max|w|=0.526 theta=[289.228,299.731] q=[0.00825114,0.00985835] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 23400 t=3.904 hours dt=736.101 ms 0.0161 s/step max|w|=0.664 theta=[289.227,299.737] q=[0.00824547,0.00985563] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 23500 t=3.924 hours dt=731.181 ms 0.0252 s/step max|w|=0.562 theta=[289.217,299.742] q=[0.00823983,0.00985601] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 23600 t=3.944 hours dt=739.398 ms 0.0163 s/step max|w|=0.509 theta=[289.196,299.747] q=[0.00823416,0.00985547] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 23700 t=3.964 hours dt=743.520 ms 0.0250 s/step max|w|=0.466 theta=[289.211,299.752] q=[0.00822845,0.00985677] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 23800 t=3.984 hours dt=740.463 ms 0.0177 s/step max|w|=0.472 theta=[289.179,299.757] q=[0.00822246,0.00985692] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 23900 t=4.003 hours dt=737.402 ms 0.0274 s/step max|w|=0.502 theta=[289.180,299.763] q=[0.00821656,0.00985643] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 24000 t=4.023 hours dt=740.476 ms 0.0250 s/step max|w|=0.497 theta=[289.176,299.769] q=[0.00821105,0.0098552] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 24100 t=4.043 hours dt=742.797 ms 0.0164 s/step max|w|=0.503 theta=[289.186,299.774] q=[0.00820582,0.00985411] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 24200 t=4.063 hours dt=744.685 ms 0.0252 s/step max|w|=0.505 theta=[289.159,299.778] q=[0.0082005,0.00985733] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 24300 t=4.083 hours dt=745.595 ms 0.0165 s/step max|w|=0.571 theta=[289.177,299.782] q=[0.00819477,0.00985894] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 24400 t=4.103 hours dt=743.780 ms 0.0257 s/step max|w|=0.514 theta=[289.175,299.788] q=[0.00818907,0.00986501] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 24500 t=4.122 hours dt=743.267 ms 0.0185 s/step max|w|=0.529 theta=[289.174,299.793] q=[0.00818351,0.00986553] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 24600 t=4.142 hours dt=739.448 ms 0.0249 s/step max|w|=0.532 theta=[289.167,299.798] q=[0.0081778,0.00987151] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 24700 t=4.162 hours dt=736.668 ms 0.0172 s/step max|w|=0.538 theta=[289.185,299.803] q=[0.0081717,0.00987231] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 24800 t=4.182 hours dt=745.433 ms 0.0252 s/step max|w|=0.482 theta=[289.193,299.809] q=[0.00816558,0.00987853] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 24900 t=4.202 hours dt=743.115 ms 0.0173 s/step max|w|=0.565 theta=[289.179,299.813] q=[0.00815986,0.0098837] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 25000 t=4.222 hours dt=736.229 ms 0.0252 s/step max|w|=0.461 theta=[289.177,299.818] q=[0.00815423,0.00989029] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 25100 t=4.242 hours dt=734.869 ms 0.0174 s/step max|w|=0.494 theta=[289.186,299.822] q=[0.00814861,0.00989514] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 25200 t=4.261 hours dt=741.284 ms 0.0269 s/step max|w|=0.521 theta=[289.204,299.828] q=[0.00814272,0.00990021] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 25300 t=4.281 hours dt=747.269 ms 0.0176 s/step max|w|=0.517 theta=[289.213,299.834] q=[0.00813749,0.00990601] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 25400 t=4.301 hours dt=742.753 ms 0.0253 s/step max|w|=0.501 theta=[289.240,299.839] q=[0.00813187,0.00990786] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 25500 t=4.321 hours dt=747.065 ms 0.0177 s/step max|w|=0.533 theta=[289.241,299.844] q=[0.00812615,0.00991869] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 25600 t=4.341 hours dt=745.532 ms 0.0254 s/step max|w|=0.518 theta=[289.259,299.850] q=[0.00812038,0.00992193] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 25700 t=4.361 hours dt=735.425 ms 0.0178 s/step max|w|=0.525 theta=[289.267,299.856] q=[0.00811465,0.00992725] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 25800 t=4.380 hours dt=746.182 ms 0.0260 s/step max|w|=0.61 theta=[289.270,299.861] q=[0.00810882,0.0099387] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 25900 t=4.400 hours dt=744.518 ms 0.0198 s/step max|w|=0.569 theta=[289.295,299.867] q=[0.00810332,0.0099466] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 26000 t=4.420 hours dt=745.439 ms 0.0251 s/step max|w|=0.648 theta=[289.304,299.872] q=[0.00809719,0.00995456] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 26100 t=4.440 hours dt=747.309 ms 0.0182 s/step max|w|=0.614 theta=[289.319,299.878] q=[0.00809176,0.00996514] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 26200 t=4.460 hours dt=751.522 ms 0.0247 s/step max|w|=0.85 theta=[289.331,299.883] q=[0.00808625,0.00997036] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 26300 t=4.480 hours dt=721.969 ms 0.0182 s/step max|w|=0.629 theta=[289.348,299.888] q=[0.00808063,0.00997581] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 26400 t=4.500 hours dt=747.406 ms 0.0249 s/step max|w|=0.691 theta=[289.364,299.892] q=[0.00807488,0.00997909] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 26500 t=4.519 hours dt=743.564 ms 0.0185 s/step max|w|=0.66 theta=[289.391,299.897] q=[0.00806929,0.00998575] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 26600 t=4.539 hours dt=752.103 ms 0.0271 s/step max|w|=0.701 theta=[289.390,299.903] q=[0.0080634,0.00999864] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 26700 t=4.559 hours dt=747.356 ms 0.0253 s/step max|w|=0.705 theta=[289.424,299.908] q=[0.00805765,0.00999651] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 26800 t=4.579 hours dt=747.415 ms 0.0178 s/step max|w|=0.726 theta=[289.446,299.912] q=[0.00805181,0.0100051] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 26900 t=4.599 hours dt=753.141 ms 0.0259 s/step max|w|=0.618 theta=[289.461,299.918] q=[0.00804614,0.0100087] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 27000 t=4.619 hours dt=748.515 ms 0.0182 s/step max|w|=0.604 theta=[289.479,299.923] q=[0.00804045,0.010015] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 27100 t=4.638 hours dt=755.986 ms 0.0255 s/step max|w|=0.6 theta=[289.492,299.928] q=[0.00803487,0.0100313] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 27200 t=4.658 hours dt=755.140 ms 0.0184 s/step max|w|=0.609 theta=[289.530,299.933] q=[0.00802866,0.010034] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 27300 t=4.678 hours dt=754.980 ms 0.0281 s/step max|w|=0.659 theta=[289.552,299.938] q=[0.0080224,0.0100396] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 27400 t=4.698 hours dt=759.544 ms 0.0176 s/step max|w|=0.623 theta=[289.579,299.942] q=[0.00801614,0.0100438] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 27500 t=4.718 hours dt=761.534 ms 0.0263 s/step max|w|=0.602 theta=[289.589,299.947] q=[0.00801095,0.0100609] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 27600 t=4.738 hours dt=749.550 ms 0.0263 s/step max|w|=0.632 theta=[289.600,299.952] q=[0.00800558,0.0100685] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 27700 t=4.757 hours dt=751.421 ms 0.0183 s/step max|w|=0.631 theta=[289.620,299.957] q=[0.0080002,0.0100771] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 27800 t=4.777 hours dt=757.421 ms 0.0258 s/step max|w|=0.705 theta=[289.644,299.963] q=[0.0079946,0.0100872] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 27900 t=4.797 hours dt=760.479 ms 0.0182 s/step max|w|=0.697 theta=[289.677,299.968] q=[0.00798906,0.0101023] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 28000 t=4.817 hours dt=751.983 ms 0.0275 s/step max|w|=0.664 theta=[289.690,299.973] q=[0.00798342,0.0101105] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 28100 t=4.837 hours dt=759.485 ms 0.0188 s/step max|w|=0.704 theta=[289.719,299.979] q=[0.00797763,0.0101043] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 28200 t=4.857 hours dt=753.135 ms 0.0258 s/step max|w|=0.677 theta=[289.741,299.984] q=[0.00797198,0.0101145] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 28300 t=4.876 hours dt=763.123 ms 0.0187 s/step max|w|=0.67 theta=[289.752,299.990] q=[0.00796622,0.0101259] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 28400 t=4.896 hours dt=748.234 ms 0.0259 s/step max|w|=0.739 theta=[289.771,299.995] q=[0.00796051,0.0101235] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 28500 t=4.916 hours dt=756.559 ms 0.0189 s/step max|w|=0.726 theta=[289.801,300.001] q=[0.00795465,0.0101343] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 28600 t=4.936 hours dt=754.387 ms 0.0269 s/step max|w|=0.78 theta=[289.821,300.006] q=[0.00794892,0.0101459] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 28700 t=4.956 hours dt=759.002 ms 0.0281 s/step max|w|=0.664 theta=[289.836,300.010] q=[0.00794316,0.0101525] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 28800 t=4.976 hours dt=763.624 ms 0.0184 s/step max|w|=0.643 theta=[289.842,300.014] q=[0.0079372,0.0101637] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 28900 t=4.996 hours dt=758.883 ms 0.0258 s/step max|w|=0.818 theta=[289.876,300.019] q=[0.00793153,0.0101717] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 29000 t=5.015 hours dt=762.203 ms 0.0211 s/step max|w|=0.756 theta=[289.882,300.025] q=[0.00793008,0.0101773] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 29100 t=5.035 hours dt=760.823 ms 0.0258 s/step max|w|=0.662 theta=[289.913,300.030] q=[0.00792974,0.0101822] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 29200 t=5.055 hours dt=761.482 ms 0.0200 s/step max|w|=0.713 theta=[289.941,300.036] q=[0.00792927,0.0101867] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 29300 t=5.075 hours dt=761.372 ms 0.0259 s/step max|w|=0.743 theta=[289.966,300.041] q=[0.00792888,0.0102058] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 29400 t=5.095 hours dt=765.795 ms 0.0288 s/step max|w|=0.691 theta=[290.030,300.046] q=[0.00792943,0.0102113] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 29500 t=5.115 hours dt=760.900 ms 0.0187 s/step max|w|=0.71 theta=[290.063,300.051] q=[0.00793004,0.0102175] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 29600 t=5.135 hours dt=771.032 ms 0.0263 s/step max|w|=0.674 theta=[290.094,300.057] q=[0.00793014,0.0102343] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 29700 t=5.155 hours dt=766.380 ms 0.0193 s/step max|w|=0.817 theta=[290.120,300.061] q=[0.00793018,0.0102439] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 29800 t=5.176 hours dt=768.752 ms 0.0289 s/step max|w|=0.817 theta=[290.158,300.066] q=[0.00793024,0.0102592] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 29900 t=5.197 hours dt=768.134 ms 0.0192 s/step max|w|=0.79 theta=[290.191,300.071] q=[0.00793021,0.0102669] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 30000 t=5.217 hours dt=775.100 ms 0.0285 s/step max|w|=0.952 theta=[290.231,300.077] q=[0.0079303,0.0102849] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 30100 t=5.239 hours dt=776.711 ms 0.0265 s/step max|w|=0.795 theta=[290.256,300.084] q=[0.00793032,0.01029] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 30200 t=5.260 hours dt=781.250 ms 0.0214 s/step max|w|=0.683 theta=[290.291,300.089] q=[0.00793048,0.010307] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 30300 t=5.281 hours dt=775.569 ms 0.0290 s/step max|w|=0.915 theta=[290.284,300.095] q=[0.00793049,0.0103266] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 30400 t=5.303 hours dt=765.272 ms 0.0270 s/step max|w|=0.743 theta=[290.339,300.100] q=[0.00793006,0.0103233] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 30500 t=5.324 hours dt=786.256 ms 0.0208 s/step max|w|=0.745 theta=[290.362,300.106] q=[0.00793003,0.0103391] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 30600 t=5.345 hours dt=781.946 ms 0.0287 s/step max|w|=0.843 theta=[290.401,300.112] q=[0.00793017,0.0103554] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 30700 t=5.367 hours dt=784.699 ms 0.0203 s/step max|w|=0.768 theta=[290.434,300.118] q=[0.00793021,0.0103856] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 30800 t=5.388 hours dt=791.578 ms 0.0279 s/step max|w|=0.888 theta=[290.475,300.125] q=[0.00792999,0.0103745] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 30900 t=5.409 hours dt=785.291 ms 0.0290 s/step max|w|=1.18 theta=[290.494,300.131] q=[0.00793055,0.0103888] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 31000 t=5.431 hours dt=781.655 ms 0.0216 s/step max|w|=0.92 theta=[290.534,300.137] q=[0.00793054,0.0104111] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 31100 t=5.452 hours dt=784.192 ms 0.0274 s/step max|w|=0.904 theta=[290.571,300.143] q=[0.00793052,0.0104201] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 31200 t=5.474 hours dt=794.953 ms 0.0290 s/step max|w|=0.897 theta=[290.591,300.149] q=[0.00793057,0.0104042] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 31300 t=5.495 hours dt=794.930 ms 0.0210 s/step max|w|=1.04 theta=[290.611,300.155] q=[0.00793024,0.0104374] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 31400 t=5.516 hours dt=794.071 ms 0.0273 s/step max|w|=0.977 theta=[290.663,300.160] q=[0.00793026,0.0104642] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 31500 t=5.538 hours dt=790.561 ms 0.0224 s/step max|w|=0.934 theta=[290.672,300.165] q=[0.00793024,0.0104686] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 31600 t=5.559 hours dt=787.223 ms 0.0281 s/step max|w|=1.2 theta=[290.749,300.170] q=[0.00793024,0.0104766] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 31700 t=5.580 hours dt=786.043 ms 0.0274 s/step max|w|=1.3 theta=[290.772,300.174] q=[0.00793042,0.0104848] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 31800 t=5.602 hours dt=782.550 ms 0.0220 s/step max|w|=1.3 theta=[290.801,300.180] q=[0.00793042,0.0105103] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 31900 t=5.623 hours dt=792.752 ms 0.0294 s/step max|w|=1.16 theta=[290.799,300.185] q=[0.00793036,0.0105357] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 32000 t=5.644 hours dt=775.865 ms 0.0276 s/step max|w|=1.56 theta=[290.878,300.191] q=[0.00793034,0.0105655] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 32100 t=5.666 hours dt=781.680 ms 0.0212 s/step max|w|=1.78 theta=[290.883,300.196] q=[0.00793031,0.0106079] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 32200 t=5.687 hours dt=799.662 ms 0.0293 s/step max|w|=1.47 theta=[290.923,300.202] q=[0.00793045,0.0106362] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 32300 t=5.709 hours dt=839.945 ms 0.0227 s/step max|w|=1.2 theta=[291.000,300.207] q=[0.0079304,0.0106179] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 32400 t=5.732 hours dt=840.051 ms 0.0287 s/step max|w|=1.14 theta=[290.953,300.214] q=[0.00793039,0.0106181] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 32500 t=5.755 hours dt=854.112 ms 0.0298 s/step max|w|=0.981 theta=[291.048,300.220] q=[0.00793028,0.0106297] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 32600 t=5.778 hours dt=849.160 ms 0.0249 s/step max|w|=0.982 theta=[291.110,300.226] q=[0.00793022,0.0106957] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 32700 t=5.801 hours dt=866.073 ms 0.0287 s/step max|w|=1.08 theta=[291.154,300.233] q=[0.00793016,0.0106723] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 32800 t=5.824 hours dt=882.353 ms 0.0297 s/step max|w|=0.948 theta=[291.196,300.240] q=[0.00793026,0.0106444] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 32900 t=5.847 hours dt=886.984 ms 0.0252 s/step max|w|=1.04 theta=[291.231,300.246] q=[0.00793025,0.0107339] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 33000 t=5.871 hours dt=892.064 ms 0.0288 s/step max|w|=0.994 theta=[291.287,300.252] q=[0.00793022,0.0107968] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 33100 t=5.894 hours dt=911.845 ms 0.0302 s/step max|w|=1.13 theta=[291.279,300.258] q=[0.00793006,0.0107384] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 33200 t=5.918 hours dt=912.440 ms 0.0243 s/step max|w|=1.31 theta=[291.341,300.263] q=[0.00793023,0.0108048] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 33300 t=5.942 hours dt=882.702 ms 0.0320 s/step max|w|=1.28 theta=[291.367,300.269] q=[0.00793037,0.0108084] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 33400 t=5.965 hours dt=920.299 ms 0.0331 s/step max|w|=1.24 theta=[291.421,300.275] q=[0.00793025,0.0107856] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 33500 t=5.990 hours dt=914.045 ms 0.0254 s/step max|w|=1.14 theta=[291.414,300.281] q=[0.00793013,0.0107657] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 33600 t=6.015 hours dt=929.285 ms 0.0348 s/step max|w|=0.952 theta=[291.497,300.286] q=[0.00793001,0.0108794] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 33700 t=6.040 hours dt=950.719 ms 0.0322 s/step max|w|=1.07 theta=[291.545,300.287] q=[0.0079298,0.0108454] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 33800 t=6.066 hours dt=956.695 ms 0.0252 s/step max|w|=1.18 theta=[291.572,300.286] q=[0.00792983,0.0108031] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 33900 t=6.091 hours dt=956.309 ms 0.0320 s/step max|w|=1.17 theta=[291.517,300.285] q=[0.00793013,0.0108176] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 34000 t=6.116 hours dt=945.941 ms 0.0354 s/step max|w|=1.04 theta=[291.552,300.283] q=[0.00793027,0.0108911] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 34100 t=6.142 hours dt=958.819 ms 0.0322 s/step max|w|=1.17 theta=[291.634,300.283] q=[0.00793023,0.0109302] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 34200 t=6.167 hours dt=986.660 ms 0.0245 s/step max|w|=1.1 theta=[291.708,300.283] q=[0.00793022,0.0108889] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 34300 t=6.192 hours dt=990.748 ms 0.0345 s/step max|w|=1.28 theta=[291.761,300.283] q=[0.0079302,0.0109003] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 34400 t=6.217 hours dt=959.987 ms 0.0373 s/step max|w|=1.31 theta=[291.706,300.282] q=[0.00793002,0.0108827] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 34500 t=6.243 hours dt=1.013 seconds 0.0268 s/step max|w|=1.19 theta=[291.751,300.282] q=[0.00793021,0.0109053] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 34600 t=6.270 hours dt=996.335 ms 0.0776 s/step max|w|=1.37 theta=[291.773,300.281] q=[0.00793017,0.0109398] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 34700 t=6.297 hours dt=1.025 seconds 0.0348 s/step max|w|=1.07 theta=[291.843,300.282] q=[0.0079302,0.0109619] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 34800 t=6.325 hours dt=1.049 seconds 0.0352 s/step max|w|=1.35 theta=[291.856,300.283] q=[0.00792998,0.0108757] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 34900 t=6.353 hours dt=1.059 seconds 0.0269 s/step max|w|=1.45 theta=[291.899,300.282] q=[0.00792999,0.0109909] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 35000 t=6.381 hours dt=1.058 seconds 0.0347 s/step max|w|=1.2 theta=[291.950,300.281] q=[0.00792974,0.0110439] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 35100 t=6.408 hours dt=1.108 seconds 0.0357 s/step max|w|=1.17 theta=[292.027,300.281] q=[0.00792961,0.0109966] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 35200 t=6.438 hours dt=1.067 seconds 0.0374 s/step max|w|=1.33 theta=[292.003,300.282] q=[0.00793005,0.0110429] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 35300 t=6.469 hours dt=1.131 seconds 0.0367 s/step max|w|=1.2 theta=[292.065,300.282] q=[0.00792991,0.0112435] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 35400 t=6.499 hours dt=1.134 seconds 0.0374 s/step max|w|=1.17 theta=[292.114,300.281] q=[0.00792992,0.0110816] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 35500 t=6.528 hours dt=1.148 seconds 0.0380 s/step max|w|=1.28 theta=[292.160,300.281] q=[0.00792994,0.0110683] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 35600 t=6.559 hours dt=1.136 seconds 0.0302 s/step max|w|=1.38 theta=[292.185,300.281] q=[0.00793013,0.0111311] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 35700 t=6.590 hours dt=1.125 seconds 0.0382 s/step max|w|=1.4 theta=[292.215,300.281] q=[0.00793012,0.0112386] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 35800 t=6.621 hours dt=1.113 seconds 0.0367 s/step max|w|=1.39 theta=[292.254,300.282] q=[0.00793011,0.0110848] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 35900 t=6.650 hours dt=1.102 seconds 0.0358 s/step max|w|=1.35 theta=[292.253,300.282] q=[0.00792993,0.0111078] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 36000 t=6.677 hours dt=1.092 seconds 0.0368 s/step max|w|=1.36 theta=[292.239,300.282] q=[0.00792982,0.0111512] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 36100 t=6.705 hours dt=1.080 seconds 0.0353 s/step max|w|=1.41 theta=[292.382,300.280] q=[0.00792986,0.0111727] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 36200 t=6.733 hours dt=1.070 seconds 0.0362 s/step max|w|=1.47 theta=[292.380,300.280] q=[0.00792997,0.0111339] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 36300 t=6.761 hours dt=1.061 seconds 0.0304 s/step max|w|=1.33 theta=[292.302,300.281] q=[0.00793029,0.01137] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 36400 t=6.788 hours dt=1.052 seconds 0.0457 s/step max|w|=1.53 theta=[292.360,300.282] q=[0.0079303,0.0111083] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 36500 t=6.816 hours dt=1.043 seconds 0.0362 s/step max|w|=1.36 theta=[292.425,300.283] q=[0.00793033,0.0111999] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 36600 t=6.844 hours dt=1.036 seconds 0.0368 s/step max|w|=1.27 theta=[292.468,300.282] q=[0.00793042,0.0111162] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 36700 t=6.872 hours dt=1.027 seconds 0.0358 s/step max|w|=1.33 theta=[292.522,300.282] q=[0.00793046,0.0112191] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 36800 t=6.899 hours dt=1.019 seconds 0.0367 s/step max|w|=1.49 theta=[292.578,300.281] q=[0.00793048,0.0112008] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 36900 t=6.927 hours dt=1.011 seconds 0.0374 s/step max|w|=1.37 theta=[292.608,300.281] q=[0.00793047,0.01126] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 37000 t=6.955 hours dt=1.002 seconds 0.0288 s/step max|w|=1.47 theta=[292.642,300.280] q=[0.00793028,0.0113516] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 37100 t=6.981 hours dt=995.024 ms 0.0369 s/step max|w|=1.51 theta=[292.584,300.279] q=[0.00793017,0.0114052] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 37200 t=7.006 hours dt=988.250 ms 0.0355 s/step max|w|=1.74 theta=[292.705,300.279] q=[0.00793026,0.0113134] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 37300 t=7.032 hours dt=980.449 ms 0.0347 s/step max|w|=1.36 theta=[292.701,300.279] q=[0.00793022,0.0114137] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 37400 t=7.057 hours dt=974.189 ms 0.0338 s/step max|w|=1.4 theta=[292.760,300.279] q=[0.0079303,0.0112378] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 37500 t=7.082 hours dt=967.528 ms 0.0273 s/step max|w|=1.5 theta=[292.744,300.278] q=[0.00793022,0.0113581] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 37600 t=7.107 hours dt=961.032 ms 0.0347 s/step max|w|=1.57 theta=[292.799,300.278] q=[0.00793016,0.0113367] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 37700 t=7.133 hours dt=954.308 ms 0.0343 s/step max|w|=1.46 theta=[292.717,300.277] q=[0.00793019,0.0112989] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 37800 t=7.158 hours dt=947.885 ms 0.0351 s/step max|w|=1.37 theta=[292.732,300.276] q=[0.00793018,0.0115077] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 37900 t=7.183 hours dt=942.350 ms 0.0345 s/step max|w|=1.39 theta=[292.754,300.276] q=[0.00792998,0.0113754] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 38000 t=7.208 hours dt=936.086 ms 0.0267 s/step max|w|=1.49 theta=[292.858,300.276] q=[0.00792985,0.01147] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 38100 t=7.234 hours dt=929.782 ms 0.0373 s/step max|w|=1.72 theta=[292.898,300.276] q=[0.00792973,0.0115268] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 38200 t=7.259 hours dt=924.530 ms 0.0351 s/step max|w|=1.81 theta=[292.959,300.275] q=[0.00792983,0.0115388] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 38300 t=7.284 hours dt=917.693 ms 0.0348 s/step max|w|=1.6 theta=[292.995,300.275] q=[0.00792987,0.0115222] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 38400 t=7.309 hours dt=910.822 ms 0.0357 s/step max|w|=1.64 theta=[293.062,300.275] q=[0.00792997,0.0114893] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 38500 t=7.333 hours dt=905.949 ms 0.0242 s/step max|w|=1.6 theta=[292.998,300.275] q=[0.00792979,0.0115377] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 38600 t=7.357 hours dt=901.757 ms 0.0357 s/step max|w|=1.57 theta=[293.015,300.276] q=[0.00792983,0.0114925] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 38700 t=7.380 hours dt=896.861 ms 0.0327 s/step max|w|=1.85 theta=[293.090,300.276] q=[0.00792978,0.0116501] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 38800 t=7.403 hours dt=891.802 ms 0.0251 s/step max|w|=1.72 theta=[293.153,300.276] q=[0.00792974,0.0115691] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 38900 t=7.426 hours dt=886.249 ms 0.0359 s/step max|w|=1.89 theta=[293.055,300.276] q=[0.00792738,0.011571] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 39000 t=7.449 hours dt=881.711 ms 0.0324 s/step max|w|=1.7 theta=[293.175,300.275] q=[0.00792999,0.011476] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 39100 t=7.472 hours dt=877.440 ms 0.0259 s/step max|w|=1.65 theta=[293.325,300.274] q=[0.00792985,0.0116259] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 39200 t=7.495 hours dt=872.924 ms 0.0347 s/step max|w|=1.73 theta=[293.319,300.273] q=[0.00792993,0.011615] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 39300 t=7.519 hours dt=868.239 ms 0.0342 s/step max|w|=1.6 theta=[293.294,300.273] q=[0.00793009,0.0115848] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 39400 t=7.542 hours dt=864.084 ms 0.0331 s/step max|w|=1.59 theta=[293.387,300.273] q=[0.00792999,0.0116106] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 39500 t=7.565 hours dt=859.483 ms 0.0350 s/step max|w|=1.8 theta=[293.456,300.272] q=[0.00793,0.0115853] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 39600 t=7.588 hours dt=856.002 ms 0.0345 s/step max|w|=1.61 theta=[293.362,300.272] q=[0.00793001,0.0116581] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 39700 t=7.611 hours dt=851.320 ms 0.0266 s/step max|w|=1.69 theta=[293.491,300.272] q=[0.00793006,0.0116714] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 39800 t=7.634 hours dt=847.562 ms 0.0353 s/step max|w|=2.08 theta=[293.481,300.272] q=[0.00792989,0.0118053] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 39900 t=7.657 hours dt=843.138 ms 0.0340 s/step max|w|=1.7 theta=[293.419,300.272] q=[0.00792997,0.0117305] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 40000 t=7.681 hours dt=839.410 ms 0.0347 s/step max|w|=1.84 theta=[293.651,300.271] q=[0.00793012,0.0118445] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 40100 t=7.704 hours dt=834.774 ms 0.0370 s/step max|w|=1.77 theta=[293.621,300.270] q=[0.00793002,0.0117989] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 40200 t=7.726 hours dt=831.135 ms 0.0331 s/step max|w|=1.77 theta=[293.590,300.270] q=[0.00793003,0.0119106] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 40300 t=7.747 hours dt=827.676 ms 0.0323 s/step max|w|=2.21 theta=[293.634,300.269] q=[0.00792996,0.0119435] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 40400 t=7.769 hours dt=824.543 ms 0.0270 s/step max|w|=1.76 theta=[293.761,300.268] q=[0.00792968,0.0117968] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 40500 t=7.790 hours dt=821.448 ms 0.0336 s/step max|w|=1.77 theta=[293.736,300.268] q=[0.00792965,0.0120386] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 40600 t=7.811 hours dt=817.927 ms 0.0340 s/step max|w|=1.95 theta=[293.819,300.268] q=[0.00792968,0.0120427] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 40700 t=7.833 hours dt=814.454 ms 0.0325 s/step max|w|=1.87 theta=[293.863,300.267] q=[0.00788737,0.0118647] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 40800 t=7.854 hours dt=811.407 ms 0.0338 s/step max|w|=2.03 theta=[293.825,300.267] q=[0.00790256,0.0121697] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 40900 t=7.875 hours dt=808.317 ms 0.0345 s/step max|w|=2.16 theta=[293.694,300.266] q=[0.00791766,0.0118035] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 41000 t=7.897 hours dt=805.310 ms 0.0248 s/step max|w|=1.86 theta=[293.885,300.266] q=[0.00786448,0.0120053] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 41100 t=7.918 hours dt=802.086 ms 0.0341 s/step max|w|=1.92 theta=[294.037,300.266] q=[0.00786717,0.0120116] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 41200 t=7.940 hours dt=798.930 ms 0.0351 s/step max|w|=1.78 theta=[294.053,300.266] q=[0.00788956,0.0119568] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 41300 t=7.961 hours dt=795.470 ms 0.0322 s/step max|w|=2.13 theta=[294.071,300.266] q=[0.00792996,0.0119002] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 41400 t=7.982 hours dt=792.598 ms 0.0337 s/step max|w|=2.1 theta=[294.083,300.266] q=[0.00792981,0.011845] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 41500 t=8.004 hours dt=789.995 ms 0.0366 s/step max|w|=1.83 theta=[294.179,300.266] q=[0.00784255,0.0119444] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 41600 t=8.025 hours dt=787.110 ms 0.0246 s/step max|w|=2.19 theta=[294.014,300.267] q=[0.00787532,0.0121379] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 41700 t=8.046 hours dt=784.249 ms 0.0352 s/step max|w|=2.06 theta=[294.208,300.267] q=[0.00788696,0.0119722] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 41800 t=8.068 hours dt=781.457 ms 0.0337 s/step max|w|=1.96 theta=[294.246,300.267] q=[0.0078736,0.0120455] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 41900 t=8.089 hours dt=778.493 ms 0.0347 s/step max|w|=1.72 theta=[294.344,300.267] q=[0.00792312,0.012219] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 42000 t=8.110 hours dt=775.400 ms 0.0320 s/step max|w|=2.2 theta=[294.365,300.266] q=[0.00783793,0.0120646] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 42100 t=8.132 hours dt=772.996 ms 0.0351 s/step max|w|=2.14 theta=[294.291,300.265] q=[0.00787212,0.0120516] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 42200 t=8.153 hours dt=770.656 ms 0.0353 s/step max|w|=1.81 theta=[294.481,300.265] q=[0.00786605,0.0121751] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 42300 t=8.174 hours dt=768.380 ms 0.0255 s/step max|w|=1.99 theta=[294.487,300.266] q=[0.00786275,0.0121198] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 42400 t=8.194 hours dt=765.484 ms 0.0317 s/step max|w|=2.26 theta=[294.550,300.266] q=[0.00790334,0.0123336] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 42500 t=8.214 hours dt=763.594 ms 0.0324 s/step max|w|=2.1 theta=[294.572,300.267] q=[0.00788779,0.0121033] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 42600 t=8.234 hours dt=761.607 ms 0.0345 s/step max|w|=2.45 theta=[294.608,300.267] q=[0.00788375,0.0122625] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 42700 t=8.253 hours dt=759.457 ms 0.0332 s/step max|w|=2.06 theta=[294.629,300.266] q=[0.00788698,0.0123241] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 42800 t=8.273 hours dt=757.143 ms 0.0252 s/step max|w|=1.95 theta=[294.561,300.266] q=[0.00789045,0.0122881] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 42900 t=8.293 hours dt=754.923 ms 0.0322 s/step max|w|=2.06 theta=[294.666,300.265] q=[0.00782724,0.0122033] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 43000 t=8.313 hours dt=752.853 ms 0.0326 s/step max|w|=1.95 theta=[294.808,300.264] q=[0.00784088,0.012206] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 43100 t=8.333 hours dt=750.591 ms 0.0333 s/step max|w|=1.85 theta=[294.790,300.263] q=[0.0078529,0.0122994] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 43200 t=8.353 hours dt=748.717 ms 0.0323 s/step max|w|=1.97 theta=[294.772,300.262] q=[0.00783715,0.0121258] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 43300 t=8.372 hours dt=746.809 ms 0.0356 s/step max|w|=2.14 theta=[294.859,300.261] q=[0.0078555,0.0125736] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 43400 t=8.392 hours dt=745.001 ms 0.0254 s/step max|w|=2.05 theta=[294.888,300.261] q=[0.00773805,0.0122886] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 43500 t=8.412 hours dt=742.784 ms 0.0321 s/step max|w|=1.81 theta=[294.781,300.260] q=[0.00781597,0.0123111] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 43600 t=8.432 hours dt=740.749 ms 0.0330 s/step max|w|=1.92 theta=[294.827,300.260] q=[0.00786231,0.0124061] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 43700 t=8.452 hours dt=738.985 ms 0.0325 s/step max|w|=2.01 theta=[294.741,300.260] q=[0.0078656,0.0125757] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 43800 t=8.472 hours dt=737.470 ms 0.0335 s/step max|w|=2.35 theta=[294.833,300.259] q=[0.00785037,0.0123055] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 43900 t=8.492 hours dt=735.606 ms 0.0258 s/step max|w|=2.23 theta=[295.110,300.258] q=[0.00780443,0.0123782] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 44000 t=8.511 hours dt=733.720 ms 0.0350 s/step max|w|=2.34 theta=[295.138,300.257] q=[0.00786631,0.0125334] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 44100 t=8.531 hours dt=731.882 ms 0.0330 s/step max|w|=2.02 theta=[295.018,300.257] q=[0.00786077,0.0125121] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 44200 t=8.551 hours dt=730.306 ms 0.0335 s/step max|w|=2.09 theta=[295.089,300.257] q=[0.00785771,0.0124724] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 44300 t=8.571 hours dt=728.450 ms 0.0327 s/step max|w|=2.19 theta=[295.114,300.257] q=[0.00782654,0.012444] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 44400 t=8.591 hours dt=726.666 ms 0.0338 s/step max|w|=1.98 theta=[295.053,300.257] q=[0.00783561,0.0124072] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 44500 t=8.611 hours dt=724.667 ms 0.0338 s/step max|w|=2.45 theta=[295.203,300.257] q=[0.00784085,0.012553] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 44600 t=8.630 hours dt=723.610 ms 0.0338 s/step max|w|=2.09 theta=[295.291,300.256] q=[0.00785819,0.0129254] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 44700 t=8.650 hours dt=722.126 ms 0.0358 s/step max|w|=2.34 theta=[295.053,300.256] q=[0.00784289,0.0126591] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 44800 t=8.670 hours dt=720.161 ms 0.0340 s/step max|w|=2.16 theta=[295.358,300.255] q=[0.00785204,0.0127971] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 44900 t=8.690 hours dt=718.683 ms 0.0260 s/step max|w|=2.14 theta=[295.291,300.255] q=[0.00782912,0.0127381] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 45000 t=8.710 hours dt=717.490 ms 0.0335 s/step max|w|=1.86 theta=[295.270,300.255] q=[0.00767651,0.0125528] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 45100 t=8.730 hours dt=716.096 ms 0.0328 s/step max|w|=2.13 theta=[295.446,300.254] q=[0.00781573,0.0129956] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 45200 t=8.749 hours dt=714.625 ms 0.0342 s/step max|w|=1.89 theta=[295.478,300.254] q=[0.00763763,0.0126205] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 45300 t=8.768 hours dt=713.080 ms 0.0335 s/step max|w|=2.08 theta=[295.452,300.254] q=[0.00767646,0.0126397] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 45400 t=8.787 hours dt=711.994 ms 0.0332 s/step max|w|=2.27 theta=[295.529,300.254] q=[0.00780997,0.0128342] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 45500 t=8.806 hours dt=710.504 ms 0.0313 s/step max|w|=2.26 theta=[295.523,300.254] q=[0.0078175,0.0126905] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 45600 t=8.824 hours dt=709.782 ms 0.0341 s/step max|w|=2.3 theta=[295.638,300.254] q=[0.00776518,0.0129017] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 45700 t=8.842 hours dt=708.343 ms 0.0264 s/step max|w|=2.3 theta=[295.603,300.254] q=[0.00767198,0.0126532] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 45800 t=8.861 hours dt=706.720 ms 0.0305 s/step max|w|=2.39 theta=[295.586,300.254] q=[0.00760632,0.0126217] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 45900 t=8.880 hours dt=706.197 ms 0.0335 s/step max|w|=2.27 theta=[295.293,300.254] q=[0.00782713,0.0127648] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 46000 t=8.898 hours dt=704.505 ms 0.0333 s/step max|w|=2.26 theta=[295.786,300.254] q=[0.00783727,0.0127078] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 46100 t=8.917 hours dt=703.744 ms 0.0312 s/step max|w|=2.08 theta=[295.790,300.254] q=[0.00777971,0.0129722] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 46200 t=8.935 hours dt=702.256 ms 0.0346 s/step max|w|=1.83 theta=[295.818,300.253] q=[0.00774698,0.0130539] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 46300 t=8.954 hours dt=701.437 ms 0.0264 s/step max|w|=2.15 theta=[295.848,300.253] q=[0.00762489,0.0129303] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 46400 t=8.972 hours dt=700.617 ms 0.0306 s/step max|w|=2.28 theta=[295.913,300.252] q=[0.00783512,0.0131486] CFL target=.7
+[ Info: [n064_weno9_surface_layer_t300_s1] iter 46500 t=8.991 hours dt=699.555 ms 0.0338 s/step max|w|=2.38 theta=[295.828,300.252] q=[0.00787181,0.0129201] CFL target=.7
+[ Info: Simulation is stopping after running for 19.553 minutes.
+[ Info: Simulation time 9 hours equals or exceeds stop time 9 hours.
+SLD_REGISTERED_CASE_DONE case_id=n064_weno9_surface_layer_t300_s1 run_directory=/shared/home/greg/review-coordination/gabls3-sld-production-131ad9b-v2-20260922/runs/n064_weno9_surface_layer_t300_s1
+SLD_RECORDED_BATCH_EXIT job=7343 task=3 child_exit_code=0 record=/shared/home/greg/review-coordination/gabls3-sld-production-131ad9b-v2-20260922/logs/gabls3_sld_7343_3.exit

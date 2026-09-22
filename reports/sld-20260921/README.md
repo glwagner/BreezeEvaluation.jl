@@ -56,3 +56,7 @@ Reproduce with Julia: run surface_layer/resolved_factor10/compare.jl, plot_compa
 The original GABLS1 matrix is now complete:15 admitted cases,0 rejected. Updated13figure sets and summary/audit are in gabls/. The final1m Smagorinsky case has peak w²0.09851m²/s²; all original compact data are persisted on the repository main branch. GABLS3 control completed; the three closure cases are released and awaiting resources.
 
 Use Julia to run surface_layer/resolved_factor3/compare.jl, plot_comparison.jl and build_report.jl, then surface_layer/gabls1/build_brief.jl after snapshot verification.
+
+## Corrected GABLS3 results, 22 September 2026
+
+The earlier GABLS3 queue statement above is historical. All four corrected 9-hour cases passed strict collection and independent physical-flux audits. [Read the new comparison](surface_layer/gabls3/results.md) or its [eight-page PDF](surface_layer/gabls3/sld_results_section.pdf). During 03–04 UTC, SLD suppresses first-face w² by 88–96%; during 08–09 UTC it remains 28–35% lower while integrated resolved TKE is 30–36% higher than the control. This is a matched sensitivity comparison, not an observational fidelity ranking. Full exported histories, exact manifests, audit evidence, Julia plots and summaries are in `surface_layer/gabls3/`. Historical DYCOMS/GABLS1 results remain preserved.

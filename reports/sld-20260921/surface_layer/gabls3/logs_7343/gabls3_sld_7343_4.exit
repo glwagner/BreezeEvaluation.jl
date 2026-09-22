@@ -1,0 +1,14 @@
+schema_version=2
+array_job_id=7343
+slurm_job_id=7343
+task_id=4
+started_utc=2026-09-22T04:46:33Z
+finished_utc=2026-09-22T05:14:40Z
+child_exit_code=0
+wrapper_sha256=f9fe455a0450cf83c936c53b95418697a84d00e07666a5a09a7b4eca23ce3e31
+runner_sha256=6b54304ef2d96e565c35e02ca4ec431fb75235a9775da95395e2055b044af894
+source_manifest_sha256=1cc45c554fe4675a5ffde2dc6bfe70953d9c5294f9df4e6fe76b6f1f033886ac
+gpu_evidence_directory=/shared/home/greg/review-coordination/gabls3-surface-q-gpu-v2-20260921-2316/gpu_gate
+gpu_validation_job_id=7335
+gpu_validation_log_sha256=2aefc6554e1e7966af9843949ca2ef8b3a7e72f5e4652f7a3a9dd08e670796b3
+record_complete=true

@@ -1,0 +1,26 @@
+admitted_count = 4
+attempt_registry_path = "/shared/home/greg/review-coordination/gabls3-sld-production-131ad9b-v2-20260922/metadata/gabls3_sld_attempts_7343_analysis_b144835.toml"
+attempt_registry_sha256 = "025d1649fdc2dfcfec794e211ae65d5f5ed9a2632c6c16886945636f3ba0ba6e"
+case_family = "GABLS3"
+expected_cases = 4
+generated_utc = "2026-09-22T05:29:14.136"
+rejected = []
+rejected_count = 0
+schema_version = 1
+
+[[admitted]]
+case_id = "n064_weno9_none"
+directory = "/shared/home/greg/review-coordination/gabls3-sld-production-131ad9b-v2-20260922/exports_strict_7343_b144835/n064_weno9_none"
+manifest_sha256 = "8e7740dd40cc791bcc57181bc5a4d58ba1cb4bcac7e7929c2f0e76914b0a5260"
+[[admitted]]
+case_id = "n064_weno9_surface_layer_t100_s1"
+directory = "/shared/home/greg/review-coordination/gabls3-sld-production-131ad9b-v2-20260922/exports_strict_7343_b144835/n064_weno9_surface_layer_t100_s1"
+manifest_sha256 = "ae08b3ddc1681da0feedae9a54f03211ea6bb6907c1e5644dab396ada3f25f36"
+[[admitted]]
+case_id = "n064_weno9_surface_layer_t300_s1"
+directory = "/shared/home/greg/review-coordination/gabls3-sld-production-131ad9b-v2-20260922/exports_strict_7343_b144835/n064_weno9_surface_layer_t300_s1"
+manifest_sha256 = "d9d5926bf8b06ceee29cb64cf69a1971e360ac7735f2ed7e141ac27d22197073"
+[[admitted]]
+case_id = "n064_weno9_surface_layer_t300_s2"
+directory = "/shared/home/greg/review-coordination/gabls3-sld-production-131ad9b-v2-20260922/exports_strict_7343_b144835/n064_weno9_surface_layer_t300_s2"
+manifest_sha256 = "71f0f2deff1f68c30e7108a14491a1cbe0120543bd3d7eec2c5a622380004644"

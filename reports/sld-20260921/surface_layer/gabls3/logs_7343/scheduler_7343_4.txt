@@ -1,0 +1,31 @@
+JobId=7343 ArrayJobId=7343 ArrayTaskId=4 ArrayTaskThrottle=1 JobName=gabls3-sld-v2
+   UserId=greg(1416001155) GroupId=Domain Users(1416000513) MCS_label=N/A
+   Priority=1 Nice=0 Account=(null) QOS=(null)
+   JobState=COMPLETED Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:28:54 TimeLimit=12:00:00 TimeMin=N/A
+   SubmitTime=2026-09-22T00:17:40 EligibleTime=2026-09-22T04:45:46
+   AccrueTime=2026-09-22T00:17:42
+   StartTime=2026-09-22T04:45:46 EndTime=2026-09-22T05:14:40 Deadline=N/A
+   PreemptEligibleTime=2026-09-22T04:45:46 PreemptTime=None
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-09-22T04:45:46 Scheduler=Main
+   Partition=gpu-prod AllocNode:Sid=ip-10-40-5-138:2834536
+   ReqNodeList=gpu-prod-st-gpu-prod-2 ExcNodeList=(null)
+   NodeList=gpu-prod-st-gpu-prod-2
+   BatchHost=gpu-prod-st-gpu-prod-2
+   NumNodes=1 NumCPUs=8 NumTasks=1 CPUs/Task=8 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=8,mem=32G,node=1,billing=8
+   AllocTRES=cpu=8,node=1,billing=8
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=8 MinMemoryNode=32G MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null)
+   Command=(null)
+   SubmitLine=/opt/slurm/bin/sbatch --parsable --job-name=gabls3-sld-v2 --partition=gpu-prod --nodelist=gpu-prod-st-gpu-prod-1 --gpus=h100:1 --cpus-per-task=8 --mem=32G --time=12:00:00 --array=1-4%1 --output=/shared/home/greg/review-coordination/gabls3-sld-production-131ad9b-v2-20260922/logs/gabls3_sld_%A_%a.out --export=ALL --wrap=exec /bin/bash /shared/home/greg/review-coordination/run_gabls3_sld_recorded_array_131ad9b-v2.sh
+   WorkDir=/shared/home/greg
+   StdErr=
+   StdIn=/dev/null
+   StdOut=/shared/home/greg/review-coordination/gabls3-sld-production-131ad9b-v2-20260922/logs/gabls3_sld_7343_4.out
+   TresPerJob=gres/gpu:h100:1
+   TresPerTask=cpu=8
+

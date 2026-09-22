@@ -1,0 +1,98 @@
+{
+  "n064_weno9_none": {
+    "03–04 UTC": {
+      "first_face_height_m": 12.5,
+      "first_face_skewness": 0.34404393345700074,
+      "first_face_w2": 0.02319789320851366,
+      "first_face_w3": 0.0012155888883474593,
+      "friction_velocity": 0.1743577987369564,
+      "peak_w2": 0.03318833870192369,
+      "resolved_tke_vertical_integral": 11.140258314874437,
+      "surface_q_kinematic_flux": 7.400127854692881e-7,
+      "surface_sensible_heat_flux": -18.433470418718127
+    },
+    "08–09 UTC": {
+      "first_face_height_m": 12.5,
+      "first_face_skewness": 0.515999758785343,
+      "first_face_w2": 0.10896261781454086,
+      "first_face_w3": 0.018559479465087254,
+      "friction_velocity": 0.2617402859032154,
+      "peak_w2": 0.22014556700984636,
+      "resolved_tke_vertical_integral": 37.70779617627462,
+      "surface_q_kinematic_flux": 5.0777884310567364e-5,
+      "surface_sensible_heat_flux": 80.18037577735053
+    }
+  },
+  "n064_weno9_surface_layer_t100_s1": {
+    "03–04 UTC": {
+      "first_face_height_m": 12.5,
+      "first_face_skewness": -0.11196411761356433,
+      "first_face_w2": 0.0025991447813188038,
+      "first_face_w3": -1.4836264578358774e-5,
+      "friction_velocity": 0.19130447465512487,
+      "peak_w2": 0.01513867413935562,
+      "resolved_tke_vertical_integral": 7.147453929318322,
+      "surface_q_kinematic_flux": 9.017741492003652e-7,
+      "surface_sensible_heat_flux": -21.758616834216646
+    },
+    "08–09 UTC": {
+      "first_face_height_m": 12.5,
+      "first_face_skewness": 0.348038054666567,
+      "first_face_w2": 0.07120769284665585,
+      "first_face_w3": 0.006613282952457666,
+      "friction_velocity": 0.2771827264792389,
+      "peak_w2": 0.24489668011665344,
+      "resolved_tke_vertical_integral": 51.20536501142714,
+      "surface_q_kinematic_flux": 5.17204664093798e-5,
+      "surface_sensible_heat_flux": 83.20680323706733
+    }
+  },
+  "n064_weno9_surface_layer_t300_s1": {
+    "03–04 UTC": {
+      "first_face_height_m": 12.5,
+      "first_face_skewness": -0.09669406617285446,
+      "first_face_w2": 0.0026976485775473216,
+      "first_face_w3": -1.3548084098147228e-5,
+      "friction_velocity": 0.1918956499132845,
+      "peak_w2": 0.016051398667817313,
+      "resolved_tke_vertical_integral": 7.5801226456960045,
+      "surface_q_kinematic_flux": 9.180643451777036e-7,
+      "surface_sensible_heat_flux": -22.01109135415819
+    },
+    "08–09 UTC": {
+      "first_face_height_m": 12.5,
+      "first_face_skewness": 0.35547813226198227,
+      "first_face_w2": 0.07732453631858031,
+      "first_face_w3": 0.007643440272659063,
+      "friction_velocity": 0.2758347428507275,
+      "peak_w2": 0.23475024476647377,
+      "resolved_tke_vertical_integral": 49.355727121565074,
+      "surface_q_kinematic_flux": 5.1094205425922864e-5,
+      "surface_sensible_heat_flux": 82.62302678426107
+    }
+  },
+  "n064_weno9_surface_layer_t300_s2": {
+    "03–04 UTC": {
+      "first_face_height_m": 12.5,
+      "first_face_skewness": -0.18604399111097955,
+      "first_face_w2": 0.00103776535737173,
+      "first_face_w3": -6.219627872875814e-6,
+      "friction_velocity": 0.19988036292294661,
+      "peak_w2": 0.014289891890560588,
+      "resolved_tke_vertical_integral": 7.08610151078966,
+      "surface_q_kinematic_flux": 1.0055513783413517e-6,
+      "surface_sensible_heat_flux": -23.419188674290975
+    },
+    "08–09 UTC": {
+      "first_face_height_m": 12.5,
+      "first_face_skewness": 0.3620674702553227,
+      "first_face_w2": 0.07846373381714027,
+      "first_face_w3": 0.007957798972104987,
+      "friction_velocity": 0.27951309060057006,
+      "peak_w2": 0.2407129630446434,
+      "resolved_tke_vertical_integral": 48.921183310614694,
+      "surface_q_kinematic_flux": 5.09708012436426e-5,
+      "surface_sensible_heat_flux": 84.07226066589355
+    }
+  }
+}
