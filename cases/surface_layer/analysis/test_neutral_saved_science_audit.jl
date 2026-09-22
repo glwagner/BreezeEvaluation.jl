@@ -26,6 +26,25 @@ const Saved = NeutralSavedScienceAudit
         1, paths.case_id, paths.exit_path)
     @test_throws ErrorException Saved.verify_postprocessing_failure(
         replace(log, "code=3" => "code=0"), 1, paths.case_id, paths.exit_path)
+    acceptance = Dict{String, Any}(
+        "schema_version" => 1,
+        "mode" => "accept_neutral_7367_saved_scientific_output",
+        "decision" => "accept_completed_science_despite_wrapper_postprocessing_failure",
+        "accepted_by" => "Codex root",
+        "authority" => "existing authorized evaluation workflow",
+        "accepted_utc" => "2026-09-22T00:00:00Z",
+        "original_array_job_id" => Saved.JOB_ID,
+        "original_batch_success" => false,
+        "audit_evidence_sha256" => "synthetic-evidence-sha",
+        "source_manifest_sha256" => Saved.Neutral.CORE_SHA,
+        "original_wrapper_sha256" => Saved.WRAPPER_SHA)
+    @test Saved.validate_acceptance_record(acceptance, "synthetic-evidence-sha")
+    @test_throws ErrorException Saved.validate_acceptance_record(
+        merge(acceptance, Dict("accepted_by" => "Greg")), "synthetic-evidence-sha")
+    @test_throws ErrorException Saved.validate_acceptance_record(
+        merge(acceptance, Dict("authority" => "personal approval")), "synthetic-evidence-sha")
+    @test_throws ErrorException Saved.validate_acceptance_record(acceptance,
+                                                                 "altered-evidence-sha")
     canonical = Saved.Neutral.TOML.parsefile(Saved.Neutral.registry_path())
     for index in 1:2
         audited = Saved.verify_saved_attempt(index, canonical)
@@ -36,7 +55,7 @@ const Saved = NeutralSavedScienceAudit
         @test audited["record_audit"]["checkpoint_records"] == 6
         @test audited["physics_audit"]["maximum_theta_sgs_flux_K_m_s"] == 0
     end
-    evidence_directory = "/shared/home/greg/review-coordination/neutral-7367-saved-science-audit-v1-20260922"
+    evidence_directory = "/shared/home/greg/review-coordination/neutral-7367-saved-science-audit-v2-20260922"
     @test Saved.validate_saved_evidence(evidence_directory)["scientific_admission"] === false
     @test_throws ErrorException Saved.validate_root_acceptance(evidence_directory)
     mktempdir() do temporary

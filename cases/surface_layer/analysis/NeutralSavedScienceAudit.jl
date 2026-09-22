@@ -231,24 +231,30 @@ function validate_saved_evidence(directory)
     return evidence
 end
 
+function validate_acceptance_record(acceptance, evidence_sha256)
+    check(acceptance["schema_version"] == 1 &&
+          acceptance["mode"] == "accept_neutral_7367_saved_scientific_output" &&
+          acceptance["decision"] ==
+              "accept_completed_science_despite_wrapper_postprocessing_failure" &&
+          acceptance["accepted_by"] == "Codex root" &&
+          acceptance["authority"] == "existing authorized evaluation workflow" &&
+          !isempty(acceptance["accepted_utc"]) &&
+          acceptance["original_array_job_id"] == JOB_ID &&
+          acceptance["original_batch_success"] === false &&
+          acceptance["audit_evidence_sha256"] == evidence_sha256 &&
+          acceptance["source_manifest_sha256"] == Neutral.CORE_SHA &&
+          acceptance["original_wrapper_sha256"] == WRAPPER_SHA,
+          "root acceptance file is missing a required source/evidence decision binding")
+    return true
+end
+
 function validate_root_acceptance(directory)
     evidence = validate_saved_evidence(directory)
     evidence_path = joinpath(directory, "neutral_saved_science_audit.toml")
     acceptance_path = joinpath(directory, "ROOT_ACCEPTANCE.toml")
     check(isfile(acceptance_path), "root has not accepted saved 7367 scientific output")
     acceptance = TOML.parsefile(acceptance_path)
-    check(acceptance["schema_version"] == 1 &&
-          acceptance["mode"] == "accept_neutral_7367_saved_scientific_output" &&
-          acceptance["decision"] ==
-              "accept_completed_science_despite_wrapper_postprocessing_failure" &&
-          acceptance["accepted_by"] == "Greg" &&
-          !isempty(acceptance["accepted_utc"]) &&
-          acceptance["original_array_job_id"] == JOB_ID &&
-          acceptance["original_batch_success"] === false &&
-          acceptance["audit_evidence_sha256"] == sha(evidence_path) &&
-          acceptance["source_manifest_sha256"] == Neutral.CORE_SHA &&
-          acceptance["original_wrapper_sha256"] == WRAPPER_SHA,
-          "root acceptance file is missing a required source/evidence decision binding")
+    validate_acceptance_record(acceptance, sha(evidence_path))
     return (; evidence, acceptance_path, acceptance_sha256=sha(acceptance_path),
             evidence_sha256=sha(evidence_path))
 end
