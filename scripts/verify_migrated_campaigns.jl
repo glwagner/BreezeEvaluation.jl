@@ -85,7 +85,7 @@ dycoms_cases, dycoms_rows = verify_cases(
     joinpath(CAMPAIGN, "simulation_data"), 15, collect(0.:60.:14400.),
     [9000., 10800., 12600., 14400.], 46)
 gabls_cases, gabls_rows = verify_cases(
-    joinpath(CAMPAIGN, "gabls", "simulation_data"), 14, collect(0.:60.:32400.),
+    joinpath(CAMPAIGN, "gabls", "simulation_data"), 15, collect(0.:60.:32400.),
     [27000., 28800., 30600., 32400.], 44)
 
 migration = JSON.parsefile(joinpath(ROOT, "provenance", "legacy_migration.json"))
