@@ -822,6 +822,36 @@
       "sha256": "973077e1e2b30ad13b65653fe6ef9dcf2d7f198576c8901c41ad8b575c27ca81"
     },
     {
+      "bytes": 47592,
+      "relative_path": "gabls/simulation_data/n400_weno9_smagorinsky/manifest.json",
+      "sha256": "48f1765ba9a205fcf4aa69643b9c0c3c4e7d9c3db050b720fa43b5da089202bf"
+    },
+    {
+      "bytes": 7093449,
+      "relative_path": "gabls/simulation_data/n400_weno9_smagorinsky/profiles.csv",
+      "sha256": "2862436008680825e3be5750639410ad8225678ba45069bd057314594c970c46"
+    },
+    {
+      "bytes": 1632757,
+      "relative_path": "gabls/simulation_data/n400_weno9_smagorinsky/profiles_final_hour_long.csv",
+      "sha256": "75884410d3050d8915469dd8d63b723ef77eab4e59d4a82257ede36f9d221092"
+    },
+    {
+      "bytes": 1632449,
+      "relative_path": "gabls/simulation_data/n400_weno9_smagorinsky/profiles_penultimate_hour_long.csv",
+      "sha256": "6d04033d16f051f66297f87eedf9d4a35c1d8f221948cbb1b6559b18cdf753f0"
+    },
+    {
+      "bytes": 207368,
+      "relative_path": "gabls/simulation_data/n400_weno9_smagorinsky/series.csv",
+      "sha256": "1a3ef8780f554025e86dfb7bf601843e4e4db4998c38cbe50e76268b80aa2619"
+    },
+    {
+      "bytes": 31536,
+      "relative_path": "gabls/simulation_data/n400_weno9_smagorinsky/source_manifest.json",
+      "sha256": "54df4ded56d19f704eba1ab7dcf88445a9f8456afef040cfda55f5db17ab6f14"
+    },
+    {
       "bytes": 285,
       "relative_path": "gabls/table4_boundary_layer_heights.csv",
       "sha256": "344d94ed4e7998a670a0fcce9e7d19e0adf591a5cf9635bf7fe9060e7ecfa960"
@@ -1612,7 +1642,7 @@
       "sha256": "1fa9718a92c804b6e493daf0090814280e506b492c9b009c581714de5c9b74d5"
     }
   ],
-  "generated_utc": "2026-09-21T04:30:07.119",
+  "generated_utc": "2026-09-22T03:13:02.820",
   "policy": "Julia workflows, compact comparison-window profiles, complete reduced series, and generated report artifacts are versioned; full profile histories, JLD2 fields, archives, and third-party PDFs remain external.",
   "schema_version": 1,
   "source_copy_and_transform_records": [
@@ -3231,6 +3261,22 @@
       "source_relative_path": "gabls/simulation_data/final_hour_metrics.csv",
       "source_sha256": "dfcd04b75691093b56a3c4a490ad1ed1b519ebeb0f2c0ddfaee409cd6588c1e7",
       "transformation": "byte copy"
+    },
+    {
+      "bytes": 7093449,
+      "destination_relative_path": "gabls/simulation_data/n400_weno9_smagorinsky/profiles.csv",
+      "destination_sha256": "2862436008680825e3be5750639410ad8225678ba45069bd057314594c970c46",
+      "retained_data_rows": 70488,
+      "retained_profile_times_s": [
+        27000.0,
+        28800.0,
+        30600.0,
+        32400.0
+      ],
+      "source_data_rows": 334818,
+      "source_relative_path": "gabls/simulation_data/n400_weno9_smagorinsky/profiles.csv",
+      "source_sha256": "b5cb8386700601156af6f677211fc87cc453f9c18cfddfc5fde7f672eca728d7",
+      "transformation": "CSV row subset by exact time_s; header unchanged"
     }
   ],
   "source_root_at_migration": "/shared/home/greg/review-coordination/dycoms-reference"
