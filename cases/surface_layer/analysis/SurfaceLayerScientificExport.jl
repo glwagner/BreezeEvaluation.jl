@@ -161,7 +161,7 @@ function verify_gpu_evidence(directory, freeze_root, expected_manifest_sha)
     evidence = TOML.parsefile(evidence_path)
     evidence_sha = file_sha256(evidence_path)
     mode = get(done, "mode", "")
-    require_check(mode in ("gpu_full", "gpu_resolved_flux_factor", "gpu_factor10"), "GPU evidence has unrecognized scope")
+    require_check(mode in ("gpu_full", "gpu_resolved_flux_factor", "gpu_factor10", "gpu_factor3"), "GPU evidence has unrecognized scope")
     require_check(get(done, "evidence_sha256", "") == evidence_sha,
                   "GPU evidence sentinel hash mismatch")
     require_check(evidence["validation_mode"] == mode, "GPU evidence mode mismatch")
@@ -170,10 +170,11 @@ function verify_gpu_evidence(directory, freeze_root, expected_manifest_sha)
         require_check(get(evidence, "factors", []) == [1.0, 2.0], "factor gate did not test both factors")
         require_check(get(evidence, "changed_path_checks_passed", false) === true, "factor checks missing")
     end
-    if mode == "gpu_factor10"
-        require_check(get(evidence, "case_family", "") == "GABLS1", "factor10 gate is GABLS1 only")
-        require_check(get(evidence, "factors", []) == [10.0], "factor10 gate scope mismatch")
-        require_check(get(evidence, "changed_path_checks_passed", false) === true, "factor10 checks missing")
+    if mode in ("gpu_factor10", "gpu_factor3")
+        factor = mode == "gpu_factor10" ? 10.0 : 3.0
+        require_check(get(evidence, "case_family", "") == "GABLS1", "single-factor gate is GABLS1 only")
+        require_check(get(evidence, "factors", []) == [factor], "single-factor gate scope mismatch")
+        require_check(get(evidence, "changed_path_checks_passed", false) === true, "single-factor checks missing")
         require_check(get(evidence, "zero_fraction_contract_passed", false) === true, "zero fraction diagnostics not validated")
     end
     require_check(evidence["all_passed"] === true, "GPU evidence reports a failed check")
@@ -995,12 +996,13 @@ function export_scientific_case(attempt_registry_path, case_id, export_root;
                       settings.case["support"] == 1 && settings.case["filter_seconds"] == 300,
                       "factor GPU gate cannot admit another campaign")
     end
-    if gpu["validation_mode"] == "gpu_factor10"
+    if gpu["validation_mode"] in ("gpu_factor10", "gpu_factor3")
+        factor = gpu["validation_mode"] == "gpu_factor10" ? 10 : 3
         require_check(registry["case_family"] == "GABLS1" &&
-                      get(settings.case, "resolved_flux_factor", 0) == 10 &&
+                      get(settings.case, "resolved_flux_factor", 0) == factor &&
                       settings.case["support"] == 1 && settings.case["filter_seconds"] == 300 &&
                       settings.scientific["expected_case_count"] == 1,
-                      "factor10 GPU gate cannot admit another campaign")
+                      "single-factor GPU gate cannot admit another campaign")
     end
     run_directory = abspath(attempt["run_directory"])
     if haskey(settings.case, "resolved_flux_factor")

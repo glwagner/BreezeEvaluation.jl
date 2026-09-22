@@ -3,15 +3,16 @@ using TOML, SHA
 include(joinpath(@__DIR__, "..", "gpu_validation", "admit_factor10.jl"))
 using .SurfaceLayerScientificExport: verify_completion, parse_fields
 
-function finalize(root, evidence, job, runs, logs, destination)
+function finalize(root, evidence, job, runs, logs, destination; factor=10)
+    factor in (3, 10) || error("unsupported single-factor finalization")
     ispath(destination) && error("refusing existing attempt registry")
     all(isdigit, job) || error("invalid array job")
-    admit_factor10(evidence, root)
+    admit_single_factor(evidence, root; factor)
     evaluation = joinpath(root, "source", "BreezeEvaluation.jl")
-    registry_relative = "cases/surface_layer/registries/gabls1_sld_factor10.toml"
+    registry_relative = "cases/surface_layer/registries/gabls1_sld_factor$(factor).toml"
     scientific_path = joinpath(evaluation, registry_relative)
     scientific = TOML.parsefile(scientific_path)
-    wrapper = joinpath(evaluation, "cases/surface_layer/registries/run_factor10.slurm")
+    wrapper = joinpath(evaluation, "cases/surface_layer/registries/run_factor$(factor).slurm")
     manifest = joinpath(root, "source_sha256.txt")
     readme = read(joinpath(root, "README.md"), String)
     evaluation_commit = match(r"BreezeEvaluation.jl commit: `([0-9a-f]{40})`", readme)[1]
@@ -32,8 +33,8 @@ function finalize(root, evidence, job, runs, logs, destination)
         completed = verify_completion(directory, id)
         completed["started"]["registry"] == scientific_path || error("wrong scientific registry")
         completed["started"]["registry_index"] == string(index) || error("wrong registry index")
-        log = joinpath(logs, "gabls1_factor10_$(job).out")
-        exit_path = joinpath(logs, "gabls1_factor10_$(job).exit")
+        log = joinpath(logs, "gabls1_factor$(factor)_$(job).out")
+        exit_path = joinpath(logs, "gabls1_factor$(factor)_$(job).exit")
         exit_record = parse_fields(exit_path)
         length(readlines(exit_path)) == 10 || error("wrong exit record size")
         exit_record["batch_job_id"] == job && exit_record["case_index"] == string(index) || error("wrong exit identity")
@@ -43,7 +44,7 @@ function finalize(root, evidence, job, runs, logs, destination)
         exit_record["gpu_evidence_directory"] == evidence || error("wrong exit GPU evidence")
         text = read(log, String)
         occursin("SLD_REGISTERED_CASE_DONE case_id=$id", text) || error("missing case completion log")
-        occursin("SLD_FACTOR10_BATCH_EXIT job=$job case=$index child_exit_code=0 record=$exit_path", text) || error("missing durable-exit log")
+        occursin("SLD_FACTOR$(factor)_BATCH_EXIT job=$job case=$index child_exit_code=0 record=$exit_path", text) || error("missing durable-exit log")
         occursin("CASE_FAILED", text) && error("failure in log")
         push!(attempts, Dict{String, Any}(
             "case_id" => id, "registry_index" => index, "resolved_flux_factor" => case["resolved_flux_factor"],

@@ -1,6 +1,6 @@
 # Manufactured input fields validate diagnostic classification, not atmospheric truth.
-function zero_fraction_contract(architecture; check)
-    model = Helpers.build_contract_model(architecture; moist=false, support=1, resolved_flux_factor=10)
+function zero_fraction_contract(architecture; check, resolved_flux_factor=10)
+    model = Helpers.build_contract_model(architecture; moist=false, support=1, resolved_flux_factor)
     f = model.closure_fields
     set!(f.momentum_deficit[1], (x,y) -> x < 10 ? 0f0 : 0.5f0)
     set!(f.Kᵘ, (x,y,z) -> x < 20 ? 0f0 : 1f0)

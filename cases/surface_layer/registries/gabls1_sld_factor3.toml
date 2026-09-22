@@ -1,0 +1,25 @@
+schema_version = 1
+campaign = "gabls1_surface_layer_resolved_flux_factor3"
+case_family = "GABLS1"
+submission_state = "UNSUBMITTED"
+expected_case_count = 1
+runner = "cases/surface_layer/gabls1/gabls1_case.jl"
+immutable_snapshot = "REQUIRED_AT_SUBMISSION"
+original_gabls1_15case_registry_unchanged = true
+grid = [32, 32, 32]
+domain_m = [400.0, 400.0, 400.0]
+duration_s = 32400.0
+seed = 123
+paired_initial_theta_sha256 = "1f5db33f2971ee607ac46b1a014b038a09fc876cc1669394dce023a9aa2f198b"
+required_completion_sentinel = "CASE_DONE"
+required_export_sentinel = "EXPORT_VERIFIED"
+required_admission = ["source_hashes", "finite", "coordinates", "scheduled_times", "initial_digest", "case_done", "resolved_flux_factor"]
+interpretation = "Factor multiplies signed resolved transport only in the closure deficit. Measured covariance and resolved/SGS/total diagnostic fluxes remain unscaled. This is a sensitivity assumption, not a numerical-flux measurement."
+
+[[cases]]
+case_id = "gabls1_n032_weno9_surface_layer_t300_s1_rf3p0"
+closure = "surface_layer"
+filter_seconds = 300.0
+support = 1
+resolved_flux_factor = 3.0
+submission_state = "UNSUBMITTED"
