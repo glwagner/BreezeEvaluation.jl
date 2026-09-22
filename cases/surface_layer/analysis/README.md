@@ -159,3 +159,32 @@ actual archived GABLS1 series has the required reference mappings:
 $JULIA --startup-file=no --project=$PLOT_PROJECT \
   cases/surface_layer/analysis/test_scientific_plots.jl
 ```
+
+## Neutral fixed-stress 5 h pair (separate campaign)
+
+`NeutralScientificExport.jl` is a separate Julia-only contract for the canonical
+96³, 3000 × 3000 × 1000 m WENO9 control versus one-face, 300 s SLD pair.
+It never edits the frozen a14c358/02a1647 model source. It requires the exact
+paired seed-1994 initial digests, 30 preceding-600 s averaged native-height
+profiles plus a separate t=0 profile, 301 one-minute series and state bounds,
+and six finite hourly checkpoints including t=0. The full native-coordinate
+history and equal six-bin final/penultimate-hour profiles are retained.
+
+The original 7367 array completed both solvers but the version-1 launch wrapper
+recorded code 3 and `CASE_FAILED` because `rg` is absent on the compute node.
+Those records remain failures. `NeutralSavedScienceAudit.jl` separately proves
+the frozen wrapper could only reach the failing `rg` check after a zero Julia
+child exit; requires the unique postprocessing error after `RUN_DONE`, exact
+`CASE_DONE` and 18,000 s, and independently audits every raw scientific output.
+Its evidence explicitly says `scientific_admission=false` and cannot be
+exported without a separate root-created `ROOT_ACCEPTANCE.toml` bound to the
+evidence SHA. The root-acceptance reader rechecks all raw/source/log/exit
+hashes. Do not reinterpret the original batch as exit zero.
+
+The portable, versioned `run_neutral_science_pair_v2.sh` replaces only the
+post-run `rg` check with bash built-ins and is an unsubmitted fallback.
+The zero-exit finalizer accepts a fresh root-recorded job/campaign only with
+that exact wrapper SHA. `finalize_neutral_saved_science.jl` is the alternate
+root-accepted route for the original 7367 raw results. Both modes feed the
+same strict case exporter and pair collector; no partial pair is collected.
+The root owns acceptance, scheduler actions, plotting, and report integration.
