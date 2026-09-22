@@ -25,6 +25,8 @@ run(`pdfunite $pages $(joinpath(D,"sld_results_section.pdf"))`)
 briefparts=[joinpath(D,"sld_results_section.pdf")]
 g3section=joinpath(D,"../gabls3/sld_results_section.pdf")
 isfile(g3section) && push!(briefparts,g3section)
+neutral=joinpath(D,"../neutral/results_section.pdf")
+isfile(neutral) && push!(briefparts,neutral)
 push!(briefparts,joinpath(D,"../surface_layer_story.pdf"))
 run(`pdfunite $briefparts $(joinpath(D,"../surface_layer_results.pdf"))`)
 md=read(joinpath(D,"results.md"),String)

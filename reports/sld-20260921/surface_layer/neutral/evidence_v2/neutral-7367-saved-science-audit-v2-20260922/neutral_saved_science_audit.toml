@@ -1,0 +1,224 @@
+all_raw_checks_passed = true
+analysis_git_commit = "c9220b1a32985ca584dab19809b83130a028b1c3"
+analysis_module_sha256 = "b1ce073e129b1341545630def353a44e024ef324ed4cafea8055320bc996c7b4"
+audit_script_sha256 = "e83f062977d39672d16af2ed9db433e826b9c4208ae9635615dabce7bbcea9cd"
+canonical_registry_sha256 = "5bb83f458af6cce588450bc70cac58655edaadff0e601c191773505ce5aa7156"
+combined_gpu_evidence_sha256 = "55138ed4123e656e2bc595cff1320fb3073f42bddd10402ef220bbe4c458ac02"
+created_utc = "2026-09-22T07:54:16.274"
+mode = "neutral_7367_saved_scientific_raw_audit_pending_root_acceptance"
+original_array_job_id = "7367"
+original_batch_success = false
+original_campaign = "/shared/home/greg/review-coordination/neutral-sld-science-20260922-0718"
+original_wrapper_path = "/shared/home/greg/review-coordination/run_neutral_science_pair_7366-v1.sh"
+original_wrapper_sha256 = "3bb1dfc34e4288604aaaad1c23cd828964a7e2f5917d88297cc27b99dafbceae"
+root_acceptance_required = true
+saved_7366_gpu_gate_sha256 = "c3c44a8a6c71a5b8e0166dc26477e18ab823c708d75faabe0b367ba8a13bec7c"
+schema_version = 1
+scientific_admission = false
+source_manifest_sha256 = "d2a6c2adea31fca7b6ed370780fc319e65c5cc7418f8153efb45dca6d563920c"
+source_root = "/shared/home/greg/review-coordination/surface-layer-harness-freeze-20260921-a14c358-02a1647"
+
+[analysis_source_sha256]
+"cases/surface_layer/analysis/NeutralSavedScienceAudit.jl" = "e83f062977d39672d16af2ed9db433e826b9c4208ae9635615dabce7bbcea9cd"
+"cases/surface_layer/analysis/NeutralScientificExport.jl" = "b1ce073e129b1341545630def353a44e024ef324ed4cafea8055320bc996c7b4"
+"cases/surface_layer/analysis/admit_neutral_saved_science.jl" = "8be6bf7c7409f22607ebedf49ab0caac8c6e47453a3f5528ff98cdc977895450"
+"cases/surface_layer/analysis/audit_neutral_saved_science.jl" = "cf6df217e2006670de7d1a143186ead6a1cce312845637b15dbc2496996a5000"
+"cases/surface_layer/analysis/collect_neutral_exports.jl" = "5492a866230a683d93d48bcd2346209725650568fc06f2589d6c50ac37125039"
+"cases/surface_layer/analysis/export_neutral_case.jl" = "162e9132ce7dfc518c23d9eb1e8810293da56dbb4d747d280da60e946054c11a"
+"cases/surface_layer/analysis/finalize_neutral_attempts.jl" = "5dbdca5ceaa7e24b326e01052ceb53be72a1469d021398dcea1e0f6b4b1a942c"
+"cases/surface_layer/analysis/finalize_neutral_saved_science.jl" = "15f5b672efbc158eed9362357075ddb212e4bf388d9dff601d40c2f5723b0b5b"
+"cases/surface_layer/analysis/validate_neutral_saved_science.jl" = "e2bc14ecc0e2d4734e4c50c89d13d04145c328961f116b640aa154f845489047"
+"cases/surface_layer/neutral/run_neutral_science_pair_v2.sh" = "68ac700978b8c83a25b18648a7f4e74c0ef205443452f6ee6bbfa54811f5e268"
+
+[[attempts]]
+case_id = "neutral_n096_weno9_control"
+closure = "none"
+original_batch_success = false
+original_case_done_sha256 = "5f80af28b16dcfdbeb2ae30638809b17c8a021584f08c75d3d129e197e990b38"
+original_case_failed_sha256 = "ea6500a608f8f512496c4ebd83729cab6df884fcbed13b84430a1434c82512d0"
+original_exit_path = "/shared/home/greg/review-coordination/neutral-sld-science-20260922-0718/logs/neutral_7367_1.exit"
+original_exit_sha256 = "cbef7f74f255134a2ab827f0a5f20019aefb1faa2686b0d2c9ce50322b63471a"
+original_log_path = "/shared/home/greg/review-coordination/neutral-sld-science-20260922-0718/logs/neutral_7367_1.out"
+original_log_sha256 = "a5706047192ad1d33fd83788a50dc3a3243cad4629d7222516359d4b5265c034"
+original_started_sha256 = "2eb5f43594f9f60a8fbc70fd894c46335169e45eb6b24631ab6aee905223cb8f"
+registry_index = 1
+run_directory = "/shared/home/greg/review-coordination/neutral-sld-science-20260922-0718/runs/neutral_n096_weno9_control"
+
+    [attempts.captured_source_sha256]
+    "Breeze.Manifest.toml" = "ea06afffc14487956976a78f9a5fdfca8d4806313cdccb84722d07ceb587aef9"
+    "Breeze.Project.toml" = "d84b533af033eafdcdc91ed699b2e4c5174c711964698d91796833fcd8a64fbe"
+    "LegacyGABLSDiagnosticsAdaptation.jl" = "a8d029d23d9765c76895337c6d537008c5d322f401756fc9d1eae714c9052257"
+    "NeutralSurfaceLayerDiagnostics.jl" = "0edcb6793cff74b9a8eed77f1900fc8e3ddbf5925500e039737bc3f213d5c49e"
+    "SurfaceLayerDiagnostics.jl" = "12fe338fa4d7eaecda8f340e0b681386921a11cf0e9405c68bc68b802e31cb98"
+    "active.Manifest.toml" = "1c74d77dab44e6a4c81a033d7e8fd7e1f21349614a9223b5e02665c75eb47365"
+    "active.Project.toml" = "62ecdea43e5df532937b18872a3e7a51bc283d73a5b176d00dea8c9c064b2413"
+    "gabls_diagnostics.jl" = "6486c8ccd94f45df1c204fc57d1f3c0a79b8c4f3c27b3412c1b2bb81573e0c24"
+    "gabls_rough_wall_coefficient.jl" = "5af7df039cf665817cd5ca0a9d48dca6d28bbae3bc300f3c5e79bd982aee20c3"
+    "neutral_abl_case.jl" = "aab32904134691ed4fc50149199ed16f9e3eee3b0215224be48c8750b15b7fe4"
+    "neutral_atmospheric_boundary_layer.jl" = "4449cd0dcba266015f40c15906798389aba98bc69233f30de40f7ac846b6bae4"
+
+    [[attempts.checkpoint_records]]
+    iteration = 0
+    path = "/shared/home/greg/review-coordination/neutral-sld-science-20260922-0718/runs/neutral_n096_weno9_control/neutral_n096_weno9_control_checkpoint_iteration0.jld2"
+    prognostic_arrays_finite = true
+    sha256 = "54c7f4aa70d01dc4b4bfe1d51bb643e8d57e7fc0404e43eac995eeec97d1ee46"
+    time_s = 0.0
+    [[attempts.checkpoint_records]]
+    iteration = 3332
+    path = "/shared/home/greg/review-coordination/neutral-sld-science-20260922-0718/runs/neutral_n096_weno9_control/neutral_n096_weno9_control_checkpoint_iteration3332.jld2"
+    prognostic_arrays_finite = true
+    sha256 = "8972340c21777e5e9ed6dc18c8248bee077126e4deb1e23c5a08af46e079e002"
+    time_s = 3600.0
+    [[attempts.checkpoint_records]]
+    iteration = 6609
+    path = "/shared/home/greg/review-coordination/neutral-sld-science-20260922-0718/runs/neutral_n096_weno9_control/neutral_n096_weno9_control_checkpoint_iteration6609.jld2"
+    prognostic_arrays_finite = true
+    sha256 = "1e55c05b356da102f26524506040519393c96e9ba30c8cbf834df271e468ed05"
+    time_s = 7200.0
+    [[attempts.checkpoint_records]]
+    iteration = 9812
+    path = "/shared/home/greg/review-coordination/neutral-sld-science-20260922-0718/runs/neutral_n096_weno9_control/neutral_n096_weno9_control_checkpoint_iteration9812.jld2"
+    prognostic_arrays_finite = true
+    sha256 = "fe0b3fae9bee1822b67d4fcdadcf368b99111513149c24c73f3adcc18a61a0e2"
+    time_s = 10800.0
+    [[attempts.checkpoint_records]]
+    iteration = 13024
+    path = "/shared/home/greg/review-coordination/neutral-sld-science-20260922-0718/runs/neutral_n096_weno9_control/neutral_n096_weno9_control_checkpoint_iteration13024.jld2"
+    prognostic_arrays_finite = true
+    sha256 = "90fcf7ee14c58f4d51155c712293b54257534c2f15b5b755c500416974a515ee"
+    time_s = 14400.0
+    [[attempts.checkpoint_records]]
+    iteration = 16491
+    path = "/shared/home/greg/review-coordination/neutral-sld-science-20260922-0718/runs/neutral_n096_weno9_control/neutral_n096_weno9_control_checkpoint_iteration16491.jld2"
+    prognostic_arrays_finite = true
+    sha256 = "f625b7a880d88a86a8678bf48c818bc120f6d86a004c5373f25e4bf0f94a0b3a"
+    time_s = 18000.0
+
+    [attempts.physics_audit]
+    maximum_first_supported_sgs_stress_m2_s2 = 0.0
+    maximum_first_supported_viscosity_m2_s = 0.0
+    maximum_interior_flux_split_residual = 0.0
+    maximum_scalar_guard_active_fraction = 0.0
+    maximum_theta_sgs_flux_K_m_s = 0.0
+    prescribed_stress_is_local_magnitude_m2_s2 = 0.25
+    wall_stress_is_magnitude_of_averaged_vector = true
+    wall_stress_magnitude_max_m2_s2 = 0.24870325883621133
+    wall_stress_magnitude_min_m2_s2 = 0.16562556344566925
+
+    [attempts.raw_sha256]
+    initial = "351949abfc9f330394b9ff3e5bc35a93b1f281721469fed0d17f027564698f00"
+    profiles = "d51d43cf5e6a6ac93d4ca566366b56db6b0cae0bf563ba4698a310c72e317395"
+    series = "429a758d264c4a7acacee214358cd467a4454445b56bc5de99cdc24658d486f9"
+    state_bounds = "c103557723930cae0d346e1c5b8165f722b6fc45157087fdfd39bb8389da20f8"
+
+    [attempts.record_audit]
+    all_finite = true
+    averaged_profile_records = 30
+    checkpoint_records = 6
+    initial_records = 1
+    native_w_face_moments = true
+    profile_variables = 47
+    series_records = 301
+    series_variables = 30
+
+    [attempts.solver_control_flow_proof]
+    missing_rg_occurrences = 1
+    original_batch_exit_code = 3
+    proof = "pinned v1 wrapper only executes line-75 rg after Julia child_exit_code == 0; unique rg failure follows RUN_DONE and precedes durable code-3 record"
+    solver_returned_zero_inferred_from_wrapper_branch = true
+[[attempts]]
+case_id = "neutral_n096_weno9_surface_layer_t300_s1"
+closure = "surface_layer"
+original_batch_success = false
+original_case_done_sha256 = "ed9a963d2744a32e2cee200bc18704f621fbcddab74626ae08beefb473093030"
+original_case_failed_sha256 = "1c07206ee221696f37270a39ca36c12323292815806240abb5a967c64668afde"
+original_exit_path = "/shared/home/greg/review-coordination/neutral-sld-science-20260922-0718/logs/neutral_7367_2.exit"
+original_exit_sha256 = "a23aa9700703c1c6a2665aa8c967966852290e661df019b9846889f2332553a2"
+original_log_path = "/shared/home/greg/review-coordination/neutral-sld-science-20260922-0718/logs/neutral_7367_2.out"
+original_log_sha256 = "4d8a7ea801234fcf847bb7962fba58790cb6297c75f94cbbc9733b6578bf4f01"
+original_started_sha256 = "74c49085443849dfbc98bec0c6bbecf5204eece9014c5164ee1f436b2c072574"
+registry_index = 2
+run_directory = "/shared/home/greg/review-coordination/neutral-sld-science-20260922-0718/runs/neutral_n096_weno9_surface_layer_t300_s1"
+
+    [attempts.captured_source_sha256]
+    "Breeze.Manifest.toml" = "ea06afffc14487956976a78f9a5fdfca8d4806313cdccb84722d07ceb587aef9"
+    "Breeze.Project.toml" = "d84b533af033eafdcdc91ed699b2e4c5174c711964698d91796833fcd8a64fbe"
+    "LegacyGABLSDiagnosticsAdaptation.jl" = "a8d029d23d9765c76895337c6d537008c5d322f401756fc9d1eae714c9052257"
+    "NeutralSurfaceLayerDiagnostics.jl" = "0edcb6793cff74b9a8eed77f1900fc8e3ddbf5925500e039737bc3f213d5c49e"
+    "SurfaceLayerDiagnostics.jl" = "12fe338fa4d7eaecda8f340e0b681386921a11cf0e9405c68bc68b802e31cb98"
+    "active.Manifest.toml" = "1c74d77dab44e6a4c81a033d7e8fd7e1f21349614a9223b5e02665c75eb47365"
+    "active.Project.toml" = "62ecdea43e5df532937b18872a3e7a51bc283d73a5b176d00dea8c9c064b2413"
+    "gabls_diagnostics.jl" = "6486c8ccd94f45df1c204fc57d1f3c0a79b8c4f3c27b3412c1b2bb81573e0c24"
+    "gabls_rough_wall_coefficient.jl" = "5af7df039cf665817cd5ca0a9d48dca6d28bbae3bc300f3c5e79bd982aee20c3"
+    "neutral_abl_case.jl" = "aab32904134691ed4fc50149199ed16f9e3eee3b0215224be48c8750b15b7fe4"
+    "neutral_atmospheric_boundary_layer.jl" = "4449cd0dcba266015f40c15906798389aba98bc69233f30de40f7ac846b6bae4"
+
+    [[attempts.checkpoint_records]]
+    iteration = 0
+    path = "/shared/home/greg/review-coordination/neutral-sld-science-20260922-0718/runs/neutral_n096_weno9_surface_layer_t300_s1/neutral_n096_weno9_surface_layer_t300_s1_checkpoint_iteration0.jld2"
+    prognostic_arrays_finite = true
+    sha256 = "02ebc4ad25e6fab7bfd3d7621b2f7c06e03f9567460a25db2f370de3acc3132b"
+    time_s = 0.0
+    [[attempts.checkpoint_records]]
+    iteration = 3260
+    path = "/shared/home/greg/review-coordination/neutral-sld-science-20260922-0718/runs/neutral_n096_weno9_surface_layer_t300_s1/neutral_n096_weno9_surface_layer_t300_s1_checkpoint_iteration3260.jld2"
+    prognostic_arrays_finite = true
+    sha256 = "4aebf55aefe61fbdd282a9e3af8fb20b0112b8a65f40c66875754c127fdf7d32"
+    time_s = 3600.0
+    [[attempts.checkpoint_records]]
+    iteration = 6502
+    path = "/shared/home/greg/review-coordination/neutral-sld-science-20260922-0718/runs/neutral_n096_weno9_surface_layer_t300_s1/neutral_n096_weno9_surface_layer_t300_s1_checkpoint_iteration6502.jld2"
+    prognostic_arrays_finite = true
+    sha256 = "b1a59811bd0bab222a30b7489a023ddfa1426195ac51aeec0767f83e9947616e"
+    time_s = 7200.0
+    [[attempts.checkpoint_records]]
+    iteration = 9695
+    path = "/shared/home/greg/review-coordination/neutral-sld-science-20260922-0718/runs/neutral_n096_weno9_surface_layer_t300_s1/neutral_n096_weno9_surface_layer_t300_s1_checkpoint_iteration9695.jld2"
+    prognostic_arrays_finite = true
+    sha256 = "8d00795b5dbb538db49f46770f8f4cb0e8ba9d3be20e79aaf993153f20e2e559"
+    time_s = 10800.0
+    [[attempts.checkpoint_records]]
+    iteration = 12948
+    path = "/shared/home/greg/review-coordination/neutral-sld-science-20260922-0718/runs/neutral_n096_weno9_surface_layer_t300_s1/neutral_n096_weno9_surface_layer_t300_s1_checkpoint_iteration12948.jld2"
+    prognostic_arrays_finite = true
+    sha256 = "4f8f8c2b3079a9d8f02ec3889094b9ce60f3b6c5181f01cfb4dcb0807d368c4d"
+    time_s = 14400.0
+    [[attempts.checkpoint_records]]
+    iteration = 16442
+    path = "/shared/home/greg/review-coordination/neutral-sld-science-20260922-0718/runs/neutral_n096_weno9_surface_layer_t300_s1/neutral_n096_weno9_surface_layer_t300_s1_checkpoint_iteration16442.jld2"
+    prognostic_arrays_finite = true
+    sha256 = "0ea614307b04ce7243a177552c9607eb7c9caa44f69c5665ec3804b8a18b5f2c"
+    time_s = 18000.0
+
+    [attempts.physics_audit]
+    maximum_first_supported_sgs_stress_m2_s2 = 0.1675216555595398
+    maximum_first_supported_viscosity_m2_s = 2.0714471340179443
+    maximum_interior_flux_split_residual = 1.341104507446289e-7
+    maximum_scalar_guard_active_fraction = 0.0
+    maximum_theta_sgs_flux_K_m_s = 0.0
+    prescribed_stress_is_local_magnitude_m2_s2 = 0.25
+    wall_stress_is_magnitude_of_averaged_vector = true
+    wall_stress_magnitude_max_m2_s2 = 0.24995201632109756
+    wall_stress_magnitude_min_m2_s2 = 0.24713909137584875
+
+    [attempts.raw_sha256]
+    initial = "af98927b14d9afccd144088a78a1509c096e099e5a1f2e2ae69b48c10eb0f7d8"
+    profiles = "6435fc02f46f9e59e90ac72b6183eff0f80da04efc3a5d07371bfcbe7ed311b2"
+    series = "827eb74006c2ccad7f5cc1255afef7a7756f4c2fa22c85319270be026998be5a"
+    state_bounds = "9e29e513f61226424209f259806d1d88793744ca81b5993f841316ac0e2c7ba9"
+
+    [attempts.record_audit]
+    all_finite = true
+    averaged_profile_records = 30
+    checkpoint_records = 6
+    initial_records = 1
+    native_w_face_moments = true
+    profile_variables = 49
+    series_records = 301
+    series_variables = 95
+
+    [attempts.solver_control_flow_proof]
+    missing_rg_occurrences = 1
+    original_batch_exit_code = 3
+    proof = "pinned v1 wrapper only executes line-75 rg after Julia child_exit_code == 0; unique rg failure follows RUN_DONE and precedes durable code-3 record"
+    solver_returned_zero_inferred_from_wrapper_branch = true

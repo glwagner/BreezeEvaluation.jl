@@ -1,0 +1,21 @@
+{
+  "admitted": [{
+    "case_id": "neutral_n096_weno9_control",
+    "directory": "/shared/home/greg/review-coordination/neutral-7367-analysis-export-v2-accepted/neutral_n096_weno9_control",
+    "manifest_sha256": "39916c75547701dd3a138e0b9f858d90437d86f553571699bc85cc80899ad2c3"
+  }, {
+    "case_id": "neutral_n096_weno9_surface_layer_t300_s1",
+    "directory": "/shared/home/greg/review-coordination/neutral-7367-analysis-export-v2-accepted/neutral_n096_weno9_surface_layer_t300_s1",
+    "manifest_sha256": "41acc21b098da422bc8ebee346b6ecca394289a73315cec399927ae100609f8c"
+  }],
+  "admitted_count": 2,
+  "case_family": "neutral_fixed_stress_ABL",
+  "expected_cases": 2,
+  "finalized_registry_path": "/shared/home/greg/review-coordination/neutral-7367-saved-attempts-v2-accepted.toml",
+  "finalized_registry_sha256": "bcf68f66e5b6814d53ab41ed94a2a0434fa617ed448dbefe4d4250b946859394",
+  "generated_utc": "2026-09-22T08:11:14.808",
+  "original_7366_parent_passed": false,
+  "rejected": [],
+  "rejected_count": 0,
+  "schema_version": 1
+}

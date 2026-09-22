@@ -1,0 +1,32 @@
+NEUTRAL_SAVED_OUTPUT_ADMITTED original_job_id=7366 original_child_exit=1 supplemental_sha256=c3c44a8a6c71a5b8e0166dc26477e18ab823c708d75faabe0b367ba8a13bec7c fixture_non_scientific=true
+┌ Info: NEUTRAL_ABL_RUN_START
+│   case_id = "neutral_n096_weno9_control"
+└   settings = (nx = 96, ny = 96, nz = 96, domain_m = (3000, 3000, 1000), closure_name = "none", filter_seconds = 300.0, support = 1, stop_time = 18000.0, seed = 1994, initial_state_sha256 = (u_sha256 = "c4d7f458e5eaf617761c0a038d2c528cce90a51ca5b5b6b79267de965e5480ac", v_sha256 = "8fb4821696aa08647e2a8f4e6f3f650492804727d859544c05a286764b60b64c", theta_sha256 = "3aad12354822c5331632e532dcbefb923e257ff9a673b3144fd493f737e8b0ba", w_sha256 = "850cd43555630366e441e30eede43b8b1aa31913814e37ad3055db337e91a700"), initial_dt = 0.5f0, wizard_cfl = 0.7, architecture = "CUDAGPU", fixture = false, oceananigans_version = "0.113.0", diagnostics_enabled = true, profile_interval = 600.0, series_interval = 60.0, checkpoint_interval = 3600.0, friction_velocity = 0.5f0, surface_density = 1.1614301f0, fixed_stress_no_roughness = true, surface_heat_flux = 0.0, inversion_base_m = 468.0, inversion_thickness_m = 62.5, inversion_jump_K = 8.0, free_troposphere_gradient_K_m = 0.003, sponge_width_m = 200.0f0, sponge_rate_s_inverse = 0.01f0, energy_sponge_interface = "rhoE converted to rho-theta tendency by dry cp*Exner")
+[ Info: Initializing simulation...
+[ Info: [neutral_n096_weno9_control] iter 0 t=0 seconds dt=550.000 ms NaN s/step max|w|=0.0051 theta=[299.950,309.393] CFL target=.7
+[ Info:     ... simulation initialization complete (2.381 minutes)
+[ Info: Executing initial time step...
+[ Info:     ... initial time step complete (3.201 seconds).
+[ Info: [neutral_n096_weno9_control] iter 1000 t=18.207 minutes dt=1.113 seconds 0.0593 s/step max|w|=2.28 theta=[299.968,309.393] CFL target=.7
+[ Info: [neutral_n096_weno9_control] iter 2000 t=36.269 minutes dt=1.065 seconds 0.0211 s/step max|w|=3 theta=[299.981,309.393] CFL target=.7
+[ Info: [neutral_n096_weno9_control] iter 3000 t=54.074 minutes dt=1.072 seconds 0.0121 s/step max|w|=2.32 theta=[299.955,309.393] CFL target=.7
+[ Info: [neutral_n096_weno9_control] iter 4000 t=1.200 hours dt=1.142 seconds 0.0147 s/step max|w|=2.35 theta=[299.960,309.393] CFL target=.7
+[ Info: [neutral_n096_weno9_control] iter 5000 t=1.504 hours dt=1.077 seconds 0.0134 s/step max|w|=2.7 theta=[299.974,309.393] CFL target=.7
+[ Info: [neutral_n096_weno9_control] iter 6000 t=1.809 hours dt=1.136 seconds 0.0129 s/step max|w|=2.56 theta=[299.973,309.393] CFL target=.7
+[ Info: [neutral_n096_weno9_control] iter 7000 t=2.122 hours dt=1.116 seconds 0.0139 s/step max|w|=2.4 theta=[299.963,309.393] CFL target=.7
+[ Info: [neutral_n096_weno9_control] iter 8000 t=2.438 hours dt=1.087 seconds 0.0135 s/step max|w|=2.53 theta=[299.935,309.393] CFL target=.7
+[ Info: [neutral_n096_weno9_control] iter 9000 t=2.748 hours dt=1.114 seconds 0.0148 s/step max|w|=2.69 theta=[299.953,309.393] CFL target=.7
+[ Info: [neutral_n096_weno9_control] iter 10000 t=3.060 hours dt=1.175 seconds 0.0145 s/step max|w|=2.3 theta=[299.964,309.393] CFL target=.7
+[ Info: [neutral_n096_weno9_control] iter 11000 t=3.374 hours dt=1.155 seconds 0.0156 s/step max|w|=3.18 theta=[299.966,309.393] CFL target=.7
+[ Info: [neutral_n096_weno9_control] iter 12000 t=3.685 hours dt=1.126 seconds 0.0154 s/step max|w|=2.31 theta=[299.964,309.393] CFL target=.7
+[ Info: [neutral_n096_weno9_control] iter 13000 t=3.993 hours dt=1.119 seconds 0.0147 s/step max|w|=2.11 theta=[299.928,309.393] CFL target=.7
+[ Info: [neutral_n096_weno9_control] iter 14000 t=4.291 hours dt=1.045 seconds 0.0162 s/step max|w|=2.13 theta=[299.959,309.393] CFL target=.7
+[ Info: [neutral_n096_weno9_control] iter 15000 t=4.583 hours dt=1.043 seconds 0.0146 s/step max|w|=2.79 theta=[299.960,309.393] CFL target=.7
+[ Info: [neutral_n096_weno9_control] iter 16000 t=4.863 hours dt=1.036 seconds 0.0162 s/step max|w|=2.85 theta=[299.956,309.393] CFL target=.7
+[ Info: Simulation is stopping after running for 6.506 minutes.
+[ Info: Simulation time 5 hours equals or exceeds stop time 5 hours.
+┌ Info: NEUTRAL_ABL_RUN_DONE
+│   case_id = "neutral_n096_weno9_control"
+└   final_time = 18000.0
+/shared/home/greg/review-coordination/run_neutral_science_pair_7366-v1.sh: line 75: rg: command not found
+NEUTRAL_RECORDED_CHILD_EXIT job=7367 task=1 case=neutral_n096_weno9_control code=3 record=/shared/home/greg/review-coordination/neutral-sld-science-20260922-0718/logs/neutral_7367_1.exit

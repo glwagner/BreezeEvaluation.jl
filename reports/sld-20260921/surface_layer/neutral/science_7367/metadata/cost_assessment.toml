@@ -1,0 +1,40 @@
+fixture_non_scientific = true
+interpretation = "Both 120 s elapsed times include substantial initialization and first-step compilation. Projections assume unchanged dt, kernel cost, diagnostics and dynamics; neither is a walltime bound or a five-hour validation."
+kind = "conditional_neutral_gpu_cost_assessment"
+original_job_id = 7366
+original_log_sha256 = "99a5ff35bb85907ef31b589e0f644d2d218f0fba3b718f4eae5090e8c0be1455"
+original_parent_passed = false
+schema_version = 1
+scientific_completion = false
+supplemental_audit_evidence_sha256 = "c3c44a8a6c71a5b8e0166dc26477e18ab823c708d75faabe0b367ba8a13bec7c"
+throughput_evidence_sha256 = "579d99ee07d361684899f1f837cfbf17d3d4a2e9da0e3a1ecd8a44320b021231"
+warmup_first_step_wall_s_rounded = [3.085, 8.8]
+warmup_initialization_wall_s_rounded = [142.85999999999999, 79.86]
+
+[cases.none]
+conditional_five_hour_solver_s_from_120s_scaling = 852.6079285499997
+conditional_five_hour_solver_s_from_post_first_step_rate = 317.01650261423976
+conditional_five_hour_steps_at_last_dt = 12540
+last_dt_s = 1.4354288578033447
+log_first_step_wall_s_rounded = 2.524
+log_initialization_wall_s_rounded = 108.12
+measured_120s_total_run_wall_s = 113.804052857
+measured_iterations = 126
+post_first_step_125steps_wall_s_approx = 3.1600528569999975
+post_first_step_wall_s_per_step_approx = 0.02528042285599998
+post_initialization_120s_wall_s_approx = 5.6840528569999975
+published_naive_projection_s_includes_initialization = 17070.60792855
+
+[cases.surface_layer]
+conditional_five_hour_solver_s_from_120s_scaling = 1340.5877470499995
+conditional_five_hour_solver_s_from_post_first_step_rate = 395.72452120068766
+conditional_five_hour_steps_at_last_dt = 12538
+last_dt_s = 1.4357101917266846
+log_first_step_wall_s_rounded = 4.992
+log_initialization_wall_s_rounded = 42.468
+measured_120s_total_run_wall_s = 51.405251647
+measured_iterations = 126
+post_first_step_125steps_wall_s_approx = 3.9452516469999965
+post_first_step_wall_s_per_step_approx = 0.03156201317599997
+post_initialization_120s_wall_s_approx = 8.937251646999997
+published_naive_projection_s_includes_initialization = 7710.78774705

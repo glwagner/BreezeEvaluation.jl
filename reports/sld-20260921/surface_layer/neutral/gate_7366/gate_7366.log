@@ -1,0 +1,67 @@
+SLD_FLUX_SCHEDULE_GPU_GATE_ADMITTED combined_sha256=55138ed4123e656e2bc595cff1320fb3073f42bddd10402ef220bbe4c458ac02 semantic_sha256=47826ecbfb00dde15e281cf94bea0e98d0dc5bbbad85eaccf1b68797cc7411a1 source_manifest_sha256=d2a6c2adea31fca7b6ed370780fc319e65c5cc7418f8153efb45dca6d563920c
+Precompiling packages...
+  19347.1 ms  ✓ Breeze
+  1 dependency successfully precompiled in 31 seconds. 121 already precompiled.
+[ Info: Initializing simulation...
+[ Info: [neutral_fixture_n096_weno9_control_cfgae2baee299ed] iter 0 t=0 seconds dt=550.000 ms NaN s/step max|w|=0.0051 theta=[299.950,309.393] CFL target=.7
+[ Info:     ... simulation initialization complete (2.381 minutes)
+[ Info: Executing initial time step...
+[ Info:     ... initial time step complete (3.085 seconds).
+[ Info: Simulation is stopping after running for 2.437 minutes.
+[ Info: Simulation time 1 second equals or exceeds stop time 1 second.
+[ Info: Initializing simulation...
+[ Info: [neutral_fixture_n096_weno9_surface_layer_t300_s1_cfg40ededaeb043] iter 0 t=0 seconds dt=550.000 ms NaN s/step max|w|=0.0051 theta=[299.950,309.393] CFL target=.7
+[ Info:     ... simulation initialization complete (1.331 minutes)
+[ Info: Executing initial time step...
+[ Info:     ... initial time step complete (8.800 seconds).
+[ Info: Simulation is stopping after running for 1.477 minutes.
+[ Info: Simulation time 1 second equals or exceeds stop time 1 second.
+[ Info: Initializing simulation...
+[ Info: [neutral_fixture_n096_weno9_control_cfg8ddfda70a26c] iter 0 t=0 seconds dt=550.000 ms NaN s/step max|w|=0.0051 theta=[299.950,309.393] CFL target=.7
+[ Info:     ... simulation initialization complete (1.802 minutes)
+[ Info: Executing initial time step...
+[ Info:     ... initial time step complete (2.524 seconds).
+[ Info: Simulation is stopping after running for 1.887 minutes.
+[ Info: Simulation time 2 minutes equals or exceeds stop time 2 minutes.
+[ Info: Initializing simulation...
+[ Info: [neutral_fixture_n096_weno9_surface_layer_t300_s1_cfg2e6b488f825d] iter 0 t=0 seconds dt=550.000 ms NaN s/step max|w|=0.0051 theta=[299.950,309.393] CFL target=.7
+[ Info:     ... simulation initialization complete (42.468 seconds)
+[ Info: Executing initial time step...
+[ Info:     ... initial time step complete (4.992 seconds).
+[ Info: Simulation is stopping after running for 50.670 seconds.
+[ Info: Simulation time 2 minutes equals or exceeds stop time 2 minutes.
+NEUTRAL_GPU_THROUGHPUT_PASSED evidence_sha256=579d99ee07d361684899f1f837cfbf17d3d4a2e9da0e3a1ecd8a44320b021231
+ERROR: LoadError: MethodError: no method matching vec(::Float64)
+The function `vec` exists, but no method is defined for this combination of argument types.
+
+Closest candidates are:
+  vec(!Matched::LinearAlgebra.Adjoint{<:Real, <:AbstractVector})
+   @ LinearAlgebra ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/LinearAlgebra/src/adjtrans.jl:383
+  vec(!Matched::LinearAlgebra.Transpose{<:Number, <:AbstractVector})
+   @ LinearAlgebra ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/LinearAlgebra/src/adjtrans.jl:382
+  vec(!Matched::AbstractVector)
+   @ Base abstractarraymath.jl:42
+  ...
+
+Stacktrace:
+  [1] scalar(file::JLD2.JLDFile{JLD2.MmapIO}, name::String, key::Int64)
+    @ Main ~/review-coordination/audit_neutral_speed_gate_a14c358-v3.jl:52
+  [2] (::var"#check_series_semantics##0#check_series_semantics##1"{String, String})(file::JLD2.JLDFile{JLD2.MmapIO})
+    @ Main ~/review-coordination/audit_neutral_speed_gate_a14c358-v3.jl:149
+  [3] jldopen(::Function, ::String, ::Vararg{String}; kws::@Kwargs{})
+    @ JLD2 ~/.julia/packages/JLD2/rm5a0/src/loadsave.jl:4
+  [4] jldopen
+    @ ~/.julia/packages/JLD2/rm5a0/src/loadsave.jl:1 [inlined]
+  [5] check_series_semantics
+    @ ~/review-coordination/audit_neutral_speed_gate_a14c358-v3.jl:140 [inlined]
+  [6] audit_neutral_speed_gate(output_directory::String)
+    @ Main ~/review-coordination/audit_neutral_speed_gate_a14c358-v3.jl:215
+  [7] top-level scope
+    @ ~/review-coordination/audit_neutral_speed_gate_a14c358-v3.jl:254
+  [8] include(mod::Module, _path::String)
+    @ Base ./Base.jl:306
+  [9] exec_options(opts::Base.JLOptions)
+    @ Base ./client.jl:317
+ [10] _start()
+    @ Base ./client.jl:550
+in expression starting at /shared/home/greg/review-coordination/audit_neutral_speed_gate_a14c358-v3.jl:254

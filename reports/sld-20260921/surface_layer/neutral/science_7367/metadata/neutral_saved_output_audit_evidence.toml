@@ -1,0 +1,60 @@
+all_passed = true
+combined_gpu_evidence_sha256 = "55138ed4123e656e2bc595cff1320fb3073f42bddd10402ef220bbe4c458ac02"
+combined_gpu_gate_directory = "/shared/home/greg/review-coordination/surface-layer-flux-schedule-gpu-validation-v3-20260921-1806"
+corrected_diagnostic_adaptation_sha256 = "a8d029d23d9765c76895337c6d537008c5d322f401756fc9d1eae714c9052257"
+created_utc = "2026-09-22T06:51:58.587"
+fixture_non_scientific = true
+frozen_throughput_evidence_sha256 = "579d99ee07d361684899f1f837cfbf17d3d4a2e9da0e3a1ecd8a44320b021231"
+mode = "supplemental_gpu_neutral_saved_output_audit"
+original_output_root = "/shared/home/greg/review-coordination/neutral-speed-gate-20260922-0614/output"
+original_parent_passed = false
+schema_version = 1
+scientific_completion = false
+semantic_gpu_evidence_sha256 = "47826ecbfb00dde15e281cf94bea0e98d0dc5bbbad85eaccf1b68797cc7411a1"
+source_manifest_sha256 = "d2a6c2adea31fca7b6ed370780fc319e65c5cc7418f8153efb45dca6d563920c"
+source_root = "/shared/home/greg/review-coordination/surface-layer-harness-freeze-20260921-a14c358-02a1647"
+supplemental_audit_only = true
+supplemental_auditor_sha256 = "d4ec5729c91456dcb9bd4aae36fcd5a24dc3bea1c2e9fa10beabc0e024d36a2e"
+throughput_harness_sha256 = "15acf1ea5f24c390dcf7319b1a429b7076caa3d353192bcb688173ee656c0a91"
+
+[cases.none]
+case_id = "neutral_fixture_n096_weno9_control_cfg8ddfda70a26c"
+elapsed_seconds = 113.804052857
+iterations = 126
+max_abs_actual_heat_flux_K_m_s = 0.0
+max_abs_prescribed_heat_flux_K_m_s = 0.0
+max_abs_sgs_first_supported_face_m2_s2 = 0.0
+max_abs_sgs_momentum_flux_m2_s2 = 0.0
+max_abs_sgs_theta_flux_K_m_s = 0.0
+max_abs_theta_diffusivity_m2_s = 0.0
+max_first_supported_viscosity_m2_s = 0.0
+max_scalar_guard_active_fraction = 0.0
+naive_five_hour_wall_seconds = 17070.60792855
+profile_sha256 = "56333516c40a07cf81dfce26fa64795a2d48cab6c50824e1d5d2667c182099a0"
+series_sha256 = "8d124eb4be8dbe300d0f4746a33a743c5765bdb8c48cd342bf96948d3f34f70c"
+simulated_seconds_per_wall_second = 1.0544439937546468
+
+[cases.surface_layer]
+case_id = "neutral_fixture_n096_weno9_surface_layer_t300_s1_cfg2e6b488f825d"
+elapsed_seconds = 51.405251647
+iterations = 126
+max_abs_actual_heat_flux_K_m_s = 0.0
+max_abs_prescribed_heat_flux_K_m_s = 0.0
+max_abs_sgs_first_supported_face_m2_s2 = 0.12057405710220337
+max_abs_sgs_momentum_flux_m2_s2 = 0.12057405710220337
+max_abs_sgs_theta_flux_K_m_s = 0.0
+max_abs_theta_diffusivity_m2_s = 0.0
+max_first_supported_viscosity_m2_s = 2.0833334922790527
+max_scalar_guard_active_fraction = 0.0
+naive_five_hour_wall_seconds = 7710.78774705
+profile_sha256 = "1e8b85fa9b91879e8b9492c184babc75f1fd7ff3c2716b0d018877f8b73bafb4"
+series_sha256 = "6399a776228602784645b1268e24213b1ba31664409b983689ddd1b00ce31afb"
+simulated_seconds_per_wall_second = 2.3343918404298516
+
+[original_attempt]
+original_child_exit_code = 1
+original_child_exit_sha256 = "44334abc939d955e3af82ef5a67efc8c069478b0667e2bacd2a0faf6a378d2d0"
+original_job_id = 7366
+original_log_sha256 = "99a5ff35bb85907ef31b589e0f644d2d218f0fba3b718f4eae5090e8c0be1455"
+original_throughput_evidence_sha256 = "579d99ee07d361684899f1f837cfbf17d3d4a2e9da0e3a1ecd8a44320b021231"
+original_v3_auditor_sha256 = "4b5c0bcbbefd7f1d7bd136dd849ae561dadd3a4e686d410e9693dd216e292fbc"

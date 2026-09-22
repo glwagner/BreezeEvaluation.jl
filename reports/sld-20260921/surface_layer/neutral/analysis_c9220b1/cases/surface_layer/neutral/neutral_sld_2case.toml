@@ -1,0 +1,49 @@
+schema_version = 1
+campaign = "neutral_surface_layer_bounded_2case"
+case_family = "neutral_fixed_stress_ABL"
+submission_state = "UNSUBMITTED"
+expected_case_count = 2
+runner = "cases/surface_layer/neutral/neutral_abl_case.jl"
+immutable_snapshot = "REQUIRED_AT_SUBMISSION"
+grid = [96, 96, 96]
+domain_m = [3000.0, 3000.0, 1000.0]
+duration_s = 18000.0
+seed = 1994
+advection = "WENO9"
+initial_dt_s = 0.5
+wizard_cfl = 0.7
+profile_interval_s = 600.0
+profile_record_count = 30
+final_hour_source_times_s = [15000.0, 15600.0, 16200.0, 16800.0, 17400.0, 18000.0]
+penultimate_hour_source_times_s = [11400.0, 12000.0, 12600.0, 13200.0, 13800.0, 14400.0]
+series_interval_s = 60.0
+checkpoint_interval_s = 3600.0
+prescribed_friction_velocity_m_s = 0.5
+prescribed_surface_heat_flux_K_m_s = 0.0
+wall_law = "fixed stress; no roughness or MOST law"
+inversion_base_m = 468.0
+inversion_thickness_m = 62.5
+inversion_jump_K = 8.0
+free_troposphere_gradient_K_m = 0.003
+required_completion_sentinel = "CASE_DONE"
+required_admission = ["gpu_gate", "source_hashes", "finite", "coordinates", "scheduled_times", "paired_initial_digests", "case_done"]
+
+[paired_initial_state_sha256]
+u_sha256 = "c4d7f458e5eaf617761c0a038d2c528cce90a51ca5b5b6b79267de965e5480ac"
+v_sha256 = "8fb4821696aa08647e2a8f4e6f3f650492804727d859544c05a286764b60b64c"
+theta_sha256 = "3aad12354822c5331632e532dcbefb923e257ff9a673b3144fd493f737e8b0ba"
+w_sha256 = "850cd43555630366e441e30eede43b8b1aa31913814e37ad3055db337e91a700"
+
+[[cases]]
+case_id = "neutral_n096_weno9_control"
+closure = "none"
+filter_seconds = 300.0
+support = 1
+submission_state = "UNSUBMITTED"
+
+[[cases]]
+case_id = "neutral_n096_weno9_surface_layer_t300_s1"
+closure = "surface_layer"
+filter_seconds = 300.0
+support = 1
+submission_state = "UNSUBMITTED"

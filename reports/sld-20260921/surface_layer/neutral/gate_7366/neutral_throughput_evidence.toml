@@ -1,0 +1,113 @@
+all_passed = true
+architecture = "CUDAGPU"
+authorized_scientific_duration_s = 18000.0
+created_utc = "2026-09-22T06:40:12.607"
+cuda_scalar_indexing_disabled = true
+domain_m = [3000.0, 3000.0, 1000.0]
+fixture_non_scientific = true
+grid = [96, 96, 96]
+measured_fixture_duration_s = 120.0
+mode = "gpu_neutral_throughput_fixture"
+schema_version = 1
+
+[paired_initial_state_sha256]
+theta_sha256 = "3aad12354822c5331632e532dcbefb923e257ff9a673b3144fd493f737e8b0ba"
+u_sha256 = "c4d7f458e5eaf617761c0a038d2c528cce90a51ca5b5b6b79267de965e5480ac"
+v_sha256 = "8fb4821696aa08647e2a8f4e6f3f650492804727d859544c05a286764b60b64c"
+w_sha256 = "850cd43555630366e441e30eede43b8b1aa31913814e37ad3055db337e91a700"
+
+[results.none]
+case_id = "neutral_fixture_n096_weno9_control_cfg8ddfda70a26c"
+elapsed_seconds = 113.804052857
+final_time_seconds = 120.0
+fixture_non_scientific = true
+initial_sha256 = "6c016f5bc4f6c3ec1a23ef6e0af0258a12fc2c0acda1b946fcf1add8b774763c"
+iterations = 126
+last_time_step_seconds = 1.4354288578033447
+maximum_time_step_seconds = 1.4376206398010254
+minimum_time_step_seconds = 0.550000011920929
+numeric_values_checked = 14069
+projected_five_hour_wall_seconds = 17070.60792855
+seconds_per_step = 0.9032067687063492
+series_sha256 = "8d124eb4be8dbe300d0f4746a33a743c5765bdb8c48cd342bf96948d3f34f70c"
+simulated_seconds_per_wall_second = 1.0544439937546468
+state_bounds_sha256 = "decf30cf065da64df8cc2f81762e4fcefef6297a6936c32bb9c558a7b8819782"
+statistics_sha256 = "56333516c40a07cf81dfce26fa64795a2d48cab6c50824e1d5d2667c182099a0"
+
+    [results.none.initial_state_sha256]
+    theta_sha256 = "3aad12354822c5331632e532dcbefb923e257ff9a673b3144fd493f737e8b0ba"
+    u_sha256 = "c4d7f458e5eaf617761c0a038d2c528cce90a51ca5b5b6b79267de965e5480ac"
+    v_sha256 = "8fb4821696aa08647e2a8f4e6f3f650492804727d859544c05a286764b60b64c"
+    w_sha256 = "850cd43555630366e441e30eede43b8b1aa31913814e37ad3055db337e91a700"
+
+[results.surface_layer]
+case_id = "neutral_fixture_n096_weno9_surface_layer_t300_s1_cfg2e6b488f825d"
+elapsed_seconds = 51.405251647
+final_time_seconds = 120.0
+fixture_non_scientific = true
+initial_sha256 = "d59bc25d9a2df31e413fe34dada1087b4c8d9682274d6fdb139d61af156ed464"
+iterations = 126
+last_time_step_seconds = 1.4357101917266846
+maximum_time_step_seconds = 1.4377390146255493
+minimum_time_step_seconds = 0.550000011920929
+numeric_values_checked = 15499
+projected_five_hour_wall_seconds = 7710.78774705
+seconds_per_step = 0.4079781876746032
+series_sha256 = "6399a776228602784645b1268e24213b1ba31664409b983689ddd1b00ce31afb"
+simulated_seconds_per_wall_second = 2.3343918404298516
+state_bounds_sha256 = "6a0d53303ecb0c72fc1b3034b71ce9658e6a88c761dcbb3473519e0d851225d4"
+statistics_sha256 = "1e8b85fa9b91879e8b9492c184babc75f1fd7ff3c2716b0d018877f8b73bafb4"
+
+    [results.surface_layer.initial_state_sha256]
+    theta_sha256 = "3aad12354822c5331632e532dcbefb923e257ff9a673b3144fd493f737e8b0ba"
+    u_sha256 = "c4d7f458e5eaf617761c0a038d2c528cce90a51ca5b5b6b79267de965e5480ac"
+    v_sha256 = "8fb4821696aa08647e2a8f4e6f3f650492804727d859544c05a286764b60b64c"
+    w_sha256 = "850cd43555630366e441e30eede43b8b1aa31913814e37ad3055db337e91a700"
+
+[warmup.none]
+case_id = "neutral_fixture_n096_weno9_control_cfgae2baee299ed"
+elapsed_seconds = 150.585108589
+final_time_seconds = 1.0
+fixture_non_scientific = true
+initial_sha256 = "12df6bf9c260b64c3d08271572f3fedcec95784af25b1172f9db9de9794cb462"
+iterations = 2
+last_time_step_seconds = 0.550000011920929
+maximum_time_step_seconds = 0.550000011920929
+minimum_time_step_seconds = 0.550000011920929
+numeric_values_checked = 9146
+projected_five_hour_wall_seconds = 2.710531954602e6
+seconds_per_step = 75.2925542945
+series_sha256 = "c7adf72e8c2e40a0b13c3ad9ad6adf719b829861a7df2807cbd043fe3c876865"
+simulated_seconds_per_wall_second = 0.006640762883993753
+state_bounds_sha256 = "b3823ab4972b4f6de32d1e05c39a5c120c4bae4496e0e65770e34c18919bb1bc"
+statistics_sha256 = "49c3aebde662e4f688a10faf149f9c908a9d84f77d248ee8dcfedfc36c8c9445"
+
+    [warmup.none.initial_state_sha256]
+    theta_sha256 = "3aad12354822c5331632e532dcbefb923e257ff9a673b3144fd493f737e8b0ba"
+    u_sha256 = "c4d7f458e5eaf617761c0a038d2c528cce90a51ca5b5b6b79267de965e5480ac"
+    v_sha256 = "8fb4821696aa08647e2a8f4e6f3f650492804727d859544c05a286764b60b64c"
+    w_sha256 = "850cd43555630366e441e30eede43b8b1aa31913814e37ad3055db337e91a700"
+
+[warmup.surface_layer]
+case_id = "neutral_fixture_n096_weno9_surface_layer_t300_s1_cfg40ededaeb043"
+elapsed_seconds = 98.048595553
+final_time_seconds = 1.0
+fixture_non_scientific = true
+initial_sha256 = "ccb85ce7a2a8cae76d9761fa1095d496467eb2d79cf453218483060f4b00c496"
+iterations = 2
+last_time_step_seconds = 0.550000011920929
+maximum_time_step_seconds = 0.550000011920929
+minimum_time_step_seconds = 0.550000011920929
+numeric_values_checked = 9666
+projected_five_hour_wall_seconds = 1.764874719954e6
+seconds_per_step = 49.0242977765
+series_sha256 = "9abfd3aaa9f6d19356778919dea5feba3fa6332daba48ce81ed01fc931acb227"
+simulated_seconds_per_wall_second = 0.010199024212024043
+state_bounds_sha256 = "5ff8c8edccf4d2409f174ea3a8a2291d24101b29790b108d7393c025ec370054"
+statistics_sha256 = "5cbc4765658616ecb1dc293c833a2b6a2df4ed0b82541e0993c648e2e9d49c81"
+
+    [warmup.surface_layer.initial_state_sha256]
+    theta_sha256 = "3aad12354822c5331632e532dcbefb923e257ff9a673b3144fd493f737e8b0ba"
+    u_sha256 = "c4d7f458e5eaf617761c0a038d2c528cce90a51ca5b5b6b79267de965e5480ac"
+    v_sha256 = "8fb4821696aa08647e2a8f4e6f3f650492804727d859544c05a286764b60b64c"
+    w_sha256 = "850cd43555630366e441e30eede43b8b1aa31913814e37ad3055db337e91a700"

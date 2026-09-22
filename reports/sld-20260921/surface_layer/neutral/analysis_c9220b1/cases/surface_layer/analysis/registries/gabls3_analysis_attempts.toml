@@ -1,0 +1,74 @@
+schema_version = 1
+study = "gabls3_surface_layer_bounded_4case"
+case_family = "GABLS3"
+scientific_registry_relative = "cases/surface_layer/registries/gabls3_sld_4case.toml"
+scientific_registry_sha256 = "5e36340edab0b21efd2badb2696c425910805aeae3d25bbe36024cae489b52be"
+source_freeze_root = "/shared/home/greg/review-coordination/surface-layer-harness-freeze-20260921-131ad9b-02a1647"
+source_freeze_manifest_sha256 = "1cc45c554fe4675a5ffde2dc6bfe70953d9c5294f9df4e6fe76b6f1f033886ac"
+source_freeze_manifest_entries = 762
+source_evaluation_commit = "131ad9be2cf58340cdfaf94029bdec290f6aa8ea"
+source_breeze_commit = "02a16478869abf556a464f0874925510bb7c233c"
+gpu_validation_evidence_directory = "UNASSIGNED"
+analysis_freeze_root = "UNASSIGNED"
+analysis_freeze_manifest_sha256 = "UNASSIGNED"
+expected_case_count = 4
+
+[[attempts]]
+case_id = "n064_weno9_none"
+registry_index = 1
+active_attempt_id = "UNASSIGNED"
+active = false
+attempt_state = "UNSUBMITTED"
+scientific_candidate = false
+fixture_kind = "none"
+run_directory = "UNASSIGNED"
+log_path = "UNASSIGNED"
+job_spec = "UNASSIGNED"
+log_sha256 = "UNASSIGNED"
+attempt_started_sha256 = "UNASSIGNED"
+case_done_sha256 = "UNASSIGNED"
+
+[[attempts]]
+case_id = "n064_weno9_surface_layer_t100_s1"
+registry_index = 2
+active_attempt_id = "UNASSIGNED"
+active = false
+attempt_state = "UNSUBMITTED"
+scientific_candidate = false
+fixture_kind = "none"
+run_directory = "UNASSIGNED"
+log_path = "UNASSIGNED"
+job_spec = "UNASSIGNED"
+log_sha256 = "UNASSIGNED"
+attempt_started_sha256 = "UNASSIGNED"
+case_done_sha256 = "UNASSIGNED"
+
+[[attempts]]
+case_id = "n064_weno9_surface_layer_t300_s1"
+registry_index = 3
+active_attempt_id = "UNASSIGNED"
+active = false
+attempt_state = "UNSUBMITTED"
+scientific_candidate = false
+fixture_kind = "none"
+run_directory = "UNASSIGNED"
+log_path = "UNASSIGNED"
+job_spec = "UNASSIGNED"
+log_sha256 = "UNASSIGNED"
+attempt_started_sha256 = "UNASSIGNED"
+case_done_sha256 = "UNASSIGNED"
+
+[[attempts]]
+case_id = "n064_weno9_surface_layer_t300_s2"
+registry_index = 4
+active_attempt_id = "UNASSIGNED"
+active = false
+attempt_state = "UNSUBMITTED"
+scientific_candidate = false
+fixture_kind = "none"
+run_directory = "UNASSIGNED"
+log_path = "UNASSIGNED"
+job_spec = "UNASSIGNED"
+log_sha256 = "UNASSIGNED"
+attempt_started_sha256 = "UNASSIGNED"
+case_done_sha256 = "UNASSIGNED"

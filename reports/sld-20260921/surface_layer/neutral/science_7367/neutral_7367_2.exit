@@ -1,0 +1,12 @@
+schema_version=1
+array_job_id=7367
+slurm_job_id=7367
+task_id=2
+case_id=neutral_n096_weno9_surface_layer_t300_s1
+started_utc=2026-09-22T07:31:23Z
+finished_utc=2026-09-22T07:46:54Z
+child_exit_code=3
+wrapper_sha256=3bb1dfc34e4288604aaaad1c23cd828964a7e2f5917d88297cc27b99dafbceae
+source_manifest_sha256=d2a6c2adea31fca7b6ed370780fc319e65c5cc7418f8153efb45dca6d563920c
+supplemental_saved_output_sha256=c3c44a8a6c71a5b8e0166dc26477e18ab823c708d75faabe0b367ba8a13bec7c
+record_complete=true

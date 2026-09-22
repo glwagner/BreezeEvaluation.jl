@@ -1,0 +1,34 @@
+{
+  "neutral_n096_weno9_control": {
+    "final_hour": {
+      "first_face_skewness": 0.6148032837499497,
+      "first_face_w2": 0.09208770841360092,
+      "first_face_w3": 0.017180613862971466,
+      "integrated_tke": 259.99802435196926,
+      "peak_w2": 0.1914906551440557
+    },
+    "penultimate_hour": {
+      "first_face_skewness": 0.5879298991510431,
+      "first_face_w2": 0.09271920224030812,
+      "first_face_w3": 0.016598929340640705,
+      "integrated_tke": 202.46086736303448,
+      "peak_w2": 0.19012915343046188
+    }
+  },
+  "neutral_n096_weno9_surface_layer_t300_s1": {
+    "final_hour": {
+      "first_face_skewness": -0.13449553706025152,
+      "first_face_w2": 0.03060592586795489,
+      "first_face_w3": -0.0007201387100697806,
+      "integrated_tke": 319.83843679568554,
+      "peak_w2": 0.2447951709230741
+    },
+    "penultimate_hour": {
+      "first_face_skewness": -0.1466059589459803,
+      "first_face_w2": 0.030738133005797863,
+      "first_face_w3": -0.0007900741475168616,
+      "integrated_tke": 231.7437897434521,
+      "peak_w2": 0.2427531505624453
+    }
+  }
+}

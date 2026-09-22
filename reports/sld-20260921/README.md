@@ -60,3 +60,9 @@ Use Julia to run surface_layer/resolved_factor3/compare.jl, plot_comparison.jl a
 ## Corrected GABLS3 results, 22 September 2026
 
 The earlier GABLS3 queue statement above is historical. All four corrected 9-hour cases passed strict collection and independent physical-flux audits. [Read the new comparison](surface_layer/gabls3/results.md) or its [eight-page PDF](surface_layer/gabls3/sld_results_section.pdf). During 03–04 UTC, SLD suppresses first-face w² by 88–96%; during 08–09 UTC it remains 28–35% lower while integrated resolved TKE is 30–36% higher than the control. This is a matched sensitivity comparison, not an observational fidelity ranking. Full exported histories, exact manifests, audit evidence, Julia plots and summaries are in `surface_layer/gabls3/`. Historical DYCOMS/GABLS1 results remain preserved.
+
+## Neutral fixed-stress ABL: completed matched pair
+
+[Neutral results](surface_layer/neutral/results.md) compare WENO9 control with one-face/300 s SurfaceLayerDiffusivity on a 96³ grid. Both five-hour solver outputs passed independent saved-output admission, despite preserved postprocessing-only code-3 batch failures. During 4–5 h, first-face w² decreases66.8% and skewness changes +0.615 to -0.134; integrated resolved TKE increases23.0%. One seed and an evolving layer do not establish accuracy or equilibrium. Julia source, verified CSVs, acceptance/failure evidence and raw-data manifests accompany the results. The master now has81pages and the brief34pages; all historical material remains.
+
+Regenerate figures with `julia --project=julia surface_layer/neutral/plot_results.jl`, then the neutral text section with `julia --project=julia surface_layer/neutral/build_report.jl`. The complete histories and manifests are included; remote raw JLD2/checkpoints remain hash-addressed.
