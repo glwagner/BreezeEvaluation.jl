@@ -36,4 +36,19 @@ const Saved = NeutralSavedScienceAudit
         @test audited["record_audit"]["checkpoint_records"] == 6
         @test audited["physics_audit"]["maximum_theta_sgs_flux_K_m_s"] == 0
     end
+    evidence_directory = "/shared/home/greg/review-coordination/neutral-7367-saved-science-audit-v1-20260922"
+    @test Saved.validate_saved_evidence(evidence_directory)["scientific_admission"] === false
+    @test_throws ErrorException Saved.validate_root_acceptance(evidence_directory)
+    mktempdir() do temporary
+        @test_throws ErrorException Saved.validate_saved_evidence(temporary)
+        evidence_name = "neutral_saved_science_audit.toml"
+        done_name = "NEUTRAL_SAVED_SCIENCE_AUDIT_DONE"
+        cp(joinpath(evidence_directory, evidence_name),
+           joinpath(temporary, evidence_name))
+        cp(joinpath(evidence_directory, done_name), joinpath(temporary, done_name))
+        open(joinpath(temporary, evidence_name), "a") do io
+            println(io, "# altered copied evidence")
+        end
+        @test_throws ErrorException Saved.validate_saved_evidence(temporary)
+    end
 end
