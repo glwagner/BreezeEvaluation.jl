@@ -147,6 +147,8 @@ function build_simulation(; run_directory=pwd())
     filter_seconds = parse(Float64, get(ENV, "GABLS1_SLD_FILTER_SECONDS", "300"))
     support = parse(Int, get(ENV, "GABLS1_SLD_SUPPORT", "1"))
     resolved_flux_factor = parse(Float64, get(ENV, "GABLS1_SLD_RESOLVED_FLUX_FACTOR", "1"))
+    resolved_transport = environment_choice("GABLS1_SLD_RESOLVED_TRANSPORT",
+                                            ("covariance", "scheme_native"), "covariance")
     isfinite(resolved_flux_factor) && resolved_flux_factor >= 0 ||
         error("GABLS1_SLD_RESOLVED_FLUX_FACTOR must be finite and nonnegative")
     filter_seconds > 0 || error("GABLS1_SLD_FILTER_SECONDS must be positive")
@@ -186,6 +188,7 @@ function build_simulation(; run_directory=pwd())
     scheme = WENO(order=9)
     closure = closure_name == "surface_layer" ? SurfaceLayerDiffusivity(FT;
         filter_timescale=filter_seconds, support, resolved_flux_factor,
+        resolved_transport=Symbol(resolved_transport),
         minimum_scalar_fluxes=(ρθ=FT(1e-8),)) : nothing
 
     model = AtmosphereModel(grid; dynamics, coriolis, microphysics=nothing,
@@ -216,9 +219,11 @@ function build_simulation(; run_directory=pwd())
     if closure_name == "surface_layer" && haskey(ENV, "GABLS1_SLD_RESOLVED_FLUX_FACTOR")
         closure_id *= "_rf" * replace(string(resolved_flux_factor), "." => "p")
     end
+    resolved_transport == "scheme_native" && (closure_id *= "_native")
     case_id = @sprintf("gabls1_n%03d_weno9_%s", nx, closure_id)
     mkpath(run_directory)
-    settings = (; nx, spacing, closure_name, filter_seconds, support, resolved_flux_factor, stop_time,
+    settings = (; nx, spacing, closure_name, filter_seconds, support, resolved_flux_factor,
+        resolved_transport, stop_time,
         seed, theta_initial_sha256, initial_dt, wizard_cfl=0.7,
         architecture=summary(architecture),
         diagnostics_enabled, surface_law_source=FROZEN_SURFACE_LAW)

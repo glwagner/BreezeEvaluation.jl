@@ -33,6 +33,9 @@ function install_gabls1_surface_layer_diagnostics!(simulation;
         resolved_flux_factor=hasproperty(simulation.model.closure, :resolved_flux_factor) ?
             simulation.model.closure.resolved_flux_factor : 1.0,
         resolved_flux_factor_scope="closure deficit only; physical covariance and diagnostic fluxes are unscaled",
+        resolved_transport=hasproperty(simulation.model.closure, :resolved_transport) ?
+            (simulation.model.closure.resolved_transport isa Val{:scheme_native} ?
+                "scheme_native" : "covariance") : "none",
         diagnostic_case="GABLS1 matched SurfaceLayerDiffusivity evaluation",
         sgs_flux_diagnostic_definition="For SurfaceLayerDiffusivity, evaluate the full constitutive vertical flux with explicit-discretization operators for output only; the model retains vertically implicit diffusion",
         initial_profile_definition="separate instantaneous record at t=0",

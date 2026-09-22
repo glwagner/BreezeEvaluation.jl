@@ -45,6 +45,8 @@ try
         else
             pop!(ENV, "GABLS1_SLD_RESOLVED_FLUX_FACTOR", nothing)
         end
+        ENV["GABLS1_SLD_RESOLVED_TRANSPORT"] =
+            get(case, "resolved_transport", "covariance")
         ENV["GABLS1_SLD_STOP_SECONDS"] = string(registry["duration_s"])
         ENV["GABLS1_SLD_SEED"] = string(registry["seed"])
         ENV["GABLS1_SLD_DIAGNOSTICS"] = "1"

@@ -35,6 +35,8 @@ function surface_layer_diagnostic_outputs(model)
         return (; profiles=NamedTuple(), series=NamedTuple(), metadata=(;
             surface_layer_diffusivity_available=false))
 
+    closure = model.closure
+
     profiles = (; surface_layer_viscosity=plane_mean(closure_fields.Kᵘ))
     series = (;
         surface_layer_filtered_surface_u_flux=
@@ -80,6 +82,23 @@ function surface_layer_diagnostic_outputs(model)
                   plane_mean(closure_fields.momentum_active[slot]),
               Symbol(prefix, "viscosity_cap_fraction") =>
                   plane_mean(closure_fields.viscosity_cap_active[slot])))
+        if closure.resolved_transport isa Val{:scheme_native}
+            series = merge(series, (;
+                Symbol(prefix, "scheme_u_flux") =>
+                    plane_mean(closure_fields.scheme_u_flux[slot]),
+                Symbol(prefix, "scheme_v_flux") =>
+                    plane_mean(closure_fields.scheme_v_flux[slot]),
+                Symbol(prefix, "numerical_u_correction") =>
+                    plane_mean(closure_fields.numerical_u_correction[slot]),
+                Symbol(prefix, "numerical_v_correction") =>
+                    plane_mean(closure_fields.numerical_v_correction[slot]),
+                Symbol(prefix, "reconstructed_u_flux") =>
+                    plane_mean(Field(closure_fields.resolved_u_flux[slot] +
+                                     closure_fields.numerical_u_correction[slot])),
+                Symbol(prefix, "reconstructed_v_flux") =>
+                    plane_mean(Field(closure_fields.resolved_v_flux[slot] +
+                                     closure_fields.numerical_v_correction[slot]))))
+        end
         if slot == 1
             series = merge(series, (;
                 surface_layer_face1_momentum_deficit_zero_fraction=
@@ -121,6 +140,16 @@ function surface_layer_diagnostic_outputs(model)
                       plane_mean(closure_fields.scalar_active[name][slot]),
                   Symbol(prefix, "cap_fraction") =>
                       plane_mean(closure_fields.diffusivity_cap_active[name][slot])))
+            if closure.resolved_transport isa Val{:scheme_native}
+                series = merge(series, (;
+                    Symbol(prefix, "scheme_flux") =>
+                        plane_mean(closure_fields.scheme_scalar_flux[name][slot]),
+                    Symbol(prefix, "numerical_correction") =>
+                        plane_mean(closure_fields.numerical_scalar_correction[name][slot]),
+                    Symbol(prefix, "reconstructed_flux") =>
+                        plane_mean(Field(closure_fields.resolved_scalar_flux[name][slot] +
+                                         closure_fields.numerical_scalar_correction[name][slot]))))
+            end
             if slot == 1 && name == :ρθ
                 series = merge(series, (;
                     surface_layer_face1_ρθ_deficit_zero_fraction=
@@ -133,7 +162,6 @@ function surface_layer_diagnostic_outputs(model)
         end
     end
 
-    closure = model.closure
     z_faces = collect(znodes(model.grid, Center(), Center(), Face()))
     FT = eltype(model.grid)
     support_weights = (one(FT), closure.support == 2 ? FT(0.5) : zero(FT))
@@ -152,6 +180,9 @@ function surface_layer_diagnostic_outputs(model)
         surface_layer_maximum_diffusivity=closure.maximum_diffusivity,
         surface_layer_filter_timing="updated once per accepted step from completed-step state and contemporaneous wall operands; coefficients have a one-completed-step lag",
         surface_layer_covariance_definition="stable exponentially weighted centered recurrence; raw product means do not drive the closure",
+        surface_layer_resolved_transport=closure.resolved_transport isa Val{:scheme_native} ?
+            "scheme_native" : "covariance",
+        surface_layer_scheme_native_definition="stable filtered covariance plus filtered instantaneous operator-flux-minus-centered-product correction; sampled at accepted steps, not RK-stage-integrated",
         surface_layer_mean_transport_definition="horizontal mean of each local filtered mean product, for example <ubar_T wbar_T>_xy; never product of horizontal averages",
         surface_layer_friction_velocity_definition="compute local ustar from the filtered local wall-stress vector, then horizontally average local ustar",
         surface_layer_momentum_flux_units="m2 s-2",

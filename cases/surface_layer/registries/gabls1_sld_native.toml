@@ -1,0 +1,25 @@
+schema_version = 1
+campaign = "gabls1_surface_layer_scheme_native_flux"
+case_family = "GABLS1"
+submission_state = "UNSUBMITTED"
+expected_case_count = 1
+runner = "cases/surface_layer/gabls1/gabls1_case.jl"
+immutable_snapshot = "REQUIRED_AT_SUBMISSION"
+original_gabls1_15case_registry_unchanged = true
+grid = [32, 32, 32]
+domain_m = [400.0, 400.0, 400.0]
+duration_s = 32400.0
+seed = 123
+paired_initial_theta_sha256 = "1f5db33f2971ee607ac46b1a014b038a09fc876cc1669394dce023a9aa2f198b"
+required_completion_sentinel = "CASE_DONE"
+required_admission = ["source_hashes", "finite", "coordinates", "scheduled_times", "initial_digest", "case_done", "scheme_native_flux"]
+interpretation = "A matched factor-one SLD experiment replacing local filtered covariance in the deficit with stable covariance plus filtered scheme-native correction. Operator flux is sampled at accepted states, not RK-stage integrated. Historical factor-one output is the control."
+
+[[cases]]
+case_id = "gabls1_n032_weno9_surface_layer_t300_s1_rf1p0_native"
+closure = "surface_layer"
+filter_seconds = 300.0
+support = 1
+resolved_flux_factor = 1.0
+resolved_transport = "scheme_native"
+submission_state = "UNSUBMITTED"
