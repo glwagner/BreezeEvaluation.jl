@@ -1,0 +1,36 @@
+analysis_freeze_manifest_sha256 = "818b06d6ed93968232d8ea3049e2098b3fbbbd2c2b1764f1cdc8f3103769709b"
+analysis_freeze_root = "/shared/home/greg/review-coordination/sld-factor3-freeze-20260922-v1"
+case_family = "GABLS1"
+expected_case_count = 1
+gpu_validation_evidence_directory = "/shared/home/greg/review-coordination/gabls1-sld-factor3-20260922-v1/gpu_gate"
+schema_version = 1
+scientific_registry_relative = "cases/surface_layer/registries/gabls1_sld_factor3.toml"
+scientific_registry_sha256 = "e6afbb08e7af4995df8611578121d3304d81986c0b809ffe9938c2bb958f154a"
+source_breeze_commit = "1df78f2bb94db159e3a296f7439e1a5e90286014"
+source_evaluation_commit = "b9c31029929650c61040a5a20f9699de9a457978"
+source_freeze_manifest_entries = 786
+source_freeze_manifest_sha256 = "818b06d6ed93968232d8ea3049e2098b3fbbbd2c2b1764f1cdc8f3103769709b"
+source_freeze_root = "/shared/home/greg/review-coordination/sld-factor3-freeze-20260922-v1"
+study = "gabls1_surface_layer_resolved_flux_factor3"
+
+[[attempts]]
+active = true
+active_attempt_id = "slurm-7348-1"
+attempt_started_sha256 = "470a523bc2f09917a5c610aa9ed6b94a8efcf8a910b1e98fb193b72d122c924a"
+attempt_state = "completed_candidate"
+batch_child_exit_code = 0
+batch_exit_record_path = "/shared/home/greg/review-coordination/gabls1-sld-factor3-20260922-v1/logs/gabls1_factor3_7348.exit"
+batch_exit_record_sha256 = "5357448f79251de194c6cf42cc2cb3d83f09dd302ac903c6455e320968e3d60a"
+batch_slurm_job_id = "7348"
+case_done_sha256 = "2a5b3829fac8791a9d98a4764b16d2bf9a8b581f13205f0e9dfa5e2c84dc0a53"
+case_id = "gabls1_n032_weno9_surface_layer_t300_s1_rf3p0"
+fixture_kind = "none"
+job_spec = "7348"
+launch_wrapper_path = "/shared/home/greg/review-coordination/sld-factor3-freeze-20260922-v1/source/BreezeEvaluation.jl/cases/surface_layer/registries/run_factor3.slurm"
+launch_wrapper_sha256 = "8f506996aa3ef5015000ba758ed3a3f681e1963bba31716a25770439a66e9524"
+log_path = "/shared/home/greg/review-coordination/gabls1-sld-factor3-20260922-v1/logs/gabls1_factor3_7348.out"
+log_sha256 = "e19722ffd5fca2998c684a8ba11175f3807fb209ac99ab478f9f2135868499d6"
+registry_index = 1
+resolved_flux_factor = 3.0
+run_directory = "/shared/home/greg/review-coordination/gabls1-sld-factor3-20260922-v1/runs/gabls1_n032_weno9_surface_layer_t300_s1_rf3p0"
+scientific_candidate = true

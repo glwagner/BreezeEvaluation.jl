@@ -1,0 +1,48 @@
+all_passed = true
+architecture = "CUDAGPU"
+case_family = "GABLS1"
+changed_path_checks_passed = true
+completed_utc = "2026-09-22T00:54:54.572"
+cuda_functional = true
+cuda_scalar_indexing_disabled = true
+factors = [3.0]
+freeze_root = "/shared/home/greg/review-coordination/sld-factor3-freeze-20260922-v1"
+freeze_source_manifest_entries = 786
+freeze_source_manifest_sha256 = "818b06d6ed93968232d8ea3049e2098b3fbbbd2c2b1764f1cdc8f3103769709b"
+observers_are_read_only = true
+passed_checks = 4424
+scientific_output = false
+validation_mode = "gpu_factor3"
+zero_fraction_contract_passed = true
+
+[restart.3]
+checkpoint_bytes = 140501
+checkpoint_sha256 = "ed362b34f625bb51d8d6ec97a411373e55e35bbe642a1e3f48f37dbc4937f36b"
+
+[[runners]]
+accepted_filter_iterations_observed = 1905
+case_id = "gabls1_n032_weno9_surface_layer_t300_s1_rf3p0"
+end_time_s = 1800.0
+factor = 3.0
+
+[source_sha256]
+"cases/surface_layer/diagnostics/SurfaceLayerDiagnostics.jl" = "078cf8e288d96d9f982d00f546e3efa63bed4894f4b2535b78aa38c9a80b77d6"
+"cases/surface_layer/gabls1/gabls1_case.jl" = "4657ea4b8ebb41e466dcb7ad5a214b8861c73daa136adb4409354cf9f0fa939b"
+"cases/surface_layer/gpu_validation/audit_resolved_factor_outputs.jl" = "571eb80a78541d7471082a2b606a45be31a28e89de36f31a8ac7e08d1f0ebaf2"
+"cases/surface_layer/gpu_validation/factor10_zero_fraction_contract.jl" = "567283f454ec68417341d558e97ad19d6b3db82436b7767ce03a323b6679e230"
+"cases/surface_layer/gpu_validation/validate_factor10.jl" = "6ee2b3205746bbe8315a06083df60f1605deb17c65181a35fbcea24ace67b0df"
+"cases/surface_layer/gpu_validation/validate_factor3.jl" = "7715dca07e0f308ba19cd310ff9722eee47fdf443c55131ebcad92fd38444221"
+"cases/surface_layer/gpu_validation/validate_surface_layer.jl" = "b7fbb5108acc4f983920533f520c198578529646051b83a23f5c4131bf7317c2"
+"cases/surface_layer/registries/gabls1_sld_factor3.toml" = "e6afbb08e7af4995df8611578121d3304d81986c0b809ffe9938c2bb958f154a"
+
+[zero_fraction_contract]
+surface_layer_face1_momentum_active_fraction = 0.75
+surface_layer_face1_momentum_deficit_zero_fraction = 0.25
+surface_layer_face1_momentum_valid_zero_deficit_fraction = 0.25
+surface_layer_face1_viscosity_cap_fraction = 0.25
+surface_layer_face1_viscosity_zero_fraction = 0.5
+"surface_layer_face1_ρθ_active_fraction" = 0.5
+"surface_layer_face1_ρθ_cap_fraction" = 0.25
+"surface_layer_face1_ρθ_deficit_zero_fraction" = 0.5
+"surface_layer_face1_ρθ_diffusivity_zero_fraction" = 0.75
+"surface_layer_face1_ρθ_valid_zero_deficit_fraction" = 0.25

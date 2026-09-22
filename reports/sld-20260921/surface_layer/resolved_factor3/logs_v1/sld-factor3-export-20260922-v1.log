@@ -1,0 +1,8 @@
+Test Summary:                            | Pass  Total   Time
+Surface-layer scientific export plumbing |   20     20  12.0s
+Test Summary:                                            | Pass  Total  Time
+Strict schedule, finite, shape, and completion rejection |   10     10  1.2s
+Test Summary:                         | Pass  Total  Time
+Hash and registry admission rejection |   14     14  1.2s
+Test Summary:              | Pass  Total  Time
+SLD variable/unit contract |   27     27  0.1s

@@ -1,0 +1,16 @@
+admitted_count = 1
+attempts_sha256 = "4b8627478204afcaf50360a90aac27ac36268f8c3bb9404c57897a468204a3ca"
+audit_source_sha256 = "ae2f0b16d662b03a40aa487a66bde3c70f2d43a4115a148122fa73ecc8a3c67e"
+batch_child_exit_code = 0
+case_id = "gabls1_n032_weno9_surface_layer_t300_s1_rf3p0"
+cpu_evidence_sha256 = "c92ef8bd5f37e4900ea1fe872d5d5ea58ff463a3d3496e2a54691793945e454f"
+fractions_finite_in_unit_interval_and_consistent = true
+gpu_evidence_sha256 = "e2023069d0527ad7efa2a490a6765e18392ff29fdfd263923c8e7b240bfc0c98"
+local_output_checksums_verified = true
+manifest_sha256 = "9d5fb08a8827501733a772f06d45603ccb8c2388b4beceb4d952c5ebca1e46f1"
+maximum_interior_flux_partition_residual = 9.685754776000977e-8
+native_vertical_shapes_verified = true
+profile_times_verified = 19
+rejected_count = 0
+series_times_verified = 541
+source_manifest_sha256 = "818b06d6ed93968232d8ea3049e2098b3fbbbd2c2b1764f1cdc8f3103769709b"

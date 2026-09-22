@@ -1,0 +1,14 @@
+admitted_count = 1
+attempt_registry_path = "/shared/home/greg/review-coordination/gabls1-sld-factor3-20260922-v1/attempts.toml"
+attempt_registry_sha256 = "4b8627478204afcaf50360a90aac27ac36268f8c3bb9404c57897a468204a3ca"
+case_family = "GABLS1"
+expected_cases = 1
+generated_utc = "2026-09-22T03:11:45.979"
+rejected = []
+rejected_count = 0
+schema_version = 1
+
+[[admitted]]
+case_id = "gabls1_n032_weno9_surface_layer_t300_s1_rf3p0"
+directory = "/shared/home/greg/review-coordination/gabls1-sld-factor3-20260922-v1/analysis_export/gabls1_n032_weno9_surface_layer_t300_s1_rf3p0"
+manifest_sha256 = "9d5fb08a8827501733a772f06d45603ccb8c2388b4beceb4d952c5ebca1e46f1"

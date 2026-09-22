@@ -47,3 +47,12 @@ julia --project=julia surface_layer/gabls1/build_brief.jl
 The reported combined flux is covariance+constitutiveSGS, excluding the scheme-native WENO reconstruction correction. The proposed reconstruction experiment is on hold until Greg reviews factor10.
 
 Reproduce with Julia: run surface_layer/resolved_factor10/compare.jl, plot_comparison.jl, build_report.jl, then surface_layer/gabls1/build_brief.jl after snapshot verification.
+
+
+## Factor 3 and completed original GABLS1 matrix
+
+[Factor1 versus3 findings](surface_layer/resolved_factor3/results.md) · [Illustrated comparison](surface_layer/resolved_factor3/factor_results_section.pdf). The new plots show only factors1 and3 with the fixed1m reference where available; historical factor2/10 sections and data remain intact. Final-hour first-face w² rises from0.00817 to0.06073m²/s²; factor3 viscosity is zero at98.4733% of saved point-times and heat diffusivity at99.9756%. This is strong sensitivity to the assumed credit, not a numerical-flux measurement.
+
+The original GABLS1 matrix is now complete:15 admitted cases,0 rejected. Updated13figure sets and summary/audit are in gabls/. The final1m Smagorinsky case has peak w²0.09851m²/s²; all original compact data are persisted on the repository main branch. GABLS3 control completed; the three closure cases are released and awaiting resources.
+
+Use Julia to run surface_layer/resolved_factor3/compare.jl, plot_comparison.jl and build_report.jl, then surface_layer/gabls1/build_brief.jl after snapshot verification.

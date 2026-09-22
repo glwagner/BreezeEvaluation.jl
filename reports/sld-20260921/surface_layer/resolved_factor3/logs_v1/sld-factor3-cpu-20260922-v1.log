@@ -1,0 +1,24 @@
+Precompiling packages...
+  15331.0 ms  ✓ Breeze
+  1 dependency successfully precompiled in 25 seconds. 121 already precompiled.
+[ Info: Initializing simulation...
+[ Info:     ... simulation initialization complete (607.457 ms)
+[ Info: Executing initial time step...
+[ Info:     ... initial time step complete (9.158 seconds).
+[ Info: Simulation is stopping after running for 10.080 seconds.
+[ Info: Model iteration 4 equals or exceeds stop iteration 4.
+[ Info: Initializing simulation...
+[ Info:     ... simulation initialization complete (4.391 seconds)
+[ Info: Executing initial time step...
+[ Info:     ... initial time step complete (1.316 ms).
+[ Info: Simulation is stopping after running for 4.393 seconds.
+[ Info: Model iteration 2 equals or exceeds stop iteration 2.
+[ Info: Picking up simulation from checkpoint file /shared/home/greg/review-coordination/sld-factor3-cpu-20260922-v1/restart3/serialized_dry_s1_iteration2.jld2; last modified (UTC): 2026-09-22T00:38:58
+[ Info: Initializing simulation...
+[ Info:     ... simulation initialization complete (229.127 μs)
+[ Info: Executing initial time step...
+[ Info:     ... initial time step complete (1.170 ms).
+[ Info: Simulation is stopping after running for 1.630 ms.
+[ Info: Model iteration 4 equals or exceeds stop iteration 4.
+SLD_RESTART_STATE_MISMATCH_COUNT total=0
+FACTOR3_GATE_PASS mode=cpu_factor3 checks=88
