@@ -25,7 +25,9 @@ function write_profiles(path, times, nz; metadata_available=false, bad_shape=fal
     end
 end
 
-function write_series(path, times; gabls3=false, nonfinite=false)
+function write_series(path, times; gabls3=false, nonfinite=false,
+                      mixed_final_prescribed=false, mixed_middle_prescribed=false,
+                      mixed_final_unlisted=false)
     jldopen(path, "w") do file
         file["metadata/surface_layer_diffusivity_available"] = false
         file["metadata/test_fixture"] = true
@@ -33,11 +35,16 @@ function write_series(path, times; gabls3=false, nonfinite=false)
             key = string(index)
             file["timeseries/t/$key"] = time
             value = nonfinite && index == length(times) ? Float32(Inf) : Float32(time)
+            mixed_final_unlisted && index == length(times) && (value = Float64(value))
             file["timeseries/surface_temperature/$key"] = value
             file["timeseries/surface_theta_kinematic_flux/$key"] = Float32(-0.01)
             if gabls3
-                file["timeseries/prescribed_surface_theta/$key"] = Float32(270)
-                file["timeseries/prescribed_surface_q/$key"] = Float32(0.002)
+                prescribed_type = mixed_final_prescribed || mixed_middle_prescribed ?
+                    (index == length(times) && mixed_final_prescribed ||
+                     index == 2 && mixed_middle_prescribed ? Float32 : Float64) : Float32
+                file["timeseries/prescribed_surface_pressure/$key"] = prescribed_type(102210)
+                file["timeseries/prescribed_surface_theta/$key"] = prescribed_type(270)
+                file["timeseries/prescribed_surface_q/$key"] = prescribed_type(0.002)
             end
         end
     end
@@ -74,6 +81,40 @@ function make_gabls3_fixture(root, case_id)
     write_profiles(prefix * "_profiles.jld2", GABLS3_PROFILE_TIMES, 2)
     write_series(prefix * "_series.jld2", GABLS3_SERIES_TIMES; gabls3=true)
     write_points(prefix * "_points.jld2", GABLS3_SERIES_TIMES)
+end
+
+@testset "GABLS3 final prescribed-scalar precision exception" begin
+    mktempdir() do root
+        case_id = "fixture_gabls3_final_precision"
+        run = joinpath(root, "run")
+        make_gabls3_fixture(run, case_id)
+        series_path = joinpath(run, "$(case_id)_diag_series.jld2")
+        write_series(series_path, GABLS3_SERIES_TIMES;
+                     gabls3=true, mixed_final_prescribed=true)
+        manifest = export_fixture("GABLS3", run, case_id,
+            joinpath(root, "export"), 2, 800.0, "none")
+        for name in ("prescribed_surface_pressure", "prescribed_surface_theta",
+                     "prescribed_surface_q")
+            info = manifest["series_variables"][name]
+            @test info["raw_element_type_counts"] ==
+                Dict("Float64" => 3240, "Float32" => 1)
+            @test info["final_record_float32_exception"] === true
+        end
+        @test manifest["export_verified"] === false
+    end
+    for (label, options) in (
+        ("middle_precision", (; mixed_middle_prescribed=true)),
+        ("unlisted_precision", (; mixed_final_unlisted=true)))
+        mktempdir() do root
+            case_id = "fixture_gabls3_$label"
+            run = joinpath(root, "run")
+            make_gabls3_fixture(run, case_id)
+            series_path = joinpath(run, "$(case_id)_diag_series.jld2")
+            write_series(series_path, GABLS3_SERIES_TIMES; gabls3=true, options...)
+            @test_throws ErrorException export_fixture("GABLS3", run, case_id,
+                joinpath(root, "export"), 2, 800.0, "none")
+        end
+    end
 end
 
 @testset "Surface-layer scientific export plumbing" begin

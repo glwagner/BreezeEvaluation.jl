@@ -47,6 +47,13 @@ round-trip both raw `Float32` and `Float64` diagnostic values. No time records a
 Unavailable diagnostics remain absent and are described by availability metadata; they are
 never converted to physical zero.
 
+The GABLS3 32,400 s record stores only the three prescribed surface forcing scalars
+(`pressure`, `theta`, and `q`) as `Float32`; their preceding 3,240 records are `Float64`.
+The exporter accepts precisely this final-record storage exception, retains the exact
+numeric values, and records raw element-type counts per variable in the manifest.
+Other type changes, including an earlier change or a change in another variable,
+remain admission errors.
+
 GABLS1 preserves a separate instantaneous initial profile, 18 true preceding-half-hour
 averages at 1800:1800:32400 seconds, and 541 one-minute series records. Oceananigans also
 writes an iteration-zero record into the averaged statistics file. The exporter requires

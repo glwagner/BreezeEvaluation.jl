@@ -412,7 +412,8 @@ function write_wide_csv(path, records, names, values)
     end
 end
 
-function read_series_file(path, expected_times, unit_function)
+function read_series_file(path, expected_times, unit_function;
+                          final_float32_allowed_names=())
     information = Dict{String, Any}()
     values = Dict{String, Vector{Float64}}()
     metadata = Dict{String, Any}()
@@ -426,20 +427,34 @@ function read_series_file(path, expected_times, unit_function)
             series = Float64[]
             source_shape = nothing
             source_eltype = nothing
-            for record in records
+            element_type_counts = Dict{String, Int}()
+            for (index, record) in enumerate(records)
                 raw = file["timeseries/$name/$(record.key)"]
                 shape = raw isa Number ? Int[] : collect(size(raw))
                 element_type = raw isa Number ? string(typeof(raw)) : string(eltype(raw))
                 source_shape === nothing && (source_shape = shape)
                 source_eltype === nothing && (source_eltype = element_type)
                 require_check(shape == source_shape, "$name shape changes over time")
-                require_check(element_type == source_eltype, "$name element type changes over time")
+                # At the last GABLS3 output, Oceananigans writes these three
+                # prescribed forcing scalars as Float32. Earlier records are
+                # Float64. Preserve their exact numeric values and raw types.
+                allowed_final_float32 = name in final_float32_allowed_names &&
+                    index == length(records) && record.time == 32400.0 &&
+                    source_eltype == "Float64" && element_type == "Float32" &&
+                    isempty(shape)
+                require_check(element_type == source_eltype || allowed_final_float32,
+                              "$name element type changes outside the documented final record")
+                element_type_counts[element_type] = get(element_type_counts, element_type, 0) + 1
                 push!(series, scalar_value(raw, name, record.time))
             end
             values[name] = series
             information[name] = Dict("units" => units, "records" => length(series),
                                      "all_finite" => true, "source_shape" => source_shape,
-                                     "raw_element_type" => source_eltype)
+                                     "raw_element_type" => source_eltype,
+                                     "raw_element_type_counts" => element_type_counts,
+                                     "final_record_float32_exception" =>
+                                         get(element_type_counts, "Float32", 0) == 1 &&
+                                         source_eltype == "Float64")
         end
     end
     return (; records, values, information, metadata)
@@ -746,7 +761,9 @@ function export_raw(family, run_directory, case_id, destination, nz, vertical_ex
         point_information = Dict{String, Any}()
     elseif family == "GABLS3"
         profiles = read_profile_file(paths["profiles"], GABLS3_PROFILE_TIMES, nz)
-        series = read_series_file(paths["series"], GABLS3_SERIES_TIMES, series_unit)
+        series = read_series_file(paths["series"], GABLS3_SERIES_TIMES, series_unit;
+            final_float32_allowed_names=("prescribed_surface_pressure",
+                "prescribed_surface_theta", "prescribed_surface_q"))
         points = read_series_file(paths["points"], GABLS3_SERIES_TIMES, point_unit)
         audit_closure_outputs(family, closure, profiles.data, series.values, profiles.metadata)
         write_profiles(joinpath(destination, "profiles.csv"), profiles.records,
