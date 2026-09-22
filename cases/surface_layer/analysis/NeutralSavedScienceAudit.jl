@@ -35,7 +35,7 @@ sha(path) = Neutral.sha(path)
 
 function pinned_analysis_revision(; expected_commit=nothing)
     commit = expected_commit === nothing ?
-             readchomp(read(`git -C $EVALUATION_REPOSITORY rev-parse HEAD`, String)) :
+             chomp(read(`git -C $EVALUATION_REPOSITORY rev-parse HEAD`, String)) :
              expected_commit
     hashes = Dict{String, String}()
     for relative in ANALYSIS_FILES
