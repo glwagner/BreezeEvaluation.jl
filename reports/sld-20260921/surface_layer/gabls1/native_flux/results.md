@@ -10,6 +10,10 @@ Both 7–8 h and 8–9 h profiles are shown at native model heights against the 
 
 **Mean-wind shear confirms a near-surface deficit with SLD.** Across the 6.25–18.75 m layer in the final hour, vector shear is **0.0522 s⁻¹** with scheme-native SLD and **0.0511 s⁻¹** with covariance SLD, versus **0.1004 s⁻¹** from the fixed 1 m median profiles. The no-closure run is high at **0.1861 s⁻¹**. At higher levels the differences change sign, so this is a near-surface statement rather than a uniform shear bias. The same pattern appears in 7–8 h. All model gradients are differences between adjacent 12.5 m cell-center levels; the reference median u and v profiles are sampled at those heights and differentiated with the same stencil. This is shear of the componentwise median profiles, not the median of member shears or a wall gradient. See the [shear table and method](shear_comparison.md).
 
+A focused three-treatment view adds the earlier WENO9 Smagorinsky run, whose lowest-layer vector shear is **0.1173 s⁻¹**. It is closer to the 1 m reference than either no closure or SLD at that layer, though its simulation used an earlier source revision. The [restricted comparison and log-law analysis](loglaw_comparison.md) keeps this provenance distinction explicit.
+
+The 1 m reference is **not a neutral log-law profile** over 2–30 m: a fit of horizontal speed against log height has slope 1.123 m s⁻¹ per unit log height, versus 0.654 m s⁻¹ implied by its 8–9 h mean friction velocity and κ = 0.4. GABLS1 is stably stratified, so a positive stability correction is expected. The linear stable Monin–Obukhov term reduces the residual from a neutral profile, but does not reproduce the archived median exactly. Scheme-native SLD likewise does not produce a pure neutral logarithm or an exact stable-law profile at its four near-surface velocity levels. The wall model applies a stability-corrected transfer coefficient between the surface and the first velocity level; SLD adjusts the flux at one interior face. Neither mechanism constrains the full vertical wind profile to a prescribed law. Averaged profiles, fluxes, and componentwise medians also need not satisfy a pointwise similarity relation exactly.
+
 The science job **7497** completed at 32,400 s with durable exit zero. Frozen Breeze/Evaluation source passed all 792 hash checks (manifest SHA-256 `72f1bc031503f0833a1b6969e29e2078ceef04e495b8e27cc3885a9843e35a25`); the paired initial-theta SHA-256 is `1f5db33f2971ee607ac46b1a014b038a09fc876cc1669394dce023a9aa2f198b`. Raw JLD2 audit passed exact 1/19/541 initial/profile/series schedules, native 32/33-level profiles, finite values, and covariance-plus-correction identities on both faces. The comparison uses the previously admitted factor-one output; that run was not repeated. Julia generated all figures.
 
 ![Matched profiles for two final-hour windows](figures/native_profiles.png)
@@ -20,4 +24,8 @@ The science job **7497** completed at 32,400 s with durable exit zero. Frozen Br
 
 ![GABLS1 mean-wind shear](figures/gabls1_shear.png)
 
-[Julia JLD2 audit and export](audit_export.jl) · [Julia plotting and comparison](compare_plot.jl) · [Julia shear analysis](shear_analysis.jl) · [Audit manifest](export/audit.toml) · [Full metrics](comparison_metrics.md)
+![Requested three-treatment shear comparison](figures/gabls1_shear_requested.png)
+
+![Neutral log-law residual and stable correction](figures/gabls1_loglaw.png)
+
+[Julia JLD2 audit and export](audit_export.jl) · [Julia plotting and comparison](compare_plot.jl) · [Julia shear analysis](shear_analysis.jl) · [Julia three-treatment and log-law analysis](three_way_loglaw.jl) · [Audit manifest](export/audit.toml) · [Full metrics](comparison_metrics.md)
