@@ -1,0 +1,29 @@
+schema_version = 1
+campaign = "gabls1_sld_stability_gamma2_20260923"
+case_family = "GABLS1"
+submission_state = "UNSUBMITTED"
+expected_case_count = 1
+runner = "cases/surface_layer/gabls1/gabls1_case.jl"
+immutable_snapshot = "REQUIRED_AT_SUBMISSION"
+original_gabls1_15case_registry_unchanged = true
+grid = [32, 32, 32]
+domain_m = [400.0, 400.0, 400.0]
+duration_s = 32400.0
+seed = 123
+paired_initial_theta_sha256 = "1f5db33f2971ee607ac46b1a014b038a09fc876cc1669394dce023a9aa2f198b"
+required_completion_sentinel = "CASE_DONE"
+required_admission = ["source_hashes", "finite", "coordinates", "scheduled_times", "initial_digest", "wall_filter", "sld_stability", "case_done"]
+control_case_id = "gabls1_n032_weno9_surface_layer_t300_s1_rf1p0_native_wallf300"
+control_campaign = "sld-filtered-wall-20260923-v2 (admitted; not rerun)"
+interpretation = "Matched filtered-wall one-face scheme-native SLD with the stable local Monin-Obukhov gradient correction at lambda=2 (beta_m=4.8, beta_h=7.8, the GABLS wall-law slopes). Only stability_strength differs from the admitted lambda=0 control. Not calibrated against the 1 m LES median."
+
+[[cases]]
+case_id = "gabls1_n032_weno9_surface_layer_t300_s1_rf1p0_native_stab2p0_wallf300"
+closure = "surface_layer"
+filter_seconds = 300.0
+wall_filter_seconds = 300.0
+support = 1
+resolved_flux_factor = 1.0
+resolved_transport = "scheme_native"
+stability_strength = 2.0
+submission_state = "UNSUBMITTED"
