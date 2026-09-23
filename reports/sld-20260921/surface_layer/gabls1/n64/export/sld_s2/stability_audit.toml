@@ -1,0 +1,33 @@
+records = 55
+case_id = "gabls1_n064_weno9_surface_layer_t300_s2_rf1p0_native_stab2p0_wallf300"
+support = 2
+max_upward_fraction_after_1h = 0.0
+phi_identities_pass = true
+face2_phi_identities_pass = true
+stored_inverse_length_matches_saved_fluxes = true
+
+[7-8h]
+mean_phi_h = 1.6274524968369708
+median_stable_L = 155.64146354009642
+mean_inverse_phi_m = 0.7215611463319987
+neutral_fraction = 0.0
+upward_fraction = 0.0
+mean_inverse_phi_h = 0.6146617143031828
+max_zeta = 0.0454947556136176
+mean_phi_m = 1.3861246236871618
+stable_fraction = 1.0
+mean_inverse_length = 0.00643541006659613
+mean_zeta = 0.040221312916225806
+
+[8-9h]
+mean_phi_h = 1.6708183222896575
+median_stable_L = 145.37653485837347
+mean_inverse_phi_m = 0.7079351401900761
+neutral_fraction = 0.0
+upward_fraction = 0.0
+mean_inverse_phi_h = 0.5987112371337737
+max_zeta = 0.04856764377715687
+mean_phi_m = 1.412811284705337
+stable_fraction = 1.0
+mean_inverse_length = 0.006880187751050926
+mean_zeta = 0.043001173444068286
