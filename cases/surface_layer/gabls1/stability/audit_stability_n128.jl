@@ -44,7 +44,8 @@ jldopen(path, "r") do f
         if support == 2
             φᵐ₂ = get("face2_momentum_stability_function")
             φʰ₂ = get("face2_scalar_stability_function")
-            ζ₂ = 12.5 .* max.(0, inverse_length)
+            # Face two is at 2Δz = 6.25 m here; do not reuse the 64³ 12.5 m height.
+            ζ₂ = (2z₁) .* max.(0, inverse_length)
             maximum(abs.(φᵐ₂ .- (1 .+ λ * βᵐ .* ζ₂))) < 1e-4 * maximum(φᵐ₂) || error("face2 φm identity at $t")
             maximum(abs.(φʰ₂ .- (1 .+ λ * βʰ .* ζ₂))) < 1e-4 * maximum(φʰ₂) || error("face2 φh identity at $t")
         end
