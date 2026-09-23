@@ -8,6 +8,8 @@ The closure and flow change modestly over the final hour. Mean first-face moment
 
 Both 7–8 h and 8–9 h profiles are shown at native model heights against the fixed 1 m LES median where available. Mean wind, temperature, w², w³, resolved TKE, and total u–w flux show that the scheme-native run remains close to the factor-one control. Both coarse SLD runs still depart markedly from the fixed 1 m LES reference in resolved turbulence; the reconstruction change alone does not repair that discrepancy. The 1 m median is a model intercomparison reference, not an observation.
 
+**Mean-wind shear confirms a near-surface deficit with SLD.** Across the 6.25–18.75 m layer in the final hour, vector shear is **0.0522 s⁻¹** with scheme-native SLD and **0.0511 s⁻¹** with covariance SLD, versus **0.1004 s⁻¹** from the fixed 1 m median profiles. The no-closure run is high at **0.1861 s⁻¹**. At higher levels the differences change sign, so this is a near-surface statement rather than a uniform shear bias. The same pattern appears in 7–8 h. All model gradients are differences between adjacent 12.5 m cell-center levels; the reference median u and v profiles are sampled at those heights and differentiated with the same stencil. This is shear of the componentwise median profiles, not the median of member shears or a wall gradient. See the [shear table and method](shear_comparison.md).
+
 The science job **7497** completed at 32,400 s with durable exit zero. Frozen Breeze/Evaluation source passed all 792 hash checks (manifest SHA-256 `72f1bc031503f0833a1b6969e29e2078ceef04e495b8e27cc3885a9843e35a25`); the paired initial-theta SHA-256 is `1f5db33f2971ee607ac46b1a014b038a09fc876cc1669394dce023a9aa2f198b`. Raw JLD2 audit passed exact 1/19/541 initial/profile/series schedules, native 32/33-level profiles, finite values, and covariance-plus-correction identities on both faces. The comparison uses the previously admitted factor-one output; that run was not repeated. Julia generated all figures.
 
 ![Matched profiles for two final-hour windows](figures/native_profiles.png)
@@ -16,4 +18,6 @@ The science job **7497** completed at 32,400 s with durable exit zero. Frozen Br
 
 ![Measured WENO flux correction](figures/native_partition.png)
 
-[Julia JLD2 audit and export](audit_export.jl) · [Julia plotting and comparison](compare_plot.jl) · [Audit manifest](export/audit.toml) · [Full metrics](comparison_metrics.md)
+![GABLS1 mean-wind shear](figures/gabls1_shear.png)
+
+[Julia JLD2 audit and export](audit_export.jl) · [Julia plotting and comparison](compare_plot.jl) · [Julia shear analysis](shear_analysis.jl) · [Audit manifest](export/audit.toml) · [Full metrics](comparison_metrics.md)
