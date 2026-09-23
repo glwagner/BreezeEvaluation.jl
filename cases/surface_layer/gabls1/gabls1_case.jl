@@ -144,7 +144,7 @@ function build_simulation(; run_directory=pwd())
     FT = Float32
     Oceananigans.defaults.FloatType = FT
     nx = parse(Int, get(ENV, "GABLS1_SLD_NX", "32"))
-    nx == 32 || error("the bounded SurfaceLayerDiffusivity study currently authorizes nx=32")
+    nx in (32, 64) || error("the bounded SurfaceLayerDiffusivity study authorizes nx=32 or 64")
     closure_name = environment_choice("GABLS1_SLD_CLOSURE",
                                       ("none", "surface_layer"), "none")
     filter_seconds = parse(Float64, get(ENV, "GABLS1_SLD_FILTER_SECONDS", "300"))
@@ -215,10 +215,31 @@ function build_simulation(; run_directory=pwd())
     # Reproduce the original frozen GABLS1 host initialization exactly: Float64 draws from
     # the explicitly seeded default RNG, later converted by `set!` onto the Float32 model.
     theta_initial = Array{Float64}(undef, nx, nx, nx)
-    for k in 1:nx, j in 1:nx, i in 1:nx
-        base = z[k] <= 100 ? 265.0 : 265.0 + 0.01 * (z[k] - 100)
-        perturbation = z[k] < 50 ? 0.1 * (rand() - 0.5) : 0.0
-        theta_initial[i, j, k] = base + perturbation
+    if nx == 32
+        for k in 1:nx, j in 1:nx, i in 1:nx
+            base = z[k] <= 100 ? 265.0 : 265.0 + 0.01 * (z[k] - 100)
+            perturbation = z[k] < 50 ? 0.1 * (rand() - 0.5) : 0.0
+            theta_initial[i, j, k] = base + perturbation
+        end
+        paired_coarse_theta_sha256 = bytes2hex(sha256(reinterpret(UInt8, vec(theta_initial))))
+    else
+        # Use the exact 32³ perturbation realization at both resolutions. Each coarse
+        # cell's perturbation is replicated into its eight fine cells, while the
+        # analytic background temperature is evaluated at each fine-cell height.
+        # This makes the 64³ comparison paired instead of drawing an independent field.
+        coarse_theta = Array{Float64}(undef, 32, 32, 32)
+        for k in 1:32, j in 1:32, i in 1:32
+            coarse_z = (k - 0.5) * 12.5
+            base = coarse_z <= 100 ? 265.0 : 265.0 + 0.01 * (coarse_z - 100)
+            perturbation = coarse_z < 50 ? 0.1 * (rand() - 0.5) : 0.0
+            coarse_theta[i, j, k] = base + perturbation
+        end
+        paired_coarse_theta_sha256 = bytes2hex(sha256(reinterpret(UInt8, vec(coarse_theta))))
+        for k in 1:nx, j in 1:nx, i in 1:nx
+            base = z[k] <= 100 ? 265.0 : 265.0 + 0.01 * (z[k] - 100)
+            perturbation = z[k] < 50 ? coarse_theta[cld(i, 2), cld(j, 2), cld(k, 2)] - 265.0 : 0.0
+            theta_initial[i, j, k] = base + perturbation
+        end
     end
     theta_initial_sha256 = bytes2hex(sha256(reinterpret(UInt8, vec(theta_initial))))
     set!(model, θ=theta_initial, u=FT(8), v=FT(0), w=FT(0))
@@ -250,7 +271,7 @@ function build_simulation(; run_directory=pwd())
         scalar_stability_parameter=closure_name == "surface_layer" ?
             Float64(closure.scalar_stability_parameter) : NaN,
         resolved_transport, stop_time,
-        seed, theta_initial_sha256, initial_dt, wizard_cfl=0.7,
+        seed, theta_initial_sha256, paired_coarse_theta_sha256, initial_dt, wizard_cfl=0.7,
         architecture=summary(architecture),
         diagnostics_enabled, surface_law_source=FROZEN_SURFACE_LAW)
     capture_provenance(run_directory, case_id, settings)
@@ -292,14 +313,20 @@ function build_simulation(; run_directory=pwd())
     if closure_name == "surface_layer"
         # Local (unaveraged) stability state of every column for independent audit.
         closure_fields = model.closure_fields
-        simulation.output_writers[:sld_stability] = JLD2Writer(model,
+        stability_outputs =
             (; inverse_obukhov_length=closure_fields.inverse_obukhov_length,
                stability_state=closure_fields.stability_state,
                face1_momentum_stability_function=closure_fields.momentum_stability_function[1],
                face1_scalar_stability_function=closure_fields.scalar_stability_function[1],
                filtered_surface_u_flux=closure_fields.surface_u_flux,
                filtered_surface_v_flux=closure_fields.surface_v_flux,
-               filtered_surface_theta_flux=closure_fields.surface_scalar_flux.ρθ);
+               filtered_surface_theta_flux=closure_fields.surface_scalar_flux.ρθ)
+        if support == 2
+            stability_outputs = merge(stability_outputs,
+                (; face2_momentum_stability_function=closure_fields.momentum_stability_function[2],
+                   face2_scalar_stability_function=closure_fields.scalar_stability_function[2]))
+        end
+        simulation.output_writers[:sld_stability] = JLD2Writer(model, stability_outputs;
             filename="$(case_id)_sld_stability.jld2", dir=run_directory,
             schedule=TimeInterval(600), overwrite_files=true)
     end
