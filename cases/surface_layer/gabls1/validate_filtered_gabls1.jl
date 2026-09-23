@@ -8,7 +8,6 @@ ENV["GABLS1_SLD_FILTER_SECONDS"] = "300"
 ENV["GABLS1_WALL_FILTER_SECONDS"] = "300"
 ENV["GABLS1_SLD_SUPPORT"] = "1"
 ENV["GABLS1_SLD_RESOLVED_FLUX_FACTOR"] = "1.0"
-ENV["GABLS1_SLD_RESOLVED_TRANSPORT"] = "scheme_native"
 ENV["GABLS1_SLD_SEED"] = "123"
 ENV["GABLS1_SLD_DIAGNOSTICS"] = "1"
 ENV["GABLS1_SLD_STOP_SECONDS"] = "600"
@@ -23,6 +22,8 @@ mkpath(gate_root)
 
 for closure_name in ("none", "surface_layer")
     ENV["GABLS1_SLD_CLOSURE"] = closure_name
+    ENV["GABLS1_SLD_RESOLVED_TRANSPORT"] =
+        closure_name == "none" ? "covariance" : "scheme_native"
     run_directory = joinpath(gate_root, closure_name)
     setup = build_simulation(; run_directory)
     expected_id = closure_name == "none" ?
