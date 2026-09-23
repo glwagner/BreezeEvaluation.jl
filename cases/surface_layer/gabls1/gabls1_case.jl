@@ -151,6 +151,11 @@ function build_simulation(; run_directory=pwd())
     wall_filter_seconds = parse(Float64, get(ENV, "GABLS1_WALL_FILTER_SECONDS", "0"))
     support = parse(Int, get(ENV, "GABLS1_SLD_SUPPORT", "1"))
     resolved_flux_factor = parse(Float64, get(ENV, "GABLS1_SLD_RESOLVED_FLUX_FACTOR", "1"))
+    stability_strength = parse(Float64, get(ENV, "GABLS1_SLD_STABILITY_STRENGTH", "0"))
+    isfinite(stability_strength) && stability_strength >= 0 ||
+        error("GABLS1_SLD_STABILITY_STRENGTH must be finite and nonnegative")
+    closure_name == "surface_layer" || stability_strength == 0 ||
+        error("GABLS1_SLD_STABILITY_STRENGTH requires GABLS1_SLD_CLOSURE=surface_layer")
     resolved_transport = environment_choice("GABLS1_SLD_RESOLVED_TRANSPORT",
                                             ("covariance", "scheme_native"), "covariance")
     isfinite(resolved_flux_factor) && resolved_flux_factor >= 0 ||
@@ -199,7 +204,7 @@ function build_simulation(; run_directory=pwd())
     scheme = WENO(order=9)
     closure = closure_name == "surface_layer" ? SurfaceLayerDiffusivity(FT;
         filter_timescale=filter_seconds, support, resolved_flux_factor,
-        resolved_transport=Symbol(resolved_transport),
+        resolved_transport=Symbol(resolved_transport), stability_strength,
         minimum_scalar_fluxes=(ρθ=FT(1e-8),)) : nothing
 
     model = AtmosphereModel(grid; dynamics, coriolis, microphysics=nothing,
@@ -231,11 +236,19 @@ function build_simulation(; run_directory=pwd())
         closure_id *= "_rf" * replace(string(resolved_flux_factor), "." => "p")
     end
     resolved_transport == "scheme_native" && (closure_id *= "_native")
+    # Only explicitly requested stability sensitivities are relabeled; λ=0 is the neutral SLD.
+    if closure_name == "surface_layer" && haskey(ENV, "GABLS1_SLD_STABILITY_STRENGTH")
+        closure_id *= "_stab" * replace(string(stability_strength), "." => "p")
+    end
     wall_filter_seconds > 0 && (closure_id *= "_wallf" * string(round(Int, wall_filter_seconds)))
     case_id = @sprintf("gabls1_n%03d_weno9_%s", nx, closure_id)
     mkpath(run_directory)
     settings = (; nx, spacing, closure_name, filter_seconds, wall_filter_seconds,
-        support, resolved_flux_factor,
+        support, resolved_flux_factor, stability_strength,
+        momentum_stability_parameter=closure_name == "surface_layer" ?
+            Float64(closure.momentum_stability_parameter) : NaN,
+        scalar_stability_parameter=closure_name == "surface_layer" ?
+            Float64(closure.scalar_stability_parameter) : NaN,
         resolved_transport, stop_time,
         seed, theta_initial_sha256, initial_dt, wizard_cfl=0.7,
         architecture=summary(architecture),
@@ -273,6 +286,21 @@ function build_simulation(; run_directory=pwd())
                filtered_v=filtered_velocities.v,
                filtered_Δθ=filtered_velocities.Δθᵥ);
             filename="$(case_id)_wall_filter.jld2", dir=run_directory,
+            schedule=TimeInterval(600), overwrite_files=true)
+    end
+
+    if closure_name == "surface_layer"
+        # Local (unaveraged) stability state of every column for independent audit.
+        closure_fields = model.closure_fields
+        simulation.output_writers[:sld_stability] = JLD2Writer(model,
+            (; inverse_obukhov_length=closure_fields.inverse_obukhov_length,
+               stability_state=closure_fields.stability_state,
+               face1_momentum_stability_function=closure_fields.momentum_stability_function[1],
+               face1_scalar_stability_function=closure_fields.scalar_stability_function[1],
+               filtered_surface_u_flux=closure_fields.surface_u_flux,
+               filtered_surface_v_flux=closure_fields.surface_v_flux,
+               filtered_surface_theta_flux=closure_fields.surface_scalar_flux.ρθ);
+            filename="$(case_id)_sld_stability.jld2", dir=run_directory,
             schedule=TimeInterval(600), overwrite_files=true)
     end
 

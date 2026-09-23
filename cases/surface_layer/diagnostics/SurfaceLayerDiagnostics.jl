@@ -15,6 +15,17 @@ plane_mean(field) = Field(Average(field; dims=(1, 2)))
 @inline valid_nonpositive_indicator(i, j, k, grid, deficit, active) =
     ifelse((deficit[i, j, 1] <= 0) & (active[i, j, 1] > 0), one(eltype(grid)), zero(eltype(grid)))
 
+@inline state_indicator(i, j, k, grid, state, value) =
+    ifelse(state[i, j, 1] == value, one(eltype(grid)), zero(eltype(grid)))
+
+# Horizontal fraction of columns whose SLD stability state equals `value`
+# (+1 stable-corrected, 0 neutral or guarded, -1 upward buoyancy flux left uncorrected).
+function state_fraction(state, value)
+    operation = KernelFunctionOperation{Center, Center, Nothing}(
+        state_indicator, state.grid, state, value)
+    return plane_mean(Field(operation))
+end
+
 function valid_nonpositive_fraction(deficit, active)
     operation = KernelFunctionOperation{Center, Center, Nothing}(
         valid_nonpositive_indicator, deficit.grid, deficit, active)
@@ -162,6 +173,20 @@ function surface_layer_diagnostic_outputs(model)
         end
     end
 
+    stability_available = hasproperty(closure_fields, :inverse_obukhov_length)
+    if stability_available
+        FT = eltype(model.grid)
+        series = merge(series, (;
+            surface_layer_inverse_obukhov_length=plane_mean(closure_fields.inverse_obukhov_length),
+            surface_layer_stable_column_fraction=state_fraction(closure_fields.stability_state, FT(1)),
+            surface_layer_neutral_column_fraction=state_fraction(closure_fields.stability_state, FT(0)),
+            surface_layer_upward_flux_column_fraction=state_fraction(closure_fields.stability_state, FT(-1)),
+            surface_layer_face1_momentum_stability_function=
+                plane_mean(closure_fields.momentum_stability_function[1]),
+            surface_layer_face1_scalar_stability_function=
+                plane_mean(closure_fields.scalar_stability_function[1])))
+    end
+
     z_faces = collect(znodes(model.grid, Center(), Center(), Face()))
     FT = eltype(model.grid)
     support_weights = (one(FT), closure.support == 2 ? FT(0.5) : zero(FT))
@@ -185,6 +210,14 @@ function surface_layer_diagnostic_outputs(model)
         surface_layer_scheme_native_definition="stable filtered covariance plus filtered instantaneous operator-flux-minus-centered-product correction; sampled at accepted steps, not RK-stage-integrated",
         surface_layer_mean_transport_definition="horizontal mean of each local filtered mean product, for example <ubar_T wbar_T>_xy; never product of horizontal averages",
         surface_layer_friction_velocity_definition="compute local ustar from the filtered local wall-stress vector, then horizontally average local ustar",
+        surface_layer_stability_correction_available=stability_available,
+        surface_layer_stability_strength=stability_available ? closure.stability_strength : 0.0,
+        surface_layer_momentum_stability_parameter=
+            stability_available ? closure.momentum_stability_parameter : NaN,
+        surface_layer_scalar_stability_parameter=
+            stability_available ? closure.scalar_stability_parameter : NaN,
+        surface_layer_stability_definition="local 1/L = -kappa g F_theta/(theta0 ustar^3) per column from the filtered wall stress and filtered kinematic theta flux (theta0 = anelastic reference potential temperature); phi_m = 1 + lambda beta_m max(0, z/L), phi_h = 1 + lambda beta_h max(0, z/L) divide the SLD viscosity and every scalar diffusivity; upward-flux (state -1) and guarded (state 0) columns use phi = 1; series report horizontal means of local 1/L and phi, never phi of mean L",
+        surface_layer_inverse_obukhov_length_units="m-1",
         surface_layer_momentum_flux_units="m2 s-2",
         surface_layer_viscosity_units="m2 s-1")
     for (name, guard) in pairs(closure.minimum_scalar_fluxes)

@@ -48,6 +48,11 @@ try
         end
         ENV["GABLS1_SLD_RESOLVED_TRANSPORT"] =
             get(case, "resolved_transport", "covariance")
+        if haskey(case, "stability_strength")
+            ENV["GABLS1_SLD_STABILITY_STRENGTH"] = string(case["stability_strength"])
+        else
+            pop!(ENV, "GABLS1_SLD_STABILITY_STRENGTH", nothing)
+        end
         ENV["GABLS1_SLD_STOP_SECONDS"] = string(registry["duration_s"])
         ENV["GABLS1_SLD_SEED"] = string(registry["seed"])
         ENV["GABLS1_SLD_DIAGNOSTICS"] = "1"
