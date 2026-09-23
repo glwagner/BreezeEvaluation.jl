@@ -50,9 +50,13 @@ end
 function sample(p, z)
     [begin
         j = searchsortedlast(p.z, zz)
-        1 <= j < length(p.z) || error("profile does not cover $zz m")
-        α = (zz - p.z[j]) / (p.z[j+1] - p.z[j])
-        (1 - α) * p.v[j] + α * p.v[j+1]
+        if j == length(p.z) && isapprox(zz, p.z[end]; atol=1e-8)
+            p.v[end]
+        else
+            1 <= j < length(p.z) || error("profile does not cover $zz m")
+            α = (zz - p.z[j]) / (p.z[j+1] - p.z[j])
+            (1 - α) * p.v[j] + α * p.v[j+1]
+        end
     end for zz in z]
 end
 shear(z, u, v) = (; z=(z[1:end-1] .+ z[2:end]) ./ 2,
