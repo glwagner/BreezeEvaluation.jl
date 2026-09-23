@@ -39,6 +39,7 @@ try
         ENV["GABLS1_SLD_NX"] = string(registry["grid"][1])
         ENV["GABLS1_SLD_CLOSURE"] = case["closure"]
         ENV["GABLS1_SLD_FILTER_SECONDS"] = string(case["filter_seconds"])
+        ENV["GABLS1_WALL_FILTER_SECONDS"] = string(case["wall_filter_seconds"])
         ENV["GABLS1_SLD_SUPPORT"] = string(case["support"])
         if haskey(case, "resolved_flux_factor")
             ENV["GABLS1_SLD_RESOLVED_FLUX_FACTOR"] = string(case["resolved_flux_factor"])

@@ -26,6 +26,8 @@ if !isdefined(Breeze.BoundaryConditions, :GABLSRoughWallCoefficient)
     Base.include(Breeze.BoundaryConditions, FROZEN_SURFACE_LAW)
 end
 const GABLSRoughWallCoefficient = Breeze.BoundaryConditions.GABLSRoughWallCoefficient
+Base.include(Breeze.BoundaryConditions,
+             joinpath(@__DIR__, "gabls1_filtered_wall_law.jl"))
 
 struct GABLS1SurfaceTemperature{FT}
     initial :: FT
@@ -119,6 +121,7 @@ function capture_provenance(directory, case_id, settings)
     end
     sources = (
         joinpath(@__DIR__, "gabls1_case.jl"),
+        joinpath(@__DIR__, "gabls1_filtered_wall_law.jl"),
         FROZEN_SURFACE_LAW,
         FROZEN_DIAGNOSTICS,
         joinpath(EVALUATION_REPO, "cases", "surface_layer", "diagnostics",
@@ -145,6 +148,7 @@ function build_simulation(; run_directory=pwd())
     closure_name = environment_choice("GABLS1_SLD_CLOSURE",
                                       ("none", "surface_layer"), "none")
     filter_seconds = parse(Float64, get(ENV, "GABLS1_SLD_FILTER_SECONDS", "300"))
+    wall_filter_seconds = parse(Float64, get(ENV, "GABLS1_WALL_FILTER_SECONDS", "0"))
     support = parse(Int, get(ENV, "GABLS1_SLD_SUPPORT", "1"))
     resolved_flux_factor = parse(Float64, get(ENV, "GABLS1_SLD_RESOLVED_FLUX_FACTOR", "1"))
     resolved_transport = environment_choice("GABLS1_SLD_RESOLVED_TRANSPORT",
@@ -152,6 +156,8 @@ function build_simulation(; run_directory=pwd())
     isfinite(resolved_flux_factor) && resolved_flux_factor >= 0 ||
         error("GABLS1_SLD_RESOLVED_FLUX_FACTOR must be finite and nonnegative")
     filter_seconds > 0 || error("GABLS1_SLD_FILTER_SECONDS must be positive")
+    isfinite(wall_filter_seconds) && wall_filter_seconds >= 0 ||
+        error("GABLS1_WALL_FILTER_SECONDS must be finite and nonnegative")
     support in (1, 2) || error("GABLS1_SLD_SUPPORT must be 1 or 2")
     stop_time = parse(Float64, get(ENV, "GABLS1_SLD_STOP_SECONDS", "32400"))
     seed = parse(Int, get(ENV, "GABLS1_SLD_SEED", "123"))
@@ -172,12 +178,17 @@ function build_simulation(; run_directory=pwd())
     surface_temperature = GABLS1SurfaceTemperature(FT(265), FT(0.25 / 3600))
     surface_coefficient = GABLSRoughWallCoefficient(FT;
         reference_temperature=reference_temperature)
+    filtered_velocities = wall_filter_seconds > 0 ?
+        Breeze.FilteredSurfaceVelocities(grid; filter_timescale=FT(wall_filter_seconds)) : nothing
     ρu_bcs = FieldBoundaryConditions(bottom=Breeze.BulkDrag(
-        coefficient=surface_coefficient, surface_temperature=surface_temperature))
+        coefficient=surface_coefficient, surface_temperature=surface_temperature,
+        filtered_velocities=filtered_velocities))
     ρv_bcs = FieldBoundaryConditions(bottom=Breeze.BulkDrag(
-        coefficient=surface_coefficient, surface_temperature=surface_temperature))
+        coefficient=surface_coefficient, surface_temperature=surface_temperature,
+        filtered_velocities=filtered_velocities))
     ρE_bcs = FieldBoundaryConditions(bottom=BulkSensibleHeatFlux(
-        coefficient=surface_coefficient, surface_temperature=surface_temperature))
+        coefficient=surface_coefficient, surface_temperature=surface_temperature,
+        filtered_velocities=filtered_velocities))
     boundary_conditions = (ρu=ρu_bcs, ρv=ρv_bcs, ρE=ρE_bcs)
 
     coriolis = FPlane(f=FT(1.39e-4))
@@ -220,9 +231,11 @@ function build_simulation(; run_directory=pwd())
         closure_id *= "_rf" * replace(string(resolved_flux_factor), "." => "p")
     end
     resolved_transport == "scheme_native" && (closure_id *= "_native")
+    wall_filter_seconds > 0 && (closure_id *= "_wallf" * string(round(Int, wall_filter_seconds)))
     case_id = @sprintf("gabls1_n%03d_weno9_%s", nx, closure_id)
     mkpath(run_directory)
-    settings = (; nx, spacing, closure_name, filter_seconds, support, resolved_flux_factor,
+    settings = (; nx, spacing, closure_name, filter_seconds, wall_filter_seconds,
+        support, resolved_flux_factor,
         resolved_transport, stop_time,
         seed, theta_initial_sha256, initial_dt, wizard_cfl=0.7,
         architecture=summary(architecture),
@@ -253,6 +266,15 @@ function build_simulation(; run_directory=pwd())
            max_w=m -> maximum(abs, m.velocities.w));
         filename="$(case_id)_state_bounds.jld2", dir=run_directory,
         schedule=TimeInterval(60), overwrite_files=true)
+
+    if !isnothing(filtered_velocities)
+        simulation.output_writers[:wall_filter] = JLD2Writer(model,
+            (; filtered_u=filtered_velocities.u,
+               filtered_v=filtered_velocities.v,
+               filtered_Δθ=filtered_velocities.Δθᵥ);
+            filename="$(case_id)_wall_filter.jld2", dir=run_directory,
+            schedule=TimeInterval(600), overwrite_files=true)
+    end
 
     wall_clock = Ref(time_ns())
     last_iteration = Ref(0)
