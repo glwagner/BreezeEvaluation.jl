@@ -142,7 +142,7 @@ for (row, w) in enumerate(WINDOWS)
     lines!(ax, r.v[ix], r.z[ix]; color=:black, linestyle=:dashdot, linewidth=2.6,
            label="Fixed 1 m LES median")
     ylims!(ax, 0, 125)
-    row == 2 && Legend(fig[3, 1:2], ax; orientation=:horizontal, nbanks=2, labelsize=16)
+    row == 2 && Legend(fig[4, 1:2], ax; orientation=:horizontal, nbanks=2, labelsize=16)
 end
 save(joinpath(OUT, "n64_common_shear.pdf"), fig)
 save(joinpath(OUT, "n64_common_shear.png"), fig)
@@ -158,7 +158,7 @@ for (row, w) in enumerate(WINDOWS)
         scatter!(ax, p.v[ix], p.z[ix]; color=c.color, markersize=4)
     end
     ylims!(ax, 0, 125)
-    row == 2 && Legend(fig[3, 1:2], ax; orientation=:horizontal, nbanks=2, labelsize=16)
+    row == 2 && Legend(fig[4, 1:2], ax; orientation=:horizontal, nbanks=2, labelsize=16)
 end
 save(joinpath(OUT, "n64_native_shear.pdf"), fig)
 save(joinpath(OUT, "n64_native_shear.png"), fig)
@@ -176,13 +176,16 @@ for (row, (key, unit, title)) in enumerate((("friction_velocity", "m s⁻¹", "F
         lines!(ax, s["time_s"] ./ 3600, s[key]; color=c.color, linewidth=2.2, label=c.name)
     end
     xlims!(ax, 7, 9)
+    row == 1 ? ylims!(ax, 0.25, 0.35) : ylims!(ax, -0.016, -0.009)
     row == 1 && (global wall_legend = ax)
 end
 for (row, (vars, unit, title)) in enumerate((
     (("resolved_u_w_flux", "sgs_u_w_flux", "total_u_w_flux"), "m² s⁻²", "u–w at z=12.5 m"),
     (("resolved_w_theta_flux", "sgs_w_theta_flux", "total_w_theta_flux"), "K m s⁻¹", "w–θ at z=12.5 m")))
+    short_names = ("32 ctrl", "64 ctrl", "32 γ2/1", "64 γ2/1", "64 γ2/2")
+    labels = [name * " " * part for name in short_names for part in ("res", "SGS", "total")]
     ax = Axis(fig[1+row, 2]; xlabel="Flux ($unit)", title=title,
-              yticks=(1:15, [c.name * " " * part for c in CASES for part in ("resolved", "SGS", "total")]))
+              yticks=(1:15, labels), yticklabelsize=13)
     values = [face(c.path, "final_hour", var, 12.5) for c in CASES for var in vars]
     colors = [c.color for c in CASES for _ in vars]
     barplot!(ax, 1:15, values; direction=:x, color=colors)
