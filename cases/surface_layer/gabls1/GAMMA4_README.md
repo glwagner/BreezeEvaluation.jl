@@ -1,0 +1,7 @@
+# GABLS1 stability-strength γ=4 sensitivity
+
+This single matched case interprets the requested γ=4 as `SurfaceLayerDiffusivity(stability_strength=4)`, the parameter called λ in the existing implementation. It changes only that parameter relative to the admitted λ=1 case and uses the same Breeze source commit `b0338bc2921526431763e54caf41675ad062a5d4`. The 32³, 12.5 m, WENO9, 400 m, seed-123, nine-hour GABLS1 setup retains the 300 s filtered wall, 300 s SLD filter, one-face support, and factor-one scheme-native resolved-flux estimate. Neither λ=0 nor λ=1 is rerun.
+
+The λ=4 local stable functions are `φₘ=1+4 βₘ z/L` and `φₕ=1+4 βₕ z/L` with βₘ=4.8 and βₕ=7.8. The local L comes from the same filtered surface stress and kinematic θ flux. Upward-flux columns use the documented neutral fallback and are counted; a persistent or material upward fraction prevents claiming this as a clean stable-branch test. The wall law itself is unchanged.
+
+The H100 gate runs a GPU parity test and a 1,800 s case before any nine-hour science run. Independent admission requires an immutable source hash, paired initial θ digest, durable zero exit, `CASE_DONE final_time_s=32400.0`, exact output schedules, native vertical heights, finite fields, density-consistent surface flux, saved local `1/L` and φ identities, and scheme-native transport identities. Julia plots compare 7–8 h and 8–9 h with λ=0, λ=1, filtered no closure, and the fixed 1 m LES median. One seed does not establish an optimal universal parameter.
