@@ -116,8 +116,10 @@ for (i, (var, refvar, label, top)) in enumerate(panels)
     if haskey(REF, "profile/" * refvar)
         p = reference(refvar)
         ix = findall(<=(top), p.z)
-        lines!(ax, p.v[ix], p.z[ix]; color=:black, linestyle=:dashdot,
-               linewidth=2.6, label="Fixed 1 m LES median")
+        if !isempty(ix)
+            lines!(ax, p.v[ix], p.z[ix]; color=:black, linestyle=:dashdot,
+                   linewidth=2.6, label="Fixed 1 m LES median")
+        end
     end
     ylims!(ax, 0, top)
     i == 1 && (global legend_axis = ax)
