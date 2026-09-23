@@ -144,7 +144,7 @@ function build_simulation(; run_directory=pwd())
     FT = Float32
     Oceananigans.defaults.FloatType = FT
     nx = parse(Int, get(ENV, "GABLS1_SLD_NX", "32"))
-    nx in (32, 64) || error("the bounded SurfaceLayerDiffusivity study authorizes nx=32 or 64")
+    nx in (32, 64, 128) || error("the bounded SurfaceLayerDiffusivity study authorizes nx=32, 64 or 128")
     closure_name = environment_choice("GABLS1_SLD_CLOSURE",
                                       ("none", "surface_layer"), "none")
     filter_seconds = parse(Float64, get(ENV, "GABLS1_SLD_FILTER_SECONDS", "300"))
@@ -223,10 +223,10 @@ function build_simulation(; run_directory=pwd())
         end
         paired_coarse_theta_sha256 = bytes2hex(sha256(reinterpret(UInt8, vec(theta_initial))))
     else
-        # Use the exact 32³ perturbation realization at both resolutions. Each coarse
-        # cell's perturbation is replicated into its eight fine cells, while the
+        # Use the exact 32³ perturbation realization at finer resolutions. Each coarse
+        # cell's perturbation is replicated over its refinement block, while the
         # analytic background temperature is evaluated at each fine-cell height.
-        # This makes the 64³ comparison paired instead of drawing an independent field.
+        # This makes the 64³ and 128³ comparisons paired rather than independent draws.
         coarse_theta = Array{Float64}(undef, 32, 32, 32)
         for k in 1:32, j in 1:32, i in 1:32
             coarse_z = (k - 0.5) * 12.5
@@ -235,9 +235,11 @@ function build_simulation(; run_directory=pwd())
             coarse_theta[i, j, k] = base + perturbation
         end
         paired_coarse_theta_sha256 = bytes2hex(sha256(reinterpret(UInt8, vec(coarse_theta))))
+        refinement = nx ÷ 32
         for k in 1:nx, j in 1:nx, i in 1:nx
             base = z[k] <= 100 ? 265.0 : 265.0 + 0.01 * (z[k] - 100)
-            perturbation = z[k] < 50 ? coarse_theta[cld(i, 2), cld(j, 2), cld(k, 2)] - 265.0 : 0.0
+            perturbation = z[k] < 50 ?
+                coarse_theta[cld(i, refinement), cld(j, refinement), cld(k, refinement)] - 265.0 : 0.0
             theta_initial[i, j, k] = base + perturbation
         end
     end

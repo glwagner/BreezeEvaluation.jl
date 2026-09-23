@@ -1,0 +1,49 @@
+schema_version = 1
+campaign = "gabls1_sld_n128_gamma2_20260923"
+case_family = "GABLS1"
+submission_state = "UNSUBMITTED"
+expected_case_count = 3
+runner = "cases/surface_layer/gabls1/gabls1_case.jl"
+immutable_snapshot = "REQUIRED_AT_SUBMISSION"
+original_gabls1_15case_registry_unchanged = true
+grid = [128, 128, 128]
+domain_m = [400.0, 400.0, 400.0]
+duration_s = 32400.0
+seed = 123
+paired_initial_theta_sha256 = "177e9b12560bf668690ecb0eb9aa57488c385d48f54fd2084218188d98bbc3c5"
+paired_coarse_theta_sha256 = "1f5db33f2971ee607ac46b1a014b038a09fc876cc1669394dce023a9aa2f198b"
+required_completion_sentinel = "CASE_DONE"
+required_admission = ["source_hashes", "finite", "coordinates", "scheduled_times", "initial_digest", "wall_filter", "sld_stability", "case_done"]
+interpretation = "Matched 128^3 filtered-wall GABLS1 resolution comparison after the 64^3 study. The n128 initial perturbations prolong the exact admitted n32 realization. One-face gamma2 is the same discrete closure; two-face gamma2 spans 6.25m because support four is not implemented. No-closure separates resolution effects. The 400m domain, forcing, wall law, WENO9 and seed are fixed."
+
+[[cases]]
+case_id = "gabls1_n128_weno9_control_wallf300"
+closure = "none"
+filter_seconds = 300.0
+wall_filter_seconds = 300.0
+support = 1
+resolved_flux_factor = 1.0
+resolved_transport = "covariance"
+submission_state = "UNSUBMITTED"
+
+[[cases]]
+case_id = "gabls1_n128_weno9_surface_layer_t300_s1_rf1p0_native_stab2p0_wallf300"
+closure = "surface_layer"
+filter_seconds = 300.0
+wall_filter_seconds = 300.0
+support = 1
+resolved_flux_factor = 1.0
+resolved_transport = "scheme_native"
+stability_strength = 2.0
+submission_state = "UNSUBMITTED"
+
+[[cases]]
+case_id = "gabls1_n128_weno9_surface_layer_t300_s2_rf1p0_native_stab2p0_wallf300"
+closure = "surface_layer"
+filter_seconds = 300.0
+wall_filter_seconds = 300.0
+support = 2
+resolved_flux_factor = 1.0
+resolved_transport = "scheme_native"
+stability_strength = 2.0
+submission_state = "UNSUBMITTED"
