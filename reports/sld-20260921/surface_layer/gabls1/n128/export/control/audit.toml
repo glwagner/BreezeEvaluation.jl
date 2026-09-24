@@ -1,0 +1,110 @@
+source_manifest_sha256 = "dfdcd8846a756b73b7006b67a0bdcd565a2df5400bf769e64f9d7d5345e3e233"
+flux_decomposition_pass = false
+all_finite = true
+case_id = "gabls1_n128_weno9_control_wallf300"
+final_time_s = 32400.0
+surface_flux_density_consistency_pass = true
+
+[wall_filter_max_change_after_600s]
+"filtered_Δθ" = 0.291006475687027
+filtered_u = 1.9828659296035767
+filtered_v = 1.4898325204849243
+
+[variables]
+series = 34
+profiles = 44
+
+[shapes]
+"statistics/w_variance" = [1, 1, 129]
+"series/boundary_layer_height_valid" = []
+"statistics/pressure_tke_flux" = [1, 1, 129]
+"statistics/resolved_tke" = [1, 1, 128]
+"statistics/u_mean" = [1, 1, 128]
+"series/low_level_jet_turning_from_geostrophic" = []
+"series/speed_maximum" = [1, 1, 1]
+"series/low_level_jet_height" = []
+"statistics/w_center_third_central_moment" = [1, 1, 128]
+"series/surface_stability_cap_fraction" = [1, 1, 1]
+"statistics/v_mean" = [1, 1, 128]
+"statistics/w_third_central_moment" = [1, 1, 129]
+"statistics/sgs_tke_buoyancy_production" = [1, 1, 128]
+"wall_filter/filtered_u" = [138, 138, 1]
+"series/surface_theta_kinematic_flux" = [1, 1, 1]
+"statistics/density_weighted_pressure_tke_flux" = [1, 1, 129]
+"statistics/sgs_tke_shear_production" = [1, 1, 128]
+"statistics/resolved_w_theta_flux" = [1, 1, 129]
+"statistics/resolved_u_w_flux" = [1, 1, 129]
+"statistics/resolved_tke_buoyancy_production" = [1, 1, 128]
+"series/u_absolute_maximum" = [1, 1, 1]
+"series/low_level_jet_valid" = []
+"statistics/resolved_v_w_flux" = [1, 1, 129]
+"series/surface_stability_parameter_maximum" = [1, 1, 1]
+"statistics/density_mean" = [1, 1, 128]
+"statistics/resolved_tke_transport" = [1, 1, 128]
+"series/obukhov_length_valid" = [1, 1, 1]
+"series/surface_buoyancy_flux" = [1, 1, 1]
+"statistics/v_variance" = [1, 1, 128]
+"statistics/resolved_tke_turbulent_transport" = [1, 1, 128]
+"statistics/density_weighted_turbulent_tke_flux" = [1, 1, 129]
+"statistics/buoyancy_mean" = [1, 1, 128]
+"series/surface_temperature" = []
+"series/theta_minimum" = [1, 1, 1]
+"series/low_level_jet_speed" = []
+"series/obukhov_length" = [1, 1, 1]
+"series/surface_density" = [1, 1, 1]
+"statistics/w_skewness_instantaneous_ratio" = [1, 1, 129]
+"series/surface_sensible_heat_flux" = [1, 1, 1]
+"wall_filter/filtered_v" = [138, 138, 1]
+"series/boundary_layer_height" = []
+"statistics/total_tke_buoyancy_production" = [1, 1, 128]
+"statistics/resolved_tke_shear_production" = [1, 1, 128]
+"statistics/total_tke_shear_production" = [1, 1, 128]
+"series/surface_neutral_fallback_fraction" = [1, 1, 1]
+"statistics/sgs_resolved_tke_dissipation" = [1, 1, 128]
+"series/surface_drag_u_dynamic_flux" = [1, 1, 1]
+"series/v_absolute_maximum" = [1, 1, 1]
+"series/stress_height_0_05" = []
+"statistics/resolved_tke_pressure_transport" = [1, 1, 128]
+"statistics/total_w_theta_flux" = [1, 1, 129]
+"statistics/theta_variance" = [1, 1, 128]
+"statistics/w_center_variance" = [1, 1, 128]
+"series/surface_bulk_richardson_mean" = [1, 1, 1]
+"statistics/total_v_w_flux" = [1, 1, 129]
+"series/surface_drag_v_dynamic_flux" = [1, 1, 1]
+"series/w_variance_maximum" = [1, 1, 1]
+"statistics/theta_mean" = [1, 1, 128]
+"series/surface_theta_dynamic_flux" = [1, 1, 1]
+"series/friction_velocity" = [1, 1, 1]
+"series/surface_drag_u_kinematic_flux" = [1, 1, 1]
+"series/surface_drag_v_kinematic_flux" = [1, 1, 1]
+"series/w_absolute_maximum" = [1, 1, 1]
+"statistics/w_center_mean" = [1, 1, 128]
+"statistics/u_variance" = [1, 1, 128]
+"statistics/w_mean" = [1, 1, 129]
+"statistics/sgs_w_theta_flux" = [1, 1, 129]
+"statistics/total_buoyancy_flux" = [1, 1, 129]
+"series/resolved_tke_vertical_integral" = [1, 1, 1]
+"statistics/resolved_buoyancy_flux" = [1, 1, 129]
+"statistics/sgs_buoyancy_flux" = [1, 1, 129]
+"statistics/sgs_u_w_flux" = [1, 1, 129]
+"wall_filter/filtered_Δθ" = [138, 138, 1]
+"statistics/density_at_w_faces" = [1, 1, 129]
+"series/surface_stability_parameter_mean" = [1, 1, 1]
+"series/theta_maximum" = [1, 1, 1]
+"statistics/turbulent_tke_flux" = [1, 1, 129]
+"statistics/total_u_w_flux" = [1, 1, 129]
+"statistics/total_stress_magnitude" = [1, 1, 129]
+"series/surface_bulk_richardson_maximum" = [1, 1, 1]
+"statistics/sgs_v_w_flux" = [1, 1, 129]
+
+[records]
+statistics = 19
+wall_filter = 55
+initial = 1
+series = 541
+
+[raw_sha256]
+statistics = "c42fb4802ce4f0f02cc4a880639c9648042ad77cebd5b73c64e7c77afdd60667"
+wall_filter = "689cdf99f0baff5240260b874dafcd4e3f28af08224c1bf5cc5fac13a01e5ec4"
+initial = "4cbeeedac70fd09489396bb545ed90389aa95f348c7dfaa5354d33c23a9918eb"
+series = "d9efe7d50c1fd35653bf5773f1bbaffada5090fd570e985bbf0aff914c130cdb"
